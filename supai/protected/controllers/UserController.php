@@ -7,6 +7,43 @@ class UserController extends Controller
 		$this->render('index');
 	}
 
+	//登录
+	public function actionLogin()
+	{
+		$result = array('success'=>false,
+                         'err_msg'=>'',
+                         'data'=>null);
+
+		if(isset($_POST['username']) && isset($_POST['password']))
+		{
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+
+			
+
+			result['success'] = true;
+		}
+		else
+		{
+			result['err_msg'] = "参数错误";
+			result['success'] = false;
+
+		}
+
+		$json = CJSON::encode($result);
+        echo $json;
+
+		
+
+
+	}
+
+	//注册
+	public function actionRegister()
+	{
+
+	}
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
