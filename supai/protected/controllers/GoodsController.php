@@ -7,6 +7,23 @@ class GoodsController extends Controller
 		$this->render('index');
 	}
 
+	//商品详情	
+	public function actionDetail()
+	{
+		$result = array('success'=>false);
+
+		$id = $_GET['id'];
+		$goods = Goods::model()->findByPk($id);
+		if($goods != null)
+		{
+			$result['success'] = true;
+
+		}
+
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
