@@ -1,0 +1,2 @@
+2015/02/24 03:32:55 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'supai.sale' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `sale`.
+in /Users/viator42/workspace/supai-server/supai/index.php (13)

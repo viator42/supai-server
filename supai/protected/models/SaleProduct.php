@@ -1,24 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "goods".
+ * This is the model class for table "sale_product".
  *
- * The followings are the available columns in table 'goods':
+ * The followings are the available columns in table 'sale_product':
  * @property integer $id
- * @property integer $category_id
- * @property string $name
- * @property string $rccode
+ * @property integer $goods_id
  * @property string $price
- * @property string $description
+ * @property integer $count
+ * @property string $additional
  */
-class Goods extends CActiveRecord
+class SaleProduct extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'goods';
+		return 'sale_product';
 	}
 
 	/**
@@ -29,15 +28,13 @@ class Goods extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('category_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>45),
-			array('rccode', 'length', 'max'=>20),
+			array('goods_id', 'required'),
+			array('goods_id, count', 'numerical', 'integerOnly'=>true),
 			array('price', 'length', 'max'=>10),
-			array('description', 'safe'),
+			array('additional', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, category_id, name, rccode, price, description', 'safe', 'on'=>'search'),
+			array('id, goods_id, price, count, additional', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,11 +56,10 @@ class Goods extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'category_id' => 'Category',
-			'name' => 'Name',
-			'rccode' => 'Rccode',
+			'goods_id' => 'Goods',
 			'price' => 'Price',
-			'description' => 'Description',
+			'count' => 'Count',
+			'additional' => 'Additional',
 		);
 	}
 
@@ -86,11 +82,10 @@ class Goods extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('category_id',$this->category_id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('rccode',$this->rccode,true);
+		$criteria->compare('goods_id',$this->goods_id);
 		$criteria->compare('price',$this->price,true);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('count',$this->count);
+		$criteria->compare('additional',$this->additional,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -101,7 +96,7 @@ class Goods extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Goods the static model class
+	 * @return SaleProduct the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
