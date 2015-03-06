@@ -20,3 +20,11 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/index.php/area/city?code=110100
 ---
+2015/03/06 02:12:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "#a;b".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('#a;b')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=#a;b
+---
