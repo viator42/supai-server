@@ -28,3 +28,21 @@ Stack trace:
 #3 {main}
 REQUEST_URI=#a;b
 ---
+2015/03/06 16:58:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "#Â ÃžÃ­Â˜{Ã—Â°Â«(VZ6Â¼Ã¶/Â…MÂ¡ÃœyÂ¢Ã±ÃhÂŽ,Ã„fGÃÂO1(Ã½ÂÃ¡Ã¯Â†TÃ¬WÃ®2Ã–{Â´zÂ«\Ã˜>>Â‰Â hÂ‡aW.Ã®".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('#\xC2\xA0\xC3\x9E\xC3\xAD\xC2\x98\e{\xC3\x97\xC2\xB0...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=# Þí˜{×°«(VZ6¼ö/…M¡Üy¢ñÏhŽ,ÄfGÐO1(ýáï†TìWî2Ö{´z«\Ø>>‰ h‡aW.î
+---
+2015/03/08 09:20:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "province".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('province')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('province')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('area/province')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/area/province
+---
