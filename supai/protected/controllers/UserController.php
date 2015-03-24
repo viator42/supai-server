@@ -29,19 +29,18 @@ class UserController extends Controller
 	{
 		$result = array('success'=>false);
 
-		if(isset($_POST['tel']) && isset($_POST['password']))
+		if(Yii::app()->request->isPostRequest)
 		{
 			$tel = $_POST['tel'];
 			$password = $_POST['password'];
 
-			$user = User::model()->find('tel = :tel & password = :password', array(':tel'=>$tel, $password=>$password));
+			$model = User::model()->find('tel = :tel and password = :password', array(':tel'=>$tel, ':password'=>$password));
 
-			if($user != null)
+			if($model)
 			{
-				result['data'] = $user;				
-				result['success'] = true;
+				$result['data'] = $model;				
+				$result['success'] = true;
 			}
-
 		}
 
 		$json = CJSON::encode($result);
@@ -54,29 +53,30 @@ class UserController extends Controller
 	{
 		$result = array('success'=>false);
 
-		if(isset($_POST['tel']) && isset($_POST['password']))
+		if(Yii::app()->request->isPostRequest)
 		{
 			$tel = $_POST['tel'];
 			$password = $_POST['password'];
 
-			&model = new User();
+			$model = new User();
 
 			$model->username = $tel;
 			$model->tel = $tel;
 			$model->password = $password;
 			$model->register_time = time();
 
-			&model->save();
+			$model->save();
 
-			result['data'] = $model;	
-			result['success'] = true;
+			$result['data'] = $model;	
+			$result['success'] = true;
 		}
 
 		$json = CJSON::encode($result);
         echo $json;
 
 	}
-
+	
+/*
 	//完善用户信息
 	public function actionPerfection()
 	{
@@ -103,7 +103,7 @@ class UserController extends Controller
 		$json = CJSON::encode($result);
         echo $json;
 	}
-
+*/
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

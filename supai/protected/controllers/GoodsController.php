@@ -24,6 +24,8 @@ class GoodsController extends Controller
 		$json = CJSON::encode($result);
         echo $json;
 	}
+
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
