@@ -67,7 +67,7 @@ class UserController extends Controller
 
 			$model->save();
 
-			$result['data'] = $model;	
+			$result['data'] = $model;
 			$result['success'] = true;
 		}
 
