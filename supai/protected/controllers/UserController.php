@@ -29,18 +29,15 @@ class UserController extends Controller
 	{
 		$result = array('success'=>false);
 
-		if(Yii::app()->request->isPostRequest)
+		$tel = $_POST['tel'];
+		$password = $_POST['password'];
+
+		$model = User::model()->find('tel = :tel and password = :password', array(':tel'=>$tel, ':password'=>$password));
+
+		if($model != null)
 		{
-			$tel = $_POST['tel'];
-			$password = $_POST['password'];
-
-			$model = User::model()->find('tel = :tel and password = :password', array(':tel'=>$tel, ':password'=>$password));
-
-			if($model)
-			{
-				$result['data'] = $model;				
-				$result['success'] = true;
-			}
+			$result['data'] = $model;				
+			$result['success'] = true;
 		}
 
 		$json = CJSON::encode($result);
@@ -53,23 +50,20 @@ class UserController extends Controller
 	{
 		$result = array('success'=>false);
 
-		if(Yii::app()->request->isPostRequest)
-		{
-			$tel = $_POST['tel'];
-			$password = $_POST['password'];
+		$tel = $_POST['tel'];
+		$password = $_POST['password'];
 
-			$model = new User();
+		$model = new User();
 
-			$model->username = $tel;
-			$model->tel = $tel;
-			$model->password = $password;
-			$model->register_time = time();
+		$model->username = $tel;
+		$model->tel = $tel;
+		$model->password = $password;
+		$model->register_time = time();
 
-			$model->save();
+		$model->save();
 
-			$result['data'] = $model;
-			$result['success'] = true;
-		}
+		$result['data'] = $model;
+		$result['success'] = true;
 
 		$json = CJSON::encode($result);
         echo $json;

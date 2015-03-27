@@ -8,7 +8,10 @@
  * @property integer $create_time
  * @property integer $customer_id
  * @property integer $merchant_id
+ * @property integer $store_id
  * @property integer $status
+ * @property string $summary
+ * @property string $additional
  */
 class Order extends CActiveRecord
 {
@@ -28,11 +31,13 @@ class Order extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('create_time', 'required'),
-			array('create_time, customer_id, merchant_id, status', 'numerical', 'integerOnly'=>true),
+			array('create_time, customer_id, merchant_id, store_id', 'required'),
+			array('create_time, customer_id, merchant_id, store_id, status', 'numerical', 'integerOnly'=>true),
+			array('summary', 'length', 'max'=>10),
+			array('additional', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, create_time, customer_id, merchant_id, status', 'safe', 'on'=>'search'),
+			array('id, create_time, customer_id, merchant_id, store_id, status, summary, additional', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,7 +62,10 @@ class Order extends CActiveRecord
 			'create_time' => 'Create Time',
 			'customer_id' => 'Customer',
 			'merchant_id' => 'Merchant',
+			'store_id' => 'Store',
 			'status' => 'Status',
+			'summary' => 'Summary',
+			'additional' => 'Additional',
 		);
 	}
 
@@ -83,7 +91,10 @@ class Order extends CActiveRecord
 		$criteria->compare('create_time',$this->create_time);
 		$criteria->compare('customer_id',$this->customer_id);
 		$criteria->compare('merchant_id',$this->merchant_id);
+		$criteria->compare('store_id',$this->store_id);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('summary',$this->summary,true);
+		$criteria->compare('additional',$this->additional,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

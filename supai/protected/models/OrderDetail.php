@@ -5,9 +5,10 @@
  *
  * The followings are the available columns in table 'order_detail':
  * @property integer $id
- * @property integer $goods_id
+ * @property integer $product_id
  * @property integer $count
  * @property integer $add_time
+ * @property string $price
  */
 class OrderDetail extends CActiveRecord
 {
@@ -27,11 +28,12 @@ class OrderDetail extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('goods_id, add_time', 'required'),
-			array('goods_id, count, add_time', 'numerical', 'integerOnly'=>true),
+			array('product_id', 'required'),
+			array('product_id, count, add_time', 'numerical', 'integerOnly'=>true),
+			array('price', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, goods_id, count, add_time', 'safe', 'on'=>'search'),
+			array('id, product_id, count, add_time, price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,9 +55,10 @@ class OrderDetail extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'goods_id' => 'Goods',
+			'product_id' => 'Product',
 			'count' => 'Count',
 			'add_time' => 'Add Time',
+			'price' => 'Price',
 		);
 	}
 
@@ -78,9 +81,10 @@ class OrderDetail extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('goods_id',$this->goods_id);
+		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('count',$this->count);
 		$criteria->compare('add_time',$this->add_time);
+		$criteria->compare('price',$this->price,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

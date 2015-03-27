@@ -10,6 +10,7 @@
  * @property string $rccode
  * @property string $price
  * @property string $description
+ * @property string $origin
  */
 class Goods extends CActiveRecord
 {
@@ -34,10 +35,11 @@ class Goods extends CActiveRecord
 			array('name', 'length', 'max'=>45),
 			array('rccode', 'length', 'max'=>20),
 			array('price', 'length', 'max'=>10),
+			array('origin', 'length', 'max'=>64),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, category_id, name, rccode, price, description', 'safe', 'on'=>'search'),
+			array('id, category_id, name, rccode, price, description, origin', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +66,7 @@ class Goods extends CActiveRecord
 			'rccode' => 'Rccode',
 			'price' => 'Price',
 			'description' => 'Description',
+			'origin' => 'Origin',
 		);
 	}
 
@@ -91,6 +94,7 @@ class Goods extends CActiveRecord
 		$criteria->compare('rccode',$this->rccode,true);
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('origin',$this->origin,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

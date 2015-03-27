@@ -1,23 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "sale_product".
+ * This is the model class for table "recent_bought".
  *
- * The followings are the available columns in table 'sale_product':
+ * The followings are the available columns in table 'recent_bought':
  * @property integer $id
- * @property integer $goods_id
- * @property string $price
- * @property integer $count
- * @property string $additional
+ * @property integer $product_id
+ * @property integer $user_id
+ * @property integer $lastbought_time
  */
-class SaleProduct extends CActiveRecord
+class RecentBought extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'sale_product';
+		return 'recent_bought';
 	}
 
 	/**
@@ -28,13 +27,11 @@ class SaleProduct extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('goods_id', 'required'),
-			array('goods_id, count', 'numerical', 'integerOnly'=>true),
-			array('price', 'length', 'max'=>10),
-			array('additional', 'safe'),
+			array('product_id, user_id, lastbought_time', 'required'),
+			array('product_id, user_id, lastbought_time', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, goods_id, price, count, additional', 'safe', 'on'=>'search'),
+			array('id, product_id, user_id, lastbought_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,10 +53,9 @@ class SaleProduct extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'goods_id' => 'Goods',
-			'price' => 'Price',
-			'count' => 'Count',
-			'additional' => 'Additional',
+			'product_id' => 'Product',
+			'user_id' => 'User',
+			'lastbought_time' => 'Lastbought Time',
 		);
 	}
 
@@ -82,10 +78,9 @@ class SaleProduct extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('goods_id',$this->goods_id);
-		$criteria->compare('price',$this->price,true);
-		$criteria->compare('count',$this->count);
-		$criteria->compare('additional',$this->additional,true);
+		$criteria->compare('product_id',$this->product_id);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('lastbought_time',$this->lastbought_time);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -96,7 +91,7 @@ class SaleProduct extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return SaleProduct the static model class
+	 * @return RecentBought the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

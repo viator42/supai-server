@@ -1,27 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "store".
+ * This is the model class for table "image".
  *
- * The followings are the available columns in table 'store':
+ * The followings are the available columns in table 'image':
  * @property integer $id
- * @property string $logo
- * @property string $name
- * @property integer $user_id
- * @property integer $area_id
- * @property double $longitude
- * @property double $latitude
- * @property string $description
- * @property string $address
+ * @property string $url
+ * @property string $comment
+ * @property integer $type
+ * @property integer $type_id
  */
-class Store extends CActiveRecord
+class Image extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'store';
+		return 'image';
 	}
 
 	/**
@@ -32,16 +28,13 @@ class Store extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, user_id', 'required'),
-			array('user_id, area_id', 'numerical', 'integerOnly'=>true),
-			array('longitude, latitude', 'numerical'),
-			array('logo', 'length', 'max'=>128),
-			array('name', 'length', 'max'=>45),
-			array('address', 'length', 'max'=>64),
-			array('description', 'safe'),
+			array('url, type, type_id', 'required'),
+			array('type, type_id', 'numerical', 'integerOnly'=>true),
+			array('url', 'length', 'max'=>128),
+			array('comment', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, logo, name, user_id, area_id, longitude, latitude, description, address', 'safe', 'on'=>'search'),
+			array('id, url, comment, type, type_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,14 +56,10 @@ class Store extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'logo' => 'Logo',
-			'name' => 'Name',
-			'user_id' => 'User',
-			'area_id' => 'Area',
-			'longitude' => 'Longitude',
-			'latitude' => 'Latitude',
-			'description' => 'Description',
-			'address' => 'Address',
+			'url' => 'Url',
+			'comment' => 'Comment',
+			'type' => 'Type',
+			'type_id' => 'Type',
 		);
 	}
 
@@ -93,14 +82,10 @@ class Store extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('logo',$this->logo,true);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('area_id',$this->area_id);
-		$criteria->compare('longitude',$this->longitude);
-		$criteria->compare('latitude',$this->latitude);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('address',$this->address,true);
+		$criteria->compare('url',$this->url,true);
+		$criteria->compare('comment',$this->comment,true);
+		$criteria->compare('type',$this->type);
+		$criteria->compare('type_id',$this->type_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -111,7 +96,7 @@ class Store extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Store the static model class
+	 * @return Image the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
