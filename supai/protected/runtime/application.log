@@ -140,3 +140,210 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/index.php/product/recent
 ---
+2015/03/29 07:52:49 [error] [exception.CException] exception 'CException' with message 'Property "Store.userid" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(161): CComponent->__set('userid', '5')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php(17): CActiveRecord->__set('userid', '5')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): StoreController->actionNew()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('new')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('store/new')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/store/new
+---
+2015/03/29 07:55:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "new".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('new')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('new')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('user/new')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/new
+---
+2015/03/29 07:55:56 [error] [php] Undefined index: userid (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:17)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/new
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (17)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/29 07:56:34 [error] [exception.CException] exception 'CException' with message 'Property "Store.userid" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(161): CComponent->__set('userid', '1')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php(17): CActiveRecord->__set('userid', '1')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): StoreController->actionNew()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('new')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('store/new')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/store/new
+---
+2015/03/29 08:00:29 [error] [exception.CException] exception 'CException' with message 'Property "Store.userid" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(161): CComponent->__set('userid', '1')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php(33): CActiveRecord->__set('userid', '1')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): StoreController->actionNew()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('new')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('store/new')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/store/new
+---
+2015/03/29 08:08:24 [error] [php] Undefined index: userid (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:33)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/new
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (33)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/29 08:11:52 [error] [php] Undefined index: description (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:36)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/new
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (36)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/29 08:15:24 [error] [php] Undefined index: description (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:36)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/new
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (36)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/30 05:55:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('images')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/images
+---
+2015/03/30 07:47:45 [error] [php] Undefined index: file (/Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php:14)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): ImageController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): ImageController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): ImageController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/image/upload
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php (14)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/30 07:47:47 [error] [php] Undefined index: file (/Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php:14)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): ImageController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): ImageController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): ImageController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/image/upload
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php (14)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/30 08:01:26 [error] [php] Only variables should be passed by reference (/Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php:24)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): ImageController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): ImageController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): ImageController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/image/upload
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php (24)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/30 08:07:33 [error] [php] Only variables should be passed by reference (/Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php:24)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): ImageController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): ImageController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): ImageController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/image/upload
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php (24)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/30 08:12:03 [error] [php] Undefined variable: file (/Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php:18)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): ImageController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): ImageController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): ImageController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/image/upload
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php (18)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/30 08:13:34 [error] [php] Undefined variable: file (/Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php:26)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): ImageController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): ImageController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): ImageController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/image/upload
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php (26)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/30 08:14:33 [error] [php] Use of undefined constant destPath - assumed 'destPath' (/Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php:29)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): ImageController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): ImageController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): ImageController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/image/upload
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php (29)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/30 08:17:06 [error] [php] Undefined index: file (/Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php:14)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): ImageController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): ImageController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): ImageController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/image/upload
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php (14)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/03/30 08:27:23 [error] [php] stripslashes() expects parameter 1 to be string, array given (/Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php:56)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): ImageController->runAction()
+#2 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): ImageController->runActionWithFilters()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): ImageController->run()
+#4 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/image/upload
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/ImageController.php (56)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
