@@ -60,7 +60,7 @@ class OrderController extends Controller
 
 			$order['createTime'] = $orderObj->create_time;
 			$order['summary'] = $orderObj->summary;
-			$order['status'] = $orderObj->status;
+			$order['status'] = $orderObj->getStatusName();
 			$order['additional'] = $orderObj->additional;
 			
 			$result[] = $order;
@@ -86,7 +86,7 @@ class OrderController extends Controller
 			$detail['productId'] = $orderObj->product_id;
 			$detail['count'] = $orderObj->count;
 			$detail['price'] = $orderObj->price;
-			
+
 
 			//获取订单产品信息
 			$product = Product::model()->findByPk($orderObj->product_id);
