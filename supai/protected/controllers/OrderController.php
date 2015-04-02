@@ -86,12 +86,18 @@ class OrderController extends Controller
 			$detail['productId'] = $orderObj->product_id;
 			$detail['count'] = $orderObj->count;
 			$detail['price'] = $orderObj->price;
+			
 
 			//获取订单产品信息
 			$product = Product::model()->findByPk($orderObj->product_id);
+			$goods = Goods::model()->findByPk($product->goods_id);
+			
 			if($product != null)
 			{
-				$detail['productName'] = $product->description;
+				$detail['name'] = $goods->name;
+				$detail['goodsDescription'] = $goods->description;
+				$detail['rccode'] = $goods->rccode;
+				$detail['origin'] = $goods->origin;
 
 			}
 
