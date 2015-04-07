@@ -6,6 +6,8 @@
  * The followings are the available columns in table 'cart_detail':
  * @property integer $id
  * @property integer $cart_id
+ * @property string $goods_name
+ * @property string $price
  * @property integer $product_id
  * @property integer $count
  */
@@ -27,11 +29,13 @@ class CartDetail extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('cart_id, product_id', 'required'),
+			array('cart_id, goods_name, product_id', 'required'),
 			array('cart_id, product_id, count', 'numerical', 'integerOnly'=>true),
+			array('goods_name', 'length', 'max'=>45),
+			array('price', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, cart_id, product_id, count', 'safe', 'on'=>'search'),
+			array('id, cart_id, goods_name, price, product_id, count', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,6 +58,8 @@ class CartDetail extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'cart_id' => 'Cart',
+			'goods_name' => 'Goods Name',
+			'price' => 'Price',
 			'product_id' => 'Product',
 			'count' => 'Count',
 		);
@@ -79,6 +85,8 @@ class CartDetail extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('cart_id',$this->cart_id);
+		$criteria->compare('goods_name',$this->goods_name,true);
+		$criteria->compare('price',$this->price,true);
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('count',$this->count);
 
