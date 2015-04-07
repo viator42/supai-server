@@ -40,13 +40,13 @@ class CartController extends Controller
     		$summary = 0;
 			$count = 0;
 
-    		$cart = new array();
-    		$details = new array();
+    		$cart = array();
+    		$details = array();
 
-    		$detailObjs = CartDetail::model->findAll('cart_id=:cart_id', array(':cart_id'=>$cartObj->id));
+    		$detailObjs = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cartObj->id));
     		foreach ($detailObjs as $detailObj)
     		{
-    			$detail = new array();
+    			$detail = array();
     			
     			$detail['name'] = $detailObj->goods_name;
     			$detail['price'] = $detailObj->price;
@@ -76,10 +76,94 @@ class CartController extends Controller
     }
 
     //购物车商品个数修改
+    public function actionUpdateCount()
+    {
+    	$result = array('success'=>false);
+
+    	$detailId = $_POST['id'];
+    	$count = $_POST['count'];
+
+    	$cartDetail = CartDetail::model()->findById($detailId);
+    	if($cartDetail != null)
+    	{
+    		$cartDetail->count = $count;
+    		$cartDetail->save();
+    		$result['success'] = true;
+
+    	}
+
+    	$json = CJSON::encode($result);
+        echo $json;
+    }
 
     //商品删除
+    public function actionRemove()
+    {
+    	$result = array('success'=>false);
+
+    	$detailId = $_POST['id'];
+
+    	$cartDetail = CartDetail::model()->findById($detailId);
+    	if($cartDetail != null)
+    	{
+    		$cartDetail->count = $count;
+    		$cartDetail->delete();
+    		$result['success'] = true;
+
+    	}
+
+    	$json = CJSON::encode($result);
+        echo $json;
+    }
+
+    //清空购物车 直接删除
+    public function actionClear()
+    {
+    	$result = array('success'=>false);
+
+    	$userId = $_POST['userid'];
+
+    	$cartDetail = CartDetail::model()->findAll('user_id=:user_id', array(':user_id'=>$userId));
+    	if($cartDetail != null)
+    	{
+    		$cartDetail->delete();
+
+    	}
+    	$result['success'] = true;
+
+    	$json = CJSON::encode($result);
+        echo $json;
+    }
+
 
     //添加到购物车
+    public function actionAdd()
+    {
+    	$result = array('success'=>false);
+
+    	$cartid = $_POST['cartid'];
+    	$productId = $_POST['productid'];
+    	$count = $_POST['count'];
+
+    	$product = Product::model()->findByPk($productId);
+    	$goods = Goods::model()->findByPk($product->id);
+
+    	$detail = new CartDetail();
+
+		$detail->cart_id = $cartid; 
+		$detail->goods_name = $goods->name; 	
+		$detail->price = $product->price; 
+		$detail->product_id = $productId;
+		$detail->count = $count;
+
+    	$detail->save();
+
+    	$result['data'] = $detail;
+		$result['success'] = true;
+
+    	$json = CJSON::encode($result);
+        echo $json;
+    }
 
     //
 
