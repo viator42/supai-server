@@ -8,6 +8,21 @@ class OrderController extends Controller
 		$this->render('index');
 	}
 
+	public function accessRules()
+    {
+        return array(
+            array('allow',  // allow all users to perform 'index' and 'view' actions
+                'users'=>array('*'),
+            ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+//                'actions'=>array('*'),
+                'users'=>array('@'),
+            ),
+            array('deny',  // deny all users
+                'users'=>array('*'),
+            ),
+        );
+    }
 
 	//商户查看已提交的订单
 	public function actionActiveOrdersForMerchant()
@@ -31,9 +46,12 @@ class OrderController extends Controller
 	public function actionActiveOrdersForCustomer()
 	{
 		$result = array();
+		$data = array();
 
 		$customerId = $_POST['id'];
-		$orderObjs = Order::model()->findAll('customer_id = :customerId and (status = 1 or status = 2)', array(':customerId'=>$customerId));
+		//$orderObjs = Order::model()->findAll('customer_id = :customerId and (status = 1 or status = 2)', array(':customerId'=>$customerId));
+		
+		$orderObjs = Order::model()->findAll('status = 1 or status = 2');
 		foreach ($orderObjs as $orderObj) 
 		{
 			$order = array();
@@ -63,23 +81,40 @@ class OrderController extends Controller
 			$order['status'] = $orderObj->getStatusName();
 			$order['additional'] = $orderObj->additional;
 			
-			$result[] = $order;
+			$data[] = $order;
 
 		}
+
+		$result['success'] = true;
+		$result['data'] = $data;
 
 		$json = CJSON::encode($result);
         echo $json;
 	}
 
-	//查询订单详情商品
+	//查询订单详情 商品列表
 	public function actionDetail()
 	{
 		$result = array();
+		$data = array();
 
 		$orderId = $_POST['id'];
 
-		$orderObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderId));
-		foreach ($orderObjs as $orderObj) 
+		//查询订单信息
+		$orderObj = Order::model()->findByPk($orderId);
+		$data['create_time'] = $orderObj->create_time;
+
+		$data['store_id'] = $orderObj->store_id;
+		$store = Store::model()->findByPk($orderObj->store_id);
+		$data['store_name'] = $store->name;
+
+		$data['status'] = $orderObj->getStatusName();
+
+		//商品列表
+		$detailList = array();
+
+		$orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderId));
+		foreach ($orderDetailObjs as $orderObj) 
 		{
 			$detail = array();
 			$detail['id'] = $orderObj->id;
@@ -87,13 +122,15 @@ class OrderController extends Controller
 			$detail['count'] = $orderObj->count;
 			$detail['price'] = $orderObj->price;
 
-
 			//获取订单产品信息
 			$product = Product::model()->findByPk($orderObj->product_id);
 			$goods = Goods::model()->findByPk($product->goods_id);
 			
 			if($product != null)
 			{
+				//产品图片
+				$detail['image'] = "http://192.168.1.10/images/aaaa.jpg";
+
 				$detail['name'] = $goods->name;
 				$detail['goodsDescription'] = $goods->description;
 				$detail['rccode'] = $goods->rccode;
@@ -101,11 +138,15 @@ class OrderController extends Controller
 
 			}
 
-			$result[] = $detail;
+			$detailList[] = $detail;
 
 		}
+		$result['detailList'] = $detailList;
 
-		$json = CJSON::encode($result);
+		$result['success'] = true;
+		$result['data'] = $data;
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
 

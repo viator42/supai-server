@@ -45,6 +45,65 @@ class StoreController extends Controller
 
 	}
 
+	//店铺详情
+	public function actionStoreProducts()
+	{
+		$result = array('success'=>false);
+
+		$data = array();
+		$products = array();
+
+		$storeId = $_POST['id'];
+
+		$storeObj = Store::model()->findByPk($storeId);
+
+		if($store != null)
+		{
+			$data['logo'] = $storeObj->logo;
+			$data['name'] = $storeObj->name;
+			$data['description'] = $storeObj->description;
+			$data['address'] = $storeObj->address;
+
+
+		}
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
+
+	//返回商店的所有商品列表
+	public function actionStoreProducts()
+	{
+		$result = array('success'=>false);
+
+		$products = array();
+
+		$storeId = $_POST['id'];
+
+		$productObjs = Product::model->findAll('store_id=:store_id', array(':store_id'=>$storeId));
+
+		foreach ($productObjs as $productObj) 
+		{
+			$product = array();
+			$product['id'] = $productObj->id;
+			$product['price'] = $productObj->price;
+
+			$goodsObj = Goods::model->findByPk($productObj->goods_id);
+			$product['name'] = $productObj->price;
+			$product['rccode'] = $productObj->rccode;
+
+			$products[] = $product;
+
+		}
+
+		$result['data'] = $products;
+
+		$json = CJSON::encode($result);
+        echo $json;
+		
+	}
+
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

@@ -31,9 +31,27 @@ class ProductController extends Controller
         echo $json;
 	}
 	
-	//返回商家所有商品.
-	
+	//查询商品详情
+	public function actionDetail()
+	{
+		$result = array();
+		$id = $_POST['id'];
 
+		$productObj = Product::model->findByPk($id);
+		
+		$goodsObj = Goods::model()->findByPk($productObj->goods_id);
+		$result['name'] = $goodsObj->name;
+		$result['rccode'] = $goodsObj->rccode;
+		$result['priceRecommend'] = $goodsObj->price;
+		$result['description'] = $goodsObj->description;
+
+		$result['price'] = $productObj->price;
+		$result['count'] = $productObj->count;
+		$result['addition'] = $productObj->description;
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
 	
 
 	// Uncomment the following methods and override them if needed

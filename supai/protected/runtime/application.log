@@ -399,3 +399,25 @@ Stack trace:
 #10 {main}
 REQUEST_URI=/index.php/order/detail
 ---
+2015/04/03 07:34:27 [error] [php] Undefined index: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php:36)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): OrderController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): OrderController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/order/ActiveOrdersForCustomer
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php (36)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/06 03:56:25 [error] [php] Use of undefined constant orderId - assumed 'orderId' (/Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php:104)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): OrderController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): OrderController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/order/detail
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php (104)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
