@@ -45,7 +45,17 @@ class StoreController extends Controller
 
 	}
 
-	//店铺详情
+	//查询用户的店铺信息
+	public function actionInfo()
+	{
+		$result = array('success'=>false);
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
+
+
+	//店铺详情 商品列表
 	public function actionStoreProducts()
 	{
 		$result = array('success'=>false);

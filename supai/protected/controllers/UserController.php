@@ -40,7 +40,8 @@ class UserController extends Controller
 			$result['success'] = true;
 		}
 
-		$json = CJSON::encode($result);
+		
+		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 
 	}

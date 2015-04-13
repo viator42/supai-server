@@ -150,6 +150,9 @@ class OrderController extends Controller
         echo $json;
 	}
 
+	//购物车生成订单
+	
+
 	//返回用户的历史订单
 
 
