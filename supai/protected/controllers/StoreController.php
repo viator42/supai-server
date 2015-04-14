@@ -50,7 +50,17 @@ class StoreController extends Controller
 	{
 		$result = array('success'=>false);
 
-		$json = CJSON::encode($result);
+		$userid = $_POST['userid'];
+
+		$storeObj = Store::model()->find('user_id=:user_id', array(':user_id'=>$userid));
+		if($storeObj != null)
+		{
+			$result['data'] = $storeObj;
+			$result['success'] = true;
+
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
 
@@ -74,7 +84,8 @@ class StoreController extends Controller
 			$data['description'] = $storeObj->description;
 			$data['address'] = $storeObj->address;
 
-
+			$result['data'] = $data;
+			$result['success'] = true;
 		}
 
 		$json = CJSON::encode($result);
@@ -82,6 +93,7 @@ class StoreController extends Controller
 	}
 
 	//返回商店的所有商品列表
+	/*
 	public function actionStoreProducts()
 	{
 		$result = array('success'=>false);
@@ -112,6 +124,7 @@ class StoreController extends Controller
         echo $json;
 		
 	}
+	*/
 
 
 	// Uncomment the following methods and override them if needed

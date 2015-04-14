@@ -30,23 +30,40 @@ class ProductController extends Controller
 		$result = array();
 
 		$id = $_POST['userid'];
-		$recentBoughts = RecentBought::model()->findAll('userid = :userid', array(':userid'=>$id));
-		foreach($recentBoughts as $recentBought) 
+		$recentBoughtObjs = RecentBought::model()->findAll('user_id = :userid', array(':userid'=>$id));
+
+		foreach($recentBoughtObjs as $recentBoughtObj) 
 		{
-			$lastBoughtProduct = array();
+			$recentBought = array();
 
-			$product = SaleProduct::model()->findByPk($recentBought->product_id);
+			$product = Product::model()->findByPk($recentBoughtObj->product_id);
+			if($product != null)
+			{
+				$goods = Goods::model()->findByPk($product->id);
+				$recentBought['id'] = $product->id;
+				$recentBought['name'] = $goods->name;
+				$recentBought['img'] = "";
+			}
 
-			$lastBoughtProduct['id'] = $recentBought->product_id;
-			$lastBoughtProduct['name'] = $product->name;
 
-			$result[] = $lastBoughtProduct;
+
+		// 	$lastBoughtProduct = array();
+
+		// 	$product = SaleProduct::model()->findByPk($recentBought->product_id);
+
+		// 	$lastBoughtProduct['id'] = $recentBought->product_id;
+		// 	$lastBoughtProduct['name'] = $product->name;
+
+		// 	$result[] = $lastBoughtProduct;
+
+			$result[] = $recentBought;
 		}
 
-		$json = CJSON::encode($result);
+		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
 	
+	/*
 	//查询商品详情
 	public function actionDetail()
 	{
@@ -68,6 +85,7 @@ class ProductController extends Controller
 		$json = CJSON::encode($result);
         echo $json;
 	}
+	*/
 	
 
 	// Uncomment the following methods and override them if needed
