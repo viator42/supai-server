@@ -23,6 +23,7 @@ class ImageController extends Controller
         );
     }
 
+    //图片上传
 	public function actionUpload()
 	{
 		$result = array('success'=>false);

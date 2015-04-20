@@ -63,29 +63,42 @@ class ProductController extends Controller
         echo $json;
 	}
 	
-	/*
+	
 	//查询商品详情
 	public function actionDetail()
 	{
-		$result = array();
+		$result = array('success'=>false);
+		$product = array();
+
 		$id = $_POST['id'];
 
-		$productObj = Product::model->findByPk($id);
-		
-		$goodsObj = Goods::model()->findByPk($productObj->goods_id);
-		$result['name'] = $goodsObj->name;
-		$result['rccode'] = $goodsObj->rccode;
-		$result['priceRecommend'] = $goodsObj->price;
-		$result['description'] = $goodsObj->description;
+		$productObj = Product::model()->findByPk($id);
+		if($productObj != null)
+		{
+			$goodsObj = Goods::model()->findByPk($productObj->goods_id);
+			$product['name'] = $goodsObj->name;
+			$product['rccode'] = $goodsObj->rccode;
+			$product['description'] = $goodsObj->description;
+			$product['origin'] = $goodsObj->origin;
+			$product['merchant'] = $goodsObj->merchant;
+			$product['merchant_code'] = $goodsObj->merchant_code;
+			$product['price'] = $productObj->price;
+			$product['additional'] = $productObj->description;
 
-		$result['price'] = $productObj->price;
-		$result['count'] = $productObj->count;
-		$result['addition'] = $productObj->description;
+			//商品图片
+			//$images = Image::model()->findAll();
+			$product['img'] = "";
+
+			$result['data'] = $product;
+			$result['success'] = true;
+		}
+		
+		
 
 		$json = CJSON::encode($result);
         echo $json;
 	}
-	*/
+	
 	
 
 	// Uncomment the following methods and override them if needed

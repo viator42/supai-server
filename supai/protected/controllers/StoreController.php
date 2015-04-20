@@ -65,34 +65,36 @@ class StoreController extends Controller
 	}
 
 
-	//店铺详情 商品列表
-	public function actionStoreProducts()
+	//返回商店的所有商品列表
+	public function actionProducts()
 	{
-		$result = array('success'=>false);
+		$result = array();
 
 		$data = array();
 		$products = array();
 
 		$storeId = $_POST['id'];
 
-		$storeObj = Store::model()->findByPk($storeId);
-
-		if($store != null)
+		$productObjs = Product::model()->findAll('store_id=:store_id', array(':store_id'=>$storeId));
+		foreach ($productObjs as $productObj) 
 		{
-			$data['logo'] = $storeObj->logo;
-			$data['name'] = $storeObj->name;
-			$data['description'] = $storeObj->description;
-			$data['address'] = $storeObj->address;
+			$pruduct = array();
+			$pruduct['id'] = $productObj->id;
+			$goods = Goods::model()->findByPk($productObj->goods_id);
+			$pruduct['name'] = $goods->name;
+			$pruduct['price'] = $productObj->price;
 
-			$result['data'] = $data;
-			$result['success'] = true;
+
+			$result[] = $pruduct;
+
 		}
+		
 
 		$json = CJSON::encode($result);
         echo $json;
 	}
 
-	//返回商店的所有商品列表
+	
 	/*
 	public function actionStoreProducts()
 	{
@@ -125,7 +127,6 @@ class StoreController extends Controller
 		
 	}
 	*/
-
 
 	// Uncomment the following methods and override them if needed
 	/*

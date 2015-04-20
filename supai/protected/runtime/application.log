@@ -529,3 +529,93 @@ Stack trace:
 REQUEST_URI=/index.php/product/recent
 in /Users/viator42/workspace/supai-server/supai/protected/controllers/ProductController.php (38)
 in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/17 08:34:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "http://api.juheapi.com/jhbar/bar".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('http://api.juhe...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/http://api.juheapi.com/jhbar/bar
+---
+2015/04/17 08:35:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "http://api.juheapi.com/jhbar/bar".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('http://api.juhe...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/http://api.juheapi.com/jhbar/bar
+---
+2015/04/17 08:36:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "http://api.juheapi.com/jhbar/bar".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('http://api.juhe...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/http://api.juheapi.com/jhbar/bar
+---
+2015/04/20 08:38:28 [error] [php] Undefined index: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:76)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (76)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/20 08:39:44 [error] [php] Undefined index: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:76)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (76)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/20 08:40:17 [error] [php] Undefined index: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:76)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (76)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/20 08:40:56 [error] [php] Undefined index: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:76)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (76)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/20 08:41:49 [error] [php] Undefined index: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:76)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (76)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/20 08:42:08 [error] [php] Undefined index: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:76)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (76)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
