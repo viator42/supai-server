@@ -43,11 +43,20 @@ class CartController extends Controller
     		$cart = array();
     		$details = array();
 
+            $cart['id'] = $cartObj->id;
+            $cart['userId'] = $cartObj->user_id;
+            $cart['status'] = $cartObj->status;
+
+            $store = Store::model()->findByPk($cartObj->store_id);
+            $cart['storeName'] = $store->name;
+
+            $cart['storeId'] = $cartObj->store_id;
+
     		$detailObjs = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cartObj->id));
     		foreach ($detailObjs as $detailObj)
     		{
     			$detail = array();
-    			
+    			$detail['id'] = $detailObj->id;
     			$detail['name'] = $detailObj->goods_name;
     			$detail['price'] = $detailObj->price;
     			$detail['productId'] = $detailObj->product_id;
@@ -61,7 +70,6 @@ class CartController extends Controller
 
     		$cart['details'] = $details;
 
-    		
     		$cart['count'] = $count;
 			$cart['summary'] = $summary;
 
@@ -140,24 +148,63 @@ class CartController extends Controller
     {
     	$result = array('success'=>false);
 
-    	$cartid = $_POST['cartid'];
-    	$productId = $_POST['productid'];
+    	$userid = $_POST['userid'];
+        $storeId = $_POST['storeId'];
+    	$productId = $_POST['productId'];
+        $price = $_POST['price'];
     	$count = $_POST['count'];
 
-    	$product = Product::model()->findByPk($productId);
-    	$goods = Goods::model()->findByPk($product->id);
+        $cart = Cart::model()->find('user_id=:user_id and store_id=:store_id', array(':user_id'=>$userid, ':store_id'=>$storeId));
+        if($cart == null)
+        {
+            $cart = new Cart();
 
-    	$detail = new CartDetail();
+            $cart->user_id = $userid;
+            $cart->store_id = $storeId;
+            $cart->status = 1;
+            $cart->create_time = time();
 
-		$detail->cart_id = $cartid; 
-		$detail->goods_name = $goods->name; 	
-		$detail->price = $product->price; 
-		$detail->product_id = $productId;
-		$detail->count = $count;
+            $cart->save();
 
-    	$detail->save();
+            $cartDetail = new CartDetail();
+            $cartDetail->cart_id = $cart->id;
+            $cartDetail->product_id = $productId;
+            $cartDetail->price = $price;
+            $cartDetail->count = $count;
 
-    	$result['data'] = $detail;
+            $product = Product::model()->findByPk($productId);
+            $goods = Goods::model()->findByPk($product->goods_id);
+            $cartDetail->goods_name = $goods->name;
+
+            $cartDetail->save();
+        }
+        else
+        {
+            $cartDetail = CartDetail::model()->find('cart_id=:cart_id and product_id=:product_id', array(':cart_id'=>$cart->id, ':product_id'=>$productId));
+            if($cartDetail != null)
+            {
+                //只修改数量
+                $cartDetail->count = $count;
+                $cartDetail->save();
+
+            }
+            else
+            {
+                $cartDetail = new CartDetail();
+                $cartDetail->cart_id = $cart->id;
+                $cartDetail->product_id = $productId;
+                $cartDetail->price = $price;
+                $cartDetail->count = $count;
+
+                $product = Product::model()->findByPk($productId);
+                $goods = Goods::model()->findByPk($product->goods_id);
+                $cartDetail->goods_name = $goods->name;
+
+                $cartDetail->save();
+            }
+
+        }
+
 		$result['success'] = true;
 
     	$json = CJSON::encode($result);
