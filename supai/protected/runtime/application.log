@@ -619,3 +619,180 @@ Stack trace:
 REQUEST_URI=/index.php/store/products
 in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (76)
 in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/27 03:56:22 [error] [php] Undefined index: barcode (/Users/viator42/workspace/supai-server/supai/protected/controllers/GoodsController.php:33)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): GoodsController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): GoodsController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): GoodsController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/goods/search
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/GoodsController.php (33)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/27 08:37:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "serach".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('serach')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('serach')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('goods/serach')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/goods/serach
+---
+2015/04/27 08:42:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "serach".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('serach')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('serach')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('goods/serach')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/goods/serach
+---
+2015/04/27 08:43:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "serach".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('serach')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('serach')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('goods/serach')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/goods/serach
+---
+2015/04/27 08:45:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "serach".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('serach')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('serach')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('goods/serach')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/goods/serach
+---
+2015/04/27 08:48:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "serach".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('serach')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('serach')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('goods/serach')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/goods/serach
+---
+2015/04/27 08:53:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "serach".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('serach')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('serach')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('goods/serach')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/goods/serach
+---
+2015/04/27 08:55:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "serach".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('serach')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('serach')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('goods/serach')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/goods/serach
+---
+2015/04/27 09:03:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "serach".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('serach')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('serach')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('goods/serach')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/goods/serach
+---
+2015/04/27 10:29:38 [error] [exception.CException] exception 'CException' with message 'Property "Goods.rccode" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(145): CComponent->__get('rccode')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php(136): CActiveRecord->__get('rccode')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): OrderController->actionDetail()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('detail')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('order/detail')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/order/detail
+---
+2015/04/27 10:29:45 [error] [exception.CException] exception 'CException' with message 'Property "Goods.rccode" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(145): CComponent->__get('rccode')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/ProductController.php(80): CActiveRecord->__get('rccode')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): ProductController->actionDetail()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('detail')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('product/detail')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/product/detail
+---
+2015/04/27 10:29:49 [error] [exception.CException] exception 'CException' with message 'Property "Goods.rccode" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(145): CComponent->__get('rccode')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/ProductController.php(80): CActiveRecord->__get('rccode')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): ProductController->actionDetail()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('detail')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('product/detail')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/product/detail
+---
+2015/04/27 17:32:32 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:84)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (84)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/28 05:59:45 [error] [exception.CException] exception 'CException' with message 'Property "Goods.rccode" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(145): CComponent->__get('rccode')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/ProductController.php(80): CActiveRecord->__get('rccode')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): ProductController->actionDetail()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('detail')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('product/detail')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/product/detail
+---
+2015/04/28 06:39:21 [error] [exception.CException] exception 'CException' with message 'Property "Goods.rccode" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(145): CComponent->__get('rccode')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/ProductController.php(80): CActiveRecord->__get('rccode')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): ProductController->actionDetail()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('detail')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('product/detail')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/product/detail
+---

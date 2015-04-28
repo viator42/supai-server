@@ -83,6 +83,9 @@ class ProductController extends Controller
 			$product['merchant'] = $goodsObj->merchant;
 			$product['merchant_code'] = $goodsObj->merchant_code;
 			$product['price'] = $productObj->price;
+			$product['storeId'] = $productObj->store_id;
+			$product['price'] = $productObj->price;
+			
 			$product['additional'] = $productObj->description;
 
 			//商品图片
@@ -98,8 +101,52 @@ class ProductController extends Controller
 		$json = CJSON::encode($result);
         echo $json;
 	}
-	
-	
+
+	//商品添加
+	public function actionAdd()
+	{
+		$result = array('success'=>false);
+
+		$barcode = $_POST['barcode'];
+
+		//查看goods是否存在
+		$goods = Goods::model()->find('barcode=:barcode', array(':barcode'=>$barcode));
+		if($goods == null)
+		{
+			$goods = new Goods();
+			$goods->name = $_POST['name'];
+			$goods->barcode = $_POST['barcode'];
+			$goods->price_interval = $_POST['priceInterval'];
+			$goods->origin = $_POST['origin'];
+			$goods->merchant_code = $_POST['merchantCode'];
+			$goods->merchant = $_POST['merchant'];
+
+			$goods->save();
+		}
+
+		$product = new Product();
+		$product->goods_id = $goods->id;
+		$product->price = $_POST['price'];
+		$product->store_id = $_POST['storeId'];
+
+		$product->save();
+
+		$result['data'] = $product;
+
+		//添加图片
+		$imgUrl = $_POST['img'];
+		$img = new Image();
+		$img->type = 2;
+		$img->type_id = $product->id;
+		$img->url = $imgUrl;
+
+		$img->save();
+
+		$result['success'] = true;
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
 
 	// Uncomment the following methods and override them if needed
 	/*

@@ -7,8 +7,8 @@
  * @property integer $id
  * @property integer $category_id
  * @property string $name
- * @property string $rccode
- * @property string $price
+ * @property string $barcode
+ * @property string $price_interval
  * @property string $description
  * @property string $origin
  * @property string $merchant_code
@@ -32,16 +32,16 @@ class Goods extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, rccode', 'required'),
+			array('name, barcode', 'required'),
 			array('category_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>45),
-			array('rccode', 'length', 'max'=>20),
-			array('price', 'length', 'max'=>32),
+			array('barcode', 'length', 'max'=>20),
+			array('price_interval', 'length', 'max'=>32),
 			array('origin, merchant_code, merchant', 'length', 'max'=>64),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, category_id, name, rccode, price, description, origin, merchant_code, merchant', 'safe', 'on'=>'search'),
+			array('id, category_id, name, barcode, price_interval, description, origin, merchant_code, merchant', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,8 +65,8 @@ class Goods extends CActiveRecord
 			'id' => 'ID',
 			'category_id' => 'Category',
 			'name' => 'Name',
-			'rccode' => 'Rccode',
-			'price' => 'Price',
+			'barcode' => 'Barcode',
+			'price_interval' => 'Price Interval',
 			'description' => 'Description',
 			'origin' => 'Origin',
 			'merchant_code' => 'Merchant Code',
@@ -95,8 +95,8 @@ class Goods extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('rccode',$this->rccode,true);
-		$criteria->compare('price',$this->price,true);
+		$criteria->compare('barcode',$this->barcode,true);
+		$criteria->compare('price_interval',$this->price_interval,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('origin',$this->origin,true);
 		$criteria->compare('merchant_code',$this->merchant_code,true);

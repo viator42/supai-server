@@ -7,6 +7,22 @@ class GoodsController extends Controller
 		$this->render('index');
 	}
 
+	public function accessRules()
+    {
+        return array(
+            array('allow',  // allow all users to perform 'index' and 'view' actions
+                'users'=>array('*'),
+            ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+//                'actions'=>array('*'),
+                'users'=>array('@'),
+            ),
+            array('deny',  // deny all users
+                'users'=>array('*'),
+            ),
+        );
+    }
+
 	//商品详情	
 	public function actionDetail()
 	{
@@ -21,6 +37,31 @@ class GoodsController extends Controller
 		}
 
 
+		$json = CJSON::encode($result);
+        echo $json;
+	}
+
+	//根据条形码查询商品信息
+	public function actionSearch()
+	{
+		$result = array('success'=>false);
+
+		$barcode = $_POST['barcode'];
+		$goods = Goods::model()->find('barcode=:barcode', array(':barcode'=>$barcode));
+		if($goods != null)
+		{
+			$data = array();
+
+			$data['barcode'] = $goods->barcode;
+			$data['name'] = $goods->name;
+			$data['priceInterval'] = $goods->price_interval;
+			$data['origin'] = $goods->origin;
+			$data['merchantCode'] = $goods->merchant_code;
+			$data['merchant'] = $goods->merchant;
+
+			$result['data'] = $data;
+			$result['success'] = true;
+		}
 		$json = CJSON::encode($result);
         echo $json;
 	}
