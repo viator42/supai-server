@@ -77,7 +77,7 @@ class ProductController extends Controller
 		{
 			$goodsObj = Goods::model()->findByPk($productObj->goods_id);
 			$product['name'] = $goodsObj->name;
-			$product['rccode'] = $goodsObj->rccode;
+			$product['rccode'] = $goodsObj->barcode;
 			$product['description'] = $goodsObj->description;
 			$product['origin'] = $goodsObj->origin;
 			$product['merchant'] = $goodsObj->merchant;
@@ -89,8 +89,17 @@ class ProductController extends Controller
 			$product['additional'] = $productObj->description;
 
 			//商品图片
-			//$images = Image::model()->findAll();
-			$product['img'] = "";
+			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
+			if($image != null)
+			{
+				$product['img'] = $image->url;
+			}
+			else
+			{
+				//加载默认图片
+				$product['img'] = "http://192.168.1.10/images/product_default.jpg";
+			}
+			
 
 			$result['data'] = $product;
 			$result['success'] = true;
@@ -98,7 +107,7 @@ class ProductController extends Controller
 		
 		
 
-		$json = CJSON::encode($result);
+		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
 
@@ -136,7 +145,7 @@ class ProductController extends Controller
 		//添加图片
 		$imgUrl = $_POST['img'];
 		$img = new Image();
-		$img->type = 2;
+		$img->type = 1;
 		$img->type_id = $product->id;
 		$img->url = $imgUrl;
 
