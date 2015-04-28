@@ -61,6 +61,18 @@ class CartController extends Controller
     			$detail['price'] = $detailObj->price;
     			$detail['productId'] = $detailObj->product_id;
     			$detail['count'] = $detailObj->count;
+
+                //商品图片
+                $image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$detailObj->product_id));
+                if($image != null)
+                {
+                    $detail['img'] = $image->url;
+                }
+                else
+                {
+                    //加载默认图片
+                    $product['img'] = "http://192.168.1.10/images/product_default.jpg";
+                }
     			
     			$count += $detailObj->count;
     			$summary += ($detailObj->price * $detailObj->count);
@@ -79,7 +91,7 @@ class CartController extends Controller
     	$result['data'] = $carts;
 		$result['success'] = true;
 
-    	$json = CJSON::encode($result);
+    	$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
     }
 
