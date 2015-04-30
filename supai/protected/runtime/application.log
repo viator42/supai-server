@@ -830,3 +830,51 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/index.php/images
 ---
+2015/04/30 04:44:39 [error] [exception.CException] exception 'CException' with message 'Property "Goods.rccode" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:130
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(145): CComponent->__get('rccode')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php(136): CActiveRecord->__get('rccode')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): OrderController->actionDetail()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('detail')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('order/detail')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/order/detail
+---
+2015/04/30 08:58:34 [error] [php] Undefined index: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php:101)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): OrderController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): OrderController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/order/detail
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php (101)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/30 08:59:03 [error] [php] Undefined index: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php:101)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): OrderController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): OrderController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/order/detail
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php (101)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/04/30 09:26:08 [error] [php] Undefined index: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php:101)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): OrderController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): OrderController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): OrderController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/order/detail
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/OrderController.php (101)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)

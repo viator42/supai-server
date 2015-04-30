@@ -96,55 +96,52 @@ class OrderController extends Controller
 	public function actionDetail()
 	{
 		$result = array();
-		$data = array();
 
-		$orderId = $_POST['id'];
+		$orderId = $_POST['orderId'];
 
 		//查询订单信息
 		$orderObj = Order::model()->findByPk($orderId);
-		$data['create_time'] = $orderObj->create_time;
+		$result['create_time'] = $orderObj->create_time;
 
-		$data['store_id'] = $orderObj->store_id;
+		$result['store_id'] = $orderObj->store_id;
 		$store = Store::model()->findByPk($orderObj->store_id);
-		$data['store_name'] = $store->name;
+		$result['store_name'] = $store->name;
 
-		$data['status'] = $orderObj->getStatusName();
+		$result['status'] = $orderObj->getStatusName();
 
 		//商品列表
-		$detailList = array();
+		$orderDetailList = array();
 
 		$orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderId));
-		foreach ($orderDetailObjs as $orderObj) 
+		foreach ($orderDetailObjs as $orderDetailObj) 
 		{
 			$detail = array();
-			$detail['id'] = $orderObj->id;
-			$detail['productId'] = $orderObj->product_id;
-			$detail['count'] = $orderObj->count;
-			$detail['price'] = $orderObj->price;
+			$detail['id'] = $orderDetailObj->id;
+			$detail['productId'] = $orderDetailObj->product_id;
+			$detail['count'] = $orderDetailObj->count;
+			$detail['price'] = $orderDetailObj->price;
 
 			//获取订单产品信息
-			$product = Product::model()->findByPk($orderObj->product_id);
+			$product = Product::model()->findByPk($orderDetailObj->product_id);
 			$goods = Goods::model()->findByPk($product->goods_id);
 			
 			if($product != null)
 			{
 				//产品图片
 				$detail['image'] = "http://192.168.1.10/images/aaaa.jpg";
-
 				$detail['name'] = $goods->name;
 				$detail['goodsDescription'] = $goods->description;
-				$detail['rccode'] = $goods->rccode;
+				$detail['rccode'] = $goods->barcode;
 				$detail['origin'] = $goods->origin;
 
 			}
 
-			$detailList[] = $detail;
+			$orderDetailList[] = $detail;
 
 		}
-		$result['detailList'] = $detailList;
+		$result['orderDetailList'] = $orderDetailList;
 
 		$result['success'] = true;
-		$result['data'] = $data;
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
