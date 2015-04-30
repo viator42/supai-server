@@ -8,7 +8,6 @@
  * @property integer $order_id
  * @property integer $product_id
  * @property integer $count
- * @property integer $add_time
  * @property string $price
  */
 class OrderDetail extends CActiveRecord
@@ -30,11 +29,11 @@ class OrderDetail extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('order_id, product_id', 'required'),
-			array('order_id, product_id, count, add_time', 'numerical', 'integerOnly'=>true),
+			array('order_id, product_id, count', 'numerical', 'integerOnly'=>true),
 			array('price', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, order_id, product_id, count, add_time, price', 'safe', 'on'=>'search'),
+			array('id, order_id, product_id, count, price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,7 +58,6 @@ class OrderDetail extends CActiveRecord
 			'order_id' => 'Order',
 			'product_id' => 'Product',
 			'count' => 'Count',
-			'add_time' => 'Add Time',
 			'price' => 'Price',
 		);
 	}
@@ -86,7 +84,6 @@ class OrderDetail extends CActiveRecord
 		$criteria->compare('order_id',$this->order_id);
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('count',$this->count);
-		$criteria->compare('add_time',$this->add_time);
 		$criteria->compare('price',$this->price,true);
 
 		return new CActiveDataProvider($this, array(

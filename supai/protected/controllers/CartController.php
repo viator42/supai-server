@@ -223,7 +223,50 @@ class CartController extends Controller
         echo $json;
     }
 
-    //
+    //生成订单
+    public function actionCreateOrder()
+    {
+        $result = array('success'=>false);
+
+        $id = $_POST['id'];
+
+        $cart = Cart::model()->findByPk($id);
+        $cartDetails = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cart->id));
+        $store = Store::model()->findByPk($cart->store_id);
+
+        $order = new Order();
+        $order->create_time = time();
+        $order->customer_id = $cart->user_id;
+        $order->merchant_id = $store->user_id;
+        $order->store_id = $cart->store_id;
+        $order->status = 1;
+
+        $order->save();
+        
+        $summary = 0;//总价
+
+        //添加订单商品
+        foreach ($cartDetails as $cartDetail)
+        {
+            $orderDetail = new OrderDetail();
+
+            $orderDetail->order_id = $order->id;
+            $orderDetail->product_id = $cartDetail->product_id;
+            $orderDetail->count = $cartDetail->count;
+            $orderDetail->price = $cartDetail->price;
+
+            $orderDetail->save();
+            $summary += $cartDetail->price;
+        }
+
+        $order->summary = $summary;
+        $order->save();
+
+        $result['success'] = true;
+
+        $json = CJSON::encode($result);
+        echo $json;
+    }
 
 	// Uncomment the following methods and override them if needed
 	/*
