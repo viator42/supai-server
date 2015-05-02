@@ -29,17 +29,36 @@ class UserController extends Controller
 	{
 		$result = array('success'=>false);
 
-		$tel = $_POST['tel'];
+		$username = $_POST['tel'];
 		$password = $_POST['password'];
 
-		$model = User::model()->find('tel = :tel and password = :password', array(':tel'=>$tel, ':password'=>$password));
+		// $model = User::model()->find('tel = :tel and password = :password', array(':tel'=>$tel, ':password'=>$password));
+		// $_identity = new UserIdentity($username, $password);
+  //       $_identity->authenticate();
 
-		if($model != null)
-		{
-			$result['data'] = $model;				
-			$result['success'] = true;
-		}
+		// if($model != null)
+		// {
+		// 	$model->lastlogin_time = time();
+		// 	$model->save();
+			
+		// 	$result['data'] = $model;
 
+		// 	$result['success'] = true;
+		// }
+
+        $_identity = new UserIdentity($username, $password);
+
+        $_identity->authenticate();
+
+        if($_identity->errorCode===UserIdentity::ERROR_NONE)
+        {
+            $result['data'] = $_identity->getUser();
+            $result['success'] = true;
+
+        }else{
+            $result['success'] = false;
+
+        }
 		
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
@@ -52,7 +71,7 @@ class UserController extends Controller
 		$result = array('success'=>false);
 
 		$tel = $_POST['tel'];
-		$password = $_POST['password'];
+		$password = md5($_POST['password']);
 
 		$model = new User();
 
@@ -60,6 +79,9 @@ class UserController extends Controller
 		$model->tel = $tel;
 		$model->password = $password;
 		$model->register_time = time();
+		$model->lastlogin_time = time();
+		//默认头像
+		$model->icon = "http://192.168.1.10/images/icon.jpg";
 
 		$model->save();
 
