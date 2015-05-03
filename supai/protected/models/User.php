@@ -13,6 +13,7 @@
  * @property integer $lastlogin_time
  * @property string $name
  * @property integer $area_id
+ * @property string $address
  */
 class User extends CActiveRecord
 {
@@ -35,11 +36,11 @@ class User extends CActiveRecord
 			array('username, password, tel', 'required'),
 			array('register_time, lastlogin_time, area_id', 'numerical', 'integerOnly'=>true),
 			array('username, name', 'length', 'max'=>45),
-			array('password, icon', 'length', 'max'=>128),
+			array('password, icon, address', 'length', 'max'=>128),
 			array('tel', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password, tel, icon, register_time, lastlogin_time, name, area_id', 'safe', 'on'=>'search'),
+			array('id, username, password, tel, icon, register_time, lastlogin_time, name, area_id, address', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +70,7 @@ class User extends CActiveRecord
 			'lastlogin_time' => 'Lastlogin Time',
 			'name' => 'Name',
 			'area_id' => 'Area',
+			'address' => 'Address',
 		);
 	}
 
@@ -99,6 +101,7 @@ class User extends CActiveRecord
 		$criteria->compare('lastlogin_time',$this->lastlogin_time);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('area_id',$this->area_id);
+		$criteria->compare('address',$this->address,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

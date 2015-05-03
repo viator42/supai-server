@@ -19,7 +19,8 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-		$user = BjUser::model()->findByAttributes(array('tel'=>$this->username));
+		$user = User::model()->findByAttributes(array('tel'=>$this->username));
+		$this->errorCode=self::ERROR_NONE;
 
 		if($user)
 		{
@@ -40,7 +41,7 @@ class UserIdentity extends CUserIdentity
             $this->errorCode=self::ERROR_USERNAME_INVALID;
         }
 
-        return !$this->errorCode;
+        return $this->errorCode;
         
 	}
 

@@ -55,7 +55,9 @@ class UserController extends Controller
             $result['data'] = $_identity->getUser();
             $result['success'] = true;
 
-        }else{
+        }
+        else
+        {
             $result['success'] = false;
 
         }
@@ -71,7 +73,10 @@ class UserController extends Controller
 		$result = array('success'=>false);
 
 		$tel = $_POST['tel'];
+		$name = $_POST['name'];
 		$password = md5($_POST['password']);
+		$address = $_POST['address'];
+		$area = $_POST['area'];
 
 		$model = new User();
 
@@ -80,6 +85,10 @@ class UserController extends Controller
 		$model->password = $password;
 		$model->register_time = time();
 		$model->lastlogin_time = time();
+		$model->name = $name;
+		$model->address = $address;
+		$model->area_id = $area;
+		 
 		//默认头像
 		$model->icon = "http://192.168.1.10/images/icon.jpg";
 

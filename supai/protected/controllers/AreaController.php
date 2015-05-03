@@ -49,9 +49,9 @@ class AreaController extends Controller
 	{
 		$result = array();
 
-		$code = $_GET['code'];
+		$pcode = $_POST['pcode'];
 
-		$cities = Area::model()->findAll('p_code=:p_code', array(':p_code' => $code));
+		$cities = Area::model()->findAll('p_code=:p_code', array(':p_code' => $pcode));
 
 		foreach ($cities as $city) 
 		{
