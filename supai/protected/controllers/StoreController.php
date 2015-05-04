@@ -34,6 +34,7 @@ class StoreController extends Controller
 		$store->name = $_POST['name'];
 		$store->address = $_POST['address'];
 		$store->description = $_POST['description'];
+		$store->logo = $_POST['logo'];
 		
 		$store->save();
 

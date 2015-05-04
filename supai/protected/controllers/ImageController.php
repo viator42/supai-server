@@ -32,13 +32,7 @@ class ImageController extends Controller
 		$filesize = $_FILES['file']['size'];
 		$filetype = $_FILES['file']["type"];
 
-		switch ($filetype) {
-			case "image/gif":
-
-			case "image/jpeg":
-
-			case "image/pjpeg":
-				if($filesize < 1024000)
+		if($filesize < 1024000)
 				{
 					$createFileName=uniqid(rand());
 					$destPath = $_SERVER['DOCUMENT_ROOT'].'/upload/'.$createFileName;
@@ -62,13 +56,6 @@ class ImageController extends Controller
 					$result['msg'] = "图片尺寸过大";
 
 				}
-
-				break;
-			
-			default:
-				$result['msg'] = "文件类型不正确";
-				break;
-		}
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
