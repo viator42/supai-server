@@ -1124,3 +1124,93 @@ Stack trace:
 #10 {main}
 REQUEST_URI=/index.php/user/register
 ---
+2015/05/05 05:15:15 [error] [exception.CException] exception 'CException' with message 'Property "Store.area" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(161): CComponent->__set('area', '916')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php(41): CActiveRecord->__set('area', '916')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): StoreController->actionNew()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('new')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('store/new')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/store/new
+---
+2015/05/05 05:18:05 [error] [exception.CException] exception 'CException' with message 'Property "Store.area" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(161): CComponent->__set('area', '2')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php(41): CActiveRecord->__set('area', '2')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): StoreController->actionNew()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('new')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('store/new')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/store/new
+---
+2015/05/05 05:19:27 [error] [exception.CException] exception 'CException' with message 'Property "Store.area" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(161): CComponent->__set('area', '1671')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php(41): CActiveRecord->__set('area', '1671')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): StoreController->actionNew()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('new')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('store/new')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/store/new
+---
+2015/05/05 05:21:14 [error] [exception.CException] exception 'CException' with message 'Property "Store.area" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(161): CComponent->__set('area', '1673')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php(41): CActiveRecord->__set('area', '1673')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): StoreController->actionNew()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('new')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('store/new')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/store/new
+---
+2015/05/05 05:24:54 [error] [exception.CException] exception 'CException' with message 'Property "Store.area" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(161): CComponent->__set('area', '1810')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php(41): CActiveRecord->__set('area', '1810')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): StoreController->actionNew()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('new')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('store/new')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/store/new
+---
+2015/05/05 05:28:02 [error] [exception.CException] exception 'CException' with message 'Property "Store.area" is not defined.' in /Users/viator42/workspace/supai-server/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php(161): CComponent->__set('area', '1810')
+#1 /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php(41): CActiveRecord->__set('area', '1810')
+#2 /Users/viator42/workspace/supai-server/framework/web/actions/CInlineAction.php(49): StoreController->actionNew()
+#3 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('new')
+#7 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('store/new')
+#8 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#9 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php/store/new
+---

@@ -36,6 +36,10 @@ class StoreController extends Controller
 		$store->description = $_POST['description'];
 		$store->logo = $_POST['logo'];
 		
+		$areaCode = $_POST['area'];
+		$area = Area::model()->find('code=:code', array(':code'=>$areaCode));
+		$store->area_id = $area->id;
+
 		$store->save();
 
 		$result['data'] = $store;
