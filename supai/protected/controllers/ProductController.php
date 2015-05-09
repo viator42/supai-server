@@ -42,7 +42,8 @@ class ProductController extends Controller
 				$goods = Goods::model()->findByPk($product->id);
 				$recentBought['id'] = $product->id;
 				$recentBought['name'] = $goods->name;
-				$recentBought['img'] = "";
+				$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$product->id));
+				$recentBought['img'] = $img->url;
 			}
 
 
@@ -154,6 +155,44 @@ class ProductController extends Controller
 		$result['success'] = true;
 
 		$json = CJSON::encode($result);
+        echo $json;
+	}
+
+	//扫码查询商品,返回同意area的所有商家的商品.
+	public function actionSearch()
+	{
+		$result = array();
+
+		$barcode = $_POST['barcode'];
+
+		$goods = Goods::model()->find('barcode=:barcode', array(':barcode'=>$barcode));
+		if($goods != null)
+		{
+			$productObjs = Product::model()->findAll('goods_id=:goods_id', array(':goods_id'=>$goods->id));
+			foreach ($productObjs as $productObj)
+			{
+				$product = array();
+
+				$product['id'] = $productObj->id;
+				$product['name'] = $goods->name;
+				$product['origin'] = $goods->origin;
+				$product['merchant_code'] = $goods->merchant_code;
+				$product['merchant'] = $goods->merchant;
+				$product['price'] = $productObj->price;
+				$product['count'] = $productObj->count;
+				$product['store_id'] = $productObj->store_id;
+
+				$store = Store::model()->findByPk($product['store_id']);
+				$product['store_name'] = $store->name;
+				$product['address'] = $store->address;
+
+				$result[] = $product;
+
+			}
+
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
 

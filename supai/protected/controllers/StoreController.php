@@ -35,6 +35,8 @@ class StoreController extends Controller
 		$store->address = $_POST['address'];
 		$store->description = $_POST['description'];
 		$store->logo = $_POST['logo'];
+		$store->longitude = $_POST['longitude'];
+		$store->latitude = $_POST['latitude'];
 		
 		$areaCode = $_POST['area'];
 		$area = Area::model()->find('code=:code', array(':code'=>$areaCode));
@@ -99,7 +101,32 @@ class StoreController extends Controller
         echo $json;
 	}
 
-	
+	// 返回一个地区内所有的店铺
+	public function actionAround()
+	{
+		$result = array();
+
+		$area = $_POST['area'];
+		$storeObjs = Store::model()->findAll('area_id=:area_id', array(':area_id'=>$area));
+		foreach ($storeObjs as $storeObj) 
+		{
+			$store = array();
+
+			$store['id'] = $storeObj->id;
+			$store['logo'] = $storeObj->logo;
+			$store['name'] = $storeObj->name;
+			$store['merchantId'] = $storeObj->user_id;
+			$area = Area::model()->findByPk($store->area_id);
+			$store['area'] = $area->code;
+
+			$result[] = $store;
+			
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
 	/*
 	public function actionStoreProducts()
 	{
