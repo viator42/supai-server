@@ -130,7 +130,7 @@ class StoreController extends Controller
 			$longitudeMin = bcsub($longitude, $range, 6);
 			$latitudeMax = bcadd($latitude, $range, 6);
 			$latitudeMin = bcsub($latitude, $range, 6);
-			if(bccomp($latitudeMax, $storeObj->longitude, 6) == 1 && bccomp($latitudeMin, $storeObj->longitude, 6) == -1)
+			if(bccomp($longitudeMax, $storeObj->longitude, 6) == 1 && bccomp($longitudeMin, $storeObj->longitude, 6) == -1)
 			{
 				if(bccomp($latitudeMax, $storeObj->latitude, 6) == 1 && bccomp($latitudeMin, $storeObj->latitude, 6) == -1)
 				{

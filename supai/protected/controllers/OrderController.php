@@ -128,7 +128,8 @@ class OrderController extends Controller
 			if($product != null)
 			{
 				//产品图片
-				$detail['image'] = "http://192.168.1.10/images/aaaa.jpg";
+				$img = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$product->id));
+				$detail['image'] = $img->url;
 				$detail['name'] = $goods->name;
 				$detail['goodsDescription'] = $goods->description;
 				$detail['rccode'] = $goods->barcode;
