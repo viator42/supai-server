@@ -106,8 +106,11 @@ class StoreController extends Controller
 	{
 		$result = array();
 
-		$area = $_POST['area'];
-		$storeObjs = Store::model()->findAll('area_id=:area_id', array(':area_id'=>$area));
+		$longitude = $_POST['longitude'];
+		$latitude = $_POST['latitude'];
+		$range = $_POST['range'];
+
+		$storeObjs = Store::model()->findAll();
 		foreach ($storeObjs as $storeObj) 
 		{
 			$store = array();
@@ -115,11 +118,26 @@ class StoreController extends Controller
 			$store['id'] = $storeObj->id;
 			$store['logo'] = $storeObj->logo;
 			$store['name'] = $storeObj->name;
-			$store['merchantId'] = $storeObj->user_id;
-			$area = Area::model()->findByPk($store->area_id);
+			$store['user_id'] = $storeObj->user_id;
+			$area = Area::model()->findByPk($storeObj->area_id);
 			$store['area'] = $area->code;
+			$store['longitude'] = $storeObj->longitude;
+			$store['latitude'] = $storeObj->latitude;
+			$store['description'] = $storeObj->description;
+			$store['address'] = $storeObj->address;
 
-			$result[] = $store;
+			$longitudeMax = bcadd($longitude, $range, 6);
+			$longitudeMin = bcsub($longitude, $range, 6);
+			$latitudeMax = bcadd($latitude, $range, 6);
+			$latitudeMin = bcsub($latitude, $range, 6);
+			if(bccomp($latitudeMax, $storeObj->longitude, 6) == 1 && bccomp($latitudeMin, $storeObj->longitude, 6) == -1)
+			{
+				if(bccomp($latitudeMax, $storeObj->latitude, 6) == 1 && bccomp($latitudeMin, $storeObj->latitude, 6) == -1)
+				{
+					$result[] = $store;
+				}
+
+			}
 			
 		}
 
