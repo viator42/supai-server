@@ -1295,3 +1295,19 @@ Stack trace:
 REQUEST_URI=/index.php/store/around
 in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (118)
 in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/12 11:25:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/store_default.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('images/store_de...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/images/store_default.png
+---
+2015/05/12 11:39:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/store_default.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('images/store_de...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/images/store_default.png
+---
