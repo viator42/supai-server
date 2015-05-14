@@ -102,6 +102,38 @@ class UserController extends Controller
 
 	}
 	
+	// 修改用户信息
+	public function actionUpdate()
+	{
+		$result = array('success'=>false);
+
+		$id = $_POST['id'];
+		$key = $_POST['key'];
+		$value = $_POST['value'];
+
+		$user = User::model()->findByPk($id);
+		if($user != null)
+		{
+			switch ($key) {
+			case "name":
+			    $user->name = $value;
+			    break;
+			case "icon":
+			    $user->logo = $value;
+			    break;
+			case "address":
+			    $user->address = $value;
+			    break;
+			}
+			
+			$user->save();
+			$result['success'] = true;
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
 /*
 	//完善用户信息
 	public function actionPerfection()
