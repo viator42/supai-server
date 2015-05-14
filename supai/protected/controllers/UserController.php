@@ -127,6 +127,7 @@ class UserController extends Controller
 			}
 			
 			$user->save();
+			$result['value'] = $value;
 			$result['success'] = true;
 		}
 
