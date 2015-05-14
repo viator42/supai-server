@@ -1,3 +1,4 @@
 framework/
 supai/protected/runtime
 supai/upload
+supai/protected/runtime/application.log

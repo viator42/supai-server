@@ -71,6 +71,25 @@ class StoreController extends Controller
         echo $json;
 	}
 
+	//查询用户的店铺信息
+	public function actionDetail()
+	{
+		$result = array('success'=>false);
+
+		$id = $_POST['id'];
+
+		$storeObj = Store::model()->findByPk($id);
+		if($storeObj != null)
+		{
+			$result['data'] = $storeObj;
+			$result['success'] = true;
+
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
 
 	//返回商店的所有商品列表
 	public function actionProducts()
@@ -139,6 +158,41 @@ class StoreController extends Controller
 
 			}
 			
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
+	// 修改店铺信息
+	public function actionUpdate()
+	{
+		$result = array('success'=>false);
+
+		$id = $_POST['id'];
+		$key = $_POST['key'];
+		$value = $_POST['value'];
+
+		$store = Store::model()->findByPk($id);
+		if($store != null)
+		{
+			switch ($key) {
+			case "name":
+			    $store->name = $value;
+			    break;
+			case "logo":
+			    $store->logo = $value;
+			    break;
+			case "address":
+			    $store->address = $value;
+			    break;
+			case "description":
+			    $store->description = $description;
+			    break;
+			}
+			
+			$store->save();
+			$result['success'] = true;
 		}
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));

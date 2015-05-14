@@ -1421,3 +1421,80 @@ Stack trace:
 #10 {main}
 REQUEST_URI=/index.php/collect/all
 ---
+2015/05/14 16:03:17 [error] [php] Undefined variable: id (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:176)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/update
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (176)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/14 16:03:44 [error] [php] Attempt to assign property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:181)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/update
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (181)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/14 16:04:32 [error] [php] Attempt to assign property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:181)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/update
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (181)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/14 16:14:04 [error] [php] Attempt to assign property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:196)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/update
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (196)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/14 16:16:11 [error] [php] Attempt to assign property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:196)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/update
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (196)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/14 16:16:15 [error] [php] Attempt to assign property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:196)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/store/update
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (196)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/14 16:16:50 [error] [php] Attempt to assign property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:196)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/update
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (196)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
