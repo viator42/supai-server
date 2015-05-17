@@ -109,14 +109,23 @@ class StoreController extends Controller
 			$goods = Goods::model()->findByPk($productObj->goods_id);
 			$pruduct['name'] = $goods->name;
 			$pruduct['price'] = $productObj->price;
+			$pruduct['count'] = $productObj->count;
+			$pruduct['description'] = $productObj->description;
+			$pruduct['storeId'] = $productObj->store_id;
+			$pruduct['barcode'] = $goods->barcode;
+			$pruduct['priceInterval'] = $goods->price_interval;
+			$pruduct['origin'] = $goods->origin;
+			$pruduct['merchant'] = $goods->merchant;
+			$pruduct['merchantCode'] = $goods->merchant_code;
 
+			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
+			$pruduct['img'] = $img->url;
 
 			$result[] = $pruduct;
 
 		}
 		
-
-		$json = CJSON::encode($result);
+		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
 

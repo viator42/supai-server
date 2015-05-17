@@ -1498,3 +1498,35 @@ Stack trace:
 REQUEST_URI=/store/update
 in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (196)
 in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/15 07:48:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "all".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('all')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('all')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('store/all')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/store/all
+---
+2015/05/16 04:40:33 [error] [php] Undefined variable: product (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:121)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (121)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/16 04:41:29 [error] [php] Undefined variable: product (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:121)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (121)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)

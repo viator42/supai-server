@@ -196,6 +196,33 @@ class ProductController extends Controller
         echo $json;
 	}
 
+	//更新商品
+	public function actionUpdate()
+	{
+		$result = array('success'=>false);
+
+		$id = $_POST['id'];
+		$description = $_POST['description'];
+		$price = $_POST['price'];
+		$count = $_POST['count'];
+		$status = $_POST['status'];
+
+		$product = Product::model()->findByPk($id);
+		if($product != null)
+		{
+			$product->price = $price;
+			$product->count = $count;
+			$product->description = $description;
+			$product->status = $status;
+
+			$product->save();
+			$result['product'] = $product;
+			$result['success'] = true;
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

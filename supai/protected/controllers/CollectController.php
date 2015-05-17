@@ -40,6 +40,11 @@ class CollectController extends Controller
 			$store['id'] = $storeObj->id;
 			$store['logo'] = $storeObj->logo;
 			$store['name'] = $storeObj->name;
+			$store['userId'] = $storeObj->user_id;
+			$store['address'] = $storeObj->address;
+			$store['description'] = $storeObj->description;
+            $store['longitude'] = $storeObj->longitude;
+            $store['latitude'] = $storeObj->latitude;
 
 			//下属商品
 			$products = array();

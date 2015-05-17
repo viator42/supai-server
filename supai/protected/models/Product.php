@@ -10,6 +10,7 @@
  * @property integer $count
  * @property string $description
  * @property integer $store_id
+ * @property integer $status
  */
 class Product extends CActiveRecord
 {
@@ -30,12 +31,12 @@ class Product extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('goods_id, store_id', 'required'),
-			array('goods_id, count, store_id', 'numerical', 'integerOnly'=>true),
+			array('goods_id, count, store_id, status', 'numerical', 'integerOnly'=>true),
 			array('price', 'length', 'max'=>10),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, goods_id, price, count, description, store_id', 'safe', 'on'=>'search'),
+			array('id, goods_id, price, count, description, store_id, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +63,7 @@ class Product extends CActiveRecord
 			'count' => 'Count',
 			'description' => 'Description',
 			'store_id' => 'Store',
+			'status' => 'Status',
 		);
 	}
 
@@ -89,6 +91,7 @@ class Product extends CActiveRecord
 		$criteria->compare('count',$this->count);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('store_id',$this->store_id);
+		$criteria->compare('status',$this->status);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
