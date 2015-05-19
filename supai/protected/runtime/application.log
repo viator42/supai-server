@@ -1530,3 +1530,75 @@ Stack trace:
 REQUEST_URI=/store/products
 in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (121)
 in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/18 04:14:43 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/CartController.php:188)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CartController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CartController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CartController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/cart/add
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/CartController.php (188)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/18 05:16:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "upload/b9076040-82fd-44ea-8a8a-2fdd1b34882e".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('upload/b9076040...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/upload/b9076040-82fd-44ea-8a8a-2fdd1b34882e
+---
+2015/05/18 05:17:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "upload/b9076040-82fd-44ea-8a8a-2fdd1b34882e".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('upload/b9076040...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/upload/b9076040-82fd-44ea-8a8a-2fdd1b34882e
+---
+2015/05/18 08:47:49 [error] [php] Missing argument 1 for CActiveRecord::findByPk(), called in /Users/viator42/workspace/supai-server/supai/protected/controllers/UserController.php on line 145 and defined (/Users/viator42/workspace/supai-server/framework/db/ar/CActiveRecord.php:1486)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): UserController->runAction()
+#2 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): UserController->runActionWithFilters()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): UserController->run()
+#4 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/user/loadSettings
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/UserController.php (145)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/19 03:34:25 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/CartController.php:188)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CartController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CartController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CartController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/cart/add
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/CartController.php (188)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/19 03:34:37 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/CartController.php:212)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CartController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CartController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CartController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/cart/add
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/CartController.php (212)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/19 03:35:20 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/CartController.php:212)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CartController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CartController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CartController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/cart/add
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/CartController.php (212)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)

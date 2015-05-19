@@ -117,6 +117,7 @@ class StoreController extends Controller
 			$pruduct['origin'] = $goods->origin;
 			$pruduct['merchant'] = $goods->merchant;
 			$pruduct['merchantCode'] = $goods->merchant_code;
+			$pruduct['status'] = $productObj->status;
 
 			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
 			$pruduct['img'] = $img->url;

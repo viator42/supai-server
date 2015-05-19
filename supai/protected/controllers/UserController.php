@@ -135,6 +135,31 @@ class UserController extends Controller
         echo $json;
 	}
 
+	//读取设置信息
+	public function actionLoadSettings()
+	{
+		$result = array('success'=>false);
+
+		$id = $_POST['userid'];
+
+		$user = User::model()->findByPk($id);
+		if($user != null)
+		{
+			$result['username'] = $user->username;
+			$result['id'] = $user->id;
+			$result['tel'] = $user->tel;
+			$result['icon'] = $user->icon;
+			$result['name'] = $user->name;
+			$result['address'] = $user->address;
+
+			$result['success'] = true;
+
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;	
+	}
+
 /*
 	//完善用户信息
 	public function actionPerfection()

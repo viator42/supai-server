@@ -86,7 +86,7 @@ class ProductController extends Controller
 			$product['price'] = $productObj->price;
 			$product['storeId'] = $productObj->store_id;
 			$product['price'] = $productObj->price;
-			
+			$pruduct['status'] = $productObj->status;
 			$product['additional'] = $productObj->description;
 
 			//商品图片

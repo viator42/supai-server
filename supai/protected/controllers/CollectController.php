@@ -59,6 +59,16 @@ class CollectController extends Controller
 				$product['id'] = $productObj->id;
 				$product['name'] = $goodsObj->name;
 				$product['img'] = $img->url;
+				$product['rccode'] = $goodsObj->barcode;
+				$product['description'] = $goodsObj->description;
+				$product['origin'] = $goodsObj->origin;
+				$product['merchant'] = $goodsObj->merchant;
+				$product['merchant_code'] = $goodsObj->merchant_code;
+				$product['price'] = $productObj->price;
+				$product['storeId'] = $productObj->store_id;
+				$product['price'] = $productObj->price;
+				$product['status'] = $productObj->status;
+				$product['additional'] = $productObj->description;
 
 				$products[] = $product;
 			}
@@ -82,6 +92,16 @@ class CollectController extends Controller
 			$product['id'] = $productObj->id;
 			$product['name'] = $goodsObj->name;
 			$product['img'] = $img->url;
+			$product['rccode'] = $goodsObj->barcode;
+			$product['description'] = $goodsObj->description;
+			$product['origin'] = $goodsObj->origin;
+			$product['merchant'] = $goodsObj->merchant;
+			$product['merchant_code'] = $goodsObj->merchant_code;
+			$product['price'] = $productObj->price;
+			$product['storeId'] = $productObj->store_id;
+			$product['price'] = $productObj->price;
+			$product['status'] = $productObj->status;
+			$product['additional'] = $productObj->description;
 
 			$defaults[] = $product;
 		}
