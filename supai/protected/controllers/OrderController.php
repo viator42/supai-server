@@ -132,7 +132,7 @@ class OrderController extends Controller
 
 			$order['createTime'] = $orderObj->create_time;
 			$order['summary'] = $orderObj->summary;
-			$order['status'] = $orderObj->getStatusName();
+			$order['status'] = $orderObj->status;
 			$order['additional'] = $orderObj->additional;
 			
 			$forMerchant[] = $order;
@@ -168,7 +168,7 @@ class OrderController extends Controller
 
 			$order['createTime'] = $orderObj->create_time;
 			$order['summary'] = $orderObj->summary;
-			$order['status'] = $orderObj->getStatusName();
+			$order['status'] = $orderObj->status;
 			$order['additional'] = $orderObj->additional;
 			
 			$forCustomer[] = $order;
@@ -197,7 +197,7 @@ class OrderController extends Controller
 		$store = Store::model()->findByPk($orderObj->store_id);
 		$result['store_name'] = $store->name;
 
-		$result['status'] = $orderObj->getStatusName();
+		$result['status'] = $orderObj->status;
 
 		//商品列表
 		$orderDetailList = array();

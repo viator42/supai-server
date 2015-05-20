@@ -112,28 +112,28 @@ class Order extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function getStatusName()
-	{
-		switch ($this->status) {
-			case 1:
-				return "提交";
-				break;
+	// public function getStatusName()
+	// {
+	// 	switch ($this->status) {
+	// 		case 1:
+	// 			return "提交";
+	// 			break;
 
-			case 2:
-				return "已发货";
-				break;
+	// 		case 2:
+	// 			return "已发货";
+	// 			break;
 
-			case 3:
-				return "交易成功";
-				break;
+	// 		case 3:
+	// 			return "交易成功";
+	// 			break;
 
-			case 4:
-				return "交易关闭";
-				break;
+	// 		case 4:
+	// 			return "交易关闭";
+	// 			break;
 			
-			default:
-				return "Invalid Status";
-				break;
-		}
-	}
+	// 		default:
+	// 			return "Invalid Status";
+	// 			break;
+	// 	}
+	// }
 }

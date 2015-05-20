@@ -223,6 +223,52 @@ class ProductController extends Controller
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
+
+	//收藏商品
+	public function actionAddFavourite()
+	{
+		$result = array('success'=>false);
+
+		$userid = $_POST['userid'];
+		$productId = $_POST['productId'];
+
+		if(isset($_POST['storeCollectId']))
+		{
+			$storeCollectId = $_POST['storeCollectId'];
+			$productCollect = ProductCollect::model()->find('user_id=:user_id and product_id=:product_id and store_collect_id=:store_collect_id', array(':user_id'=>$userid, ':product_id'=>$productId, ':store_collect_id'=>$storeCollectId));
+			if($productCollect == null)
+			{
+				$productCollect = new ProductCollect();
+
+				$productCollect->user_id = $userid;
+				$productCollect->product_id = $productId;
+				$productCollect->store_collect_id = $storeCollectId;
+
+				$productCollect->save();	
+				$result['success'] = true;
+			}
+
+		}
+		else
+		{
+			$productCollect = ProductCollect::model()->find('user_id=:user_id and product_id=:product_id', array(':user_id'=>$userid, ':product_id'=>$productId));
+			if($productCollect == null)
+			{
+				$productCollect = new ProductCollect();
+
+				$productCollect->user_id = $userid;
+				$productCollect->product_id = $productId;
+				$productCollect->store_collect_id = 0;
+
+				$productCollect->save();	
+				$result['success'] = true;
+			}
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

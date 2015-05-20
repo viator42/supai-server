@@ -209,6 +209,30 @@ class StoreController extends Controller
         echo $json;
 	}
 
+	//收藏店铺
+	public function actionAddFavourite()
+	{
+		$result = array('success'=>false);
+
+		$userid = $_POST['userid'];
+		$storeid = $_POST['storeid'];
+
+		$storeCollect = StoreCollect::model()->find('user_id=:user_id and store_id=:store_id', array(':user_id'=>$userid, ':store_id'=>$storeid));
+		if($storeCollect == null)
+		{
+			$storeCollect = new StoreCollect();
+
+			$storeCollect->user_id = $userid;
+			$storeCollect->store_id = $storeid;
+
+			$storeCollect->save();	
+			$result['success'] = true;
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
 	/*
 	public function actionStoreProducts()
 	{
