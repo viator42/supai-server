@@ -92,6 +92,96 @@ class OrderController extends Controller
         echo $json;
 	}
 
+	//查询当前订单,包括商户/客户的
+	public function actionActiveOrders()
+	{
+		$result = array();
+		$data = array();
+
+		$userid = $_POST['userid'];
+
+		$forCustomer = array();
+		$forMerchant = array();
+
+		//客户列表
+		$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and customer_id=:customer_id', array(':customer_id'=>$userid));
+		foreach ($orderObjs as $orderObj) 
+		{
+			$order = array();
+
+			$order['id'] = $orderObj->id;
+			$order['merchantId'] = $orderObj->merchant_id;
+			$order['storeId'] = $orderObj->store_id;
+
+			//查询商家信息
+			$order['name'] = "";
+			$user = User::model()->findByPk($orderObj->merchant_id);
+			if($user != null)
+			{
+				$order['name'] = $user->name;
+				$order['tel'] = $user->tel;
+			}
+
+			//查询商店信息
+			$order['storeName'] = "";
+			$store = Store::model()->findByPk($orderObj->store_id);
+			if($store != null)
+			{
+				$order['storeName'] = $store->name;
+			}
+
+			$order['createTime'] = $orderObj->create_time;
+			$order['summary'] = $orderObj->summary;
+			$order['status'] = $orderObj->getStatusName();
+			$order['additional'] = $orderObj->additional;
+			
+			$forMerchant[] = $order;
+
+		}
+
+		//商户列表
+		$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and merchant_id=:merchant_id', array(':merchant_id'=>$userid));
+		foreach ($orderObjs as $orderObj) 
+		{
+			$order = array();
+
+			$order['id'] = $orderObj->id;
+			$order['merchantId'] = $orderObj->merchant_id;
+			$order['storeId'] = $orderObj->store_id;
+
+			//查询客户信息
+			$order['name'] = "";
+			$user = User::model()->findByPk($orderObj->customer_id);
+			if($user != null)
+			{
+				$order['name'] = $user->name;
+				$order['tel'] = $user->tel;
+			}
+
+			//查询商店信息
+			$order['storeName'] = "";
+			$store = Store::model()->findByPk($orderObj->store_id);
+			if($store != null)
+			{
+				$order['storeName'] = $store->name;
+			}
+
+			$order['createTime'] = $orderObj->create_time;
+			$order['summary'] = $orderObj->summary;
+			$order['status'] = $orderObj->getStatusName();
+			$order['additional'] = $orderObj->additional;
+			
+			$forCustomer[] = $order;
+
+		}
+
+		$result['merchantList'] = $forMerchant;
+		$result['customerList'] = $forCustomer;
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
 	//查询订单详情 商品列表
 	public function actionDetail()
 	{

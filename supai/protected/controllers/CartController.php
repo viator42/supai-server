@@ -103,7 +103,7 @@ class CartController extends Controller
     	$detailId = $_POST['id'];
     	$count = $_POST['count'];
 
-    	$cartDetail = CartDetail::model()->findById($detailId);
+    	$cartDetail = CartDetail::model()->findByPk($detailId);
     	if($cartDetail != null)
     	{
     		$cartDetail->count = $count;
@@ -123,13 +123,20 @@ class CartController extends Controller
 
     	$detailId = $_POST['id'];
 
-    	$cartDetail = CartDetail::model()->findById($detailId);
+    	$cartDetail = CartDetail::model()->findByPk($detailId);
     	if($cartDetail != null)
     	{
-    		$cartDetail->count = $count;
-    		$cartDetail->delete();
-    		$result['success'] = true;
+            $cartId = $cartDetail->cart_id;
+            $cartDetail->delete();
+            
+            if(CartDetail::model()->count('cart_id=:cart_id', array(':cart_id'=>$cartId)) == 0)
+            {
+                $cart = Cart::model()->findByPk($cartId);
+                $cart->delete();
 
+            }
+
+    		$result['success'] = true;
     	}
 
     	$json = CJSON::encode($result);
@@ -223,7 +230,7 @@ class CartController extends Controller
         echo $json;
     }
 
-    //生成订单
+    //生成订单并删除购物车及其所属商品
     public function actionCreateOrder()
     {
         $result = array('success'=>false);
@@ -257,12 +264,20 @@ class CartController extends Controller
 
             $orderDetail->save();
             $summary += $cartDetail->price;
+
+            $cartDetail->delete();
         }
+
+        $cart->delete();
 
         $order->summary = $summary;
         $order->save();
 
         $result['success'] = true;
+
+        
+
+
 
         $json = CJSON::encode($result);
         echo $json;
