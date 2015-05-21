@@ -238,6 +238,48 @@ class OrderController extends Controller
         echo $json;
 	}
 
+	//取消订单
+	public function actionCancel()
+	{
+		$result = array('success'=>false);
+
+		$orderId = $_POST['orderId'];
+
+		$orderObj = Order::model()->findByPk($orderId);
+		if($orderObj != null)
+		{
+			$orderObj->status = 5;
+			$orderObj->save();
+			$result['success'] = true;
+
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
+	//确认收货
+	public function actionDelivered()
+	{
+		$result = array('success'=>false);
+
+		$orderId = $_POST['orderId'];
+
+		$orderObj = Order::model()->findByPk($orderId);
+		if($orderObj != null)
+		{
+			$orderObj->status = 4;
+			$orderObj->save();
+			$result['success'] = true;
+
+		}
+		
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
+	//
+
 	//购物车生成订单
 	
 
