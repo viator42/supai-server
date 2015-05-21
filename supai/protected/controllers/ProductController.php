@@ -269,6 +269,30 @@ class ProductController extends Controller
         echo $json;
 	}
 
+	//取消收藏商品
+	public function actionUnfavourite()
+	{
+		$result = array('success'=>false);
+
+		$userid = $_POST['userid'];
+		$productId = $_POST['productId'];
+
+		$productCollect = ProductCollect::model()->find('user_id=:user_id and product_id=:product_id', array(':user_id'=>$userid,':product_id'=>$productId));
+		if($productCollect != null)
+		{
+			$productCollect->delete();
+			$result['success'] = true;
+		}
+
+		// $storeCollect->delete();
+
+		// 	$result['success'] = true;
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
