@@ -45,6 +45,7 @@ class CollectController extends Controller
 			$store['description'] = $storeObj->description;
             $store['longitude'] = $storeObj->longitude;
             $store['latitude'] = $storeObj->latitude;
+            $store['favourite'] = 1;
 
 			//下属商品
 			$products = array();
@@ -69,6 +70,7 @@ class CollectController extends Controller
 				$product['price'] = $productObj->price;
 				$product['status'] = $productObj->status;
 				$product['additional'] = $productObj->description;
+				$product['favourite'] = 1;
 
 				$products[] = $product;
 			}
@@ -102,6 +104,7 @@ class CollectController extends Controller
 			$product['price'] = $productObj->price;
 			$product['status'] = $productObj->status;
 			$product['additional'] = $productObj->description;
+			$product['favourite'] = 1;
 
 			$defaults[] = $product;
 		}

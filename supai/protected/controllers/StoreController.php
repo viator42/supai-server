@@ -62,7 +62,17 @@ class StoreController extends Controller
 		$storeObj = Store::model()->find('user_id=:user_id', array(':user_id'=>$userid));
 		if($storeObj != null)
 		{
-			$result['data'] = $storeObj;
+			$data = array();
+			$data['id'] = $storeObj->id;
+			$data['name'] = $storeObj->name;
+			$data['description'] = $storeObj->description;
+			$data['address'] = $storeObj->address;
+			$data['area_id'] = $storeObj->area_id;
+			$data['logo'] = $storeObj->logo;
+			$data['user_id'] = $storeObj->user_id;
+			$data['favourite'] = 2;
+
+			$result['data'] = $data;
 			$result['success'] = true;
 
 		}
