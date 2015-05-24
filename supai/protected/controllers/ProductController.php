@@ -141,8 +141,6 @@ class ProductController extends Controller
 
 		$product->save();
 
-		$result['data'] = $product;
-
 		//添加图片
 		$imgUrl = $_POST['img'];
 		$img = new Image();
@@ -152,8 +150,22 @@ class ProductController extends Controller
 
 		$img->save();
 
-		$result['success'] = true;
+		//返回商品属性
+		$result['id'] = $product->id;
+		$result['name'] = $goods->name;
+		$result['rccode'] = $goods->barcode;
+		$result['description'] = $goods->description;
+		$result['origin'] = $goods->origin;
+		$result['merchant'] = $goods->merchant;
+		$result['merchant_code'] = $goods->merchant_code;
+		$result['price'] = $product->price;
+		$result['storeId'] = $product->store_id;
+		$result['price'] = $product->price;
+		$result['status'] = $product->status;
+		$result['additional'] = $product->description;
+		$result['img'] = $imgUrl;
 
+		$result['success'] = true;
 		$json = CJSON::encode($result);
         echo $json;
 	}
@@ -292,6 +304,24 @@ class ProductController extends Controller
         echo $json;
 	}
 
+	//删除商品
+	public function actionDelete()
+	{
+		$result = array('success'=>false);
+
+		$id = $_POST['id'];
+
+		$product = Product::model()->findByPk($id);
+		if($product != null)
+		{
+			$product->status = 0;
+			$product->save();
+			$result['success'] = true;
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
 
 	// Uncomment the following methods and override them if needed
 	/*

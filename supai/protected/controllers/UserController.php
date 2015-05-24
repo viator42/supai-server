@@ -90,7 +90,7 @@ class UserController extends Controller
 		$model->area_id = $area;
 		 
 		//默认头像
-		$model->icon = "http://192.168.1.10/images/icon.jpg";
+		$model->icon = 'http://'.$_SERVER['SERVER_NAME']."/images/ic_user.png";
 
 		$model->save();
 
@@ -119,7 +119,7 @@ class UserController extends Controller
 			    $user->name = $value;
 			    break;
 			case "icon":
-			    $user->logo = $value;
+			    $user->icon = $value;
 			    break;
 			case "address":
 			    $user->address = $value;
