@@ -50,19 +50,26 @@ class GoodsController extends Controller
 		$goods = Goods::model()->find('barcode=:barcode', array(':barcode'=>$barcode));
 		if($goods != null)
 		{
-			$data = array();
+			$result['barcode'] = $goods->barcode;
+			$result['name'] = $goods->name;
+			$result['priceInterval'] = $goods->price_interval;
+			$result['origin'] = $goods->origin;
+			$result['merchantCode'] = $goods->merchant_code;
+			$result['merchant'] = $goods->merchant;
 
-			$data['barcode'] = $goods->barcode;
-			$data['name'] = $goods->name;
-			$data['priceInterval'] = $goods->price_interval;
-			$data['origin'] = $goods->origin;
-			$data['merchantCode'] = $goods->merchant_code;
-			$data['merchant'] = $goods->merchant;
+			//查询商品图片
+			$images = array();
+			$imageObjs = Image::model()->findAll('type=2 and type_id=:type_id', array(':type_id'=>$goods->id));
+			foreach ($imageObjs as $imageObj) 
+			{
+				$images[] = $imageObj->url;
 
-			$result['data'] = $data;
+			}
+			$result['images'] = $images;
+
 			$result['success'] = true;
 		}
-		$json = CJSON::encode($result);
+		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
 

@@ -119,6 +119,9 @@ class ProductController extends Controller
 
 		$barcode = $_POST['barcode'];
 
+		//添加图片
+		$imgUrl = $_POST['img'];
+
 		//查看goods是否存在
 		$goods = Goods::model()->find('barcode=:barcode', array(':barcode'=>$barcode));
 		if($goods == null)
@@ -132,6 +135,13 @@ class ProductController extends Controller
 			$goods->merchant = $_POST['merchant'];
 
 			$goods->save();
+
+			$goodsImg = new Image();
+			$goodsImg->url = $imgUrl;
+			$goodsImg->type = 2;
+			$goodsImg->type_id = $goods->id;
+			$goodsImg->save();
+
 		}
 
 		$product = new Product();
@@ -141,14 +151,11 @@ class ProductController extends Controller
 
 		$product->save();
 
-		//添加图片
-		$imgUrl = $_POST['img'];
-		$img = new Image();
-		$img->type = 1;
-		$img->type_id = $product->id;
-		$img->url = $imgUrl;
-
-		$img->save();
+		$productImg = new Image();
+		$productImg->url = $imgUrl;
+		$productImg->type = 1;
+		$productImg->type_id = $product->id;
+		$productImg->save();
 
 		//返回商品属性
 		$result['id'] = $product->id;
