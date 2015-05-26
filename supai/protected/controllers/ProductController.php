@@ -98,7 +98,7 @@ class ProductController extends Controller
 			else
 			{
 				//加载默认图片
-				$product['img'] = "http://192.168.1.10/images/product_default.jpg";
+				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
 			}
 			
 
@@ -205,6 +205,18 @@ class ProductController extends Controller
 				$store = Store::model()->findByPk($product['store_id']);
 				$product['store_name'] = $store->name;
 				$product['address'] = $store->address;
+
+				//商品图片
+				$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
+				if($image != null)
+				{
+					$product['img'] = $image->url;
+				}
+				else
+				{
+					//加载默认图片
+					$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+				}
 
 				$result[] = $product;
 

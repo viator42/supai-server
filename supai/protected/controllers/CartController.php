@@ -71,7 +71,7 @@ class CartController extends Controller
                 else
                 {
                     //加载默认图片
-                    $product['img'] = "http://192.168.1.10/images/product_default.jpg";
+                    $product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
                 }
     			
     			$count += $detailObj->count;
