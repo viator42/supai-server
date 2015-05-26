@@ -111,7 +111,7 @@ class StoreController extends Controller
 
 		$storeId = $_POST['id'];
 
-		$productObjs = Product::model()->findAll('store_id=:store_id', array(':store_id'=>$storeId));
+		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0', array(':store_id'=>$storeId));
 		foreach ($productObjs as $productObj) 
 		{
 			$pruduct = array();

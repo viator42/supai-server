@@ -135,7 +135,7 @@ class OrderController extends Controller
 			$order['status'] = $orderObj->status;
 			$order['additional'] = $orderObj->additional;
 			
-			$forMerchant[] = $order;
+			$forCustomer[] = $order;
 
 		}
 
@@ -171,7 +171,7 @@ class OrderController extends Controller
 			$order['status'] = $orderObj->status;
 			$order['additional'] = $orderObj->additional;
 			
-			$forCustomer[] = $order;
+			$forMerchant[] = $order;
 
 		}
 

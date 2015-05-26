@@ -72,7 +72,11 @@ class CollectController extends Controller
 				$product['additional'] = $productObj->description;
 				$product['favourite'] = 1;
 
-				$products[] = $product;
+				if($productObj->status != 0)
+				{
+					$products[] = $product;
+				}
+				
 			}
 			$store['products'] = $products;
 
@@ -106,7 +110,11 @@ class CollectController extends Controller
 			$product['additional'] = $productObj->description;
 			$product['favourite'] = 1;
 
-			$defaults[] = $product;
+			if($productObj->status != 0)
+			{
+				$defaults[] = $product;
+			}
+			
 		}
 
 		$result['defaults'] = $defaults;

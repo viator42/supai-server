@@ -30,7 +30,7 @@ class ProductController extends Controller
 		$result = array();
 
 		$id = $_POST['userid'];
-		$recentBoughtObjs = RecentBought::model()->findAll('user_id = :userid', array(':userid'=>$id));
+		$recentBoughtObjs = RecentBought::model()->findAll('user_id = :userid and status != 0', array(':userid'=>$id));
 
 		foreach($recentBoughtObjs as $recentBoughtObj) 
 		{
@@ -188,7 +188,7 @@ class ProductController extends Controller
 		$goods = Goods::model()->find('barcode=:barcode', array(':barcode'=>$barcode));
 		if($goods != null)
 		{
-			$productObjs = Product::model()->findAll('goods_id=:goods_id', array(':goods_id'=>$goods->id));
+			$productObjs = Product::model()->findAll('goods_id=:goods_id and status != 0', array(':goods_id'=>$goods->id));
 			foreach ($productObjs as $productObj)
 			{
 				$product = array();
