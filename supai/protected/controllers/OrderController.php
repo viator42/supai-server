@@ -191,8 +191,8 @@ class OrderController extends Controller
 
 		//查询订单信息
 		$orderObj = Order::model()->findByPk($orderId);
+		$result['id'] = $orderObj->id;
 		$result['create_time'] = $orderObj->create_time;
-
 		$result['store_id'] = $orderObj->store_id;
 		$store = Store::model()->findByPk($orderObj->store_id);
 		$result['store_name'] = $store->name;
@@ -269,6 +269,26 @@ class OrderController extends Controller
 		if($orderObj != null)
 		{
 			$orderObj->status = 4;
+			$orderObj->save();
+			$result['success'] = true;
+
+		}
+		
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
+	//商家确认订单,开始发货
+	public function actionConfirm()
+	{
+		$result = array('success'=>false);
+
+		$orderId = $_POST['orderId'];
+
+		$orderObj = Order::model()->findByPk($orderId);
+		if($orderObj != null)
+		{
+			$orderObj->status = 2;
 			$orderObj->save();
 			$result['success'] = true;
 
