@@ -37,6 +37,7 @@ class StoreController extends Controller
 		$store->logo = $_POST['logo'];
 		$store->longitude = $_POST['longitude'];
 		$store->latitude = $_POST['latitude'];
+		$store->status = 1;
 		
 		$areaCode = $_POST['area'];
 		$area = Area::model()->find('code=:code', array(':code'=>$areaCode));
@@ -148,6 +149,7 @@ class StoreController extends Controller
 		$longitude = $_POST['longitude'];
 		$latitude = $_POST['latitude'];
 		$range = $_POST['range'];
+		$userid = $_POST['userid'];
 
 		$storeObjs = Store::model()->findAll();
 		foreach ($storeObjs as $storeObj) 
@@ -173,7 +175,12 @@ class StoreController extends Controller
 			{
 				if(bccomp($latitudeMax, $storeObj->latitude, 6) == 1 && bccomp($latitudeMin, $storeObj->latitude, 6) == -1)
 				{
-					$result[] = $store;
+					//忽略自己的店铺
+					if($storeObj->status == 1 && $userid != $storeObj->user_id)
+					{
+						$result[] = $store;
+					}
+					
 				}
 
 			}
