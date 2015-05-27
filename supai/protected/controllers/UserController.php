@@ -32,20 +32,6 @@ class UserController extends Controller
 		$username = $_POST['tel'];
 		$password = $_POST['password'];
 
-		// $model = User::model()->find('tel = :tel and password = :password', array(':tel'=>$tel, ':password'=>$password));
-		// $_identity = new UserIdentity($username, $password);
-  //       $_identity->authenticate();
-
-		// if($model != null)
-		// {
-		// 	$model->lastlogin_time = time();
-		// 	$model->save();
-			
-		// 	$result['data'] = $model;
-
-		// 	$result['success'] = true;
-		// }
-
         $_identity = new UserIdentity($username, $password);
 
         $_identity->authenticate();
@@ -70,7 +56,7 @@ class UserController extends Controller
 	//注册
 	public function actionRegister()
 	{
-		$result = array('success'=>false);
+		$result = array('success'=>false, 'msg'=>"注册失败");
 
 		$tel = $_POST['tel'];
 		$name = $_POST['name'];
@@ -78,24 +64,35 @@ class UserController extends Controller
 		$address = $_POST['address'];
 		$area = $_POST['area'];
 
-		$model = new User();
+		//查询手机号是否已经注册
+		$user = User::model()->find('tel=:tel', array(':tel'=>$tel));
+		if($user == null)
+		{
+			$model = new User();
 
-		$model->username = $tel;
-		$model->tel = $tel;
-		$model->password = $password;
-		$model->register_time = time();
-		$model->lastlogin_time = time();
-		$model->name = $name;
-		$model->address = $address;
-		$model->area_id = $area;
-		 
-		//默认头像
-		$model->icon = 'http://'.$_SERVER['SERVER_NAME']."/images/ic_user.png";
+			$model->username = $tel;
+			$model->tel = $tel;
+			$model->password = $password;
+			$model->register_time = time();
+			$model->lastlogin_time = time();
+			$model->name = $name;
+			$model->address = $address;
+			$model->area_id = $area;
+			 
+			//默认头像
+			$model->icon = 'http://'.$_SERVER['SERVER_NAME']."/images/ic_user.png";
 
-		$model->save();
+			$model->save();
 
-		$result['data'] = $model;
-		$result['success'] = true;
+			$result['data'] = $model;
+			$result['success'] = true;
+			$result['msg'] = "注册成功";
+		}
+		else
+		{
+			$result['msg'] = "此号码已经注册,请直接登录";
+		}
+		
 
 		$json = CJSON::encode($result);
         echo $json;
