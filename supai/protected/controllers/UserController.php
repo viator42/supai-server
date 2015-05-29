@@ -38,7 +38,15 @@ class UserController extends Controller
 
         if($_identity->errorCode===UserIdentity::ERROR_NONE)
         {
-            $result['data'] = $_identity->getUser();
+        	$user = $_identity->getUser();
+            $result['id'] = $user->id;
+            $result['name'] = $user->name;
+            $result['username'] = $user->username;
+            $result['tel'] = $user->tel;
+            $result['area'] = $user->area_id;
+            $result['icon'] = $user->icon;
+            $result['address'] = $user->address;
+
             $result['success'] = true;
 
         }
@@ -77,24 +85,32 @@ class UserController extends Controller
 		else
 		{
 			//注册
-			$model = new User();
+			$user = new User();
 
-			$model->imie = $imie;
-			$model->username = $tel;
-			$model->tel = $tel;
-			$model->password = $password;
-			$model->register_time = time();
-			$model->lastlogin_time = time();
-			$model->name = $name;
-			$model->address = $address;
-			$model->area_id = $area;
+			$user->imie = $imie;
+			$user->username = $tel;
+			$user->tel = $tel;
+			$user->password = $password;
+			$user->register_time = time();
+			$user->lastlogin_time = time();
+			$user->name = $name;
+			$user->address = $address;
+			$user->area_id = $area;
 			 
 			//默认头像
-			$model->icon = 'http://'.$_SERVER['SERVER_NAME']."/images/ic_user.png";
+			$user->icon = 'http://'.$_SERVER['SERVER_NAME']."/images/ic_user.png";
 
-			$model->save();
+			$user->save();
 
-			$result['data'] = $model;
+			//注册后回传值
+			$result['id'] = $user->id;
+            $result['name'] = $user->name;
+            $result['username'] = $user->username;
+            $result['tel'] = $user->tel;
+            $result['area'] = $user->area_id;
+            $result['icon'] = $user->icon;
+            $result['address'] = $user->address;
+
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
 		}
