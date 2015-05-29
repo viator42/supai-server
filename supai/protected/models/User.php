@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'user':
  * @property integer $id
+ * @property string $imie
  * @property string $username
  * @property string $password
  * @property string $tel
@@ -33,14 +34,14 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, tel', 'required'),
+			array('imie, username, password, tel', 'required'),
 			array('register_time, lastlogin_time, area_id', 'numerical', 'integerOnly'=>true),
+			array('imie, password, icon, address', 'length', 'max'=>128),
 			array('username, name', 'length', 'max'=>45),
-			array('password, icon, address', 'length', 'max'=>128),
 			array('tel', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password, tel, icon, register_time, lastlogin_time, name, area_id, address', 'safe', 'on'=>'search'),
+			array('id, imie, username, password, tel, icon, register_time, lastlogin_time, name, area_id, address', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +63,7 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'imie' => 'Imie',
 			'username' => 'Username',
 			'password' => 'Password',
 			'tel' => 'Tel',
@@ -93,6 +95,7 @@ class User extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('imie',$this->imie,true);
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('tel',$this->tel,true);

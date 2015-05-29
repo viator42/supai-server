@@ -60,16 +60,26 @@ class UserController extends Controller
 
 		$tel = $_POST['tel'];
 		$name = $_POST['name'];
+		$imie = $_POST['password'];
 		$password = md5($_POST['password']);
 		$address = $_POST['address'];
 		$area = $_POST['area'];
 
 		//查询手机号是否已经注册
-		$user = User::model()->find('tel=:tel', array(':tel'=>$tel));
-		if($user == null)
+		if(User::model()->exists('tel=:tel', array(':tel'=>$tel)))
 		{
+			$result['msg'] = "此号码已经注册,请直接登录";
+		}
+		elseif(User::model()->exists('imie=:imie', array(':imie'=>$imie)))
+		{
+			$result['msg'] = "不允许一台手机注册多个账户";
+		}
+		else
+		{
+			//注册
 			$model = new User();
 
+			$model->imie = $imie;
 			$model->username = $tel;
 			$model->tel = $tel;
 			$model->password = $password;
@@ -88,11 +98,6 @@ class UserController extends Controller
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
 		}
-		else
-		{
-			$result['msg'] = "此号码已经注册,请直接登录";
-		}
-		
 
 		$json = CJSON::encode($result);
         echo $json;
