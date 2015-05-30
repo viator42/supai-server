@@ -2343,3 +2343,56 @@ Stack trace:
 REQUEST_URI=/store/products
 in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (133)
 in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/29 13:47:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "upload/view".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('upload/view')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/upload/5666996265568517312261
+---
+2015/05/29 14:58:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "pic_auction/00/03/44/94/au3449499.jpg".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('pic_auction/00/...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/pic_auction/00/03/44/94/au3449499.jpg
+HTTP_REFERER=http://www.zhaoqt.net/wenzhai/N35kksQVr1CIsPtd.html
+---
+2015/05/29 14:58:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "mini/shopstation/picture/FF/00/0007/000723/FF00072357a.jpg".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('mini/shopstatio...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/mini/shopstation/picture/FF/00/0007/000723/FF00072357a.jpg
+HTTP_REFERER=http://www.zhaoqt.net/wenzhai/N35kksQVr1CIsPtd.html
+---
+2015/05/29 14:58:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "pic_auction/00/03/59/35/au3593577a.jpg".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('pic_auction/00/...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/pic_auction/00/03/59/35/au3593577a.jpg
+HTTP_REFERER=http://www.zhaoqt.net/wenzhai/N35kksQVr1CIsPtd.html
+---
+2015/05/29 14:58:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "pic_auction/00/04/01/90/au4019098a.jpg".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('pic_auction/00/...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/pic_auction/00/04/01/90/au4019098a.jpg
+HTTP_REFERER=http://www.zhaoqt.net/wenzhai/N35kksQVr1CIsPtd.html
+---
+2015/05/29 14:58:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "pic_search/00/08/40/63/se8406319a.jpg".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('pic_search/00/0...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/pic_search/00/08/40/63/se8406319a.jpg
+HTTP_REFERER=http://www.zhaoqt.net/wenzhai/N35kksQVr1CIsPtd.html
+---

@@ -173,9 +173,11 @@ class CartController extends Controller
         $price = $_POST['price'];
     	$count = $_POST['count'];
 
+        //查找该用户是否已有购物车
         $cart = Cart::model()->find('user_id=:user_id and store_id=:store_id', array(':user_id'=>$userid, ':store_id'=>$storeId));
         if($cart == null)
         {
+            //没有则新建购物车, 并添加商品
             $cart = new Cart();
 
             $cart->user_id = $userid;
@@ -199,16 +201,18 @@ class CartController extends Controller
         }
         else
         {
+            //购物车内是否已有同类商品
             $cartDetail = CartDetail::model()->find('cart_id=:cart_id and product_id=:product_id', array(':cart_id'=>$cart->id, ':product_id'=>$productId));
             if($cartDetail != null)
             {
-                //只修改数量
-                $cartDetail->count = $count;
+                //只添加数量
+                $cartDetail->count += $count;
                 $cartDetail->save();
 
             }
             else
             {
+                //购物车内添加新的商品
                 $cartDetail = new CartDetail();
                 $cartDetail->cart_id = $cart->id;
                 $cartDetail->product_id = $productId;
