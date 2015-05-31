@@ -183,6 +183,30 @@ class UserController extends Controller
         echo $json;	
 	}
 
+	//上传用户位置
+	public function actionUploadLocation()
+	{
+		$result = array('success'=>false);
+
+		$id = $_POST['userid'];
+		$longitude = $_POST['longitude'];
+		$latitude = $_POST['latitude'];
+
+		$user = User::model()->findByPk($id);
+		if($user != null)
+		{
+			$user->longitude = $longitude;
+			$user->latitude = $latitude;
+			$user->save();
+
+			$result['success'] = true;
+
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
 /*
 	//完善用户信息
 	public function actionPerfection()
