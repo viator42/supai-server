@@ -66,15 +66,20 @@ class UserController extends Controller
 	{
 		$result = array('success'=>false, 'msg'=>"注册失败");
 
-		$tel = $_POST['tel'];
-		$name = $_POST['name'];
+		$tel = trim($_POST['tel']);
+		$name = trim($_POST['name']);
 		$imie = $_POST['password'];
 		$password = md5($_POST['password']);
-		$address = $_POST['address'];
+		$address = trim($_POST['address']);
 		$area = $_POST['area'];
 
+		//手机号码格式正则查询
+		if(!preg_match("/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$/",$tel))
+		{
+			$result['msg'] = "请输入正确的手机号";
+		}
 		//查询手机号是否已经注册
-		if(User::model()->exists('tel=:tel', array(':tel'=>$tel)))
+		elseif(User::model()->exists('tel=:tel', array(':tel'=>$tel)))
 		{
 			$result['msg'] = "此号码已经注册,请直接登录";
 		}
