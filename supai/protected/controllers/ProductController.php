@@ -88,6 +88,7 @@ class ProductController extends Controller
 			$product['price'] = $productObj->price;
 			$pruduct['status'] = $productObj->status;
 			$product['additional'] = $productObj->description;
+			$product['count'] = $productObj->count;
 
 			//商品图片
 			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));

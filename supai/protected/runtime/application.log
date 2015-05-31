@@ -2396,3 +2396,135 @@ Stack trace:
 REQUEST_URI=/pic_search/00/08/40/63/se8406319a.jpg
 HTTP_REFERER=http://www.zhaoqt.net/wenzhai/N35kksQVr1CIsPtd.html
 ---
+2015/05/30 12:00:08 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 12:00:30 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 12:00:35 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 12:16:27 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 12:16:56 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 12:18:55 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 12:30:20 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 12:33:06 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 14:56:57 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 14:57:12 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 14:57:30 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/05/30 14:57:37 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:134)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (134)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)

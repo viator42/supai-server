@@ -71,6 +71,7 @@ class CollectController extends Controller
 				$product['status'] = $productObj->status;
 				$product['additional'] = $productObj->description;
 				$product['favourite'] = 1;
+				$product['count'] = $productObj->count;
 
 				if($productObj->status != 0)
 				{
@@ -109,6 +110,7 @@ class CollectController extends Controller
 			$product['status'] = $productObj->status;
 			$product['additional'] = $productObj->description;
 			$product['favourite'] = 1;
+			$product['count'] = $productObj->count;
 
 			if($productObj->status != 0)
 			{
