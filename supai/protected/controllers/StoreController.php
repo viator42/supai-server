@@ -38,10 +38,7 @@ class StoreController extends Controller
 		$store->longitude = $_POST['longitude'];
 		$store->latitude = $_POST['latitude'];
 		$store->status = 1;
-		
-		$areaCode = $_POST['area'];
-		$area = Area::model()->find('code=:code', array(':code'=>$areaCode));
-		$store->area_id = $area->id;
+		$store->area_id = $_POST['area'];
 
 		$store->save();
 
@@ -160,8 +157,7 @@ class StoreController extends Controller
 			$store['logo'] = $storeObj->logo;
 			$store['name'] = $storeObj->name;
 			$store['user_id'] = $storeObj->user_id;
-			$area = Area::model()->findByPk($storeObj->area_id);
-			$store['area'] = $area->code;
+			$store['area'] = $storeObj->area_id;
 			$store['longitude'] = $storeObj->longitude;
 			$store['latitude'] = $storeObj->latitude;
 			$store['description'] = $storeObj->description;
