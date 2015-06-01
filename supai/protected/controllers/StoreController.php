@@ -115,7 +115,7 @@ class StoreController extends Controller
 			$pruduct = array();
 			$pruduct['id'] = $productObj->id;
 			$goods = Goods::model()->findByPk($productObj->goods_id);
-			$pruduct['name'] = $goods->name;
+			$pruduct['name'] = $productObj->alias;
 			$pruduct['price'] = $productObj->price;
 			$pruduct['count'] = $productObj->count;
 			$pruduct['description'] = $productObj->description;

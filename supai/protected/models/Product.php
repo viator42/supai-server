@@ -11,6 +11,7 @@
  * @property string $description
  * @property integer $store_id
  * @property integer $status
+ * @property string $alias
  */
 class Product extends CActiveRecord
 {
@@ -33,10 +34,11 @@ class Product extends CActiveRecord
 			array('goods_id, store_id', 'required'),
 			array('goods_id, count, store_id, status', 'numerical', 'integerOnly'=>true),
 			array('price', 'length', 'max'=>10),
+			array('alias', 'length', 'max'=>45),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, goods_id, price, count, description, store_id, status', 'safe', 'on'=>'search'),
+			array('id, goods_id, price, count, description, store_id, status, alias', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +66,7 @@ class Product extends CActiveRecord
 			'description' => 'Description',
 			'store_id' => 'Store',
 			'status' => 'Status',
+			'alias' => 'Alias',
 		);
 	}
 
@@ -92,6 +95,7 @@ class Product extends CActiveRecord
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('store_id',$this->store_id);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('alias',$this->alias,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

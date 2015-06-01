@@ -224,7 +224,7 @@ class OrderController extends Controller
 				//产品图片
 				$img = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$product->id));
 				$detail['image'] = $img->url;
-				$detail['name'] = $goods->name;
+				$detail['name'] = $product->alias;
 				$detail['goodsDescription'] = $goods->description;
 				$detail['rccode'] = $goods->barcode;
 				$detail['origin'] = $goods->origin;

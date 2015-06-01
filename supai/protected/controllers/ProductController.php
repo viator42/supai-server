@@ -146,6 +146,7 @@ class ProductController extends Controller
 		}
 
 		$product = new Product();
+		$product->alias = $_POST['alias'];
 		$product->goods_id = $goods->id;
 		$product->price = $_POST['price'];
 		$product->store_id = $_POST['storeId'];
@@ -162,6 +163,7 @@ class ProductController extends Controller
 		//返回商品属性
 		$result['id'] = $product->id;
 		$result['name'] = $goods->name;
+		$result['alias'] = $goods->alias;
 		$result['rccode'] = $goods->barcode;
 		$result['description'] = $goods->description;
 		$result['origin'] = $goods->origin;
@@ -175,7 +177,7 @@ class ProductController extends Controller
 		$result['img'] = $imgUrl;
 
 		$result['success'] = true;
-		$json = CJSON::encode($result);
+		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
 
@@ -239,6 +241,7 @@ class ProductController extends Controller
 		$price = $_POST['price'];
 		$count = $_POST['count'];
 		$status = $_POST['status'];
+		$alias = $_POST['alias'];
 
 		$product = Product::model()->findByPk($id);
 		if($product != null)
@@ -247,6 +250,7 @@ class ProductController extends Controller
 			$product->count = $count;
 			$product->description = $description;
 			$product->status = $status;
+			$product->alias = $alias;
 
 			$product->save();
 			$result['product'] = $product;

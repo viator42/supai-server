@@ -194,8 +194,7 @@ class CartController extends Controller
             $cartDetail->count = $count;
 
             $product = Product::model()->findByPk($productId);
-            $goods = Goods::model()->findByPk($product->goods_id);
-            $cartDetail->goods_name = $goods->name;
+            $cartDetail->goods_name = $product->alias;
 
             $cartDetail->save();
         }
