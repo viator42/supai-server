@@ -2698,3 +2698,14 @@ Stack trace:
 REQUEST_URI=/product/update
 in /Users/viator42/workspace/supai-server/supai/protected/controllers/ProductController.php (252)
 in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/06/02 06:09:44 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/CollectController.php:40)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CollectController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CollectController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CollectController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/collect/all
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/CollectController.php (40)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
