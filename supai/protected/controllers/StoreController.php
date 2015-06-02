@@ -69,6 +69,8 @@ class StoreController extends Controller
 			$data['logo'] = $storeObj->logo;
 			$data['user_id'] = $storeObj->user_id;
 			$data['favourite'] = 2;
+			$data['longitude'] = $storeObj->longitude;
+			$data['latitude'] = $storeObj->latitude;
 
 			$result['data'] = $data;
 			$result['success'] = true;
