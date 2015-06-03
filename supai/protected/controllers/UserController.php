@@ -174,7 +174,9 @@ class UserController extends Controller
 			$result['icon'] = $user->icon;
 			$result['name'] = $user->name;
 			$result['address'] = $user->address;
-
+			$result['longitude'] = $user->longitude;
+			$result['latitude'] = $user->latitude;
+			
 			$result['success'] = true;
 
 		}
