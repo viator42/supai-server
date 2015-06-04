@@ -147,9 +147,9 @@ class StoreController extends Controller
 
 		$longitude = $_POST['longitude'];
 		$latitude = $_POST['latitude'];
-		$range = $_POST['range'];
 		$userid = $_POST['userid'];
 
+		$user = User::model()->findByPk($userid);
 		$storeObjs = Store::model()->findAll();
 		foreach ($storeObjs as $storeObj) 
 		{
@@ -165,6 +165,13 @@ class StoreController extends Controller
 			$store['description'] = $storeObj->description;
 			$store['address'] = $storeObj->address;
 
+			//查询同一area内的所有店铺并忽略自己的店铺
+			if($storeObj->status == 1 && $userid != $storeObj->user_id && $storeObj->area_id == $user->area_id)
+			{
+				$result[] = $store;
+			}
+
+			/*
 			$longitudeMax = bcadd($longitude, $range, 6);
 			$longitudeMin = bcsub($longitude, $range, 6);
 			$latitudeMax = bcadd($latitude, $range, 6);
@@ -173,7 +180,7 @@ class StoreController extends Controller
 			{
 				if(bccomp($latitudeMax, $storeObj->latitude, 6) == 1 && bccomp($latitudeMin, $storeObj->latitude, 6) == -1)
 				{
-					//忽略自己的店铺
+					//
 					if($storeObj->status == 1 && $userid != $storeObj->user_id)
 					{
 						$result[] = $store;
@@ -182,6 +189,7 @@ class StoreController extends Controller
 				}
 
 			}
+			*/
 			
 		}
 
