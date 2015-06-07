@@ -3112,3 +3112,1200 @@ Stack trace:
 REQUEST_URI=/assets/js/amazeui.min.js
 HTTP_REFERER=http://localhost/
 ---
+2015/06/07 04:15:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:15:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:15:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:17:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:17:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:17:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:17:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:18:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:18:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:18:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:18:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:18:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:18:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:18:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:18:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:18:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:19:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:19:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:19:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:20:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:20:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:20:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:21:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:21:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:21:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:22:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:22:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:22:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:24:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:25:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:25:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:25:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:27:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:28:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:28:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:28:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:28:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:28:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:28:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:28:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:28:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:28:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:28:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:32:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:32:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:32:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:32:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:40:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:40:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:40:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:40:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:40:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:40:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:40:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:40:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:40:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:40:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:42:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:42:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:42:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:44:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:45:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:45:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:45:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:45:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:45:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:45:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:45:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:46:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:46:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 04:46:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 06:24:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/i/examples/landing.png".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/i/exampl...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/i/examples/landing.png
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 06:24:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/jquery.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/jquer...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/jquery.min.js
+HTTP_REFERER=http://localhost/
+---
+2015/06/07 06:24:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/js/amazeui.min.js".' in /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/js/amaze...')
+#1 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/assets/js/amazeui.min.js
+HTTP_REFERER=http://localhost/
+---

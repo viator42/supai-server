@@ -11,94 +11,13 @@
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="alternate icon" type="image/png" href="assets/amazeui/i/favicon.png">
   <link rel="stylesheet" href="assets/amazeui/css/amazeui.min.css"/>
-  <style>
-    .get {
-      background: #1E5B94;
-      color: #fff;
-      text-align: center;
-      padding: 100px 0;
-    }
-
-    .get-title {
-      font-size: 200%;
-      border: 2px solid #fff;
-      padding: 20px;
-      display: inline-block;
-    }
-
-    .get-btn {
-      background: #fff;
-    }
-
-    .detail {
-      background: #fff;
-    }
-
-    .detail-h2 {
-      text-align: center;
-      font-size: 150%;
-      margin: 40px 0;
-    }
-
-    .detail-h3 {
-      color: #1f8dd6;
-    }
-
-    .detail-p {
-      color: #7f8c8d;
-    }
-
-    .detail-mb {
-      margin-bottom: 30px;
-    }
-
-    .hope {
-      background: #0bb59b;
-      padding: 50px 0;
-    }
-
-    .hope-img {
-      text-align: center;
-    }
-
-    .hope-hr {
-      border-color: #149C88;
-    }
-
-    .hope-title {
-      font-size: 140%;
-    }
-
-    .about {
-      background: #fff;
-      padding: 40px 0;
-      color: #7f8c8d;
-    }
-
-    .about-color {
-      color: #34495e;
-    }
-
-    .about-title {
-      font-size: 180%;
-      padding: 30px 0 50px 0;
-      text-align: center;
-    }
-
-    .footer p {
-      color: #7f8c8d;
-      margin: 0;
-      padding: 15px 0;
-      text-align: center;
-      background: #2d3e50;
-    }
-  </style>
+  <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
 <header class="am-topbar am-topbar-fixed-top">
   <div class="am-container">
     <h1 class="am-topbar-brand">
-      <a href="#">Amaze UI</a>
+      <a href="#">速派网上超市</a>
     </h1>
 
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
@@ -106,30 +25,7 @@
         class="am-icon-bars"></span></button>
 
     <div class="am-collapse am-topbar-collapse" id="collapse-head">
-      <ul class="am-nav am-nav-pills am-topbar-nav">
-        <li class="am-active"><a href="#">首页</a></li>
-        <li><a href="#">项目</a></li>
-        <li class="am-dropdown" data-am-dropdown>
-          <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-            下拉菜单 <span class="am-icon-caret-down"></span>
-          </a>
-          <ul class="am-dropdown-content">
-            <li class="am-dropdown-header">标题</li>
-            <li><a href="#">1. 默认样式</a></li>
-            <li><a href="#">2. 基础设置</a></li>
-            <li><a href="#">3. 文字排版</a></li>
-            <li><a href="#">4. 网格系统</a></li>
-          </ul>
-        </li>
-      </ul>
-
-      <div class="am-topbar-right">
-        <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span> 注册</button>
-      </div>
-
-      <div class="am-topbar-right">
-        <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
-      </div>
+      
     </div>
   </div>
 </header>
@@ -137,14 +33,14 @@
 <div class="get">
   <div class="am-g">
     <div class="am-u-lg-12">
-      <h1 class="get-title">Amaze UI - HTML5 跨屏前端框架</h1>
+      <h1 class="get-title">速派网上超市</h1>
 
       <p>
         期待你的参与，共同打造一个简单易用的前端框架
       </p>
 
       <p>
-        <a href="http://amazeui.org" class="am-btn am-btn-sm get-btn">获取新get技能√</a>
+        <a href="http://amazeui.org" class="am-btn am-btn get-btn">下载</a>
       </p>
     </div>
   </div>
@@ -153,11 +49,10 @@
 <div class="detail">
   <div class="am-g am-container">
     <div class="am-u-lg-12">
-      <h2 class="detail-h2">One Web 、Any Device，期待和你一起去实现!</h2>
+      <h2 class="detail-h2">众多特性等你去发现</h2>
 
       <div class="am-g">
         <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
-
           <h3 class="detail-h3">
             <i class="am-icon-mobile am-icon-sm"></i>
             为移动而生
@@ -222,34 +117,7 @@
   <div class="am-g am-container">
     <div class="am-u-lg-12">
       <h2 class="about-title about-color">Amaze UI 崇尚开放、自由，非常欢迎大家的参与</h2>
-
-      <div class="am-g">
-        <div class="am-u-lg-6 am-u-md-4 am-u-sm-12">
-          <form class="am-form">
-            <label for="name" class="about-color">你的姓名</label>
-            <input id="name" type="text">
-            <br/>
-            <label for="email" class="about-color">你的邮箱</label>
-            <input id="email" type="email">
-            <br/>
-            <label for="message" class="about-color">你的留言</label>
-            <textarea id="message"></textarea>
-            <br/>
-            <button type="submit" class="am-btn am-btn-primary am-btn-sm"><i class="am-icon-check"></i> 提 交</button>
-          </form>
-          <hr class="am-article-divider am-show-sm-only">
-        </div>
-
-        <div class="am-u-lg-6 am-u-md-8 am-u-sm-12">
-          <h4 class="about-color">关于我们</h4>
-
-          <p>AllMobilize Inc (美通云动科技有限公司)
-            由前微软美国总部IE浏览器核心研发团队成员及移动互联网行业专家在美国西雅图创立，旨在解决网页在不同移动设备屏幕上的适配问题。基于国际专利技术并结合最前沿的HTML5技术，云适配解决方案可以帮助企业快速将桌面版网站适配到各种移动设备终端的屏幕上，不仅显著地提高了企业网站的用户体验以及销售转化率，而且大幅度地节省了企业开发和维护移动网站的费用。</p>
-          <h4 class="about-color">团队介绍</h4>
-
-          <p>AllMobilize Inc 获得了微软创投孵化器的支持，其领先科技已得到全球多家企业及机构的认可与信赖，客户包括全球500强企业、美国政府、国内政府机关、国内外上市公司、以及互联网标准化组织W3C。</p>
-        </div>
-      </div>
+      
     </div>
   </div>
 </div>
