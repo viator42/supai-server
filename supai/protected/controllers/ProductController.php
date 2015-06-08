@@ -181,6 +181,45 @@ class ProductController extends Controller
         echo $json;
 	}
 
+	public function actionAddManually()
+	{
+		$result = array('success'=>false);
+
+		$product = new Product();
+		$product->goods_id = 0;
+
+		$product->alias = $_POST['alias'];
+		$product->description = $_POST['description'];
+		$product->price = $_POST['price'];
+		$product->count = $_POST['count'];
+		$product->store_id = $_POST['storeId'];
+		$product->status = 1;
+
+		$product->save();
+
+		$imgUrl = $_POST['img'];
+
+		$productImg = new Image();
+		$productImg->url = $imgUrl;
+		$productImg->type = 1;
+		$productImg->type_id = $product->id;
+		$productImg->save();
+
+		//返回商品属性
+		$result['id'] = $product->id;
+		$result['alias'] = $product->alias;
+		$result['price'] = $product->price;
+		$result['storeId'] = $product->store_id;
+		$result['price'] = $product->price;
+		$result['status'] = $product->status;
+		$result['additional'] = $product->description;
+		$result['img'] = $imgUrl;
+
+		$result['success'] = true;
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
 	//扫码查询商品,返回同意area的所有商家的商品.
 	public function actionSearch()
 	{
