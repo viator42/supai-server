@@ -3116,3 +3116,68 @@ Stack trace:
 #10 {main}
 REQUEST_URI=/product/add
 ---
+2015/06/09 04:31:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "collect".' in /Users/viator42/workspace/supai-server/framework/web/CController.php:483
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(270): CController->missingAction('collect')
+#1 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CController->run('collect')
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController('product/collect')
+#3 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#4 /Users/viator42/workspace/supai-server/supai/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/product/collect
+---
+2015/06/09 04:32:11 [error] [php] Undefined index: userid (/Users/viator42/workspace/supai-server/supai/protected/controllers/CollectController.php:31)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): CollectController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): CollectController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): CollectController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/collect/all
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/CollectController.php (31)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/06/09 05:01:33 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:125)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (125)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/06/09 05:02:59 [error] [php] Trying to get property of non-object (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:125)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (125)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/06/09 05:08:06 [error] [php] Undefined variable: img (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:125)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (125)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
+2015/06/09 05:08:49 [error] [php] Undefined variable: img (/Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php:125)
+Stack trace:
+#0 /Users/viator42/workspace/supai-server/framework/web/CController.php(286): StoreController->runAction()
+#1 /Users/viator42/workspace/supai-server/framework/web/CController.php(265): StoreController->runActionWithFilters()
+#2 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(282): StoreController->run()
+#3 /Users/viator42/workspace/supai-server/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /Users/viator42/workspace/supai-server/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#5 /Users/viator42/workspace/supai-server/supai/index.php(13): CWebApplication->run()
+REQUEST_URI=/store/Products
+in /Users/viator42/workspace/supai-server/supai/protected/controllers/StoreController.php (125)
+in /Users/viator42/workspace/supai-server/supai/index.php (13)
