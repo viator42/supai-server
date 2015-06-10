@@ -80,6 +80,7 @@ class ProductController extends Controller
 			{
 				//有条码的商品
 				$goodsObj = Goods::model()->findByPk($productObj->goods_id);
+				$product['id'] = $productObj->id;
 				$product['goodsId'] = $productObj->goods_id;
 				$product['name'] = $goodsObj->name;
 				$product['rccode'] = $goodsObj->barcode;
@@ -98,6 +99,7 @@ class ProductController extends Controller
 			else
 			{
 				//用户自己录入的商品
+				$product['id'] = $productObj->id;
 				$product['goodsId'] = $productObj->goods_id;
 				$product['name'] = $productObj->alias;
 				$product['additional'] = $productObj->description;
