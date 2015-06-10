@@ -122,6 +122,7 @@ class StoreController extends Controller
 				$product['goodsId'] = $productObj->goods_id;
 				$product['id'] = $productObj->id;
 				$product['name'] = $goodsObj->name;
+				$product['alias'] = $productObj->alias;
 				$product['rccode'] = $goodsObj->barcode;
 				$product['description'] = $goodsObj->description;
 				$product['origin'] = $goodsObj->origin;
@@ -140,7 +141,7 @@ class StoreController extends Controller
 			{
 				$product['goodsId'] = $productObj->goods_id;
 				$product['id'] = $productObj->id;
-				$product['name'] = $productObj->alias;
+				$product['alias'] = $productObj->alias;
 				$product['additional'] = $productObj->description;
 				$product['price'] = $productObj->price;
 				$product['count'] = $productObj->count;

@@ -83,6 +83,7 @@ class ProductController extends Controller
 				$product['id'] = $productObj->id;
 				$product['goodsId'] = $productObj->goods_id;
 				$product['name'] = $goodsObj->name;
+				$product['alias'] = $productObj->alias;
 				$product['rccode'] = $goodsObj->barcode;
 				$product['description'] = $goodsObj->description;
 				$product['origin'] = $goodsObj->origin;
@@ -101,7 +102,7 @@ class ProductController extends Controller
 				//用户自己录入的商品
 				$product['id'] = $productObj->id;
 				$product['goodsId'] = $productObj->goods_id;
-				$product['name'] = $productObj->alias;
+				$product['alias'] = $productObj->alias;
 				$product['additional'] = $productObj->description;
 				$product['price'] = $productObj->price;
 				$product['count'] = $productObj->count;
@@ -256,6 +257,7 @@ class ProductController extends Controller
 
 				$product['id'] = $productObj->id;
 				$product['name'] = $goods->name;
+				$product['alias'] = $productObj->alias;
 				$product['origin'] = $goods->origin;
 				$product['merchant_code'] = $goods->merchant_code;
 				$product['merchant'] = $goods->merchant;
