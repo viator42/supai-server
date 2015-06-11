@@ -308,6 +308,17 @@ class OrderController extends Controller
 	
 
 	//返回用户的历史订单
+	public function actionHistory()
+	{
+		$result = array();
+		$userid = $_POST['userid'];
+
+		$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and customer_id=:customer_id', array(':customer_id'=>$userid));
+		
+		
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
 
 
 	// Uncomment the following methods and override them if needed

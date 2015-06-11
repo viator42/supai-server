@@ -302,6 +302,14 @@ class ProductController extends Controller
 		$count = $_POST['count'];
 		$status = $_POST['status'];
 		$alias = $_POST['alias'];
+		$imgUrl = $_POST['img'];
+
+		$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
+		if($image != null)
+		{
+			$image->url = $imgUrl;
+			$image->save();
+		}
 
 		$product = Product::model()->findByPk($id);
 		if($product != null)
