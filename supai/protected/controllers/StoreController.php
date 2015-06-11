@@ -71,6 +71,7 @@ class StoreController extends Controller
 			$data['favourite'] = 2;
 			$data['longitude'] = $storeObj->longitude;
 			$data['latitude'] = $storeObj->latitude;
+			$data['status'] = $storeObj->status;
 
 			$result['data'] = $data;
 			$result['success'] = true;
@@ -228,7 +229,7 @@ class StoreController extends Controller
 		$address = $_POST['address'];
 		$logo = $_POST['logo'];
 		$description = $_POST['description'];
-		
+		$status = $_POST['status'];
 
 		$store = Store::model()->findByPk($id);
 		if($store != null)
@@ -237,7 +238,8 @@ class StoreController extends Controller
 			$store->address = $address;
 			$store->logo = $logo;
 			$store->description = $description;
-
+			$store->status = $status;
+			
 			// switch ($key) {
 			// case "name":
 			//     $store->name = $value;

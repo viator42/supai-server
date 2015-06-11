@@ -46,6 +46,7 @@ class CollectController extends Controller
             $store['longitude'] = $storeObj->longitude;
             $store['latitude'] = $storeObj->latitude;
             $store['favourite'] = 1;
+            $store['status'] = $storeObj->status;
 
 			//下属商品
 			$products = array();
