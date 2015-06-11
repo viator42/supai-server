@@ -172,7 +172,7 @@ class StoreController extends Controller
 		$userid = $_POST['userid'];
 
 		$user = User::model()->findByPk($userid);
-		$storeObjs = Store::model()->findAll();
+		$storeObjs = Store::model()->findAll('area_id=:area_id and status=1', array(':area_id'=>$user->area_id));
 		foreach ($storeObjs as $storeObj) 
 		{
 			$store = array();
@@ -239,7 +239,7 @@ class StoreController extends Controller
 			$store->logo = $logo;
 			$store->description = $description;
 			$store->status = $status;
-			
+
 			// switch ($key) {
 			// case "name":
 			//     $store->name = $value;

@@ -100,7 +100,13 @@ class CollectController extends Controller
 			}
 			$store['products'] = $products;
 
-			$stores[] = $store;
+			//店铺开店时才能搜索到
+			if($storeObj->status == 1)
+			{
+				$stores[] = $store;
+
+			}
+			
 		}
 
 		$result['stores'] = $stores;
