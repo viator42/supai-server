@@ -224,26 +224,34 @@ class StoreController extends Controller
 		$result = array('success'=>false);
 
 		$id = $_POST['id'];
-		$key = $_POST['key'];
-		$value = $_POST['value'];
+		$name = $_POST['name'];
+		$address = $_POST['address'];
+		$logo = $_POST['logo'];
+		$description = $_POST['description'];
+		
 
 		$store = Store::model()->findByPk($id);
 		if($store != null)
 		{
-			switch ($key) {
-			case "name":
-			    $store->name = $value;
-			    break;
-			case "logo":
-			    $store->logo = $value;
-			    break;
-			case "address":
-			    $store->address = $value;
-			    break;
-			case "description":
-			    $store->description = $description;
-			    break;
-			}
+			$store->name = $name;
+			$store->address = $address;
+			$store->logo = $logo;
+			$store->description = $description;
+
+			// switch ($key) {
+			// case "name":
+			//     $store->name = $value;
+			//     break;
+			// case "logo":
+			//     $store->logo = $value;
+			//     break;
+			// case "address":
+			//     $store->address = $value;
+			//     break;
+			// case "description":
+			//     $store->description = $description;
+			//     break;
+			// }
 			
 			$store->save();
 			$result['success'] = true;

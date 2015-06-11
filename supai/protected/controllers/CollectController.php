@@ -54,6 +54,7 @@ class CollectController extends Controller
 			{
 				$product = array();
 				$productObj = Product::model()->findByPk($productCollectObj->product_id);
+				$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
 				
 				if($productObj->goods_id != 0)
 				{
@@ -90,9 +91,6 @@ class CollectController extends Controller
 
 				}
 
-				$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
-				
-
 				if($productObj->status != 0)
 				{
 					$products[] = $product;
@@ -113,6 +111,7 @@ class CollectController extends Controller
 		{
 			$product = array();
 			$productObj = Product::model()->findByPk($productCollectObj->product_id);
+			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
 
 			if($productObj->goods_id != 0)
 			{
