@@ -92,19 +92,28 @@ class OrderController extends Controller
         echo $json;
 	}
 
-	//查询当前订单,包括商户/客户的
+	//查询订单,包括商户/客户的
 	public function actionActiveOrders()
 	{
 		$result = array();
 		$data = array();
 
 		$userid = $_POST['userid'];
+		$type = $_POST['type'];		//查询类型 1:已提交 配送中 2:已完成 已取消
 
 		$forCustomer = array();
 		$forMerchant = array();
 
 		//客户列表
-		$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and customer_id=:customer_id', array(':customer_id'=>$userid));
+		switch ($type) {
+			case 1:
+				$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and customer_id=:customer_id', array(':customer_id'=>$userid));
+				break;
+			
+			case 2:
+				$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and customer_id=:customer_id', array(':customer_id'=>$userid));
+				break;
+		}
 		foreach ($orderObjs as $orderObj) 
 		{
 			$order = array();
