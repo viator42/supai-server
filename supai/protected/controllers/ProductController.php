@@ -76,19 +76,40 @@ class ProductController extends Controller
 		$productObj = Product::model()->findByPk($id);
 		if($productObj != null)
 		{
-			$goodsObj = Goods::model()->findByPk($productObj->goods_id);
-			$product['name'] = $goodsObj->name;
-			$product['rccode'] = $goodsObj->barcode;
-			$product['description'] = $goodsObj->description;
-			$product['origin'] = $goodsObj->origin;
-			$product['merchant'] = $goodsObj->merchant;
-			$product['merchant_code'] = $goodsObj->merchant_code;
-			$product['price'] = $productObj->price;
-			$product['storeId'] = $productObj->store_id;
-			$product['price'] = $productObj->price;
-			$product['status'] = $productObj->status;
-			$product['additional'] = $productObj->description;
-			$product['count'] = $productObj->count;
+			if($productObj->goods_id != 0)
+			{
+				//有条码的商品
+				$goodsObj = Goods::model()->findByPk($productObj->goods_id);
+				$product['id'] = $productObj->id;
+				$product['goodsId'] = $productObj->goods_id;
+				$product['name'] = $goodsObj->name;
+				$product['alias'] = $productObj->alias;
+				$product['rccode'] = $goodsObj->barcode;
+				$product['description'] = $goodsObj->description;
+				$product['origin'] = $goodsObj->origin;
+				$product['merchant'] = $goodsObj->merchant;
+				$product['merchant_code'] = $goodsObj->merchant_code;
+				$product['price'] = $productObj->price;
+				$product['storeId'] = $productObj->store_id;
+				$product['price'] = $productObj->price;
+				$product['status'] = $productObj->status;
+				$product['additional'] = $productObj->description;
+				$product['count'] = $productObj->count;
+
+			}
+			else
+			{
+				//用户自己录入的商品
+				$product['id'] = $productObj->id;
+				$product['goodsId'] = $productObj->goods_id;
+				$product['alias'] = $productObj->alias;
+				$product['additional'] = $productObj->description;
+				$product['price'] = $productObj->price;
+				$product['count'] = $productObj->count;
+				$product['status'] = $productObj->status;
+				$product['storeId'] = $productObj->store_id;
+
+			}
 
 			//商品图片
 			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
@@ -101,7 +122,6 @@ class ProductController extends Controller
 				//加载默认图片
 				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
 			}
-			
 
 			$result['data'] = $product;
 			$result['success'] = true;
@@ -237,6 +257,7 @@ class ProductController extends Controller
 
 				$product['id'] = $productObj->id;
 				$product['name'] = $goods->name;
+				$product['alias'] = $productObj->alias;
 				$product['origin'] = $goods->origin;
 				$product['merchant_code'] = $goods->merchant_code;
 				$product['merchant'] = $goods->merchant;
@@ -281,6 +302,14 @@ class ProductController extends Controller
 		$count = $_POST['count'];
 		$status = $_POST['status'];
 		$alias = $_POST['alias'];
+		$imgUrl = $_POST['img'];
+
+		$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
+		if($image != null)
+		{
+			$image->url = $imgUrl;
+			$image->save();
+		}
 
 		$product = Product::model()->findByPk($id);
 		if($product != null)

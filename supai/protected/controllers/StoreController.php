@@ -71,6 +71,7 @@ class StoreController extends Controller
 			$data['favourite'] = 2;
 			$data['longitude'] = $storeObj->longitude;
 			$data['latitude'] = $storeObj->latitude;
+			$data['status'] = $storeObj->status;
 
 			$result['data'] = $data;
 			$result['success'] = true;
@@ -114,25 +115,46 @@ class StoreController extends Controller
 		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0', array(':store_id'=>$storeId));
 		foreach ($productObjs as $productObj) 
 		{
-			$pruduct = array();
-			$pruduct['id'] = $productObj->id;
-			$goods = Goods::model()->findByPk($productObj->goods_id);
-			$pruduct['name'] = $productObj->alias;
-			$pruduct['price'] = $productObj->price;
-			$pruduct['count'] = $productObj->count;
-			$pruduct['description'] = $productObj->description;
-			$pruduct['storeId'] = $productObj->store_id;
-			$pruduct['barcode'] = $goods->barcode;
-			$pruduct['priceInterval'] = $goods->price_interval;
-			$pruduct['origin'] = $goods->origin;
-			$pruduct['merchant'] = $goods->merchant;
-			$pruduct['merchantCode'] = $goods->merchant_code;
-			$pruduct['status'] = $productObj->status;
+			$product = array();
+
+			if($productObj->goods_id != 0)
+			{
+				$goodsObj = Goods::model()->findByPk($productObj->goods_id);
+				$product['goodsId'] = $productObj->goods_id;
+				$product['id'] = $productObj->id;
+				$product['name'] = $goodsObj->name;
+				$product['alias'] = $productObj->alias;
+				$product['rccode'] = $goodsObj->barcode;
+				$product['description'] = $goodsObj->description;
+				$product['origin'] = $goodsObj->origin;
+				$product['merchant'] = $goodsObj->merchant;
+				$product['merchant_code'] = $goodsObj->merchant_code;
+				$product['price'] = $productObj->price;
+				$product['storeId'] = $productObj->store_id;
+				$product['price'] = $productObj->price;
+				$product['status'] = $productObj->status;
+				$product['additional'] = $productObj->description;
+				$product['favourite'] = 1;
+				$product['count'] = $productObj->count;
+
+			}
+			else
+			{
+				$product['goodsId'] = $productObj->goods_id;
+				$product['id'] = $productObj->id;
+				$product['alias'] = $productObj->alias;
+				$product['additional'] = $productObj->description;
+				$product['price'] = $productObj->price;
+				$product['count'] = $productObj->count;
+				$product['status'] = $productObj->status;
+				$product['storeId'] = $productObj->store_id;
+
+			}
 
 			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
-			$pruduct['img'] = $img->url;
+			$product['img'] = $img->url;
 
-			$result[] = $pruduct;
+			$result[] = $product;
 
 		}
 		
@@ -150,7 +172,7 @@ class StoreController extends Controller
 		$userid = $_POST['userid'];
 
 		$user = User::model()->findByPk($userid);
-		$storeObjs = Store::model()->findAll();
+		$storeObjs = Store::model()->findAll('area_id=:area_id and status=1', array(':area_id'=>$user->area_id));
 		foreach ($storeObjs as $storeObj) 
 		{
 			$store = array();
@@ -203,26 +225,35 @@ class StoreController extends Controller
 		$result = array('success'=>false);
 
 		$id = $_POST['id'];
-		$key = $_POST['key'];
-		$value = $_POST['value'];
+		$name = $_POST['name'];
+		$address = $_POST['address'];
+		$logo = $_POST['logo'];
+		$description = $_POST['description'];
+		$status = $_POST['status'];
 
 		$store = Store::model()->findByPk($id);
 		if($store != null)
 		{
-			switch ($key) {
-			case "name":
-			    $store->name = $value;
-			    break;
-			case "logo":
-			    $store->logo = $value;
-			    break;
-			case "address":
-			    $store->address = $value;
-			    break;
-			case "description":
-			    $store->description = $description;
-			    break;
-			}
+			$store->name = $name;
+			$store->address = $address;
+			$store->logo = $logo;
+			$store->description = $description;
+			$store->status = $status;
+
+			// switch ($key) {
+			// case "name":
+			//     $store->name = $value;
+			//     break;
+			// case "logo":
+			//     $store->logo = $value;
+			//     break;
+			// case "address":
+			//     $store->address = $value;
+			//     break;
+			// case "description":
+			//     $store->description = $description;
+			//     break;
+			// }
 			
 			$store->save();
 			$result['success'] = true;

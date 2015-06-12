@@ -46,6 +46,7 @@ class CollectController extends Controller
             $store['longitude'] = $storeObj->longitude;
             $store['latitude'] = $storeObj->latitude;
             $store['favourite'] = 1;
+            $store['status'] = $storeObj->status;
 
 			//下属商品
 			$products = array();
@@ -54,11 +55,78 @@ class CollectController extends Controller
 			{
 				$product = array();
 				$productObj = Product::model()->findByPk($productCollectObj->product_id);
-				$goodsObj = Goods::model()->findByPk($productObj->goods_id);
 				$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
+				
+				if($productObj->goods_id != 0)
+				{
+					$goodsObj = Goods::model()->findByPk($productObj->goods_id);
+					$product['goodsId'] = $productObj->goods_id;
+					$product['id'] = $productObj->id;
+					$product['name'] = $goodsObj->name;
+					$product['alias'] = $productObj->alias;
+					$product['img'] = $img->url;
+					$product['rccode'] = $goodsObj->barcode;
+					$product['description'] = $goodsObj->description;
+					$product['origin'] = $goodsObj->origin;
+					$product['merchant'] = $goodsObj->merchant;
+					$product['merchant_code'] = $goodsObj->merchant_code;
+					$product['price'] = $productObj->price;
+					$product['storeId'] = $productObj->store_id;
+					$product['price'] = $productObj->price;
+					$product['status'] = $productObj->status;
+					$product['additional'] = $productObj->description;
+					$product['favourite'] = 1;
+					$product['count'] = $productObj->count;
 
+				}
+				else
+				{
+					$product['goodsId'] = $productObj->goods_id;
+					$product['id'] = $productObj->id;
+					$product['alias'] = $productObj->alias;
+					$product['additional'] = $productObj->description;
+					$product['price'] = $productObj->price;
+					$product['count'] = $productObj->count;
+					$product['status'] = $productObj->status;
+					$product['storeId'] = $productObj->store_id;
+
+				}
+
+				if($productObj->status != 0)
+				{
+					$products[] = $product;
+				}
+				
+			}
+			$store['products'] = $products;
+
+			//店铺开店时才能搜索到
+			if($storeObj->status == 1)
+			{
+				$stores[] = $store;
+
+			}
+			
+		}
+
+		$result['stores'] = $stores;
+
+		//不隶属店铺的商品
+		$defaults = array();
+		$productCollectObjs = ProductCollect::model()->findAll('store_collect_id = 0 and user_id=:user_id', array(':user_id'=>$userid));
+		foreach ($productCollectObjs as $productCollectObj)
+		{
+			$product = array();
+			$productObj = Product::model()->findByPk($productCollectObj->product_id);
+			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
+
+			if($productObj->goods_id != 0)
+			{
+				$goodsObj = Goods::model()->findByPk($productObj->goods_id);
+				$product['goodsId'] = $productObj->goods_id;
 				$product['id'] = $productObj->id;
 				$product['name'] = $goodsObj->name;
+				$product['alias'] = $productObj->alias;
 				$product['img'] = $img->url;
 				$product['rccode'] = $goodsObj->barcode;
 				$product['description'] = $goodsObj->description;
@@ -73,44 +141,21 @@ class CollectController extends Controller
 				$product['favourite'] = 1;
 				$product['count'] = $productObj->count;
 
-				if($productObj->status != 0)
-				{
-					$products[] = $product;
-				}
-				
 			}
-			$store['products'] = $products;
+			else
+			{
+				$product['goodsId'] = $productObj->goods_id;
+				$product['id'] = $productObj->id;
+				$product['alias'] = $productObj->alias;
+				$product['additional'] = $productObj->description;
+				$product['price'] = $productObj->price;
+				$product['count'] = $productObj->count;
+				$product['status'] = $productObj->status;
+				$product['storeId'] = $productObj->store_id;
 
-			$stores[] = $store;
-		}
+			}
 
-		$result['stores'] = $stores;
-
-		//不隶属店铺的商品
-		$defaults = array();
-		$productCollectObjs = ProductCollect::model()->findAll('store_collect_id = 0 and user_id=:user_id', array(':user_id'=>$userid));
-		foreach ($productCollectObjs as $productCollectObj)
-		{
-			$product = array();
-			$productObj = Product::model()->findByPk($productCollectObj->product_id);
-			$goodsObj = Goods::model()->findByPk($productObj->goods_id);
 			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
-
-			$product['id'] = $productObj->id;
-			$product['name'] = $goodsObj->name;
-			$product['img'] = $img->url;
-			$product['rccode'] = $goodsObj->barcode;
-			$product['description'] = $goodsObj->description;
-			$product['origin'] = $goodsObj->origin;
-			$product['merchant'] = $goodsObj->merchant;
-			$product['merchant_code'] = $goodsObj->merchant_code;
-			$product['price'] = $productObj->price;
-			$product['storeId'] = $productObj->store_id;
-			$product['price'] = $productObj->price;
-			$product['status'] = $productObj->status;
-			$product['additional'] = $productObj->description;
-			$product['favourite'] = 1;
-			$product['count'] = $productObj->count;
 
 			if($productObj->status != 0)
 			{

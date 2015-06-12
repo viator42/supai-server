@@ -13,6 +13,8 @@
  * @property string $origin
  * @property string $merchant_code
  * @property string $merchant
+ * @property string $unit
+ * @property string $spec
  */
 class Goods extends CActiveRecord
 {
@@ -34,14 +36,15 @@ class Goods extends CActiveRecord
 		return array(
 			array('name, barcode', 'required'),
 			array('category_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>45),
+			array('name, spec', 'length', 'max'=>45),
 			array('barcode', 'length', 'max'=>20),
 			array('price_interval', 'length', 'max'=>32),
 			array('origin, merchant_code, merchant', 'length', 'max'=>64),
+			array('unit', 'length', 'max'=>12),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, category_id, name, barcode, price_interval, description, origin, merchant_code, merchant', 'safe', 'on'=>'search'),
+			array('id, category_id, name, barcode, price_interval, description, origin, merchant_code, merchant, unit, spec', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +74,8 @@ class Goods extends CActiveRecord
 			'origin' => 'Origin',
 			'merchant_code' => 'Merchant Code',
 			'merchant' => 'Merchant',
+			'unit' => 'Unit',
+			'spec' => 'Spec',
 		);
 	}
 
@@ -101,6 +106,8 @@ class Goods extends CActiveRecord
 		$criteria->compare('origin',$this->origin,true);
 		$criteria->compare('merchant_code',$this->merchant_code,true);
 		$criteria->compare('merchant',$this->merchant,true);
+		$criteria->compare('unit',$this->unit,true);
+		$criteria->compare('spec',$this->spec,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
