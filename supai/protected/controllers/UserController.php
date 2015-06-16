@@ -206,6 +206,28 @@ class UserController extends Controller
         echo $json;
 	}
 
+	//根据code获取省市信息
+	public function actionAddress()
+	{
+		$result = array();
+		$code = $_POST['code'];
+		$data = "";
+
+		$area = Area::model()->find('code=:code', array(':code' => $code));
+		if($area != null)
+		{
+			if($area->p_code != 0)
+			{
+				$parea = Area::model()->find('code=:code', array(':code' => $area->p_code));
+				$data = $data.$parea->name;	
+			}
+			$data = $data.$area->name;
+		}
+		$result['data'] = $data;
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
 /*
 	//完善用户信息
 	public function actionPerfection()
