@@ -131,26 +131,22 @@ class UserController extends Controller
 		$result = array('success'=>false);
 
 		$id = $_POST['id'];
-		$key = $_POST['key'];
-		$value = $_POST['value'];
+		$name = $_POST['name'];
+		// $tel = $_POST['tel'];
+		$address = $_POST['address'];
+		$icon = $_POST['icon'];
+		$area = $_POST['area'];
 
 		$user = User::model()->findByPk($id);
 		if($user != null)
 		{
-			switch ($key) {
-			case "name":
-			    $user->name = $value;
-			    break;
-			case "icon":
-			    $user->icon = $value;
-			    break;
-			case "address":
-			    $user->address = $value;
-			    break;
-			}
-			
+			$user->name = $name;
+			// $user->tel = $tel;
+			$user->address = $address;
+			$user->icon = $icon;
+			$user->area_id = $area;
 			$user->save();
-			$result['value'] = $value;
+
 			$result['success'] = true;
 		}
 
@@ -176,6 +172,7 @@ class UserController extends Controller
 			$result['address'] = $user->address;
 			$result['longitude'] = $user->longitude;
 			$result['latitude'] = $user->latitude;
+			$result['area'] = $user->area_id;
 			
 			$result['success'] = true;
 
@@ -209,6 +206,28 @@ class UserController extends Controller
         echo $json;
 	}
 
+	//根据code获取省市信息
+	public function actionAddress()
+	{
+		$result = array();
+		$code = $_POST['code'];
+		$data = "";
+
+		$area = Area::model()->find('code=:code', array(':code' => $code));
+		if($area != null)
+		{
+			if($area->p_code != 0)
+			{
+				$parea = Area::model()->find('code=:code', array(':code' => $area->p_code));
+				$data = $data.$parea->name;	
+			}
+			$data = $data.$area->name;
+		}
+		$result['data'] = $data;
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
 /*
 	//完善用户信息
 	public function actionPerfection()

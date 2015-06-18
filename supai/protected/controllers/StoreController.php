@@ -230,7 +230,9 @@ class StoreController extends Controller
 		$logo = $_POST['logo'];
 		$description = $_POST['description'];
 		$status = $_POST['status'];
-
+		$longitude = $_POST['longitude'];
+		$latitude = $_POST['latitude'];
+		
 		$store = Store::model()->findByPk($id);
 		if($store != null)
 		{
@@ -239,6 +241,8 @@ class StoreController extends Controller
 			$store->logo = $logo;
 			$store->description = $description;
 			$store->status = $status;
+			$store->longitude = $longitude;
+			$store->latitude = $latitude;
 
 			// switch ($key) {
 			// case "name":
