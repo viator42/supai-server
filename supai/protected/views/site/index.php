@@ -33,98 +33,111 @@
 <div class="get">
   <div class="am-g">
     <div class="am-u-lg-12">
-      <h1 class="get-title">速派网上超市</h1>
+      <h1 class="get-title">速派手机超市</h1>
 
       <p>
-        期待你的参与，共同打造一个简单易用的前端框架
+        最好用的网上超市
       </p>
 
       <p>
-        <a href="http://amazeui.org" class="am-btn am-btn get-btn">下载</a>
+        <a href="http://amazeui.org" class="am-btn am-btn-primary am-btn-xl">应用下载</a>
       </p>
-    </div>
-  </div>
-</div>
-
-<div class="detail">
-  <div class="am-g am-container">
-    <div class="am-u-lg-12">
-      <h2 class="detail-h2">众多特性等你去发现</h2>
-
-      <div class="am-g">
-        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
-          <h3 class="detail-h3">
-            <i class="am-icon-mobile am-icon-sm"></i>
-            为移动而生
-          </h3>
-
-          <p class="detail-p">
-            Amaze UI 采用业内先进的 mobile first 理念，从小屏逐步扩展到大屏，最终实现所有屏幕适配，适应移动互联潮流。
-          </p>
-        </div>
-        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
-          <h3 class="detail-h3">
-            <i class="am-icon-cogs am-icon-sm"></i>
-            组件丰富，模块化
-          </h3>
-
-          <p class="detail-p">
-            Amaze UI 含近 20 个 CSS 组件、10 个 JS 组件，更有 17 款包含近 60 个主题的 Widgets，可快速构建界面出色、体验优秀的跨屏页面，大幅度提升你的开发效率。
-          </p>
-        </div>
-        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
-          <h3 class="detail-h3">
-            <i class="am-icon-check-square-o am-icon-sm"></i>
-            本地化支持
-          </h3>
-
-          <p class="detail-p">
-            相比国外的前端框架，Amaze UI 专注解决中文排版优化问题，根据操作系统调整字体，实现最佳中文排版效果；针对国内主流浏览器及 App 内置浏览器提供更好的兼容性支持，为你节省大量兼容性调试时间。
-          </p>
-        </div>
-        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12 detail-mb">
-          <h3 class="detail-h3">
-            <i class="am-icon-send-o am-icon-sm"></i>
-            轻量级，高性能
-          </h3>
-
-          <p class="detail-p">
-            Amaze UI 非常注重性能，基于轻量的 Zepto.js 开发，并使用 CSS3 来做动画交互，平滑、高效，更适合移动设备，让你的 Web 应用可以高速载入。
-          </p>
-        </div>
-      </div>
+      暂不支持苹果iOS系统
     </div>
   </div>
 </div>
 
 <div class="hope">
   <div class="am-g am-container">
-    <div class="am-u-lg-4 am-u-md-6 am-u-sm-12 hope-img">
-      <img src="assets/i/examples/landing.png" alt="" data-am-scrollspy="{animation:'slide-left', repeat: false}">
-      <hr class="am-article-divider am-show-sm-only hope-hr">
-    </div>
-    <div class="am-u-lg-8 am-u-md-6 am-u-sm-12">
-      <h2 class="hope-title">同我们一起打造你的前端框架</h2>
-
-      <p>
-        在知识爆炸的年代，我们不愿成为知识的过客，拥抱开源文化，发挥社区的力量，参与到Amaze Ui开源项目能获得自我提升。
-      </p>
-    </div>
+    <h2>速派是什么</h2>
+    <p>是为目前正在受网购打压的，实体超市专业打造的最干净.最实用.最先进的手机App销售平台。他不同与任何一种网店，从平台架构设计理念等根本上颠覆目前无法推广的手机App销售平台。</p>
   </div>
 </div>
 
-<div class="about">
+<div class="detail">
   <div class="am-g am-container">
     <div class="am-u-lg-12">
-      <h2 class="about-title about-color">Amaze UI 崇尚开放、自由，非常欢迎大家的参与</h2>
-      
+      <h2 class="detail-h2">应用特色</h2>
+
+      <div class="am-g">
+        <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
+        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
+        </div>
+
+         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
+        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
+        </div>
+
+         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
+        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
+        </div>
+
+         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
+        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
+        </div>
+
+         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
+        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
+        </div>
+
+         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
+        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
+        </div>
+
+      </div>
     </div>
   </div>
+</div>
+<div class="am-u-lg-12">
+      <h2>我们的理念</h2>
+      <p>人是各种不同的，需求也是各种不同的，超市就是你一个，但是你如果用了速派手机超市，那你的超市就会在各种不同人的手机中形成各种不同的适合自己的超市，你的超市就是最伟大的变形金刚，你的超市要变形吗?请下载速派手机超市吧!</p>
+  </div>
+
+<div class="am-g am-container">
+    <div class="am-u-lg-10">
+      <h2>应用预览</h2>
+      
+      <div class="am-slider am-slider-default">  
+            <ul class="am-slides">  
+                <li><img src="http://localhost/images/webpage/banner.png" /></li>
+                <li><img src="http://localhost/images/webpage/banner.png" /></li>
+                <li><img src="http://localhost/images/webpage/banner.png" /></li>
+                <li><img src="http://localhost/images/webpage/banner.png" /></li>
+                <li><img src="http://localhost/images/webpage/banner.png" /></li>
+            </ul>  
+        </div>  
+
+    </div>
+
+    <div class="am-u-lg-10">
+      <h2>使用教程</h2>
+      <img class="am-img-thumbnail " src="http://localhost/images/webpage/process.png" />
+        
+
+    </div>
+    <div class="am-u-lg-12">
+      <h2>关于我们</h2>
+      <p>济南速派信息技术有限公司成立于2010年，注册资金3000万，多年来专注于为企业提供完整的互联网解决方案。公司拥有雄厚的经济实力和广泛而稳定的客户网络，拥有一支业内顶尖的技术研发团队。公司有着先进的国际服务理念和以人为本的企业文化。
+易驰国际致力于为企业提供可靠的移动互联网解决方案，帮助企业更快捷的实现传统业务向移动互联网的迁移。易驰国际可强化和延伸企业在市场营销、客户服务、品牌推广、移动电子商务、企业内部管理等方面的优势。易驰国际的产品和服务涉及到银行、房产、汽车、餐饮等多个行业，包括政务平台的开发搭建、微布局智能服务平台、Android与ios系统App应用的开发、移动支付及企业定制开发等。
+追求共同发展是易驰国际的永恒目标。我们重视合作伙伴，努力达到一种多赢的局面。为了能使更多的用户享受微布局高品质的服务，现正在全国范围内大力发展代理伙伴。易驰国际期待您的加盟！</p>
+    </div>
+
+    <div class="am-u-lg-12">
+      <h2>联系我们</h2>
+      <p>电话 QQ 微信 邮箱</p>
+    </div>
+
 </div>
 
 <footer class="footer">
-  <p>© 2014 <a href="http://www.yunshipei.com" target="_blank">AllMobilize, Inc.</a> Licensed under <a
-      href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a>. by the AmazeUI Team.</p>
+  <p>© 2015 济南速派信息技术有限公司
+  <br>备案号 990182345</p>
 </footer>
 
 <!--[if lt IE 9]>
@@ -136,8 +149,18 @@
 <![endif]-->
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/amazeui/js/jquery.min.js"></script>
+<script src="assets/amazeui/js/amazeui.min.js"></script>
+
+        <script type="text/javascript" src="js/handlebars.min.js"></script>  
+        <script type="text/javascript" src="js/polyfill/rem.min.js"></script>  
+        <script type="text/javascript" src="js/polyfill/respond.min.js"></script>  
+        <link rel="stylesheet" href="css/amazeui.css" />  
+        <link rel="stylesheet" href="css/admin.css" />  
+        <link rel="stylesheet" href="css/amazeui.flat.css" />  
+        <link rel="stylesheet" href="css/app.css" />  
+
+<script src="js/main.js"></script>
 <!--<![endif]-->
 </body>
 </html>
