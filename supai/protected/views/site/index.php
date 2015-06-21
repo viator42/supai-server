@@ -12,6 +12,7 @@
   <link rel="alternate icon" type="image/png" href="assets/amazeui/i/favicon.png">
   <link rel="stylesheet" href="assets/amazeui/css/amazeui.min.css"/>
   <link rel="stylesheet" href="css/main.css"/>
+
 </head>
 <body>
 <header class="am-topbar am-topbar-fixed-top">
@@ -19,21 +20,13 @@
     <h1 class="am-topbar-brand">
       <a href="#">速派网上超市</a>
     </h1>
-
-    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
-            data-am-collapse="{target: '#collapse-head'}"><span class="am-sr-only">导航切换</span> <span
-        class="am-icon-bars"></span></button>
-
-    <div class="am-collapse am-topbar-collapse" id="collapse-head">
-      
-    </div>
   </div>
 </header>
 
-<div class="get">
+<div class="jumbotron">
   <div class="am-g">
     <div class="am-u-lg-12">
-      <h1 class="get-title">速派手机超市</h1>
+      <h1 class="get-title">超市购物软件</h1>
 
       <p>
         最好用的网上超市
@@ -42,7 +35,7 @@
       <p>
         <a href="http://amazeui.org" class="am-btn am-btn-primary am-btn-xl">应用下载</a>
       </p>
-      暂不支持苹果iOS系统
+      <small>暂不支持苹果iOS系统</small>
     </div>
   </div>
 </div>
@@ -60,34 +53,26 @@
       <h2 class="detail-h2">应用特色</h2>
 
       <div class="am-g">
+        
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+          <a data-am-modal="{target: '#supai-ts-1'}">
+            <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-barcode.png" />
+          </a>
+          <p>条形码扫描,商品一键录入<p>
+          </div>
+        
+         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+         <a data-am-modal="{target: '#supai-ts-2'}">
+        <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-map.png" />
+        </a>
+        <p>内置地图,方便顾客找到您的商铺<p>
+        </div>
+
         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
-        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
-        </div>
-
-         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
-        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
-        </div>
-
-         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
-        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
-        </div>
-
-         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
-        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
-        </div>
-
-         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
-        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
-        </div>
-
-         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-        <img class="am-circle am-img-thumbnail " src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" />
-        <p>现在前端框架这么多，为什么还要开发Amaze UI ？<p>
+        <a data-am-modal="{target: '#supai-ts-3'}">
+        <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-freewifi.png" />
+        </a>
+        <p>免费上网功能<p>
         </div>
 
       </div>
@@ -105,11 +90,11 @@
       
       <div class="am-slider am-slider-default">  
             <ul class="am-slides">  
-                <li><img src="http://localhost/images/webpage/banner.png" /></li>
-                <li><img src="http://localhost/images/webpage/banner.png" /></li>
-                <li><img src="http://localhost/images/webpage/banner.png" /></li>
-                <li><img src="http://localhost/images/webpage/banner.png" /></li>
-                <li><img src="http://localhost/images/webpage/banner.png" /></li>
+                <li><img src="images/webpage/banner.png" /></li>
+                <li><img src="images/webpage/banner.png" /></li>
+                <li><img src="images/webpage/banner.png" /></li>
+                <li><img src="images/webpage/banner.png" /></li>
+                <li><img src="images/webpage/banner.png" /></li>
             </ul>  
         </div>  
 
@@ -117,7 +102,7 @@
 
     <div class="am-u-lg-10">
       <h2>使用教程</h2>
-      <img class="am-img-thumbnail " src="http://localhost/images/webpage/process.png" />
+      <img class="am-img-thumbnail " src="images/webpage/process.png" />
         
 
     </div>
@@ -148,17 +133,51 @@
 <script src="assets/js/amazeui.legacy.js"></script>
 <![endif]-->
 
+<div class="am-popup" id="supai-ts-1">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title">条形码扫描,商品一键录入</h4>
+      <span data-am-modal-close
+            class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+      无需填写复杂的表格,扫一下商品的条形码,剩下的我们帮您完成.
+    </div>
+  </div>
+</div>
+
+<div class="am-popup" id="supai-ts-2">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title">内置地图,方便顾客找到您的商铺</h4>
+      <span data-am-modal-close
+            class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+      深度集成地图服务. 标注店铺位置.顾客就可以从地图上发现您的位置.
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>aaa
+    </div>
+  </div>
+</div>
+
+<div class="am-popup" id="supai-ts-3">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title">免费上网功能/h4>
+      <span data-am-modal-close
+            class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+      店内添加免费上网服务,方便推广会员
+    </div>
+  </div>
+</div>
+
+
+
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/amazeui/js/jquery.min.js"></script>
 <script src="assets/amazeui/js/amazeui.min.js"></script>
-
-        <script type="text/javascript" src="js/handlebars.min.js"></script>  
-        <script type="text/javascript" src="js/polyfill/rem.min.js"></script>  
-        <script type="text/javascript" src="js/polyfill/respond.min.js"></script>  
-        <link rel="stylesheet" href="css/amazeui.css" />  
-        <link rel="stylesheet" href="css/admin.css" />  
-        <link rel="stylesheet" href="css/amazeui.flat.css" />  
-        <link rel="stylesheet" href="css/app.css" />  
 
 <script src="js/main.js"></script>
 <!--<![endif]-->
