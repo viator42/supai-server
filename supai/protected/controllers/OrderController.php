@@ -80,6 +80,7 @@ class OrderController extends Controller
 			$order['summary'] = $orderObj->summary;
 			$order['status'] = $orderObj->getStatusName();
 			$order['additional'] = $orderObj->additional;
+			$order['readed'] = $orderObj->readed;
 			
 			$data[] = $order;
 
@@ -145,6 +146,7 @@ class OrderController extends Controller
 			$order['summary'] = $orderObj->summary;
 			$order['status'] = $orderObj->status;
 			$order['additional'] = $orderObj->additional;
+			$order['readed'] = $orderObj->readed;
 			
 			$forCustomer[] = $order;
 
@@ -183,6 +185,7 @@ class OrderController extends Controller
 			$order['summary'] = $orderObj->summary;
 			$order['status'] = $orderObj->status;
 			$order['additional'] = $orderObj->additional;
+			$order['readed'] = $orderObj->readed;
 			
 			$forMerchant[] = $order;
 
@@ -302,6 +305,7 @@ class OrderController extends Controller
 		if($orderObj != null)
 		{
 			$orderObj->status = 2;
+			$orderObj->readed = 1;
 			$orderObj->save();
 			$result['success'] = true;
 
@@ -329,6 +333,26 @@ class OrderController extends Controller
         echo $json;
 	}
 
+	//订单设置为已读
+	public function actionReaded()
+	{
+		$result = array('success'=>false);
+
+		$orderId = $_POST['orderId'];
+
+		$orderObj = Order::model()->findByPk($orderId);
+		if($orderObj != null)
+		{
+			$orderObj->readed = 2;
+			$orderObj->save();
+			$result['success'] = true;
+
+		}
+		
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+
+	}
 
 	// Uncomment the following methods and override them if needed
 	/*
