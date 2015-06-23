@@ -12,6 +12,7 @@
  * @property integer $status
  * @property string $summary
  * @property string $additional
+ * @property integer $readed
  */
 class Order extends CActiveRecord
 {
@@ -32,12 +33,12 @@ class Order extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('create_time, customer_id, merchant_id, store_id', 'required'),
-			array('create_time, customer_id, merchant_id, store_id, status', 'numerical', 'integerOnly'=>true),
+			array('create_time, customer_id, merchant_id, store_id, status, readed', 'numerical', 'integerOnly'=>true),
 			array('summary', 'length', 'max'=>10),
 			array('additional', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, create_time, customer_id, merchant_id, store_id, status, summary, additional', 'safe', 'on'=>'search'),
+			array('id, create_time, customer_id, merchant_id, store_id, status, summary, additional, readed', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,6 +67,7 @@ class Order extends CActiveRecord
 			'status' => 'Status',
 			'summary' => 'Summary',
 			'additional' => 'Additional',
+			'readed' => 'Readed',
 		);
 	}
 
@@ -95,6 +97,7 @@ class Order extends CActiveRecord
 		$criteria->compare('status',$this->status);
 		$criteria->compare('summary',$this->summary,true);
 		$criteria->compare('additional',$this->additional,true);
+		$criteria->compare('readed',$this->readed);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -111,29 +114,4 @@ class Order extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-
-	// public function getStatusName()
-	// {
-	// 	switch ($this->status) {
-	// 		case 1:
-	// 			return "提交";
-	// 			break;
-
-	// 		case 2:
-	// 			return "已发货";
-	// 			break;
-
-	// 		case 3:
-	// 			return "交易成功";
-	// 			break;
-
-	// 		case 4:
-	// 			return "交易关闭";
-	// 			break;
-			
-	// 		default:
-	// 			return "Invalid Status";
-	// 			break;
-	// 	}
-	// }
 }

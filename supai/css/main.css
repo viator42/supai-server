@@ -1,8 +1,16 @@
-.get {
-      background: #1E5B94;
-      color: #fff;
+    .jumbotron {
+      background:url(/images/webpage/jumbotron-bg.png);
       text-align: center;
       padding: 100px 0;
+    }
+
+    .am-topbar {
+      background: #00979C;
+      color: #000000;
+    }
+
+    .am-topbar a {
+          color: #fff;
     }
 
     .get-title {
@@ -78,11 +86,4 @@
       background: #2d3e50;
     }
 
-    .am-topbar {
-      background: #00979C;
-      color: #000000;
-    }
-
-    .am-topbar a {
-          color: #fff;
-    }
+    
