@@ -337,6 +337,32 @@ class ProductController extends Controller
 		$userid = $_POST['userid'];
 		$productId = $_POST['productId'];
 
+		$product = Product::model()->findByPk($productId);
+		$productCollect = ProductCollect::model()->find('user_id=:user_id and product_id=:product_id', array(':user_id'=>$userid, ':product_id'=>$productId));
+		if($productCollect == null)
+		{
+			$productCollect = new ProductCollect();
+
+			$productCollect->user_id = $userid;
+			$productCollect->product_id = $productId;
+			
+			$storeCollect = StoreCollect::model()->find('user_id=:user_id and store_id=:store_id', array(':user_id'=>$userid, ':store_id'=>$product->store_id));
+			if($storeCollect != null)
+			{
+				$productCollect->store_collect_id = $storeCollect->id;
+
+			}
+			else
+			{
+				$productCollect->store_collect_id = 0;
+
+			}
+
+			$productCollect->save();	
+			$result['success'] = true;
+		}
+
+		/*	
 		if(isset($_POST['storeCollectId']))
 		{
 			$storeCollectId = $_POST['storeCollectId'];
@@ -356,19 +382,9 @@ class ProductController extends Controller
 		}
 		else
 		{
-			$productCollect = ProductCollect::model()->find('user_id=:user_id and product_id=:product_id', array(':user_id'=>$userid, ':product_id'=>$productId));
-			if($productCollect == null)
-			{
-				$productCollect = new ProductCollect();
-
-				$productCollect->user_id = $userid;
-				$productCollect->product_id = $productId;
-				$productCollect->store_collect_id = 0;
-
-				$productCollect->save();	
-				$result['success'] = true;
-			}
+			
 		}
+		*/
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
