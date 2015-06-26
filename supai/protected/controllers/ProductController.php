@@ -437,7 +437,7 @@ class ProductController extends Controller
 	{
 		$result = array();
 
-		$name = $_POST['name'];
+		$alias = $_POST['alias'];
 		$storeId = 0;
 		if(isset($_POST['storeId']))
 		{
@@ -446,12 +446,12 @@ class ProductController extends Controller
 
 		if($storeId == 0)
 		{
-			$productObjs = Product::model()->findAll("`alias` like :alias", array(":alias"=>"%".$name."%"));
+			$productObjs = Product::model()->findAll("`alias` like :alias", array(":alias"=>"%".$alias."%"));
 
 		}
 		else
 		{
-			$productObjs = Product::model()->findAll("`alias` like :alias and store_id=:store_id", array(":alias"=>"%".$name."%", ":store_id"=>$storeId));
+			$productObjs = Product::model()->findAll("`alias` like :alias and store_id=:store_id", array(":alias"=>"%".$alias."%", ":store_id"=>$storeId));
 
 		}
 
@@ -460,14 +460,27 @@ class ProductController extends Controller
 			$product = array();
 			$goods = Goods::model()->findByPk($productObj->goods_id);
 			$product['id'] = $productObj->id;
-			$product['name'] = $goods->name;
 			$product['alias'] = $productObj->alias;
-			$product['origin'] = $goods->origin;
-			$product['merchant_code'] = $goods->merchant_code;
-			$product['merchant'] = $goods->merchant;
+			
 			$product['price'] = $productObj->price;
 			$product['count'] = $productObj->count;
 			$product['store_id'] = $productObj->store_id;
+
+			if($goods != null)
+			{
+				$product['name'] = $goods->name;
+				$product['origin'] = $goods->origin;
+				$product['merchant_code'] = $goods->merchant_code;
+				$product['merchant'] = $goods->merchant;
+			}
+			else
+			{
+				$product['name'] = $productObj->alias;
+				$product['origin'] = "";
+				$product['merchant_code'] = "";
+				$product['merchant'] = "";
+
+			}
 
 			$store = Store::model()->findByPk($product['store_id']);
 			$product['store_name'] = $store->name;
