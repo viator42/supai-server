@@ -237,10 +237,20 @@ class OrderController extends Controller
 				$img = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$product->id));
 				$detail['image'] = $img->url;
 				$detail['name'] = $product->alias;
-				$detail['goodsDescription'] = $goods->description;
-				$detail['rccode'] = $goods->barcode;
-				$detail['origin'] = $goods->origin;
+				if($goods != null)
+				{
+					$detail['goodsDescription'] = $goods->description;
+					$detail['rccode'] = $goods->barcode;
+					$detail['origin'] = $goods->origin;
+				}
+				else
+				{
+					$detail['goodsDescription'] = $product->description;
+					$detail['rccode'] = '';
+					$detail['origin'] = '';
 
+				}
+				
 			}
 
 			$orderDetailList[] = $detail;
