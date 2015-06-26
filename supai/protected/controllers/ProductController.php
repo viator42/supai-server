@@ -432,6 +432,67 @@ class ProductController extends Controller
         echo $json;
 	}
 
+	//查询商品 根据名称
+	public function actionSearchByName()
+	{
+		$result = array();
+
+		$name = $_POST['name'];
+		$storeId = 0;
+		if(isset($_POST['storeId']))
+		{
+			$storeId = $_POST['storeId'];
+		}
+
+		if($storeId == 0)
+		{
+			$productObjs = Product::model()->findAll("`alias` like :alias", array(":alias"=>"%".$name."%"));
+
+		}
+		else
+		{
+			$productObjs = Product::model()->findAll("`alias` like :alias and store_id=:store_id", array(":alias"=>"%".$name."%", ":store_id"=>$storeId));
+
+		}
+
+		foreach ($productObjs as $productObj)
+		{
+			$product = array();
+			$goods = Goods::model()->findByPk($productObj->goods_id);
+			$product['id'] = $productObj->id;
+			$product['name'] = $goods->name;
+			$product['alias'] = $productObj->alias;
+			$product['origin'] = $goods->origin;
+			$product['merchant_code'] = $goods->merchant_code;
+			$product['merchant'] = $goods->merchant;
+			$product['price'] = $productObj->price;
+			$product['count'] = $productObj->count;
+			$product['store_id'] = $productObj->store_id;
+
+			$store = Store::model()->findByPk($product['store_id']);
+			$product['store_name'] = $store->name;
+			$product['address'] = $store->address;
+
+			//商品图片
+			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
+			if($image != null)
+			{
+				$product['img'] = $image->url;
+			}
+			else
+			{
+				//加载默认图片
+				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+			}
+
+			$result[] = $product;
+
+		}
+
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+	}
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
