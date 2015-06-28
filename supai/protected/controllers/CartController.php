@@ -250,7 +250,7 @@ class CartController extends Controller
         $order->merchant_id = $store->user_id;
         $order->store_id = $cart->store_id;
         $order->status = 1;
-
+        $order->sn = date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
         $order->save();
         
         $summary = 0;//总价
@@ -277,10 +277,6 @@ class CartController extends Controller
         $order->save();
 
         $result['success'] = true;
-
-        
-
-
 
         $json = CJSON::encode($result);
         echo $json;

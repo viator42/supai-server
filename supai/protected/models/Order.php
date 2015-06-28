@@ -13,6 +13,7 @@
  * @property string $summary
  * @property string $additional
  * @property integer $readed
+ * @property string $sn
  */
 class Order extends CActiveRecord
 {
@@ -32,13 +33,14 @@ class Order extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('create_time, customer_id, merchant_id, store_id', 'required'),
+			array('create_time, customer_id, merchant_id, store_id, sn', 'required'),
 			array('create_time, customer_id, merchant_id, store_id, status, readed', 'numerical', 'integerOnly'=>true),
 			array('summary', 'length', 'max'=>10),
+			array('sn', 'length', 'max'=>64),
 			array('additional', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, create_time, customer_id, merchant_id, store_id, status, summary, additional, readed', 'safe', 'on'=>'search'),
+			array('id, create_time, customer_id, merchant_id, store_id, status, summary, additional, readed, sn', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +70,7 @@ class Order extends CActiveRecord
 			'summary' => 'Summary',
 			'additional' => 'Additional',
 			'readed' => 'Readed',
+			'sn' => 'Sn',
 		);
 	}
 
@@ -98,6 +101,7 @@ class Order extends CActiveRecord
 		$criteria->compare('summary',$this->summary,true);
 		$criteria->compare('additional',$this->additional,true);
 		$criteria->compare('readed',$this->readed);
+		$criteria->compare('sn',$this->sn,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

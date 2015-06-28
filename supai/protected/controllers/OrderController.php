@@ -124,6 +124,7 @@ class OrderController extends Controller
 			$order = array();
 
 			$order['id'] = $orderObj->id;
+			$order['sn'] = $orderObj->sn;
 			$order['merchantId'] = $orderObj->merchant_id;
 			$order['storeId'] = $orderObj->store_id;
 
@@ -172,6 +173,7 @@ class OrderController extends Controller
 			$order = array();
 
 			$order['id'] = $orderObj->id;
+			$order['sn'] = $orderObj->sn;
 			$order['merchantId'] = $orderObj->merchant_id;
 			$order['storeId'] = $orderObj->store_id;
 
@@ -221,6 +223,7 @@ class OrderController extends Controller
 		//查询订单信息
 		$orderObj = Order::model()->findByPk($orderId);
 		$result['id'] = $orderObj->id;
+		$result['sn'] = $orderObj->sn;
 		$result['create_time'] = $orderObj->create_time;
 		$result['store_id'] = $orderObj->store_id;
 		$store = Store::model()->findByPk($orderObj->store_id);
