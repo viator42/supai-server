@@ -101,6 +101,10 @@ class OrderController extends Controller
 
 		$userid = $_POST['userid'];
 		$type = $_POST['type'];		//查询类型 1:已提交 配送中 2:已完成 已取消
+		$customerPage = $_POST['cpage'];	//客户列表当前页数
+		$merchantPage = $_POST['mpage'];	//商户列表当前页数
+
+		$limit =  (int)$_POST['limit'];;	//每页的个数
 
 		$forCustomer = array();
 		$forMerchant = array();
@@ -108,11 +112,11 @@ class OrderController extends Controller
 		//客户列表
 		switch ($type) {
 			case 1:
-				$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and customer_id=:customer_id', array(':customer_id'=>$userid));
+				$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and customer_id=:customer_id limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($customerPage * $limit), ':limit'=>$limit));
 				break;
 			
 			case 2:
-				$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and customer_id=:customer_id', array(':customer_id'=>$userid));
+				$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and customer_id=:customer_id limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
 				break;
 		}
 		foreach ($orderObjs as $orderObj) 
@@ -153,7 +157,16 @@ class OrderController extends Controller
 		}
 
 		//商户列表
-		$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and merchant_id=:merchant_id', array(':merchant_id'=>$userid));
+		switch ($type) {
+			case 1:
+				$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and merchant_id=:merchant_id limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+				break;
+			
+			case 2:
+				$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and merchant_id=:merchant_id limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+				break;
+		}
+
 		foreach ($orderObjs as $orderObj) 
 		{
 			$order = array();
