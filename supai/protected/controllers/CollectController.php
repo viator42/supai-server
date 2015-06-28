@@ -75,7 +75,6 @@ class CollectController extends Controller
 					$product['price'] = $productObj->price;
 					$product['status'] = $productObj->status;
 					$product['additional'] = $productObj->description;
-					$product['favourite'] = 1;
 					$product['count'] = $productObj->count;
 
 				}
@@ -84,6 +83,7 @@ class CollectController extends Controller
 					$product['goodsId'] = $productObj->goods_id;
 					$product['id'] = $productObj->id;
 					$product['alias'] = $productObj->alias;
+					$product['img'] = $img->url;
 					$product['additional'] = $productObj->description;
 					$product['price'] = $productObj->price;
 					$product['count'] = $productObj->count;
@@ -91,6 +91,7 @@ class CollectController extends Controller
 					$product['storeId'] = $productObj->store_id;
 
 				}
+				$product['favourite'] = 1;
 
 				if($productObj->status != 0)
 				{
@@ -138,7 +139,6 @@ class CollectController extends Controller
 				$product['price'] = $productObj->price;
 				$product['status'] = $productObj->status;
 				$product['additional'] = $productObj->description;
-				$product['favourite'] = 1;
 				$product['count'] = $productObj->count;
 
 			}
@@ -147,6 +147,7 @@ class CollectController extends Controller
 				$product['goodsId'] = $productObj->goods_id;
 				$product['id'] = $productObj->id;
 				$product['alias'] = $productObj->alias;
+				$product['img'] = $img->url;
 				$product['additional'] = $productObj->description;
 				$product['price'] = $productObj->price;
 				$product['count'] = $productObj->count;
@@ -154,6 +155,7 @@ class CollectController extends Controller
 				$product['storeId'] = $productObj->store_id;
 
 			}
+			$product['favourite'] = 1;
 
 			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
 

@@ -134,7 +134,13 @@ class StoreController extends Controller
 				$product['price'] = $productObj->price;
 				$product['status'] = $productObj->status;
 				$product['additional'] = $productObj->description;
-				$product['favourite'] = 1;
+				$product['favourite'] = 0;
+				$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
+				if($productCollectObj != null)
+				{
+					$product['favourite'] = 1;
+				}
+
 				$product['count'] = $productObj->count;
 
 			}

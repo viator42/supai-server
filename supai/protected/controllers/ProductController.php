@@ -111,6 +111,13 @@ class ProductController extends Controller
 
 			}
 
+			$product['favourite'] = 0;
+			$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
+			if($productCollectObj != null)
+			{
+				$product['favourite'] = 1;
+			}
+
 			//商品图片
 			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
 			if($image != null)
