@@ -105,6 +105,9 @@ class UserController extends Controller
 			//默认头像
 			$user->icon = 'http://'.$_SERVER['SERVER_NAME']."/images/ic_user.png";
 
+			$user->sn = uniqid();
+			$user->passtype = 1;
+
 			$user->save();
 
 			//注册后回传值

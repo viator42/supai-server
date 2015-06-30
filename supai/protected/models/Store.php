@@ -14,6 +14,7 @@
  * @property string $description
  * @property string $address
  * @property integer $status
+ * @property string $sn
  */
 class Store extends CActiveRecord
 {
@@ -33,16 +34,16 @@ class Store extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, user_id', 'required'),
+			array('name, user_id, sn', 'required'),
 			array('user_id, area_id, status', 'numerical', 'integerOnly'=>true),
 			array('longitude, latitude', 'numerical'),
 			array('logo', 'length', 'max'=>128),
 			array('name', 'length', 'max'=>45),
-			array('address', 'length', 'max'=>64),
+			array('address, sn', 'length', 'max'=>64),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, logo, name, user_id, area_id, longitude, latitude, description, address, status', 'safe', 'on'=>'search'),
+			array('id, logo, name, user_id, area_id, longitude, latitude, description, address, status, sn', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,6 +74,7 @@ class Store extends CActiveRecord
 			'description' => 'Description',
 			'address' => 'Address',
 			'status' => 'Status',
+			'sn' => 'Sn',
 		);
 	}
 
@@ -104,6 +106,7 @@ class Store extends CActiveRecord
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('address',$this->address,true);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('sn',$this->sn,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -18,6 +18,8 @@
  * @property double $longitude
  * @property double $latitude
  * @property integer $status
+ * @property string $sn
+ * @property string $passtype
  */
 class User extends CActiveRecord
 {
@@ -37,15 +39,16 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('imie, username, password, tel', 'required'),
+			array('imie, username, password, tel, sn', 'required'),
 			array('register_time, lastlogin_time, area_id, status', 'numerical', 'integerOnly'=>true),
 			array('longitude, latitude', 'numerical'),
 			array('imie, password, icon, address', 'length', 'max'=>128),
-			array('username, name', 'length', 'max'=>45),
+			array('username, name, passtype', 'length', 'max'=>45),
 			array('tel', 'length', 'max'=>20),
+			array('sn', 'length', 'max'=>64),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, imie, username, password, tel, icon, register_time, lastlogin_time, name, area_id, address, longitude, latitude, status', 'safe', 'on'=>'search'),
+			array('id, imie, username, password, tel, icon, register_time, lastlogin_time, name, area_id, address, longitude, latitude, status, sn, passtype', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -80,6 +83,8 @@ class User extends CActiveRecord
 			'longitude' => 'Longitude',
 			'latitude' => 'Latitude',
 			'status' => 'Status',
+			'sn' => 'Sn',
+			'passtype' => 'Passtype',
 		);
 	}
 
@@ -115,6 +120,8 @@ class User extends CActiveRecord
 		$criteria->compare('longitude',$this->longitude);
 		$criteria->compare('latitude',$this->latitude);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('sn',$this->sn,true);
+		$criteria->compare('passtype',$this->passtype,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

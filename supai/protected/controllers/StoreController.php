@@ -39,7 +39,8 @@ class StoreController extends Controller
 		$store->latitude = $_POST['latitude'];
 		$store->status = 1;
 		$store->area_id = $_POST['area'];
-
+		$store->sn = uniqid();
+		
 		$store->save();
 
 		$result['data'] = $store;
@@ -111,8 +112,10 @@ class StoreController extends Controller
 		$products = array();
 
 		$storeId = $_POST['id'];
+		$page = $_POST['page'];
+		$limit = (int)$_POST['limit'];	//每页的个数
 
-		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0', array(':store_id'=>$storeId));
+		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0 limit :offset, :limit', array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
 		foreach ($productObjs as $productObj) 
 		{
 			$product = array();
@@ -158,7 +161,14 @@ class StoreController extends Controller
 			}
 
 			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
-			$product['img'] = $img->url;
+			if($img != null)
+			{
+				$product['img'] = $img->url;
+			}
+			else
+			{
+				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+			}
 
 			$result[] = $product;
 
