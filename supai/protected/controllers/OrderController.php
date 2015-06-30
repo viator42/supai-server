@@ -104,7 +104,7 @@ class OrderController extends Controller
 		$customerPage = $_POST['cpage'];	//客户列表当前页数
 		$merchantPage = $_POST['mpage'];	//商户列表当前页数
 
-		$limit =  (int)$_POST['limit'];;	//每页的个数
+		$limit =  (int)$_POST['limit'];	//每页的个数
 
 		$forCustomer = array();
 		$forMerchant = array();
