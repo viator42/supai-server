@@ -39,7 +39,8 @@ class StoreController extends Controller
 		$store->latitude = $_POST['latitude'];
 		$store->status = 1;
 		$store->area_id = $_POST['area'];
-
+		$store->sn = uniqid();
+		
 		$store->save();
 
 		$result['data'] = $store;
