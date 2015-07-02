@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>Landing Page | Amaze UI Example</title>
+  <title>速派网上超市</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -33,7 +33,7 @@
       </p>
 
       <p>
-        <a href="http://amazeui.org" class="am-btn am-btn-primary am-btn-xl">应用下载</a>
+        <a href="/release/SupaiMarketing.apk" class="am-btn am-btn-primary am-btn-xl">应用下载</a>
       </p>
       <small>暂不支持苹果iOS系统</small>
     </div>
