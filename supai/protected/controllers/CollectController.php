@@ -64,7 +64,7 @@ class CollectController extends Controller
 					$product['id'] = $productObj->id;
 					$product['name'] = $goodsObj->name;
 					$product['alias'] = $productObj->alias;
-					$product['img'] = $img->url;
+					$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
 					$product['rccode'] = $goodsObj->barcode;
 					$product['description'] = $goodsObj->description;
 					$product['origin'] = $goodsObj->origin;
@@ -83,7 +83,7 @@ class CollectController extends Controller
 					$product['goodsId'] = $productObj->goods_id;
 					$product['id'] = $productObj->id;
 					$product['alias'] = $productObj->alias;
-					$product['img'] = $img->url;
+					$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
 					$product['additional'] = $productObj->description;
 					$product['price'] = $productObj->price;
 					$product['count'] = $productObj->count;
@@ -128,7 +128,7 @@ class CollectController extends Controller
 				$product['id'] = $productObj->id;
 				$product['name'] = $goodsObj->name;
 				$product['alias'] = $productObj->alias;
-				$product['img'] = $img->url;
+				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
 				$product['rccode'] = $goodsObj->barcode;
 				$product['description'] = $goodsObj->description;
 				$product['origin'] = $goodsObj->origin;
@@ -147,7 +147,7 @@ class CollectController extends Controller
 				$product['goodsId'] = $productObj->goods_id;
 				$product['id'] = $productObj->id;
 				$product['alias'] = $productObj->alias;
-				$product['img'] = $img->url;
+				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
 				$product['additional'] = $productObj->description;
 				$product['price'] = $productObj->price;
 				$product['count'] = $productObj->count;
@@ -156,8 +156,6 @@ class CollectController extends Controller
 
 			}
 			$product['favourite'] = 1;
-
-			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
 
 			if($productObj->status != 0)
 			{

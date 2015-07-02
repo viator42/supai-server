@@ -44,7 +44,7 @@ class UserController extends Controller
             $result['username'] = $user->username;
             $result['tel'] = $user->tel;
             $result['area'] = $user->area_id;
-            $result['icon'] = $user->icon;
+            $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
             $result['address'] = $user->address;
 
             $result['success'] = true;
@@ -103,7 +103,7 @@ class UserController extends Controller
 			$user->area_id = $area;
 			 
 			//默认头像
-			$user->icon = 'http://'.$_SERVER['SERVER_NAME']."/images/ic_user.png";
+			$user->icon = "/images/ic_user.png";
 
 			$user->sn = uniqid();
 			$user->passtype = 1;
@@ -116,7 +116,7 @@ class UserController extends Controller
             $result['username'] = $user->username;
             $result['tel'] = $user->tel;
             $result['area'] = $user->area_id;
-            $result['icon'] = $user->icon;
+            $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
             $result['address'] = $user->address;
 
 			$result['success'] = true;
@@ -170,7 +170,7 @@ class UserController extends Controller
 			$result['username'] = $user->username;
 			$result['id'] = $user->id;
 			$result['tel'] = $user->tel;
-			$result['icon'] = $user->icon;
+			$result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
 			$result['name'] = $user->name;
 			$result['address'] = $user->address;
 			$result['longitude'] = $user->longitude;

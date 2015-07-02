@@ -43,7 +43,7 @@ class ProductController extends Controller
 				$recentBought['id'] = $product->id;
 				$recentBought['name'] = $goods->name;
 				$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$product->id));
-				$recentBought['img'] = $img->url;
+				$recentBought['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
 			}
 
 
@@ -122,7 +122,7 @@ class ProductController extends Controller
 			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
 			if($image != null)
 			{
-				$product['img'] = $image->url;
+				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
 			}
 			else
 			{
@@ -280,7 +280,7 @@ class ProductController extends Controller
 				$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
 				if($image != null)
 				{
-					$product['img'] = $image->url;
+					$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
 				}
 				else
 				{
@@ -497,7 +497,7 @@ class ProductController extends Controller
 			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
 			if($image != null)
 			{
-				$product['img'] = $image->url;
+				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
 			}
 			else
 			{

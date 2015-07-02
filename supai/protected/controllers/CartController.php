@@ -66,7 +66,7 @@ class CartController extends Controller
                 $image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$detailObj->product_id));
                 if($image != null)
                 {
-                    $detail['img'] = $image->url;
+                    $detail['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
                 }
                 else
                 {

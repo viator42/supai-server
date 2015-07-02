@@ -41,7 +41,7 @@ class ImageController extends Controller
 					{ 
 						$result['msg'] = "图片上传成功!";
 						$result['success'] = true;
-						$result['path'] = 'http://'.$_SERVER['SERVER_NAME'].'/upload/'.$createFileName;
+						$result['path'] = '/upload/'.$createFileName;
 
 					}
 					else
