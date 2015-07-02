@@ -266,7 +266,7 @@ class CartController extends Controller
             $orderDetail->price = $cartDetail->price;
 
             $orderDetail->save();
-            $summary += $cartDetail->price;
+            $summary += $cartDetail->price * $orderDetail->count;
 
             $cartDetail->delete();
         }
