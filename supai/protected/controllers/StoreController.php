@@ -43,7 +43,19 @@ class StoreController extends Controller
 		
 		$store->save();
 
-		$result['data'] = $store;
+		$result['id'] = $store->id;
+		$result['user_id'] = $store->user_id;
+		$result['name'] = $store->name;
+		$result['address'] = $store->address;
+		$result['description'] = $store->description;
+		$result['longitude'] = $store->longitude;
+		$result['latitude'] = $store->latitude;
+		$result['status'] = $store->status;
+		$result['area_id'] = $store->area_id;
+		$result['sn'] = $store->sn;
+
+		$result['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$store->logo;
+
 		$result['success'] = true;
 
 		$json = CJSON::encode($result);
@@ -67,7 +79,7 @@ class StoreController extends Controller
 			$data['description'] = $storeObj->description;
 			$data['address'] = $storeObj->address;
 			$data['area_id'] = $storeObj->area_id;
-			$data['logo'] = $storeObj->logo;
+			$data['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$storeObj->logo;
 			$data['user_id'] = $storeObj->user_id;
 			$data['favourite'] = 2;
 			$data['longitude'] = $storeObj->longitude;
@@ -163,7 +175,7 @@ class StoreController extends Controller
 			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
 			if($img != null)
 			{
-				$product['img'] = $img->url;
+				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
 			}
 			else
 			{
@@ -194,7 +206,7 @@ class StoreController extends Controller
 			$store = array();
 
 			$store['id'] = $storeObj->id;
-			$store['logo'] = $storeObj->logo;
+			$store['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$storeObj->logo;
 			$store['name'] = $storeObj->name;
 			$store['user_id'] = $storeObj->user_id;
 			$store['area'] = $storeObj->area_id;
@@ -243,7 +255,6 @@ class StoreController extends Controller
 		$id = $_POST['id'];
 		$name = $_POST['name'];
 		$address = $_POST['address'];
-		$logo = $_POST['logo'];
 		$description = $_POST['description'];
 		$status = $_POST['status'];
 		$longitude = $_POST['longitude'];
@@ -254,26 +265,16 @@ class StoreController extends Controller
 		{
 			$store->name = $name;
 			$store->address = $address;
-			$store->logo = $logo;
 			$store->description = $description;
 			$store->status = $status;
 			$store->longitude = $longitude;
 			$store->latitude = $latitude;
 
-			// switch ($key) {
-			// case "name":
-			//     $store->name = $value;
-			//     break;
-			// case "logo":
-			//     $store->logo = $value;
-			//     break;
-			// case "address":
-			//     $store->address = $value;
-			//     break;
-			// case "description":
-			//     $store->description = $description;
-			//     break;
-			// }
+			if(isset($_POST['logo']))
+			{
+				$store->logo = $_POST['logo'];
+
+			}
 			
 			$store->save();
 			$result['success'] = true;
