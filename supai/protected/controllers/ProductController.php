@@ -177,7 +177,6 @@ class ProductController extends Controller
 		$product->goods_id = $goods->id;
 		$product->price = $_POST['price'];
 		$product->store_id = $_POST['storeId'];
-		$product->count = $_POST['count'];
 
 		$product->save();
 
@@ -218,7 +217,6 @@ class ProductController extends Controller
 		$product->alias = $_POST['alias'];
 		$product->description = $_POST['description'];
 		$product->price = $_POST['price'];
-		$product->count = $_POST['count'];
 		$product->store_id = $_POST['storeId'];
 		$product->status = 1;
 
@@ -309,14 +307,18 @@ class ProductController extends Controller
 		$count = $_POST['count'];
 		$status = $_POST['status'];
 		$alias = $_POST['alias'];
-		$imgUrl = $_POST['img'];
-
-		$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
-		if($image != null)
+		if(isset($_POST['img']))
 		{
-			$image->url = $imgUrl;
-			$image->save();
+			$imgUrl = $_POST['img'];
+
+			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
+			if($image != null)
+			{
+				$image->url = $imgUrl;
+				$image->save();
+			}
 		}
+		
 
 		$product = Product::model()->findByPk($id);
 		if($product != null)
