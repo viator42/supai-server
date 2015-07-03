@@ -38,7 +38,7 @@ class CollectController extends Controller
 			$store = array();
 			$storeObj = Store::model()->findByPk($storeCollectObj->store_id);
 			$store['id'] = $storeObj->id;
-			$store['logo'] = $storeObj->logo;
+			$store['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$storeObj->logo;
 			$store['name'] = $storeObj->name;
 			$store['userId'] = $storeObj->user_id;
 			$store['address'] = $storeObj->address;
