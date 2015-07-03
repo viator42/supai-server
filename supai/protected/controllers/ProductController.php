@@ -177,7 +177,6 @@ class ProductController extends Controller
 		$product->goods_id = $goods->id;
 		$product->price = $_POST['price'];
 		$product->store_id = $_POST['storeId'];
-		$product->count = $_POST['count'];
 
 		$product->save();
 
@@ -218,7 +217,6 @@ class ProductController extends Controller
 		$product->alias = $_POST['alias'];
 		$product->description = $_POST['description'];
 		$product->price = $_POST['price'];
-		$product->count = $_POST['count'];
 		$product->store_id = $_POST['storeId'];
 		$product->status = 1;
 
