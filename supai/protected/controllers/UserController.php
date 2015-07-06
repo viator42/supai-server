@@ -231,6 +231,73 @@ class UserController extends Controller
 		$json = CJSON::encode($result);
         echo $json;
 	}
+
+	public function actionDestroy()
+	{
+		$result = array('success'=>false);
+		$userid = $_POST['userid'];
+
+		//删除user
+		$user = User::model()->findByPk($userid);
+		if($user != null)
+		{
+			$user->delete();
+
+		}
+
+		//删除store
+		$store = Store::model()->find('user_id=:user_id', array(':user_id'=>$userid));
+		if($store != null)
+		{
+			$store->delete();
+
+			//删除product
+			$product = Product::model()->find('store_id=:store_id', array(':store_id'=>$store->id));
+			if($store != null)
+			{
+				$store->delete();	
+
+			}
+
+			//删除收藏
+			$storeCollectObjs = StoreCollect::model()->find('user_id=:user_id', array(':user_id'=>$userid));
+			if($store != null)
+			{
+				$store->delete();	
+
+			}
+			$productCollectObjs = ProductCollect::model()->findAll('user_id=:user_id', array(':user_id'=>$userid));
+			foreach ($productCollectObjs as $productCollectObj)
+			{
+				$productCollectObj->delete();
+
+			}
+
+			//删除购物车
+			$cartObjs = Cart::model()->findAll('user_id=:user_id', array(':user_id'=>$userid));
+			foreach ($cartObjs as $cartObj)
+			{
+				$cartDetailObjs = CartDetail::model()->findAll('user_id=:user_id', array(''=>));
+				foreach ($cartDetailObjs as $cartDetailObj)
+				{
+					$cartDetailObj->delete();	
+				}
+
+				$cartObj->delete();	
+				
+			}
+
+			//删除订单
+			//$orderObjs = Order::model()->findAll('user_id=:user_id', array(':user_id'=>$userid));
+
+			$result['success'] = true;
+
+		}
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
+
 /*
 	//完善用户信息
 	public function actionPerfection()
