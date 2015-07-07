@@ -231,6 +231,7 @@ class UserController extends Controller
         echo $json;
 	}
 
+	/*
 	public function actionDestroy()
 	{
 		$result = array('success'=>false);
@@ -296,6 +297,7 @@ class UserController extends Controller
 		$json = CJSON::encode($result);
         echo $json;
 	}
+	*/
 
 /*
 	//完善用户信息
