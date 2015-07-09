@@ -172,7 +172,7 @@ class CartController extends Controller
     //添加到购物车
     public function actionAdd()
     {
-    	$result = array('success'=>false);
+    	$result = array('success'=>false, 'msg'=>"添加失败");
 
     	$userid = $_POST['userid'];
         $storeId = $_POST['storeId'];
@@ -180,61 +180,69 @@ class CartController extends Controller
         $price = $_POST['price'];
     	$count = $_POST['count'];
 
-        //查找该用户是否已有购物车
-        $cart = Cart::model()->find('user_id=:user_id and store_id=:store_id', array(':user_id'=>$userid, ':store_id'=>$storeId));
-        if($cart == null)
+        $product = Product::model()->findByPk($productId);
+        if($product != null)
         {
-            //没有则新建购物车, 并添加商品
-            $cart = new Cart();
-
-            $cart->user_id = $userid;
-            $cart->store_id = $storeId;
-            $cart->status = 1;
-            $cart->create_time = time();
-
-            $cart->save();
-
-            $cartDetail = new CartDetail();
-            $cartDetail->cart_id = $cart->id;
-            $cartDetail->product_id = $productId;
-            $cartDetail->price = $price;
-            $cartDetail->count = $count;
-
-            $product = Product::model()->findByPk($productId);
-            $cartDetail->goods_name = $product->alias;
-
-            $cartDetail->save();
-        }
-        else
-        {
-            //购物车内是否已有同类商品
-            $cartDetail = CartDetail::model()->find('cart_id=:cart_id and product_id=:product_id', array(':cart_id'=>$cart->id, ':product_id'=>$productId));
-            if($cartDetail != null)
+            //查找该用户是否已有购物车
+            $cart = Cart::model()->find('user_id=:user_id and store_id=:store_id', array(':user_id'=>$userid, ':store_id'=>$storeId));
+            if($cart == null)
             {
-                //只添加数量
-                $cartDetail->count += $count;
-                $cartDetail->save();
+                //没有则新建购物车, 并添加商品
+                $cart = new Cart();
 
-            }
-            else
-            {
-                //购物车内添加新的商品
+                $cart->user_id = $userid;
+                $cart->store_id = $storeId;
+                $cart->status = 1;
+                $cart->create_time = time();
+
+                $cart->save();
+
                 $cartDetail = new CartDetail();
                 $cartDetail->cart_id = $cart->id;
                 $cartDetail->product_id = $productId;
                 $cartDetail->price = $price;
                 $cartDetail->count = $count;
 
-                $product = Product::model()->findByPk($productId);
-                $goods = Goods::model()->findByPk($product->goods_id);
-                $cartDetail->goods_name = $goods->name;
+                $cartDetail->goods_name = $product->alias;
 
                 $cartDetail->save();
             }
+            else
+            {
+                //购物车内是否已有同类商品
+                $cartDetail = CartDetail::model()->find('cart_id=:cart_id and product_id=:product_id', array(':cart_id'=>$cart->id, ':product_id'=>$productId));
+                if($cartDetail != null)
+                {
+                    //只添加数量
+                    $cartDetail->count += $count;
+                    $cartDetail->save();
+
+                }
+                else
+                {
+                    //购物车内添加新的商品
+                    $cartDetail = new CartDetail();
+                    $cartDetail->cart_id = $cart->id;
+                    $cartDetail->product_id = $productId;
+                    $cartDetail->price = $price;
+                    $cartDetail->count = $count;
+
+                    $cartDetail->goods_name = $product->alias;
+
+                    $cartDetail->save();
+                }
+
+            }
+            $result['success'] = true;
+            $result['msg'] = "添加成功";
+
 
         }
+        else
+        {
+            $result['msg'] = "添加失败,商品可能已经下架或被删除";
 
-		$result['success'] = true;
+        }
 
     	$json = CJSON::encode($result);
         echo $json;
