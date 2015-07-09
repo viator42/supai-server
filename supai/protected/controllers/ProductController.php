@@ -258,35 +258,39 @@ class ProductController extends Controller
 			$productObjs = Product::model()->findAll('goods_id=:goods_id and status != 0', array(':goods_id'=>$goods->id));
 			foreach ($productObjs as $productObj)
 			{
-				$product = array();
-
-				$product['id'] = $productObj->id;
-				$product['name'] = $goods->name;
-				$product['alias'] = $productObj->alias;
-				$product['origin'] = $goods->origin;
-				$product['merchant_code'] = $goods->merchant_code;
-				$product['merchant'] = $goods->merchant;
-				$product['price'] = $productObj->price;
-				$product['count'] = $productObj->count;
-				$product['store_id'] = $productObj->store_id;
-
-				$store = Store::model()->findByPk($product['store_id']);
-				$product['store_name'] = $store->name;
-				$product['address'] = $store->address;
-
-				//商品图片
-				$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
-				if($image != null)
+				$store = Store::model()->findByPk($productObj->store_id);
+				if($store != null)
 				{
-					$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
-				}
-				else
-				{
-					//加载默认图片
-					$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
-				}
+					$product = array();
 
-				$result[] = $product;
+					$product['id'] = $productObj->id;
+					$product['name'] = $goods->name;
+					$product['alias'] = $productObj->alias;
+					$product['origin'] = $goods->origin;
+					$product['merchant_code'] = $goods->merchant_code;
+					$product['merchant'] = $goods->merchant;
+					$product['price'] = $productObj->price;
+					$product['count'] = $productObj->count;
+					$product['store_id'] = $productObj->store_id;
+
+					
+					$product['store_name'] = $store->name;
+					$product['address'] = $store->address;
+
+					//商品图片
+					$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
+					if($image != null)
+					{
+						$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+					}
+					else
+					{
+						//加载默认图片
+						$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+					}
+
+					$result[] = $product;
+				}
 
 			}
 
