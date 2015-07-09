@@ -276,6 +276,12 @@ class ProductController extends Controller
 						//加载默认图片
 						$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
 					}
+					$product['favourite'] = 0;
+					$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
+					if($productCollectObj != null)
+					{
+						$product['favourite'] = 1;
+					}
 
 					$result[] = $product;
 				}
@@ -472,6 +478,11 @@ class ProductController extends Controller
 			{
 				//加载默认图片
 				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+			}
+			$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
+			if($productCollectObj != null)
+			{
+				$product['favourite'] = 1;
 			}
 
 			$result[] = $product;
