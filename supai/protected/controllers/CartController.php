@@ -49,11 +49,7 @@ class CartController extends Controller
                 $cart['id'] = $cartObj->id;
                 $cart['userId'] = $cartObj->user_id;
                 $cart['status'] = $cartObj->status;
-
-
-
                 $cart['storeName'] = $store->name;
-
                 $cart['storeId'] = $cartObj->store_id;
 
                 $detailObjs = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cartObj->id));
@@ -91,7 +87,6 @@ class CartController extends Controller
 
                 $carts[] = $cart;
             }
-
     		
     	}
 
