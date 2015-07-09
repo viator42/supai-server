@@ -112,19 +112,19 @@ class UserController extends Controller
 
 			//注册后回传值
 			$result['id'] = $user->id;
-      $result['name'] = $user->name;
-      $result['username'] = $user->username;
-      $result['tel'] = $user->tel;
-      $result['area'] = $user->area_id;
-      $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
-      $result['address'] = $user->address;
+		    $result['name'] = $user->name;
+		    $result['username'] = $user->username;
+		    $result['tel'] = $user->tel;
+		    $result['area'] = $user->area_id;
+		    $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
+		    $result['address'] = $user->address;
 
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
 		}
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
-    echo $json;
+    	echo $json;
 	}
 
 	// 修改用户信息
@@ -153,7 +153,7 @@ class UserController extends Controller
 		}
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
-    echo $json;
+    	echo $json;
 	}
 
 	//读取设置信息

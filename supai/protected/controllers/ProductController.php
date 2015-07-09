@@ -76,38 +76,28 @@ class ProductController extends Controller
 		$productObj = Product::model()->findByPk($id);
 		if($productObj != null)
 		{
+			$product['id'] = $productObj->id;
+			$product['goodsId'] = $productObj->goods_id;
+			$product['alias'] = $productObj->alias;
+			$product['additional'] = $productObj->description;
+			$product['price'] = $productObj->price;
+			$product['count'] = $productObj->count;
+			$product['status'] = $productObj->status;
+			$product['storeId'] = $productObj->store_id;
+
 			if($productObj->goods_id != 0)
 			{
 				//有条码的商品
 				$goodsObj = Goods::model()->findByPk($productObj->goods_id);
-				$product['id'] = $productObj->id;
-				$product['goodsId'] = $productObj->goods_id;
-				$product['name'] = $goodsObj->name;
-				$product['alias'] = $productObj->alias;
-				$product['rccode'] = $goodsObj->barcode;
-				$product['description'] = $goodsObj->description;
-				$product['origin'] = $goodsObj->origin;
-				$product['merchant'] = $goodsObj->merchant;
-				$product['merchant_code'] = $goodsObj->merchant_code;
-				$product['price'] = $productObj->price;
-				$product['storeId'] = $productObj->store_id;
-				$product['price'] = $productObj->price;
-				$product['status'] = $productObj->status;
-				$product['additional'] = $productObj->description;
-				$product['count'] = $productObj->count;
-
-			}
-			else
-			{
-				//用户自己录入的商品
-				$product['id'] = $productObj->id;
-				$product['goodsId'] = $productObj->goods_id;
-				$product['alias'] = $productObj->alias;
-				$product['additional'] = $productObj->description;
-				$product['price'] = $productObj->price;
-				$product['count'] = $productObj->count;
-				$product['status'] = $productObj->status;
-				$product['storeId'] = $productObj->store_id;
+				if($goodsObj != null)
+				{
+					$product['name'] = $goodsObj->name;
+					$product['rccode'] = $goodsObj->barcode;
+					$product['description'] = $goodsObj->description;
+					$product['origin'] = $goodsObj->origin;
+					$product['merchant'] = $goodsObj->merchant;
+					$product['merchant_code'] = $goodsObj->merchant_code;
+				}
 
 			}
 
@@ -133,8 +123,6 @@ class ProductController extends Controller
 			$result['data'] = $product;
 			$result['success'] = true;
 		}
-		
-		
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
@@ -351,53 +339,32 @@ class ProductController extends Controller
 		$productId = $_POST['productId'];
 
 		$product = Product::model()->findByPk($productId);
-		$productCollect = ProductCollect::model()->find('user_id=:user_id and product_id=:product_id', array(':user_id'=>$userid, ':product_id'=>$productId));
-		if($productCollect == null)
+		if($product != null)
 		{
-			$productCollect = new ProductCollect();
-
-			$productCollect->user_id = $userid;
-			$productCollect->product_id = $productId;
-			
-			$storeCollect = StoreCollect::model()->find('user_id=:user_id and store_id=:store_id', array(':user_id'=>$userid, ':store_id'=>$product->store_id));
-			if($storeCollect != null)
-			{
-				$productCollect->store_collect_id = $storeCollect->id;
-
-			}
-			else
-			{
-				$productCollect->store_collect_id = 0;
-
-			}
-
-			$productCollect->save();	
-			$result['success'] = true;
-		}
-
-		/*	
-		if(isset($_POST['storeCollectId']))
-		{
-			$storeCollectId = $_POST['storeCollectId'];
-			$productCollect = ProductCollect::model()->find('user_id=:user_id and product_id=:product_id and store_collect_id=:store_collect_id', array(':user_id'=>$userid, ':product_id'=>$productId, ':store_collect_id'=>$storeCollectId));
+			$productCollect = ProductCollect::model()->find('user_id=:user_id and product_id=:product_id', array(':user_id'=>$userid, ':product_id'=>$productId));
 			if($productCollect == null)
 			{
 				$productCollect = new ProductCollect();
 
 				$productCollect->user_id = $userid;
 				$productCollect->product_id = $productId;
-				$productCollect->store_collect_id = $storeCollectId;
+				
+				$storeCollect = StoreCollect::model()->find('user_id=:user_id and store_id=:store_id', array(':user_id'=>$userid, ':store_id'=>$product->store_id));
+				if($storeCollect != null)
+				{
+					$productCollect->store_collect_id = $storeCollect->id;
+
+				}
+				else
+				{
+					$productCollect->store_collect_id = 0;
+
+				}
 
 				$productCollect->save();	
 				$result['success'] = true;
 			}
-
 		}
-		else
-		{
-			
-		}
-		*/
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
@@ -417,10 +384,6 @@ class ProductController extends Controller
 			$productCollect->delete();
 			$result['success'] = true;
 		}
-
-		// $storeCollect->delete();
-
-		// 	$result['success'] = true;
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;

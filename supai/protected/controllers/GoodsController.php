@@ -62,7 +62,10 @@ class GoodsController extends Controller
 			$imageObjs = Image::model()->findAll('type=2 and type_id=:type_id', array(':type_id'=>$goods->id));
 			foreach ($imageObjs as $imageObj) 
 			{
-				$images[] = 'http://'.$_SERVER['SERVER_NAME'].$imageObj->url;
+				if($imageObj != null)
+				{
+					$images[] = 'http://'.$_SERVER['SERVER_NAME'].$imageObj->url;
+				}
 
 			}
 			$result['images'] = $images;

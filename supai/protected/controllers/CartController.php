@@ -37,55 +37,62 @@ class CartController extends Controller
     	//购物车商品
     	foreach ($cartObjs as $cartObj)
     	{
-    		$summary = 0;
-			$count = 0;
-
-    		$cart = array();
-    		$details = array();
-
-            $cart['id'] = $cartObj->id;
-            $cart['userId'] = $cartObj->user_id;
-            $cart['status'] = $cartObj->status;
-
             $store = Store::model()->findByPk($cartObj->store_id);
-            $cart['storeName'] = $store->name;
+            if($store != null)
+            {
+                $summary = 0;
+                $count = 0;
 
-            $cart['storeId'] = $cartObj->store_id;
+                $cart = array();
+                $details = array();
 
-    		$detailObjs = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cartObj->id));
-    		foreach ($detailObjs as $detailObj)
-    		{
-    			$detail = array();
-    			$detail['id'] = $detailObj->id;
-    			$detail['name'] = $detailObj->goods_name;
-    			$detail['price'] = $detailObj->price;
-    			$detail['productId'] = $detailObj->product_id;
-    			$detail['count'] = $detailObj->count;
+                $cart['id'] = $cartObj->id;
+                $cart['userId'] = $cartObj->user_id;
+                $cart['status'] = $cartObj->status;
 
-                //商品图片
-                $image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$detailObj->product_id));
-                if($image != null)
+
+
+                $cart['storeName'] = $store->name;
+
+                $cart['storeId'] = $cartObj->store_id;
+
+                $detailObjs = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cartObj->id));
+                foreach ($detailObjs as $detailObj)
                 {
-                    $detail['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+                    $detail = array();
+                    $detail['id'] = $detailObj->id;
+                    $detail['name'] = $detailObj->goods_name;
+                    $detail['price'] = $detailObj->price;
+                    $detail['productId'] = $detailObj->product_id;
+                    $detail['count'] = $detailObj->count;
+
+                    //商品图片
+                    $image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$detailObj->product_id));
+                    if($image != null)
+                    {
+                        $detail['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+                    }
+                    else
+                    {
+                        //加载默认图片
+                        $product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+                    }
+                    
+                    $count += $detailObj->count;
+                    $summary += ($detailObj->price * $detailObj->count);
+
+                    $details[] = $detail;
                 }
-                else
-                {
-                    //加载默认图片
-                    $product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
-                }
-    			
-    			$count += $detailObj->count;
-    			$summary += ($detailObj->price * $detailObj->count);
 
-    			$details[] = $detail;
-    		}
+                $cart['details'] = $details;
 
-    		$cart['details'] = $details;
+                $cart['count'] = $count;
+                $cart['summary'] = $summary;
 
-    		$cart['count'] = $count;
-			$cart['summary'] = $summary;
+                $carts[] = $cart;
+            }
 
-    		$carts[] = $cart;
+    		
     	}
 
     	$result['data'] = $carts;
@@ -241,8 +248,25 @@ class CartController extends Controller
         $id = $_POST['id'];
 
         $cart = Cart::model()->findByPk($id);
-        $cartDetails = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cart->id));
+        if($cart == null)
+        {
+            echo CJSON::encode($result);
+            return;
+        }
+
         $store = Store::model()->findByPk($cart->store_id);
+        if($store == null)
+        {
+            echo CJSON::encode($result);
+            return;
+        }
+
+        $cartDetails = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cart->id));
+        if(count($cartDetails) <= 0)
+        {
+            echo CJSON::encode($result);
+            return;
+        }
 
         $order = new Order();
         $order->create_time = time();
