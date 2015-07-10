@@ -177,7 +177,7 @@ class ProductController extends Controller
 		//返回商品属性
 		$result['id'] = $product->id;
 		$result['name'] = $goods->name;
-		$result['alias'] = $goods->alias;
+		$result['alias'] = $product->alias;
 		$result['rccode'] = $goods->barcode;
 		$result['description'] = $goods->description;
 		$result['origin'] = $goods->origin;
