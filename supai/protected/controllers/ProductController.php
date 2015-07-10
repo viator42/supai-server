@@ -439,6 +439,12 @@ class ProductController extends Controller
 
 		foreach ($productObjs as $productObj)
 		{
+			$store = Store::model()->findByPk($productObj->store_id);
+			if($store == null)
+			{
+				continue;
+			}
+
 			$product = array();
 			$goods = Goods::model()->findByPk($productObj->goods_id);
 			$product['id'] = $productObj->id;
@@ -464,7 +470,6 @@ class ProductController extends Controller
 
 			}
 
-			$store = Store::model()->findByPk($product['store_id']);
 			$product['store_name'] = $store->name;
 			$product['address'] = $store->address;
 
@@ -480,6 +485,7 @@ class ProductController extends Controller
 				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
 			}
 			$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
+			$product['favourite'] = 0;
 			if($productCollectObj != null)
 			{
 				$product['favourite'] = 1;
