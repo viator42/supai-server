@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <link rel="alternate icon" type="image/png" href="assets/amazeui/i/favicon.png">
+  <link rel="alternate icon" type="image/png" href="images/webpage/favicon.png">
   <link rel="stylesheet" href="assets/amazeui/css/amazeui.min.css"/>
   <link rel="stylesheet" href="css/main.css"/>
 
