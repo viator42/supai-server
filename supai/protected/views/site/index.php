@@ -20,6 +20,9 @@
     <h1 class="am-topbar-brand">
       <a href="#">速派网上超市</a>
     </h1>
+    <div class="am-topbar-right">
+      <a href="weixin://contacts/profile/jnsupai" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">关注微信</a>
+    </div>
   </div>
 </header>
 
@@ -35,7 +38,6 @@
       <p>
         <a href="/release/SupaiMarketing.apk" class="am-btn am-btn-primary am-btn-xl">应用下载</a>
       </p>
-      <small>暂不支持苹果iOS系统</small>
     </div>
   </div>
 </div>
@@ -122,7 +124,7 @@
 
 <footer class="footer">
   <p>© 2015 济南速派信息技术有限公司
-  <br>备案号 990182345</p>
+  <br>鲁ICP备15023468号</p>
 </footer>
 
 <!--[if lt IE 9]>
