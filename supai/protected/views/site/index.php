@@ -9,7 +9,7 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <link rel="alternate icon" type="image/png" href="assets/amazeui/i/favicon.png">
+  <link rel="alternate icon" type="image/png" href="images/webpage/favicon.png">
   <link rel="stylesheet" href="assets/amazeui/css/amazeui.min.css"/>
   <link rel="stylesheet" href="css/main.css"/>
 
@@ -20,13 +20,16 @@
     <h1 class="am-topbar-brand">
       <a href="#">速派网上超市</a>
     </h1>
+    <!-- <div class="am-topbar-right">
+      <a href="weixin://contacts/profile/jnsupai" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">关注微信</a>
+    </div> -->
   </div>
 </header>
 
 <div class="jumbotron">
   <div class="am-g">
     <div class="am-u-lg-12">
-      <h1 class="get-title">超市购物软件</h1>
+      <h1 class="get-title">速派超市购物软件</h1>
 
       <p>
         最好用的网上超市
@@ -35,7 +38,6 @@
       <p>
         <a href="/release/SupaiMarketing.apk" class="am-btn am-btn-primary am-btn-xl">应用下载</a>
       </p>
-      <small>暂不支持苹果iOS系统</small>
     </div>
   </div>
 </div>
@@ -100,29 +102,32 @@
 
     </div>
 
-    <div class="am-u-lg-10">
+    <!-- <div class="am-u-lg-10">
       <h2>使用教程</h2>
       <img class="am-img-thumbnail " src="images/webpage/process.png" />
         
+    </div> -->
 
-    </div>
     <div class="am-u-lg-12">
       <h2>关于我们</h2>
-      <p>济南速派信息技术有限公司成立于2010年，注册资金3000万，多年来专注于为企业提供完整的互联网解决方案。公司拥有雄厚的经济实力和广泛而稳定的客户网络，拥有一支业内顶尖的技术研发团队。公司有着先进的国际服务理念和以人为本的企业文化。
-易驰国际致力于为企业提供可靠的移动互联网解决方案，帮助企业更快捷的实现传统业务向移动互联网的迁移。易驰国际可强化和延伸企业在市场营销、客户服务、品牌推广、移动电子商务、企业内部管理等方面的优势。易驰国际的产品和服务涉及到银行、房产、汽车、餐饮等多个行业，包括政务平台的开发搭建、微布局智能服务平台、Android与ios系统App应用的开发、移动支付及企业定制开发等。
-追求共同发展是易驰国际的永恒目标。我们重视合作伙伴，努力达到一种多赢的局面。为了能使更多的用户享受微布局高品质的服务，现正在全国范围内大力发展代理伙伴。易驰国际期待您的加盟！</p>
+      济南速派信息技术有限公司是一家专注于移动应用开发的IT公司.主要产品方向是为超市,个体经营业主提供零售解决方案.
     </div>
 
     <div class="am-u-lg-12">
       <h2>联系我们</h2>
-      <p>电话 QQ 微信 邮箱</p>
+      <ul class="am-list am-list-static am-list-border am-list-striped">
+        <li>微信搜索 jnsupai 或扫描下方的二维码<br><img src="images/webpage/qrcode.jpg" />
+        </li>
+        <li>运营QQ 2724166624 </li>
+        <li>邮箱 supai.jn@qq.com</li>
+      </ul>
     </div>
 
 </div>
 
 <footer class="footer">
   <p>© 2015 济南速派信息技术有限公司
-  <br>备案号 990182345</p>
+  <br>鲁ICP备15023468号</p>
 </footer>
 
 <!--[if lt IE 9]>
@@ -155,8 +160,7 @@
     </div>
     <div class="am-popup-bd">
       深度集成地图服务. 标注店铺位置.顾客就可以从地图上发现您的位置.
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>aaa
-    </div>
+      </div>
   </div>
 </div>
 

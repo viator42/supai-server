@@ -121,39 +121,34 @@ class OrderController extends Controller
 		}
 		foreach ($orderObjs as $orderObj) 
 		{
-			$order = array();
-
-			$order['id'] = $orderObj->id;
-			$order['sn'] = $orderObj->sn;
-			$order['merchantId'] = $orderObj->merchant_id;
-			$order['storeId'] = $orderObj->store_id;
-
-			//查询商家信息
-			$order['name'] = "";
 			$user = User::model()->findByPk($orderObj->merchant_id);
-			if($user != null)
+			$store = Store::model()->findByPk($orderObj->store_id);
+			if($user != null && $store != null)
 			{
+				$order = array();
+
+				$order['id'] = $orderObj->id;
+				$order['sn'] = $orderObj->sn;
+				$order['merchantId'] = $orderObj->merchant_id;
+				$order['storeId'] = $orderObj->store_id;
+
+				//商家信息
 				$order['name'] = $user->name;
 				$order['tel'] = $user->tel;
 				$order['longitude'] = $user->longitude;
 				$order['latitude'] = $user->latitude;
-			}
 
-			//查询商店信息
-			$order['storeName'] = "";
-			$store = Store::model()->findByPk($orderObj->store_id);
-			if($store != null)
-			{
+				//商店信息
 				$order['storeName'] = $store->name;
-			}
 
-			$order['createTime'] = $orderObj->create_time;
-			$order['summary'] = $orderObj->summary;
-			$order['status'] = $orderObj->status;
-			$order['additional'] = $orderObj->additional;
-			$order['readed'] = $orderObj->readed;
-			
-			$forCustomer[] = $order;
+				$order['createTime'] = $orderObj->create_time;
+				$order['summary'] = $orderObj->summary;
+				$order['status'] = $orderObj->status;
+				$order['additional'] = $orderObj->additional;
+				$order['readed'] = $orderObj->readed;
+				
+				$forCustomer[] = $order;
+			}
 
 		}
 
@@ -170,40 +165,35 @@ class OrderController extends Controller
 
 		foreach ($orderObjs as $orderObj) 
 		{
-			$order = array();
-
-			$order['id'] = $orderObj->id;
-			$order['sn'] = $orderObj->sn;
-			$order['merchantId'] = $orderObj->merchant_id;
-			$order['storeId'] = $orderObj->store_id;
-
-			//查询客户信息
-			$order['name'] = "";
 			$user = User::model()->findByPk($orderObj->customer_id);
-			if($user != null)
+			$store = Store::model()->findByPk($orderObj->store_id);
+
+			if($store != null && $user != null)
 			{
+				$order = array();
+
+				$order['id'] = $orderObj->id;
+				$order['sn'] = $orderObj->sn;
+				$order['merchantId'] = $orderObj->merchant_id;
+				$order['storeId'] = $orderObj->store_id;
+
+				//客户信息
 				$order['name'] = $user->name;
 				$order['tel'] = $user->tel;
 				$order['longitude'] = $user->longitude;
 				$order['latitude'] = $user->latitude;
-			}
 
-			//查询商店信息
-			$order['storeName'] = "";
-			$store = Store::model()->findByPk($orderObj->store_id);
-			if($store != null)
-			{
+				//商店信息
 				$order['storeName'] = $store->name;
+
+				$order['createTime'] = $orderObj->create_time;
+				$order['summary'] = $orderObj->summary;
+				$order['status'] = $orderObj->status;
+				$order['additional'] = $orderObj->additional;
+				$order['readed'] = $orderObj->readed;
+				
+				$forMerchant[] = $order;
 			}
-
-			$order['createTime'] = $orderObj->create_time;
-			$order['summary'] = $orderObj->summary;
-			$order['status'] = $orderObj->status;
-			$order['additional'] = $orderObj->additional;
-			$order['readed'] = $orderObj->readed;
-			
-			$forMerchant[] = $order;
-
 		}
 
 		$result['merchantList'] = $forMerchant;
