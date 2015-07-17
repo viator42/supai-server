@@ -74,7 +74,7 @@ class UserController extends Controller
 		$area = $_POST['area'];
 
 		//手机号码格式正则查询
-		if(!preg_match("/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$/",$tel))
+		if(!preg_match("/^1[35789]{1}[0-9]{9}$/",$tel))
 		{
 			$result['msg'] = "请输入正确的手机号";
 		}
