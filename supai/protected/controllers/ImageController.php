@@ -33,29 +33,29 @@ class ImageController extends Controller
 		$filetype = $_FILES['file']["type"];
 
 		if($filesize < 1024000)
-				{
-					$createFileName=uniqid(rand());
-					$destPath = $_SERVER['DOCUMENT_ROOT'].'/upload/'.$createFileName;
+		{
+			$createFileName=uniqid(rand());
+			$destPath = $_SERVER['DOCUMENT_ROOT'].'/upload/'.$createFileName;
 
-					if(move_uploaded_file($tempfile, $destPath))
-					{ 
-						$result['msg'] = "图片上传成功!";
-						$result['success'] = true;
-						$result['path'] = '/upload/'.$createFileName;
+			if(move_uploaded_file($tempfile, $destPath))
+			{ 
+				$result['msg'] = "图片上传成功!";
+				$result['success'] = true;
+				$result['path'] = '/upload/'.$createFileName;
 
-					}
-					else
-					{
-						$result['msg'] = "图片上传失败!";
+			}
+			else
+			{
+				$result['msg'] = "图片上传失败!";
 
-					} 
+			} 
 
-				}
-				else
-				{
-					$result['msg'] = "图片尺寸过大";
+		}
+		else
+		{
+			$result['msg'] = "图片尺寸过大";
 
-				}
+		}
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;

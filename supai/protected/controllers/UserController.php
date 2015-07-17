@@ -55,7 +55,7 @@ class UserController extends Controller
             $result['success'] = false;
 
         }
-		
+
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 
@@ -74,7 +74,7 @@ class UserController extends Controller
 		$area = $_POST['area'];
 
 		//手机号码格式正则查询
-		if(!preg_match("/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$/",$tel))
+		if(!preg_match("/^1[35789]{1}[0-9]{9}$/",$tel))
 		{
 			$result['msg'] = "请输入正确的手机号";
 		}
@@ -101,7 +101,7 @@ class UserController extends Controller
 			$user->name = $name;
 			$user->address = $address;
 			$user->area_id = $area;
-			 
+
 			//默认头像
 			$user->icon = "/images/ic_user.png";
 
@@ -112,22 +112,21 @@ class UserController extends Controller
 
 			//注册后回传值
 			$result['id'] = $user->id;
-            $result['name'] = $user->name;
-            $result['username'] = $user->username;
-            $result['tel'] = $user->tel;
-            $result['area'] = $user->area_id;
-            $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
-            $result['address'] = $user->address;
+		    $result['name'] = $user->name;
+		    $result['username'] = $user->username;
+		    $result['tel'] = $user->tel;
+		    $result['area'] = $user->area_id;
+		    $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
+		    $result['address'] = $user->address;
 
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
 		}
 
-		$json = CJSON::encode($result);
-        echo $json;
-
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+    	echo $json;
 	}
-	
+
 	// 修改用户信息
 	public function actionUpdate()
 	{
@@ -154,7 +153,7 @@ class UserController extends Controller
 		}
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
-        echo $json;
+    	echo $json;
 	}
 
 	//读取设置信息
@@ -176,13 +175,13 @@ class UserController extends Controller
 			$result['longitude'] = $user->longitude;
 			$result['latitude'] = $user->latitude;
 			$result['area'] = $user->area_id;
-			
+
 			$result['success'] = true;
 
 		}
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
-        echo $json;	
+        echo $json;
 	}
 
 	//上传用户位置
@@ -222,7 +221,7 @@ class UserController extends Controller
 			if($area->p_code != 0)
 			{
 				$parea = Area::model()->find('code=:code', array(':code' => $area->p_code));
-				$data = $data.$parea->name;	
+				$data = $data.$parea->name;
 			}
 			$data = $data.$area->name;
 		}
@@ -231,13 +230,82 @@ class UserController extends Controller
 		$json = CJSON::encode($result);
         echo $json;
 	}
+
+	/*
+	public function actionDestroy()
+	{
+		$result = array('success'=>false);
+		$userid = $_POST['userid'];
+
+		//删除user
+		$user = User::model()->findByPk($userid);
+		if($user != null)
+		{
+			$user->delete();
+
+		}
+
+		//删除store
+		$store = Store::model()->find('user_id=:user_id', array(':user_id'=>$userid));
+		if($store != null)
+		{
+			$store->delete();
+
+			//删除product
+			$product = Product::model()->find('store_id=:store_id', array(':store_id'=>$store->id));
+			if($store != null)
+			{
+				$store->delete();
+
+			}
+
+			//删除收藏
+			$storeCollectObjs = StoreCollect::model()->find('user_id=:user_id', array(':user_id'=>$userid));
+			if($store != null)
+			{
+				$store->delete();
+
+			}
+			$productCollectObjs = ProductCollect::model()->findAll('user_id=:user_id', array(':user_id'=>$userid));
+			foreach ($productCollectObjs as $productCollectObj)
+			{
+				$productCollectObj->delete();
+
+			}
+
+			//删除购物车
+			$cartObjs = Cart::model()->findAll('user_id=:user_id', array(':user_id'=>$userid));
+			foreach ($cartObjs as $cartObj)
+			{
+				$cartDetailObjs = CartDetail::model()->findAll('user_id=:user_id', array(''=>));
+				foreach ($cartDetailObjs as $cartDetailObj)
+				{
+					$cartDetailObj->delete();
+				}
+
+				$cartObj->delete();
+
+			}
+
+			//删除订单
+			//$orderObjs = Order::model()->findAll('user_id=:user_id', array(':user_id'=>$userid));
+
+			$result['success'] = true;
+
+		}
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
+	*/
+
 /*
 	//完善用户信息
 	public function actionPerfection()
 	{
 		$result = array('success'=>false);
 
-		if (isset($_POST['id'])) 
+		if (isset($_POST['id']))
 		{
 			$id = $_POST['id'];
 

@@ -28,35 +28,50 @@ class StoreController extends Controller
 	{
 		$result = array('success'=>false);
 
-		$store = new Store();
+		$userid = $_POST['userid'];
+		$name = $_POST['name'];
+		$address = $_POST['address'];
+		$description = $_POST['description'];
+		$logo = $_POST['logo'];
+		$longitude = $_POST['longitude'];
+		$latitude = $_POST['latitude'];
+		$area = $_POST['area'];
 
-		$store->user_id = $_POST['userid'];
-		$store->name = $_POST['name'];
-		$store->address = $_POST['address'];
-		$store->description = $_POST['description'];
-		$store->logo = $_POST['logo'];
-		$store->longitude = $_POST['longitude'];
-		$store->latitude = $_POST['latitude'];
-		$store->status = 1;
-		$store->area_id = $_POST['area'];
-		$store->sn = uniqid();
-		
-		$store->save();
 
-		$result['id'] = $store->id;
-		$result['user_id'] = $store->user_id;
-		$result['name'] = $store->name;
-		$result['address'] = $store->address;
-		$result['description'] = $store->description;
-		$result['longitude'] = $store->longitude;
-		$result['latitude'] = $store->latitude;
-		$result['status'] = $store->status;
-		$result['area_id'] = $store->area_id;
-		$result['sn'] = $store->sn;
+		//查询用户是否已有店铺
+		$store = Store::model()->find('user_id=:user_id', array(':user_id'=>$userid));
+		if($store == null)
+		{
+			$store = new Store();
 
-		$result['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$store->logo;
+			$store->user_id = $userid;
+			$store->name = $name;
+			$store->address = $address;
+			$store->description = $description;
+			$store->logo = $logo;
+			$store->longitude = $longitude;
+			$store->latitude = $latitude;
+			$store->status = 1;
+			$store->area_id = $area;
+			$store->sn = uniqid();
+			
+			$store->save();
 
-		$result['success'] = true;
+			$result['id'] = $store->id;
+			$result['user_id'] = $store->user_id;
+			$result['name'] = $store->name;
+			$result['address'] = $store->address;
+			$result['description'] = $store->description;
+			$result['longitude'] = $store->longitude;
+			$result['latitude'] = $store->latitude;
+			$result['status'] = $store->status;
+			$result['area_id'] = $store->area_id;
+			$result['sn'] = $store->sn;
+
+			$result['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$store->logo;
+
+			$result['success'] = true;
+		}
 
 		$json = CJSON::encode($result);
         echo $json;
@@ -132,44 +147,36 @@ class StoreController extends Controller
 		{
 			$product = array();
 
+			$product['goodsId'] = $productObj->goods_id;
+			$product['id'] = $productObj->id;
+			$product['alias'] = $productObj->alias;
+			$product['additional'] = $productObj->description;
+			$product['price'] = $productObj->price;
+			$product['count'] = $productObj->count;
+			$product['status'] = $productObj->status;
+			$product['storeId'] = $productObj->store_id;
+
 			if($productObj->goods_id != 0)
 			{
 				$goodsObj = Goods::model()->findByPk($productObj->goods_id);
-				$product['goodsId'] = $productObj->goods_id;
-				$product['id'] = $productObj->id;
-				$product['name'] = $goodsObj->name;
-				$product['alias'] = $productObj->alias;
-				$product['rccode'] = $goodsObj->barcode;
-				$product['description'] = $goodsObj->description;
-				$product['origin'] = $goodsObj->origin;
-				$product['merchant'] = $goodsObj->merchant;
-				$product['merchant_code'] = $goodsObj->merchant_code;
-				$product['price'] = $productObj->price;
-				$product['storeId'] = $productObj->store_id;
-				$product['price'] = $productObj->price;
-				$product['status'] = $productObj->status;
-				$product['additional'] = $productObj->description;
-				$product['favourite'] = 0;
-				$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
-				if($productCollectObj != null)
+				if($goodsObj != null)
 				{
-					$product['favourite'] = 1;
+
+					$product['name'] = $goodsObj->name;
+					$product['rccode'] = $goodsObj->barcode;
+					$product['description'] = $goodsObj->description;
+					$product['origin'] = $goodsObj->origin;
+					$product['merchant'] = $goodsObj->merchant;
+					$product['merchant_code'] = $goodsObj->merchant_code;
+
 				}
 
-				$product['count'] = $productObj->count;
-
 			}
-			else
+			$product['favourite'] = 0;
+			$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
+			if($productCollectObj != null)
 			{
-				$product['goodsId'] = $productObj->goods_id;
-				$product['id'] = $productObj->id;
-				$product['alias'] = $productObj->alias;
-				$product['additional'] = $productObj->description;
-				$product['price'] = $productObj->price;
-				$product['count'] = $productObj->count;
-				$product['status'] = $productObj->status;
-				$product['storeId'] = $productObj->store_id;
-
+				$product['favourite'] = 1;
 			}
 
 			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
