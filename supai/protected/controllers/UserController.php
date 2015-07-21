@@ -231,6 +231,31 @@ class UserController extends Controller
         echo $json;
 	}
 
+	//用户反馈
+	public function actionRef()
+	{
+		$result = array('success'=>false);
+
+		if (isset($_POST['userid']))
+		{
+			$userid = $_POST['userid'];
+
+			$ref = new Ref();
+
+			$ref->user_id = $userid;
+			$ref->content = $_POST['content'];
+			$ref->type = 1;
+			$ref->create_time = time();
+			$ref->parent_id = 0;
+
+			$ref->save();
+			$result['success'] = true;
+		}
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
+
 	/*
 	public function actionDestroy()
 	{

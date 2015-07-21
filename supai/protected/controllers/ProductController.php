@@ -499,6 +499,43 @@ class ProductController extends Controller
         echo $json;
 	}
 
+	//多商品添加
+	/*
+	public function actionMultiAdd()
+	{
+		$result = array('success'=>false);
+
+		for ($i = 1; $i <= 1000; $i++) 
+		{
+			$product = new Product();
+
+		  	$product->goods_id = 0;
+
+			$product->alias = "测试商品";
+			$product->description = "测试商品描述";
+			$product->price = 123;
+			$product->store_id = 1;
+			$product->status = 1;
+
+			$product->save();
+
+			$imgUrl = "/images/product_default.jpg";
+
+			$productImg = new Image();
+			$productImg->url = $imgUrl;
+			$productImg->type = 1;
+			$productImg->type_id = $product->id;
+			$productImg->save();
+
+		}
+
+		$result['success'] = true;
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+
+	}
+	*/
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
