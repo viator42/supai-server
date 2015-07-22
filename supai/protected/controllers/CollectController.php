@@ -32,7 +32,7 @@ class CollectController extends Controller
 
 		//收藏的店铺
 		$stores = array();
-		$storeCollectObjs = StoreCollect::model()->findAll('user_id=:user_id', array(':user_id'=>$userid));
+		$storeCollectObjs = StoreCollect::model()->findAll('user_id=:user_id order by id desc', array(':user_id'=>$userid));
 		foreach ($storeCollectObjs as $storeCollectObj)
 		{
 			$storeObj = Store::model()->findByPk($storeCollectObj->store_id);
@@ -52,7 +52,7 @@ class CollectController extends Controller
 
 				//下属商品
 				$products = array();
-				$productCollectObjs = ProductCollect::model()->findAll('store_collect_id=:store_collect_id', array(':store_collect_id'=>$storeCollectObj->id));
+				$productCollectObjs = ProductCollect::model()->findAll('store_collect_id=:store_collect_id order by id desc', array(':store_collect_id'=>$storeCollectObj->id));
 				foreach ($productCollectObjs as $productCollectObj)
 				{
 					$productObj = Product::model()->findByPk($productCollectObj->product_id);
@@ -122,7 +122,7 @@ class CollectController extends Controller
 
 		//不隶属店铺的商品
 		$defaults = array();
-		$productCollectObjs = ProductCollect::model()->findAll('store_collect_id = 0 and user_id=:user_id', array(':user_id'=>$userid));
+		$productCollectObjs = ProductCollect::model()->findAll('store_collect_id = 0 and user_id=:user_id order by id desc', array(':user_id'=>$userid));
 		foreach ($productCollectObjs as $productCollectObj)
 		{
 			$product = array();

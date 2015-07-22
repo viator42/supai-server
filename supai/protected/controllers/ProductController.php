@@ -240,10 +240,26 @@ class ProductController extends Controller
 
 		$barcode = $_POST['barcode'];
 
+		$storeId = 0;
+		if(isset($_POST['storeId']))
+		{
+			$storeId = $_POST['storeId'];
+		}
+
 		$goods = Goods::model()->find('barcode=:barcode', array(':barcode'=>$barcode));
 		if($goods != null)
 		{
-			$productObjs = Product::model()->findAll('goods_id=:goods_id and status != 0', array(':goods_id'=>$goods->id));
+			if($storeId != 0)
+			{
+				$productObjs = Product::model()->findAll('goods_id=:goods_id and store_id=:store_id and status != 0', array(':goods_id'=>$goods->id, ':store_id'=>$storeId));
+
+			}
+			else
+			{
+				$productObjs = Product::model()->findAll('goods_id=:goods_id and status != 0', array(':goods_id'=>$goods->id));
+
+			}
+			
 			foreach ($productObjs as $productObj)
 			{
 				$store = Store::model()->findByPk($productObj->store_id);
@@ -498,6 +514,43 @@ class ProductController extends Controller
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
+
+	//多商品添加
+	/*
+	public function actionMultiAdd()
+	{
+		$result = array('success'=>false);
+
+		for ($i = 1; $i <= 1000; $i++) 
+		{
+			$product = new Product();
+
+		  	$product->goods_id = 0;
+
+			$product->alias = "测试商品";
+			$product->description = "测试商品描述";
+			$product->price = 123;
+			$product->store_id = 1;
+			$product->status = 1;
+
+			$product->save();
+
+			$imgUrl = "/images/product_default.jpg";
+
+			$productImg = new Image();
+			$productImg->url = $imgUrl;
+			$productImg->type = 1;
+			$productImg->type_id = $product->id;
+			$productImg->save();
+
+		}
+
+		$result['success'] = true;
+		$json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+
+	}
+	*/
 
 	// Uncomment the following methods and override them if needed
 	/*
