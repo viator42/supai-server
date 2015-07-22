@@ -25,9 +25,13 @@ class UserController extends Controller
 
 
 	//登录
+	// 	ERROR_NONE=0;
+	// ERROR_USERNAME_INVALID = 1;
+	// ERROR_PASSWORD_INVALID = 2;
+	// ERROR_UNKNOWN_IDENTITY = 100;       // the default
 	public function actionLogin()
 	{
-		$result = array('success'=>false);
+		$result = array('success'=>false, 'errorCode'=>0);
 
 		$username = $_POST['tel'];
 		$password = $_POST['password'];
@@ -53,6 +57,8 @@ class UserController extends Controller
         else
         {
             $result['success'] = false;
+            $result['errorCode'] = $_identity->errorCode;
+
 
         }
 
