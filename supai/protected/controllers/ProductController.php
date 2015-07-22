@@ -240,10 +240,26 @@ class ProductController extends Controller
 
 		$barcode = $_POST['barcode'];
 
+		$storeId = 0;
+		if(isset($_POST['storeId']))
+		{
+			$storeId = $_POST['storeId'];
+		}
+
 		$goods = Goods::model()->find('barcode=:barcode', array(':barcode'=>$barcode));
 		if($goods != null)
 		{
-			$productObjs = Product::model()->findAll('goods_id=:goods_id and status != 0', array(':goods_id'=>$goods->id));
+			if($storeId != 0)
+			{
+				$productObjs = Product::model()->findAll('goods_id=:goods_id and store_id=:store_id and status != 0', array(':goods_id'=>$goods->id, ':store_id'=>$storeId));
+
+			}
+			else
+			{
+				$productObjs = Product::model()->findAll('goods_id=:goods_id and status != 0', array(':goods_id'=>$goods->id));
+
+			}
+			
 			foreach ($productObjs as $productObj)
 			{
 				$store = Store::model()->findByPk($productObj->store_id);
