@@ -262,6 +262,28 @@ class UserController extends Controller
         echo $json;
 	}
 
+	//用户反馈
+	public function actionAppeal()
+	{
+		$result = array('success'=>false);
+
+		$appeal = new UserAppeal();
+
+		$appeal->old_tel = $_POST['oldTel'];
+		$appeal->new_tel = $_POST['newTel'];
+		$appeal->name = $_POST['name'];
+		$appeal->address = $_POST['address'];
+		$appeal->imie = $_POST['imie'];
+		$appeal->area_id = 0;
+		$appeal->type = 1;
+		$appeal->create_time = time();
+
+		$appeal->save();
+		$result['success'] = true;
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
 	/*
 	public function actionDestroy()
 	{
