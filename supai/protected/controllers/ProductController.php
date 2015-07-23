@@ -276,7 +276,7 @@ class ProductController extends Controller
 					$product['price'] = $productObj->price;
 					$product['count'] = $productObj->count;
 					$product['store_id'] = $productObj->store_id;
-
+					$product['additional'] = $productObj->description;
 					
 					$product['store_name'] = $store->name;
 					$product['address'] = $store->address;
@@ -465,7 +465,7 @@ class ProductController extends Controller
 			$goods = Goods::model()->findByPk($productObj->goods_id);
 			$product['id'] = $productObj->id;
 			$product['alias'] = $productObj->alias;
-			
+			$product['additional'] = $productObj->description;
 			$product['price'] = $productObj->price;
 			$product['count'] = $productObj->count;
 			$product['store_id'] = $productObj->store_id;
