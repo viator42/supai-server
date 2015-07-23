@@ -222,6 +222,14 @@ class StoreController extends Controller
 			$store['description'] = $storeObj->description;
 			$store['address'] = $storeObj->address;
 
+			//收藏状态
+			$store['favourite'] = 0;
+			$storeCollectObj = StoreCollect::model()->find('store_id=:store_id and user_id=:user_id', array(':store_id'=>$storeObj->id, ':user_id'=>$userid));
+			if($storeCollectObj != null)
+			{
+				$store['favourite'] = 1;
+			}
+
 			//查询同一area内的所有店铺并忽略自己的店铺
 			if($storeObj->status == 1 && $userid != $storeObj->user_id && $storeObj->area_id == $user->area_id)
 			{
