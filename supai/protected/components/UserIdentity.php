@@ -29,7 +29,7 @@ class UserIdentity extends CUserIdentity
 				//密码为空则更新密码.
 				if($user->imie = $this->password)
 				{
-					$user->password = md5($this->password)
+					$user->password = md5($this->password);
 					$user->lastlogin_time = time();
 					$user->save();
 				}
