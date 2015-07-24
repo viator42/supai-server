@@ -58,21 +58,21 @@
         
           <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
           <a data-am-modal="{target: '#supai-ts-1'}">
-            <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-barcode.png" />
+            <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-barcode.jpg" />
           </a>
           <p>条形码扫描,商品一键录入<p>
           </div>
         
          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
          <a data-am-modal="{target: '#supai-ts-2'}">
-        <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-map.png" />
+        <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-map.jpg" />
         </a>
         <p>内置地图,方便顾客找到您的商铺<p>
         </div>
 
         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
         <a data-am-modal="{target: '#supai-ts-3'}">
-        <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-freewifi.png" />
+        <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-freewifi.jpg" />
         </a>
         <p>免费上网功能<p>
         </div>
@@ -92,11 +92,13 @@
       
       <div class="am-slider am-slider-default">  
             <ul class="am-slides">  
-                <li><img src="images/webpage/banner.png" /></li>
-                <li><img src="images/webpage/banner.png" /></li>
-                <li><img src="images/webpage/banner.png" /></li>
-                <li><img src="images/webpage/banner.png" /></li>
-                <li><img src="images/webpage/banner.png" /></li>
+                <li><img src="images/webpage/capture_main.jpg" /></li>
+                <li><img src="images/webpage/capture_add_product.jpg" /></li>
+                <li><img src="images/webpage/capture_cart.jpg" /></li>
+                <li><img src="images/webpage/capture_order_detail.jpg" /></li>
+                <li><img src="images/webpage/capture_orders.jpg" /></li>
+                <li><img src="images/webpage/capture_product_search.jpg" /></li>
+                <li><img src="images/webpage/capture_store.jpg" /></li>
             </ul>  
         </div>  
 
