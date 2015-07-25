@@ -18,8 +18,8 @@ use JPush\Exception\APIRequestException;
 
 class PushMsg
 {
-	var $app_key='dd1066407b044738b6479275';
-	var $master_secret = '6b135be0037a5c1e693c3dfa';
+	var $app_key='d18febadd32dd84b1c3be46a';
+	var $master_secret = '2cb6d42d425adff51ff31b5a';
 	
 	public function push($user_sn, $msg)
 	{
