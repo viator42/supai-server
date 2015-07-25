@@ -29,7 +29,7 @@ class PushMsg
 		try {
 		    $result = $client->push()
 		        ->setPlatform(M\Platform('android'))
-		        ->setAudience(M\registration_id(array($user_sn)))
+		        ->setAudience(M\alias(array($user_sn)))
 		        ->setNotification(M\notification($msg))
 		        ->printJSON()
 		        ->send();
