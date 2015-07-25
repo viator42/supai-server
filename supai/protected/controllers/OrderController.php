@@ -286,6 +286,8 @@ class OrderController extends Controller
 
 		}
 
+		//发送推送通知
+
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
@@ -302,8 +304,17 @@ class OrderController extends Controller
 		{
 			$orderObj->status = 4;
 			$orderObj->save();
-			$result['success'] = true;
 
+			$merchant = User::model()->findByPk($orderObj->merchant_id);
+			if($merchant != null)
+			{
+				//发送推送通知 给商家
+				$pushMsg = new PushMsg($merchant->sn, "编号".$orderObj->sn."的订单已确认收货.");
+				$pushMsg->send();
+
+			}
+
+			$result['success'] = true;
 		}
 		
 		$json = str_replace("\\/", "/", CJSON::encode($result));
@@ -323,9 +334,20 @@ class OrderController extends Controller
 			$orderObj->status = 2;
 			$orderObj->readed = 1;
 			$orderObj->save();
-			$result['success'] = true;
 
+			$customer = User::model()->findByPk($orderObj->customer_id);
+			if($customer != null)
+			{
+				//发送推送通知 给客户
+				$pushMsg = new PushMsg($customer->sn, "编号".$orderObj->sn."的订单已确认收货.");
+				$pushMsg->send();
+
+			}
+
+			$result['success'] = true;
 		}
+
+		//发送推送通知
 		
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
