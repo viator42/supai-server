@@ -50,6 +50,7 @@ class UserController extends Controller
             $result['area'] = $user->area_id;
             $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
             $result['address'] = $user->address;
+            $result['sn'] = $user->sn;
 
             $result['success'] = true;
 
@@ -124,6 +125,7 @@ class UserController extends Controller
 		    $result['area'] = $user->area_id;
 		    $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
 		    $result['address'] = $user->address;
+		    $result['sn'] = $user->sn;
 
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
@@ -181,6 +183,7 @@ class UserController extends Controller
 			$result['longitude'] = $user->longitude;
 			$result['latitude'] = $user->latitude;
 			$result['area'] = $user->area_id;
+			$result['sn'] = $user->sn;
 
 			$result['success'] = true;
 
