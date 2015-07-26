@@ -309,8 +309,7 @@ class OrderController extends Controller
 			if($merchant != null)
 			{
 				//发送推送通知 给商家
-				$pushMsg = new PushMsg($merchant->sn, "编号".$orderObj->sn."的订单已确认收货.");
-				$pushMsg->send();
+				$result['msg'] = $this->sendMsg($merchant->sn, "编号的订单已确认收货.");
 
 			}
 
@@ -339,8 +338,7 @@ class OrderController extends Controller
 			if($customer != null)
 			{
 				//发送推送通知 给客户
-				$pushMsg = new PushMsg($customer->sn, "编号".$orderObj->sn."的订单已确认收货.");
-				$pushMsg->send();
+				$result['msg'] = $this->sendMsg($customer->sn, "编号的订单已确认收货.");
 
 			}
 
@@ -390,6 +388,35 @@ class OrderController extends Controller
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 
+	}
+
+	public function sendMsg($userSn, $msg)
+	{
+		$app_key = "d18febadd32dd84b1c3be46a";
+		$master_secret = "2cb6d42d425adff51ff31b5a";
+
+		$data = array();
+
+		$data["platform"] = array("android");
+		$data["audience"] = array("alias"=>array($userSn));
+		$data["notification"] = array("alert"=>$msg);
+
+		$json_string = CJSON::encode($data);
+		$auth_info = base64_encode($app_key.':'.$master_secret);
+
+		$ch=curl_init();
+		curl_setopt($ch, CURLOPT_URL, "https://api.jpush.cn/v3/push");
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //不验证证书下同
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json; charset=utf-8',
+                'Authorization: Basic '.$auth_info
+            )
+        );
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_string);
+
+        return  curl_exec($ch);
 	}
 
 	// Uncomment the following methods and override them if needed
