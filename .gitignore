@@ -4,3 +4,4 @@ supai/upload
 supai/protected/runtime/application.log
 supai/release
 .idea/
+forum/protected/runtime
