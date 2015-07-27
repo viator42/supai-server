@@ -282,6 +282,16 @@ class OrderController extends Controller
 		{
 			$orderObj->status = 5;
 			$orderObj->save();
+
+            $merchant = User::model()->findByPk($orderObj->merchant_id);
+            $customer = User::model()->findByPk($orderObj->customer_id);
+            if($merchant != null && $customer != null)
+            {
+                //发送推送通知
+                $result['msg'] = $this->sendMsg(array($merchant->sn, $customer->sn), "编号".$orderObj->sn."的订单已被取消.");
+
+            }
+
 			$result['success'] = true;
 
 		}
@@ -309,7 +319,7 @@ class OrderController extends Controller
 			if($merchant != null)
 			{
 				//发送推送通知 给商家
-				$result['msg'] = $this->sendMsg($merchant->sn, "编号的订单已确认收货.");
+				$result['msg'] = $this->sendMsg(array($merchant->sn), "编号".$orderObj->sn."的订单已确认收货.");
 
 			}
 
@@ -338,7 +348,7 @@ class OrderController extends Controller
 			if($customer != null)
 			{
 				//发送推送通知 给客户
-				$result['msg'] = $this->sendMsg($customer->sn, "编号的订单已确认收货.");
+				$result['msg'] = $this->sendMsg(array($customer->sn), "编号".$orderObj->sn."的订单已发货.");
 
 			}
 
@@ -390,7 +400,7 @@ class OrderController extends Controller
 
 	}
 
-	public function sendMsg($userSn, $msg)
+	public function sendMsg($userSnArray, $msg)
 	{
 		$app_key = "d18febadd32dd84b1c3be46a";
 		$master_secret = "2cb6d42d425adff51ff31b5a";
@@ -398,7 +408,7 @@ class OrderController extends Controller
 		$data = array();
 
 		$data["platform"] = array("android");
-		$data["audience"] = array("alias"=>array($userSn));
+		$data["audience"] = array("alias"=>$userSnArray);
 		$data["notification"] = array("alert"=>$msg);
 
 		$json_string = CJSON::encode($data);
