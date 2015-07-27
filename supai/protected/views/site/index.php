@@ -129,7 +129,7 @@
 
 <footer class="footer">
   <p>© 2015 济南速派信息技术有限公司
-  <br>鲁ICP备15023468号</p>
+  <br>鲁ICP备15023468号<br>Power by Yii Framework <? echo Yii::getVersion();?></p>
 </footer>
 
 <!--[if lt IE 9]>
