@@ -20,9 +20,9 @@
     <h1 class="am-topbar-brand">
       <a href="#">速派网上超市</a>
     </h1>
-    <!-- <div class="am-topbar-right">
-      <a href="weixin://contacts/profile/jnsupai" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">关注微信</a>
-    </div> -->
+    <div class="am-topbar-right">
+      <a href="http://forum.supai.in/" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">论坛</a>
+    </div>
   </div>
 </header>
 
@@ -111,6 +111,13 @@
     </div> -->
 
     <div class="am-u-lg-12">
+        <a data-am-modal="{target: '#supai-versions'}">
+            <h2>版本履历</h2>
+        </a>
+
+    </div>
+
+    <div class="am-u-lg-12">
       <h2>关于我们</h2>
       济南速派信息技术有限公司是一家专注于移动应用开发的IT公司.主要产品方向是为超市,个体经营业主提供零售解决方案.
     </div>
@@ -129,7 +136,7 @@
 
 <footer class="footer">
   <p>© 2015 济南速派信息技术有限公司
-  <br>鲁ICP备15023468号</p>
+  <br>鲁ICP备15023468号<br>Power by Yii Framework <? echo Yii::getVersion();?></p>
 </footer>
 
 <!--[if lt IE 9]>
@@ -169,7 +176,7 @@
 <div class="am-popup" id="supai-ts-3">
   <div class="am-popup-inner">
     <div class="am-popup-hd">
-      <h4 class="am-popup-title">免费上网功能/h4>
+      <h4 class="am-popup-title">免费上网功能</h4>
       <span data-am-modal-close
             class="am-close">&times;</span>
     </div>
@@ -179,7 +186,45 @@
   </div>
 </div>
 
+<div class="am-popup" id="supai-versions">
+    <div class="am-popup-inner">
+        <div class="am-popup-hd">
+            <h4 class="am-popup-title">版本履历</h4>
+      <span data-am-modal-close
+            class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+            <ul class="am-list">
+                <li>
+                    V1.0<br>
+                    <ul>
+                        <li>速派网上超市上线运行</li>
+                    </ul>
 
+                </li>
+                <li>
+                    V1.1<br>
+                    <ul>
+                        <li>提升了应用的加载速度和稳定性</li>
+                        <li>修复了在部分设备上的崩溃问题</li>
+                        <li>UI兼容性调整,适应国内的主流手机系统</li>
+
+                    </ul>
+
+                </li>
+                <li>
+                    V1.2<br>
+                    <ul>
+                        <li>账号申诉功能上线,手机更换或丢失可以立即更换绑定</li>
+                        <li>添加订单通知功能</li>
+
+                    </ul>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/amazeui/js/jquery.min.js"></script>
