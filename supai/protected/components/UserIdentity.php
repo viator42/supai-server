@@ -24,7 +24,23 @@ class UserIdentity extends CUserIdentity
 
 		if($user)
 		{
-            if($user->password === md5($this->password))
+			if($user->password == null || $user->password =='')
+			{
+				//密码为空则更新密码.
+				if($user->imie = $this->password)
+				{
+					$user->password = md5($this->password);
+					$user->lastlogin_time = time();
+					$user->save();
+				}
+				else
+				{
+					$this->errorCode=self::ERROR_PASSWORD_INVALID;
+
+				}
+				
+			}
+            elseif($user->password === md5($this->password))
             {
             	$user->lastlogin_time = time();
 				$user->save();

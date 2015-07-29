@@ -25,9 +25,13 @@ class UserController extends Controller
 
 
 	//登录
+	// 	ERROR_NONE=0;
+	// ERROR_USERNAME_INVALID = 1;
+	// ERROR_PASSWORD_INVALID = 2;
+	// ERROR_UNKNOWN_IDENTITY = 100;       // the default
 	public function actionLogin()
 	{
-		$result = array('success'=>false);
+		$result = array('success'=>false, 'errorCode'=>0);
 
 		$username = $_POST['tel'];
 		$password = $_POST['password'];
@@ -46,6 +50,7 @@ class UserController extends Controller
             $result['area'] = $user->area_id;
             $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
             $result['address'] = $user->address;
+            $result['sn'] = $user->sn;
 
             $result['success'] = true;
 
@@ -53,6 +58,8 @@ class UserController extends Controller
         else
         {
             $result['success'] = false;
+            $result['errorCode'] = $_identity->errorCode;
+
 
         }
 
@@ -118,6 +125,7 @@ class UserController extends Controller
 		    $result['area'] = $user->area_id;
 		    $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
 		    $result['address'] = $user->address;
+		    $result['sn'] = $user->sn;
 
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
@@ -133,20 +141,18 @@ class UserController extends Controller
 		$result = array('success'=>false);
 
 		$id = $_POST['id'];
-		$name = $_POST['name'];
-		// $tel = $_POST['tel'];
-		$address = $_POST['address'];
-		$icon = $_POST['icon'];
-		$area = $_POST['area'];
 
 		$user = User::model()->findByPk($id);
 		if($user != null)
 		{
-			$user->name = $name;
-			// $user->tel = $tel;
-			$user->address = $address;
-			$user->icon = $icon;
-			$user->area_id = $area;
+			$user->name = $_POST['name'];
+			$user->address = $_POST['address'];
+            if(isset($_POST['icon']) && $_POST['icon'] != null)
+            {
+                $user->icon = $_POST['icon'];
+
+            }
+			$user->area_id = $_POST['area'];
 			$user->save();
 
 			$result['success'] = true;
@@ -175,6 +181,7 @@ class UserController extends Controller
 			$result['longitude'] = $user->longitude;
 			$result['latitude'] = $user->latitude;
 			$result['area'] = $user->area_id;
+			$result['sn'] = $user->sn;
 
 			$result['success'] = true;
 
@@ -231,6 +238,53 @@ class UserController extends Controller
         echo $json;
 	}
 
+	//用户反馈
+	public function actionRef()
+	{
+		$result = array('success'=>false);
+
+		if (isset($_POST['userid']))
+		{
+			$userid = $_POST['userid'];
+
+			$ref = new Ref();
+
+			$ref->user_id = $userid;
+			$ref->content = $_POST['content'];
+			$ref->type = 1;
+			$ref->create_time = time();
+			$ref->parent_id = 0;
+
+			$ref->save();
+			$result['success'] = true;
+		}
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
+
+	//用户反馈
+	public function actionAppeal()
+	{
+		$result = array('success'=>false);
+
+		$appeal = new UserAppeal();
+
+		$appeal->old_tel = $_POST['oldTel'];
+		$appeal->new_tel = $_POST['newTel'];
+		$appeal->name = $_POST['name'];
+		$appeal->address = $_POST['address'];
+		$appeal->imie = $_POST['imie'];
+		$appeal->area_id = 0;
+		$appeal->type = 1;
+		$appeal->create_time = time();
+
+		$appeal->save();
+		$result['success'] = true;
+
+		$json = CJSON::encode($result);
+        echo $json;
+	}
 	/*
 	public function actionDestroy()
 	{

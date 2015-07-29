@@ -142,7 +142,7 @@ class StoreController extends Controller
 		$page = $_POST['page'];
 		$limit = (int)$_POST['limit'];	//每页的个数
 
-		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0 limit :offset, :limit', array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0 order by id desc limit :offset, :limit', array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
 		foreach ($productObjs as $productObj) 
 		{
 			$product = array();
@@ -221,6 +221,14 @@ class StoreController extends Controller
 			$store['latitude'] = $storeObj->latitude;
 			$store['description'] = $storeObj->description;
 			$store['address'] = $storeObj->address;
+
+			//收藏状态
+			$store['favourite'] = 0;
+			$storeCollectObj = StoreCollect::model()->find('store_id=:store_id and user_id=:user_id', array(':store_id'=>$storeObj->id, ':user_id'=>$userid));
+			if($storeCollectObj != null)
+			{
+				$store['favourite'] = 1;
+			}
 
 			//查询同一area内的所有店铺并忽略自己的店铺
 			if($storeObj->status == 1 && $userid != $storeObj->user_id && $storeObj->area_id == $user->area_id)
