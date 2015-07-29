@@ -81,7 +81,7 @@ class UserController extends Controller
 		$area = $_POST['area'];
 
 		//手机号码格式正则查询
-		if(!preg_match("/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$/",$tel))
+		if(!preg_match("/^1[35789]{1}[0-9]{9}$/",$tel))
 		{
 			$result['msg'] = "请输入正确的手机号";
 		}
@@ -141,20 +141,18 @@ class UserController extends Controller
 		$result = array('success'=>false);
 
 		$id = $_POST['id'];
-		$name = $_POST['name'];
-		// $tel = $_POST['tel'];
-		$address = $_POST['address'];
-		$icon = $_POST['icon'];
-		$area = $_POST['area'];
 
 		$user = User::model()->findByPk($id);
 		if($user != null)
 		{
-			$user->name = $name;
-			// $user->tel = $tel;
-			$user->address = $address;
-			$user->icon = $icon;
-			$user->area_id = $area;
+			$user->name = $_POST['name'];
+			$user->address = $_POST['address'];
+            if(isset($_POST['icon']) && $_POST['icon'] != null)
+            {
+                $user->icon = $_POST['icon'];
+
+            }
+			$user->area_id = $_POST['area'];
 			$user->save();
 
 			$result['success'] = true;
