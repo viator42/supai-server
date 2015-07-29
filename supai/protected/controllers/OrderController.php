@@ -288,7 +288,7 @@ class OrderController extends Controller
             if($merchant != null && $customer != null)
             {
                 //发送推送通知
-                $result['msg'] = $this->sendMsg(array($merchant->sn, $customer->sn), "编号".$orderObj->sn."的订单已被取消.");
+                $result['msg'] = $this->sendMsg(array($merchant->sn, $customer->sn), "您好,编号 ".$orderObj->sn." 的订单已被取消.");
 
             }
 
@@ -319,7 +319,7 @@ class OrderController extends Controller
 			if($merchant != null)
 			{
 				//发送推送通知 给商家
-				$result['msg'] = $this->sendMsg(array($merchant->sn), "编号".$orderObj->sn."的订单已确认收货.");
+				$result['msg'] = $this->sendMsg(array($merchant->sn), "您好,编号 ".$orderObj->sn." 的订单已确认收货.");
 
 			}
 
@@ -348,7 +348,7 @@ class OrderController extends Controller
 			if($customer != null)
 			{
 				//发送推送通知 给客户
-				$result['msg'] = $this->sendMsg(array($customer->sn), "编号".$orderObj->sn."的订单已发货.");
+				$result['msg'] = $this->sendMsg(array($customer->sn), "您好,编号 ".$orderObj->sn." 的订单已发货.");
 
 			}
 
