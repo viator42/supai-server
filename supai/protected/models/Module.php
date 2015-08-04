@@ -11,6 +11,7 @@
  * @property integer $finish_time
  * @property integer $order_time
  * @property string $price
+ * @property integer $status
  */
 class Module extends CActiveRecord
 {
@@ -31,11 +32,11 @@ class Module extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('start_time, finish_time, order_time', 'required'),
-			array('user_id, category_id, start_time, finish_time, order_time', 'numerical', 'integerOnly'=>true),
+			array('user_id, category_id, start_time, finish_time, order_time, status', 'numerical', 'integerOnly'=>true),
 			array('price', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, category_id, start_time, finish_time, order_time, price', 'safe', 'on'=>'search'),
+			array('id, user_id, category_id, start_time, finish_time, order_time, price, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +64,7 @@ class Module extends CActiveRecord
 			'finish_time' => 'Finish Time',
 			'order_time' => 'Order Time',
 			'price' => 'Price',
+			'status' => 'Status',
 		);
 	}
 
@@ -91,6 +93,7 @@ class Module extends CActiveRecord
 		$criteria->compare('finish_time',$this->finish_time);
 		$criteria->compare('order_time',$this->order_time);
 		$criteria->compare('price',$this->price,true);
+		$criteria->compare('status',$this->status);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -8,6 +8,7 @@
  * @property string $name
  * @property string $description
  * @property string $price
+ * @property string $code
  */
 class ModuleCategory extends CActiveRecord
 {
@@ -27,13 +28,13 @@ class ModuleCategory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>45),
+			array('name, code', 'required'),
+			array('name, code', 'length', 'max'=>45),
 			array('price', 'length', 'max'=>10),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description, price', 'safe', 'on'=>'search'),
+			array('id, name, description, price, code', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +59,7 @@ class ModuleCategory extends CActiveRecord
 			'name' => 'Name',
 			'description' => 'Description',
 			'price' => 'Price',
+			'code' => 'Code',
 		);
 	}
 
@@ -83,6 +85,7 @@ class ModuleCategory extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('price',$this->price,true);
+		$criteria->compare('code',$this->code,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
