@@ -137,6 +137,7 @@ class OrderController extends Controller
 				$order['tel'] = $user->tel;
 				$order['longitude'] = $user->longitude;
 				$order['latitude'] = $user->latitude;
+                $order['address'] = $user->address;
 
 				//商店信息
 				$order['storeName'] = $store->name;
@@ -182,6 +183,7 @@ class OrderController extends Controller
 				$order['tel'] = $user->tel;
 				$order['longitude'] = $user->longitude;
 				$order['latitude'] = $user->latitude;
+                $order['address'] = $user->address;
 
 				//商店信息
 				$order['storeName'] = $store->name;
