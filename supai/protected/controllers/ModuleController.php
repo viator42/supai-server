@@ -43,6 +43,8 @@ class ModuleController extends Controller
                 $module['name'] = $moduleCategoryObj->name;
                 $module['start_time'] = $moduleObj->start_time;
                 $module['finish_time'] = $moduleObj->finish_time;
+                $module['price'] = $moduleObj->price;
+                $module['status'] = $moduleObj->status;
 
                 $current_time = time();
                 if($current_time > $moduleObj->start_time && $current_time > $moduleObj->finish_time)
