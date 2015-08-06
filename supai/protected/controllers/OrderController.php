@@ -121,35 +121,11 @@ class OrderController extends Controller
 		}
 		foreach ($orderObjs as $orderObj) 
 		{
-			$user = User::model()->findByPk($orderObj->merchant_id);
-			$store = Store::model()->findByPk($orderObj->store_id);
-			if($user != null && $store != null)
-			{
-				$order = array();
-
-				$order['id'] = $orderObj->id;
-				$order['sn'] = $orderObj->sn;
-				$order['merchantId'] = $orderObj->merchant_id;
-				$order['storeId'] = $orderObj->store_id;
-
-				//商家信息
-				$order['name'] = $user->name;
-				$order['tel'] = $user->tel;
-				$order['longitude'] = $user->longitude;
-				$order['latitude'] = $user->latitude;
-                $order['address'] = $user->address;
-
-				//商店信息
-				$order['storeName'] = $store->name;
-
-				$order['createTime'] = $orderObj->create_time;
-				$order['summary'] = $orderObj->summary;
-				$order['status'] = $orderObj->status;
-				$order['additional'] = $orderObj->additional;
-				$order['readed'] = $orderObj->readed;
-				
-				$forCustomer[] = $order;
-			}
+            $order = $this->getOrderInfo($orderObj);
+            if($order != null)
+            {
+                $forCustomer[] = $order;
+            }
 
 		}
 
@@ -166,36 +142,11 @@ class OrderController extends Controller
 
 		foreach ($orderObjs as $orderObj) 
 		{
-			$user = User::model()->findByPk($orderObj->customer_id);
-			$store = Store::model()->findByPk($orderObj->store_id);
-
-			if($store != null && $user != null)
-			{
-				$order = array();
-
-				$order['id'] = $orderObj->id;
-				$order['sn'] = $orderObj->sn;
-				$order['merchantId'] = $orderObj->merchant_id;
-				$order['storeId'] = $orderObj->store_id;
-
-				//客户信息
-				$order['name'] = $user->name;
-				$order['tel'] = $user->tel;
-				$order['longitude'] = $user->longitude;
-				$order['latitude'] = $user->latitude;
-                $order['address'] = $user->address;
-
-				//商店信息
-				$order['storeName'] = $store->name;
-
-				$order['createTime'] = $orderObj->create_time;
-				$order['summary'] = $orderObj->summary;
-				$order['status'] = $orderObj->status;
-				$order['additional'] = $orderObj->additional;
-				$order['readed'] = $orderObj->readed;
-				
-				$forMerchant[] = $order;
-			}
+            $order = $this->getOrderInfo($orderObj);
+            if($order != null)
+            {
+                $forMerchant[] = $order;
+            }
 		}
 
 		$result['merchantList'] = $forMerchant;
@@ -208,65 +159,68 @@ class OrderController extends Controller
 	//查询订单详情 商品列表
 	public function actionDetail()
 	{
-		$result = array();
+        $result = array('success'=>false);
 
 		$orderId = $_POST['orderId'];
 
 		//查询订单信息
 		$orderObj = Order::model()->findByPk($orderId);
-		$result['id'] = $orderObj->id;
-		$result['sn'] = $orderObj->sn;
-		$result['create_time'] = $orderObj->create_time;
-		$result['store_id'] = $orddetailerObj->store_id;
-		$store = Store::model()->findByPk($orderObj->store_id);
-		$result['store_name'] = $store->name;
+        $orderResult = $this->getOrderInfo($orderObj);
 
-		$result['status'] = $orderObj->status;
+        if($orderResult != null)
+        {
+            $result = $orderResult;
 
-		//商品列表
-		$orderDetailList = array();
+            //商品列表
+            $orderDetailList = array();
 
-		$orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderId));
-		foreach ($orderDetailObjs as $orderDetailObj) 
-		{
-			$detail = array();
-			$detail['id'] = $orderDetailObj->id;
-			$detail['productId'] = $orderDetailObj->product_id;
-			$detail['count'] = $orderDetailObj->count;
-			$detail['price'] = $orderDetailObj->price;
+            $orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderId));
+            foreach ($orderDetailObjs as $orderDetailObj)
+            {
+                $detail = array();
+                $detail['id'] = $orderDetailObj->id;
+                $detail['productId'] = $orderDetailObj->product_id;
+                $detail['count'] = $orderDetailObj->count;
+                $detail['price'] = $orderDetailObj->price;
 
-			//获取订单产品信息
-			$product = Product::model()->findByPk($orderDetailObj->product_id);
-			$goods = Goods::model()->findByPk($product->goods_id);
-			
-			if($product != null)
-			{
-				//产品图片
-				$img = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$product->id));
-				$detail['image'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
-				$detail['name'] = $product->alias;
-				if($goods != null)
-				{
-					$detail['goodsDescription'] = $goods->description;
-					$detail['rccode'] = $goods->barcode;
-					$detail['origin'] = $goods->origin;
-				}
-				else
-				{
-					$detail['goodsDescription'] = $product->description;
-					$detail['rccode'] = '';
-					$detail['origin'] = '';
+                //获取订单产品信息
+                $product = Product::model()->findByPk($orderDetailObj->product_id);
+                $goods = Goods::model()->findByPk($product->goods_id);
 
-				}
-				
-			}
+                if($product != null)
+                {
+                    //产品图片
+                    $img = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$product->id));
+                    $detail['image'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
+                    $detail['name'] = $product->alias;
+                    if($goods != null)
+                    {
+                        $detail['goodsDescription'] = $goods->description;
+                        $detail['rccode'] = $goods->barcode;
+                        $detail['origin'] = $goods->origin;
+                    }
+                    else
+                    {
+                        $detail['goodsDescription'] = $product->description;
+                        $detail['rccode'] = '';
+                        $detail['origin'] = '';
 
-			$orderDetailList[] = $detail;
+                    }
 
-		}
-		$result['orderDetailList'] = $orderDetailList;
+                }
 
-		$result['success'] = true;
+                $orderDetailList[] = $detail;
+
+            }
+            $result['orderDetailList'] = $orderDetailList;
+
+            $result['success'] = true;
+        }
+        else
+        {
+            $result['success'] = false;
+
+        }
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
@@ -406,6 +360,51 @@ class OrderController extends Controller
         echo $json;
 
 	}
+
+    //获取订单信息
+    private function getOrderInfo($orderObj)
+    {
+        $order = array();
+
+        $customer = User::model()->findByPk($orderObj->customer_id);
+        $merchant = User::model()->findByPk($orderObj->merchant_id);
+        $store = Store::model()->findByPk($orderObj->store_id);
+        if($customer != null && $merchant != null && $store != null)
+        {
+            //订单信息
+            $order['id'] = $orderObj->id;
+            $order['sn'] = $orderObj->sn;
+            $order['merchantId'] = $orderObj->merchant_id;
+            $order['customerId'] = $orderObj->customer_id;
+            $order['createTime'] = $orderObj->create_time;
+            $order['summary'] = $orderObj->summary;
+            $order['status'] = $orderObj->status;
+            $order['additional'] = $orderObj->additional;
+            $order['readed'] = $orderObj->readed;
+            //商店信息
+            $order['storeId'] = $orderObj->store_id;
+            $order['storeName'] = $store->name;
+            $order['storeAddress'] = $store->address;
+            //用户信息
+            $order['customerName'] = $customer->name;
+            $order['merchantName'] = $merchant->name;
+            $order['customerTel'] = $customer->tel;
+            $order['merchantTel'] = $merchant->tel;
+            $order['customerAddress'] = $customer->address;
+            $order['merchantAddress'] = $merchant->address;
+            $order['customerLongitude'] = $customer->longitude;
+            $order['customerLatitude'] = $customer->latitude;
+            $order['merchantLongitude'] = $merchant->longitude;
+            $order['merchantLatitude'] = $merchant->latitude;
+
+            return $order;
+        }
+        else
+        {
+            return null;
+        }
+
+    }
 
 	// Uncomment the following methods and override them if needed
 	/*
