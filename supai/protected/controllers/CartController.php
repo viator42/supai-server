@@ -271,6 +271,14 @@ class CartController extends Controller
             return;
         }
 
+        $customer = User::model()->findByPk($cart->user_id);
+        $merchant = User::model()->findByPk($store->user_id);
+        if($customer == null || $merchant == null)
+        {
+            echo CJSON::encode($result);
+            return;
+        }
+
         $order = new Order();
         $order->create_time = time();
         $order->customer_id = $cart->user_id;
@@ -304,6 +312,12 @@ class CartController extends Controller
         $order->save();
 
         $result['success'] = true;
+
+        //发送推送通知 给商家
+        $extras = array("order_id"=>$order->id);
+        $extras['type'] = "NEW_ORDER";
+
+        $result['msg'] = sendMsg(array($merchant->sn), "新订单,编号 ".$order->sn, $extras);
 
         $json = CJSON::encode($result);
         echo $json;

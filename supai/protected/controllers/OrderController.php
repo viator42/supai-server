@@ -217,7 +217,7 @@ class OrderController extends Controller
 		$result['id'] = $orderObj->id;
 		$result['sn'] = $orderObj->sn;
 		$result['create_time'] = $orderObj->create_time;
-		$result['store_id'] = $orderObj->store_id;
+		$result['store_id'] = $orddetailerObj->store_id;
 		$store = Store::model()->findByPk($orderObj->store_id);
 		$result['store_name'] = $store->name;
 
@@ -290,7 +290,9 @@ class OrderController extends Controller
             if($merchant != null && $customer != null)
             {
                 //发送推送通知
-                $result['msg'] = $this->sendMsg(array($merchant->sn, $customer->sn), "您好,编号 ".$orderObj->sn." 的订单已被取消.");
+                $extras = array("order_id"=>$orderObj->id);
+                $extras['type'] = "CANCEL_ORDER";
+                $result['msg'] = sendMsg(array($merchant->sn, $customer->sn), "您好,编号 ".$orderObj->sn." 的订单已被取消.", $extras);
 
             }
 
@@ -321,7 +323,9 @@ class OrderController extends Controller
 			if($merchant != null)
 			{
 				//发送推送通知 给商家
-				$result['msg'] = $this->sendMsg(array($merchant->sn), "您好,编号 ".$orderObj->sn." 的订单已确认收货.");
+                $extras = array("order_id"=>$orderObj->id);
+                $extras['type'] = "DELIVERED_ORDER";
+				$result['msg'] = $this->sendMsg(array($merchant->sn), "您好,编号 ".$orderObj->sn." 的订单已确认收货.", $extras);
 
 			}
 
@@ -350,14 +354,15 @@ class OrderController extends Controller
 			if($customer != null)
 			{
 				//发送推送通知 给客户
-				$result['msg'] = $this->sendMsg(array($customer->sn), "您好,编号 ".$orderObj->sn." 的订单已发货.");
+                $extras = array("order_id"=>$orderObj->id);
+                $extras['type'] = "CONFIRMED_ORDER";
+
+				$result['msg'] = sendMsg(array($customer->sn), "您好,编号 ".$orderObj->sn." 的订单已发货.", $extras);
 
 			}
 
 			$result['success'] = true;
 		}
-
-		//发送推送通知
 		
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
@@ -400,35 +405,6 @@ class OrderController extends Controller
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 
-	}
-
-	public function sendMsg($userSnArray, $msg)
-	{
-		$app_key = "d18febadd32dd84b1c3be46a";
-		$master_secret = "2cb6d42d425adff51ff31b5a";
-
-		$data = array();
-
-		$data["platform"] = array("android");
-		$data["audience"] = array("alias"=>$userSnArray);
-		$data["notification"] = array("alert"=>$msg);
-
-		$json_string = CJSON::encode($data);
-		$auth_info = base64_encode($app_key.':'.$master_secret);
-
-		$ch=curl_init();
-		curl_setopt($ch, CURLOPT_URL, "https://api.jpush.cn/v3/push");
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //不验证证书下同
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json; charset=utf-8',
-                'Authorization: Basic '.$auth_info
-            )
-        );
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_string);
-
-        return  curl_exec($ch);
 	}
 
 	// Uncomment the following methods and override them if needed
