@@ -249,6 +249,8 @@ class CartController extends Controller
         $result = array('success'=>false);
 
         $id = $_POST['id'];
+        $address = $_POST['address'];
+        $additional = $_POST['additional'];
 
         $cart = Cart::model()->findByPk($id);
         if($cart == null)
@@ -286,6 +288,12 @@ class CartController extends Controller
         $order->store_id = $cart->store_id;
         $order->status = 1;
         $order->sn = date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
+        $order->address = $address;
+        if($additional != null)
+        {
+            $order->additional = $additional;
+        }
+
         $order->save();
         
         $summary = 0;//总价

@@ -384,7 +384,7 @@ class OrderController extends Controller
             //商店信息
             $order['storeId'] = $orderObj->store_id;
             $order['storeName'] = $store->name;
-            $order['storeAddress'] = $store->address;
+            $order['storeAddress'] = $orderObj->address;
             //用户信息
             $order['customerName'] = $customer->name;
             $order['merchantName'] = $merchant->name;
