@@ -255,15 +255,37 @@ class CartController extends Controller
         $cart = Cart::model()->findByPk($id);
         if($cart == null)
         {
+            $result['msg'] = "购物车未找到";
             echo CJSON::encode($result);
             return;
         }
 
+        //店铺未找到或者已关店
         $store = Store::model()->findByPk($cart->store_id);
         if($store == null)
         {
+            $result['msg'] = "店铺未找到";
             echo CJSON::encode($result);
             return;
+        }
+        if($store->status != 1)
+        {
+            $result['msg'] = "店铺已关闭,生成订单失败.";
+            echo CJSON::encode($result);
+            return;
+        }
+
+        //用户是否被屏蔽
+        $follower = Follower::model()->find('customer_id=:customer_id and store_id=:store_id',
+            array(':customer_id'=>$cart->user_id, ':store_id'=>$cart->store_id));
+        if($follower != null)
+        {
+            if($follower->status == 2)
+            {
+                $result['msg'] = "您已被该店铺屏蔽,生成订单失败.";
+                echo CJSON::encode($result);
+                return;
+            }
         }
 
         $cartDetails = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cart->id));

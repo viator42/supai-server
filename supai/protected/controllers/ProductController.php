@@ -162,6 +162,7 @@ class ProductController extends Controller
 
 		$product = new Product();
 		$product->alias = $_POST['alias'];
+        $product->description = $_POST['additional'];
 		$product->goods_id = $goods->id;
 		$product->price = $_POST['price'];
 		$product->store_id = $_POST['storeId'];

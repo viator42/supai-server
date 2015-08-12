@@ -349,6 +349,69 @@ class StoreController extends Controller
         echo $json;
 	}
 
+    //店铺关注者
+    public function actionFollower()
+    {
+        $result = array();
+
+        $storeId = $_POST['storeid'];
+
+        $followerObjs = Follower::model()->findAll('store_id=:store_id', array(':store_id'=>$storeId));
+        foreach($followerObjs as $followerObj)
+        {
+            $follower = array();
+            $customer = User::model()->findByPk($followerObj->customer_id);
+            if($customer != null)
+            {
+                $follower['id'] = $followerObj->id;
+                $follower['name'] = $customer->name;
+                $follower['tel'] = $customer->tel;
+                $follower['address'] = $customer->address;
+                $follower['icon'] = $customer->icon;
+                $follower['sn'] = $customer->sn;
+
+                $follower['followTime'] = $followerObj->follow_time;
+                $follower['status'] = $followerObj->status;
+
+                $result[] = $follower;
+            }
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //屏蔽用户
+    public function actionBlockCustomer()
+    {
+        $result = array('success'=>false);
+
+        $id = $_POST['id'];
+        $status = $_POST['status'];
+
+        $follower = Follower::model()->findByPk($id);
+
+        if($follower != null)
+        {
+            switch($status)
+            {
+                case 1:
+                    $status = 2;
+                    break;
+                case 2:
+                    $status = 1;
+                    break;
+            }
+
+            $follower->status = $status;
+            $follower->save();
+
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
 	/*
 	public function actionStoreProducts()
 	{
