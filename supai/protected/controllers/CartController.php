@@ -347,7 +347,7 @@ class CartController extends Controller
         $extras = array("order_id"=>$order->id);
         $extras['type'] = "NEW_ORDER";
 
-        $result['msg'] = sendMsg(array($merchant->sn), "新订单,编号 ".$order->sn, $extras);
+        $result['msg'] = sendMsg(array($merchant->sn), "您有一条来自".$customer->name."的订单,点击查看", $extras);
 
         $json = CJSON::encode($result);
         echo $json;
