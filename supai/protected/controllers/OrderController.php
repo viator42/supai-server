@@ -308,6 +308,19 @@ class OrderController extends Controller
                 $productCollect->save();
             }
 
+            //用户添加到店铺的follower列表
+            $followerObj = Follower::model()->find('customer_id=:customer_id, store_id=:store_id',
+                array(':customer_id'=>$orderObj->customer_id, ':store_id'=>$orderObj->store_id));
+            if($followerObj == null)
+            {
+                $followerObj = new Follower();
+
+                $followerObj->customer_id = $orderObj->customer_id;
+                $followerObj->store_id = $orderObj->store_id;
+
+                $followerObj->save();
+            }
+
 			$result['success'] = true;
 		}
 		
