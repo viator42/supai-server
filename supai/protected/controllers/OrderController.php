@@ -283,6 +283,31 @@ class OrderController extends Controller
 
 			}
 
+            //收藏购买的店铺和订单的商品.
+            $storeCollectObj = StoreCollect::model()->find('user_id=:user_id and store_id=:store_id',
+                array(':user_id'=>$orderObj->customer_id, ':store_id'=>$orderObj->store_id));
+            if($storeCollectObj == null)
+            {
+                $storeCollectObj = new StoreCollect();
+                $storeCollectObj->user_id = $orderObj->customer_id;
+                $storeCollectObj->store_id = $orderObj->store_id;
+
+                $storeCollectObj->save();
+            }
+
+            //遍历收藏购买订单的商品
+            $orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderId));
+            foreach ($orderDetailObjs as $orderDetailObj)
+            {
+                $productCollect = new ProductCollect();
+
+                $productCollect->product_id = $orderDetailObj->product_id;
+                $productCollect->store_collect_id = $storeCollectObj->id;
+                $productCollect->user_id = $orderObj->customer_id;
+
+                $productCollect->save();
+            }
+
 			$result['success'] = true;
 		}
 		
