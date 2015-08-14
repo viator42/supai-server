@@ -515,21 +515,20 @@ class ProductController extends Controller
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
-
+    /*
 	//多商品添加
-	/*
 	public function actionMultiAdd()
 	{
 		$result = array('success'=>false);
 
-		for ($i = 1; $i <= 1000; $i++) 
+		for ($i = 1; $i <= 10000; $i++)
 		{
 			$product = new Product();
 
 		  	$product->goods_id = 0;
 
-			$product->alias = "测试商品";
-			$product->description = "测试商品描述";
+			$product->alias = "测试商品_".$i;
+			$product->description = "测试商品描述_".$i;
 			$product->price = 123;
 			$product->store_id = 1;
 			$product->status = 1;
@@ -551,7 +550,7 @@ class ProductController extends Controller
         echo $json;
 
 	}
-	*/
+    */
 
 	// Uncomment the following methods and override them if needed
 	/*
