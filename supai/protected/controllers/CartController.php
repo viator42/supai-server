@@ -66,12 +66,12 @@ class CartController extends Controller
                     $image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$detailObj->product_id));
                     if($image != null)
                     {
-                        $detail['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+                        $detail['img'] = $image->url;
                     }
                     else
                     {
                         //加载默认图片
-                        $product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+                        $product['img'] = "/images/product_default.jpg";
                     }
                     
                     $count += $detailObj->count;

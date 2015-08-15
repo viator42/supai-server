@@ -191,7 +191,7 @@ class OrderController extends Controller
                 {
                     //产品图片
                     $img = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$product->id));
-                    $detail['image'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
+                    $detail['image'] = $img->url;
                     $detail['name'] = $product->alias;
                     if($goods != null)
                     {

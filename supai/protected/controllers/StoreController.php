@@ -68,7 +68,7 @@ class StoreController extends Controller
 			$result['area_id'] = $store->area_id;
 			$result['sn'] = $store->sn;
 
-			$result['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$store->logo;
+			$result['logo'] = $store->logo;
 
 			$result['success'] = true;
 		}
@@ -94,7 +94,7 @@ class StoreController extends Controller
 			$data['description'] = $storeObj->description;
 			$data['address'] = $storeObj->address;
 			$data['area_id'] = $storeObj->area_id;
-			$data['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$storeObj->logo;
+			$data['logo'] = $storeObj->logo;
 			$data['user_id'] = $storeObj->user_id;
 			$data['favourite'] = 2;
 			$data['longitude'] = $storeObj->longitude;
@@ -182,11 +182,11 @@ class StoreController extends Controller
 			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
 			if($img != null)
 			{
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
+				$product['img'] = $img->url;
 			}
 			else
 			{
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+				$product['img'] = "/images/product_default.jpg";
 			}
 
 			$result[] = $product;
@@ -213,7 +213,7 @@ class StoreController extends Controller
 			$store = array();
 
 			$store['id'] = $storeObj->id;
-			$store['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$storeObj->logo;
+			$store['logo'] = $storeObj->logo;
 			$store['name'] = $storeObj->name;
 			$store['user_id'] = $storeObj->user_id;
 			$store['area'] = $storeObj->area_id;

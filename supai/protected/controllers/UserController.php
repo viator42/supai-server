@@ -48,7 +48,7 @@ class UserController extends Controller
             $result['username'] = $user->username;
             $result['tel'] = $user->tel;
             $result['area'] = $user->area_id;
-            $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
+            $result['icon'] = $user->icon;
             $result['address'] = $user->address;
             $result['sn'] = $user->sn;
 
@@ -123,7 +123,7 @@ class UserController extends Controller
 		    $result['username'] = $user->username;
 		    $result['tel'] = $user->tel;
 		    $result['area'] = $user->area_id;
-		    $result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
+		    $result['icon'] = $user->icon;
 		    $result['address'] = $user->address;
 		    $result['sn'] = $user->sn;
 
@@ -175,7 +175,7 @@ class UserController extends Controller
 			$result['username'] = $user->username;
 			$result['id'] = $user->id;
 			$result['tel'] = $user->tel;
-			$result['icon'] = 'http://'.$_SERVER['SERVER_NAME'].$user->icon;
+			$result['icon'] = $user->icon;
 			$result['name'] = $user->name;
 			$result['address'] = $user->address;
 			$result['longitude'] = $user->longitude;

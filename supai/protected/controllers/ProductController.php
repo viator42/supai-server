@@ -43,7 +43,7 @@ class ProductController extends Controller
 				$recentBought['id'] = $product->id;
 				$recentBought['name'] = $goods->name;
 				$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$product->id));
-				$recentBought['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
+				$recentBought['img'] = $img->url;
 			}
 
 
@@ -112,12 +112,12 @@ class ProductController extends Controller
 			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
 			if($image != null)
 			{
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+				$product['img'] = $image->url;
 			}
 			else
 			{
 				//加载默认图片
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+				$product['img'] = "/images/product_default.jpg";
 			}
 
 			$result['data'] = $product;
@@ -286,12 +286,12 @@ class ProductController extends Controller
 					$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
 					if($image != null)
 					{
-						$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+						$product['img'] = $image->url;
 					}
 					else
 					{
 						//加载默认图片
-						$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+						$product['img'] = "/images/product_default.jpg";
 					}
 					$product['favourite'] = 0;
 					$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
@@ -494,12 +494,12 @@ class ProductController extends Controller
 			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
 			if($image != null)
 			{
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+				$product['img'] = $image->url;
 			}
 			else
 			{
 				//加载默认图片
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+				$product['img'] = "/images/product_default.jpg";
 			}
 			$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
 			$product['favourite'] = 0;
