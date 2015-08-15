@@ -66,12 +66,12 @@ class CartController extends Controller
                     $image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$detailObj->product_id));
                     if($image != null)
                     {
-                        $detail['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+                        $detail['img'] = $image->url;
                     }
                     else
                     {
                         //加载默认图片
-                        $product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+                        $product['img'] = "/images/product_default.jpg";
                     }
                     
                     $count += $detailObj->count;
@@ -249,23 +249,55 @@ class CartController extends Controller
         $result = array('success'=>false);
 
         $id = $_POST['id'];
+        $address = $_POST['address'];
+        $additional = $_POST['additional'];
 
         $cart = Cart::model()->findByPk($id);
         if($cart == null)
         {
+            $result['msg'] = "购物车未找到";
             echo CJSON::encode($result);
             return;
         }
 
+        //店铺未找到或者已关店
         $store = Store::model()->findByPk($cart->store_id);
         if($store == null)
+        {
+            $result['msg'] = "店铺未找到";
+            echo CJSON::encode($result);
+            return;
+        }
+        if($store->status != 1)
+        {
+            $result['msg'] = "店铺已关闭,生成订单失败.";
+            echo CJSON::encode($result);
+            return;
+        }
+
+        //用户是否被屏蔽
+        $follower = Follower::model()->find('customer_id=:customer_id and store_id=:store_id',
+            array(':customer_id'=>$cart->user_id, ':store_id'=>$cart->store_id));
+        if($follower != null)
+        {
+            if($follower->status == 2)
+            {
+                $result['msg'] = "您已被该店铺屏蔽,生成订单失败.";
+                echo CJSON::encode($result);
+                return;
+            }
+        }
+
+        $cartDetails = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cart->id));
+        if(count($cartDetails) <= 0)
         {
             echo CJSON::encode($result);
             return;
         }
 
-        $cartDetails = CartDetail::model()->findAll('cart_id=:cart_id', array(':cart_id'=>$cart->id));
-        if(count($cartDetails) <= 0)
+        $customer = User::model()->findByPk($cart->user_id);
+        $merchant = User::model()->findByPk($store->user_id);
+        if($customer == null || $merchant == null)
         {
             echo CJSON::encode($result);
             return;
@@ -278,6 +310,12 @@ class CartController extends Controller
         $order->store_id = $cart->store_id;
         $order->status = 1;
         $order->sn = date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
+        $order->address = $address;
+        if($additional != null)
+        {
+            $order->additional = $additional;
+        }
+
         $order->save();
         
         $summary = 0;//总价
@@ -304,6 +342,12 @@ class CartController extends Controller
         $order->save();
 
         $result['success'] = true;
+
+        //发送推送通知 给商家
+        $extras = array("order_id"=>$order->id);
+        $extras['type'] = "NEW_ORDER";
+
+        $result['msg'] = sendMsg(array($merchant->sn), "您有一条来自".$customer->name."的订单,点击查看", $extras);
 
         $json = CJSON::encode($result);
         echo $json;

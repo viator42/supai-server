@@ -43,7 +43,7 @@ class ProductController extends Controller
 				$recentBought['id'] = $product->id;
 				$recentBought['name'] = $goods->name;
 				$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$product->id));
-				$recentBought['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
+				$recentBought['img'] = $img->url;
 			}
 
 
@@ -112,12 +112,12 @@ class ProductController extends Controller
 			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
 			if($image != null)
 			{
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+				$product['img'] = $image->url;
 			}
 			else
 			{
 				//加载默认图片
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+				$product['img'] = "/images/product_default.jpg";
 			}
 
 			$result['data'] = $product;
@@ -162,6 +162,7 @@ class ProductController extends Controller
 
 		$product = new Product();
 		$product->alias = $_POST['alias'];
+        $product->description = $_POST['additional'];
 		$product->goods_id = $goods->id;
 		$product->price = $_POST['price'];
 		$product->store_id = $_POST['storeId'];
@@ -285,12 +286,12 @@ class ProductController extends Controller
 					$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
 					if($image != null)
 					{
-						$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+						$product['img'] = $image->url;
 					}
 					else
 					{
 						//加载默认图片
-						$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+						$product['img'] = "/images/product_default.jpg";
 					}
 					$product['favourite'] = 0;
 					$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
@@ -493,12 +494,12 @@ class ProductController extends Controller
 			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
 			if($image != null)
 			{
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$image->url;
+				$product['img'] = $image->url;
 			}
 			else
 			{
 				//加载默认图片
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+				$product['img'] = "/images/product_default.jpg";
 			}
 			$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
 			$product['favourite'] = 0;
@@ -514,21 +515,20 @@ class ProductController extends Controller
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
-
+    /*
 	//多商品添加
-	/*
 	public function actionMultiAdd()
 	{
 		$result = array('success'=>false);
 
-		for ($i = 1; $i <= 1000; $i++) 
+		for ($i = 1; $i <= 10000; $i++)
 		{
 			$product = new Product();
 
 		  	$product->goods_id = 0;
 
-			$product->alias = "测试商品";
-			$product->description = "测试商品描述";
+			$product->alias = "测试商品_".$i;
+			$product->description = "测试商品描述_".$i;
 			$product->price = 123;
 			$product->store_id = 1;
 			$product->status = 1;
@@ -550,7 +550,7 @@ class ProductController extends Controller
         echo $json;
 
 	}
-	*/
+    */
 
 	// Uncomment the following methods and override them if needed
 	/*

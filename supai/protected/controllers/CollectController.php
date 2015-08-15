@@ -40,7 +40,7 @@ class CollectController extends Controller
 			{
 				$store = array();
 				$store['id'] = $storeObj->id;
-				$store['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$storeObj->logo;
+				$store['logo'] = $storeObj->logo;
 				$store['name'] = $storeObj->name;
 				$store['userId'] = $storeObj->user_id;
 				$store['address'] = $storeObj->address;
@@ -62,13 +62,13 @@ class CollectController extends Controller
 						$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
 						if($img != null)
 						{
-							$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
+							$product['img'] = $img->url;
 
 						}
 						else
 						{
 							//使用默认商品图片
-							$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+							$product['img'] = "/images/product_default.jpg";
 
 						}
 
@@ -132,12 +132,12 @@ class CollectController extends Controller
 				$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
 				if($img != null)
 				{
-					$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
+					$product['img'] = $img->url;
 				}
 				else
 				{
 					//使用默认商品图片
-					$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+					$product['img'] = "/images/product_default.jpg";
 				}
 
 				$product['goodsId'] = $productObj->goods_id;

@@ -68,7 +68,7 @@ class StoreController extends Controller
 			$result['area_id'] = $store->area_id;
 			$result['sn'] = $store->sn;
 
-			$result['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$store->logo;
+			$result['logo'] = $store->logo;
 
 			$result['success'] = true;
 		}
@@ -94,7 +94,7 @@ class StoreController extends Controller
 			$data['description'] = $storeObj->description;
 			$data['address'] = $storeObj->address;
 			$data['area_id'] = $storeObj->area_id;
-			$data['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$storeObj->logo;
+			$data['logo'] = $storeObj->logo;
 			$data['user_id'] = $storeObj->user_id;
 			$data['favourite'] = 2;
 			$data['longitude'] = $storeObj->longitude;
@@ -182,11 +182,11 @@ class StoreController extends Controller
 			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
 			if($img != null)
 			{
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
+				$product['img'] = $img->url;
 			}
 			else
 			{
-				$product['img'] = 'http://'.$_SERVER['SERVER_NAME']."/images/product_default.jpg";
+				$product['img'] = "/images/product_default.jpg";
 			}
 
 			$result[] = $product;
@@ -213,7 +213,7 @@ class StoreController extends Controller
 			$store = array();
 
 			$store['id'] = $storeObj->id;
-			$store['logo'] = 'http://'.$_SERVER['SERVER_NAME'].$storeObj->logo;
+			$store['logo'] = $storeObj->logo;
 			$store['name'] = $storeObj->name;
 			$store['user_id'] = $storeObj->user_id;
 			$store['area'] = $storeObj->area_id;
@@ -349,6 +349,69 @@ class StoreController extends Controller
         echo $json;
 	}
 
+    //店铺关注者
+    public function actionFollower()
+    {
+        $result = array();
+
+        $storeId = $_POST['storeid'];
+
+        $followerObjs = Follower::model()->findAll('store_id=:store_id', array(':store_id'=>$storeId));
+        foreach($followerObjs as $followerObj)
+        {
+            $follower = array();
+            $customer = User::model()->findByPk($followerObj->customer_id);
+            if($customer != null)
+            {
+                $follower['id'] = $followerObj->id;
+                $follower['name'] = $customer->name;
+                $follower['tel'] = $customer->tel;
+                $follower['address'] = $customer->address;
+                $follower['icon'] = $customer->icon;
+                $follower['sn'] = $customer->sn;
+
+                $follower['followTime'] = $followerObj->follow_time;
+                $follower['status'] = $followerObj->status;
+
+                $result[] = $follower;
+            }
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //屏蔽用户
+    public function actionBlockCustomer()
+    {
+        $result = array('success'=>false);
+
+        $id = $_POST['id'];
+        $status = $_POST['status'];
+
+        $follower = Follower::model()->findByPk($id);
+
+        if($follower != null)
+        {
+            switch($status)
+            {
+                case 1:
+                    $status = 2;
+                    break;
+                case 2:
+                    $status = 1;
+                    break;
+            }
+
+            $follower->status = $status;
+            $follower->save();
+
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
 	/*
 	public function actionStoreProducts()
 	{

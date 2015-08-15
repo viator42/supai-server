@@ -1,29 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "order".
+ * This is the model class for table "follower".
  *
- * The followings are the available columns in table 'order':
+ * The followings are the available columns in table 'follower':
  * @property integer $id
- * @property integer $create_time
  * @property integer $customer_id
- * @property integer $merchant_id
  * @property integer $store_id
+ * @property integer $follow_time
  * @property integer $status
- * @property string $summary
- * @property string $additional
- * @property integer $readed
- * @property string $sn
- * @property string $address
  */
-class Order extends CActiveRecord
+class Follower extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'order';
+		return 'follower';
 	}
 
 	/**
@@ -34,15 +28,11 @@ class Order extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('create_time, customer_id, merchant_id, store_id, sn', 'required'),
-			array('create_time, customer_id, merchant_id, store_id, status, readed', 'numerical', 'integerOnly'=>true),
-			array('summary', 'length', 'max'=>10),
-			array('sn', 'length', 'max'=>64),
-			array('address', 'length', 'max'=>128),
-			array('additional', 'safe'),
+			array('customer_id, store_id', 'required'),
+			array('customer_id, store_id, follow_time, status', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, create_time, customer_id, merchant_id, store_id, status, summary, additional, readed, sn, address', 'safe', 'on'=>'search'),
+			array('id, customer_id, store_id, follow_time, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,16 +54,10 @@ class Order extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'create_time' => 'Create Time',
 			'customer_id' => 'Customer',
-			'merchant_id' => 'Merchant',
 			'store_id' => 'Store',
+			'follow_time' => 'Follow Time',
 			'status' => 'Status',
-			'summary' => 'Summary',
-			'additional' => 'Additional',
-			'readed' => 'Readed',
-			'sn' => 'Sn',
-			'address' => 'Address',
 		);
 	}
 
@@ -96,16 +80,10 @@ class Order extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('create_time',$this->create_time);
 		$criteria->compare('customer_id',$this->customer_id);
-		$criteria->compare('merchant_id',$this->merchant_id);
 		$criteria->compare('store_id',$this->store_id);
+		$criteria->compare('follow_time',$this->follow_time);
 		$criteria->compare('status',$this->status);
-		$criteria->compare('summary',$this->summary,true);
-		$criteria->compare('additional',$this->additional,true);
-		$criteria->compare('readed',$this->readed);
-		$criteria->compare('sn',$this->sn,true);
-		$criteria->compare('address',$this->address,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -116,7 +94,7 @@ class Order extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Order the static model class
+	 * @return Follower the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

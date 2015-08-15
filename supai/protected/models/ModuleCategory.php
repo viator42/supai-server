@@ -1,29 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "order".
+ * This is the model class for table "module_category".
  *
- * The followings are the available columns in table 'order':
+ * The followings are the available columns in table 'module_category':
  * @property integer $id
- * @property integer $create_time
- * @property integer $customer_id
- * @property integer $merchant_id
- * @property integer $store_id
- * @property integer $status
- * @property string $summary
- * @property string $additional
- * @property integer $readed
- * @property string $sn
- * @property string $address
+ * @property string $name
+ * @property string $description
+ * @property string $price
+ * @property string $code
  */
-class Order extends CActiveRecord
+class ModuleCategory extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'order';
+		return 'module_category';
 	}
 
 	/**
@@ -34,15 +28,13 @@ class Order extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('create_time, customer_id, merchant_id, store_id, sn', 'required'),
-			array('create_time, customer_id, merchant_id, store_id, status, readed', 'numerical', 'integerOnly'=>true),
-			array('summary', 'length', 'max'=>10),
-			array('sn', 'length', 'max'=>64),
-			array('address', 'length', 'max'=>128),
-			array('additional', 'safe'),
+			array('name, code', 'required'),
+			array('name, code', 'length', 'max'=>45),
+			array('price', 'length', 'max'=>10),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, create_time, customer_id, merchant_id, store_id, status, summary, additional, readed, sn, address', 'safe', 'on'=>'search'),
+			array('id, name, description, price, code', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,16 +56,10 @@ class Order extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'create_time' => 'Create Time',
-			'customer_id' => 'Customer',
-			'merchant_id' => 'Merchant',
-			'store_id' => 'Store',
-			'status' => 'Status',
-			'summary' => 'Summary',
-			'additional' => 'Additional',
-			'readed' => 'Readed',
-			'sn' => 'Sn',
-			'address' => 'Address',
+			'name' => 'Name',
+			'description' => 'Description',
+			'price' => 'Price',
+			'code' => 'Code',
 		);
 	}
 
@@ -96,16 +82,10 @@ class Order extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('create_time',$this->create_time);
-		$criteria->compare('customer_id',$this->customer_id);
-		$criteria->compare('merchant_id',$this->merchant_id);
-		$criteria->compare('store_id',$this->store_id);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('summary',$this->summary,true);
-		$criteria->compare('additional',$this->additional,true);
-		$criteria->compare('readed',$this->readed);
-		$criteria->compare('sn',$this->sn,true);
-		$criteria->compare('address',$this->address,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('price',$this->price,true);
+		$criteria->compare('code',$this->code,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -116,7 +96,7 @@ class Order extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Order the static model class
+	 * @return ModuleCategory the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
