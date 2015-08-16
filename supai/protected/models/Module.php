@@ -1,29 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "order".
+ * This is the model class for table "module".
  *
- * The followings are the available columns in table 'order':
+ * The followings are the available columns in table 'module':
  * @property integer $id
- * @property integer $create_time
- * @property integer $customer_id
- * @property integer $merchant_id
- * @property integer $store_id
+ * @property integer $user_id
+ * @property integer $category_id
+ * @property integer $start_time
+ * @property integer $finish_time
+ * @property integer $order_time
+ * @property string $price
  * @property integer $status
- * @property string $summary
- * @property string $additional
- * @property integer $readed
- * @property string $sn
- * @property string $address
  */
-class Order extends CActiveRecord
+class Module extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'order';
+		return 'module';
 	}
 
 	/**
@@ -34,15 +31,12 @@ class Order extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('create_time, customer_id, merchant_id, store_id, sn', 'required'),
-			array('create_time, customer_id, merchant_id, store_id, status, readed', 'numerical', 'integerOnly'=>true),
-			array('summary', 'length', 'max'=>10),
-			array('sn', 'length', 'max'=>64),
-			array('address', 'length', 'max'=>128),
-			array('additional', 'safe'),
+			array('start_time, finish_time, order_time', 'required'),
+			array('user_id, category_id, start_time, finish_time, order_time, status', 'numerical', 'integerOnly'=>true),
+			array('price', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, create_time, customer_id, merchant_id, store_id, status, summary, additional, readed, sn, address', 'safe', 'on'=>'search'),
+			array('id, user_id, category_id, start_time, finish_time, order_time, price, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,16 +58,13 @@ class Order extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'create_time' => 'Create Time',
-			'customer_id' => 'Customer',
-			'merchant_id' => 'Merchant',
-			'store_id' => 'Store',
+			'user_id' => 'User',
+			'category_id' => 'Category',
+			'start_time' => 'Start Time',
+			'finish_time' => 'Finish Time',
+			'order_time' => 'Order Time',
+			'price' => 'Price',
 			'status' => 'Status',
-			'summary' => 'Summary',
-			'additional' => 'Additional',
-			'readed' => 'Readed',
-			'sn' => 'Sn',
-			'address' => 'Address',
 		);
 	}
 
@@ -96,16 +87,13 @@ class Order extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('create_time',$this->create_time);
-		$criteria->compare('customer_id',$this->customer_id);
-		$criteria->compare('merchant_id',$this->merchant_id);
-		$criteria->compare('store_id',$this->store_id);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('category_id',$this->category_id);
+		$criteria->compare('start_time',$this->start_time);
+		$criteria->compare('finish_time',$this->finish_time);
+		$criteria->compare('order_time',$this->order_time);
+		$criteria->compare('price',$this->price,true);
 		$criteria->compare('status',$this->status);
-		$criteria->compare('summary',$this->summary,true);
-		$criteria->compare('additional',$this->additional,true);
-		$criteria->compare('readed',$this->readed);
-		$criteria->compare('sn',$this->sn,true);
-		$criteria->compare('address',$this->address,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -116,7 +104,7 @@ class Order extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Order the static model class
+	 * @return Module the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

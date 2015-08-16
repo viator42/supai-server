@@ -121,34 +121,11 @@ class OrderController extends Controller
 		}
 		foreach ($orderObjs as $orderObj) 
 		{
-			$user = User::model()->findByPk($orderObj->merchant_id);
-			$store = Store::model()->findByPk($orderObj->store_id);
-			if($user != null && $store != null)
-			{
-				$order = array();
-
-				$order['id'] = $orderObj->id;
-				$order['sn'] = $orderObj->sn;
-				$order['merchantId'] = $orderObj->merchant_id;
-				$order['storeId'] = $orderObj->store_id;
-
-				//商家信息
-				$order['name'] = $user->name;
-				$order['tel'] = $user->tel;
-				$order['longitude'] = $user->longitude;
-				$order['latitude'] = $user->latitude;
-
-				//商店信息
-				$order['storeName'] = $store->name;
-
-				$order['createTime'] = $orderObj->create_time;
-				$order['summary'] = $orderObj->summary;
-				$order['status'] = $orderObj->status;
-				$order['additional'] = $orderObj->additional;
-				$order['readed'] = $orderObj->readed;
-				
-				$forCustomer[] = $order;
-			}
+            $order = $this->getOrderInfo($orderObj);
+            if($order != null)
+            {
+                $forCustomer[] = $order;
+            }
 
 		}
 
@@ -165,35 +142,11 @@ class OrderController extends Controller
 
 		foreach ($orderObjs as $orderObj) 
 		{
-			$user = User::model()->findByPk($orderObj->customer_id);
-			$store = Store::model()->findByPk($orderObj->store_id);
-
-			if($store != null && $user != null)
-			{
-				$order = array();
-
-				$order['id'] = $orderObj->id;
-				$order['sn'] = $orderObj->sn;
-				$order['merchantId'] = $orderObj->merchant_id;
-				$order['storeId'] = $orderObj->store_id;
-
-				//客户信息
-				$order['name'] = $user->name;
-				$order['tel'] = $user->tel;
-				$order['longitude'] = $user->longitude;
-				$order['latitude'] = $user->latitude;
-
-				//商店信息
-				$order['storeName'] = $store->name;
-
-				$order['createTime'] = $orderObj->create_time;
-				$order['summary'] = $orderObj->summary;
-				$order['status'] = $orderObj->status;
-				$order['additional'] = $orderObj->additional;
-				$order['readed'] = $orderObj->readed;
-				
-				$forMerchant[] = $order;
-			}
+            $order = $this->getOrderInfo($orderObj);
+            if($order != null)
+            {
+                $forMerchant[] = $order;
+            }
 		}
 
 		$result['merchantList'] = $forMerchant;
@@ -206,65 +159,68 @@ class OrderController extends Controller
 	//查询订单详情 商品列表
 	public function actionDetail()
 	{
-		$result = array();
+        $result = array('success'=>false);
 
 		$orderId = $_POST['orderId'];
 
 		//查询订单信息
 		$orderObj = Order::model()->findByPk($orderId);
-		$result['id'] = $orderObj->id;
-		$result['sn'] = $orderObj->sn;
-		$result['create_time'] = $orderObj->create_time;
-		$result['store_id'] = $orderObj->store_id;
-		$store = Store::model()->findByPk($orderObj->store_id);
-		$result['store_name'] = $store->name;
+        $orderResult = $this->getOrderInfo($orderObj);
 
-		$result['status'] = $orderObj->status;
+        if($orderResult != null)
+        {
+            $result = $orderResult;
 
-		//商品列表
-		$orderDetailList = array();
+            //商品列表
+            $orderDetailList = array();
 
-		$orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderId));
-		foreach ($orderDetailObjs as $orderDetailObj) 
-		{
-			$detail = array();
-			$detail['id'] = $orderDetailObj->id;
-			$detail['productId'] = $orderDetailObj->product_id;
-			$detail['count'] = $orderDetailObj->count;
-			$detail['price'] = $orderDetailObj->price;
+            $orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderId));
+            foreach ($orderDetailObjs as $orderDetailObj)
+            {
+                $detail = array();
+                $detail['id'] = $orderDetailObj->id;
+                $detail['productId'] = $orderDetailObj->product_id;
+                $detail['count'] = $orderDetailObj->count;
+                $detail['price'] = $orderDetailObj->price;
 
-			//获取订单产品信息
-			$product = Product::model()->findByPk($orderDetailObj->product_id);
-			$goods = Goods::model()->findByPk($product->goods_id);
-			
-			if($product != null)
-			{
-				//产品图片
-				$img = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$product->id));
-				$detail['image'] = 'http://'.$_SERVER['SERVER_NAME'].$img->url;
-				$detail['name'] = $product->alias;
-				if($goods != null)
-				{
-					$detail['goodsDescription'] = $goods->description;
-					$detail['rccode'] = $goods->barcode;
-					$detail['origin'] = $goods->origin;
-				}
-				else
-				{
-					$detail['goodsDescription'] = $product->description;
-					$detail['rccode'] = '';
-					$detail['origin'] = '';
+                //获取订单产品信息
+                $product = Product::model()->findByPk($orderDetailObj->product_id);
+                $goods = Goods::model()->findByPk($product->goods_id);
 
-				}
-				
-			}
+                if($product != null)
+                {
+                    //产品图片
+                    $img = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$product->id));
+                    $detail['image'] = $img->url;
+                    $detail['name'] = $product->alias;
+                    if($goods != null)
+                    {
+                        $detail['goodsDescription'] = $goods->description;
+                        $detail['rccode'] = $goods->barcode;
+                        $detail['origin'] = $goods->origin;
+                    }
+                    else
+                    {
+                        $detail['goodsDescription'] = $product->description;
+                        $detail['rccode'] = '';
+                        $detail['origin'] = '';
 
-			$orderDetailList[] = $detail;
+                    }
 
-		}
-		$result['orderDetailList'] = $orderDetailList;
+                }
 
-		$result['success'] = true;
+                $orderDetailList[] = $detail;
+
+            }
+            $result['orderDetailList'] = $orderDetailList;
+
+            $result['success'] = true;
+        }
+        else
+        {
+            $result['success'] = false;
+
+        }
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
@@ -280,7 +236,7 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->status = 5;
+			$orderObj->status = 4;
 			$orderObj->save();
 
             $merchant = User::model()->findByPk($orderObj->merchant_id);
@@ -288,7 +244,9 @@ class OrderController extends Controller
             if($merchant != null && $customer != null)
             {
                 //发送推送通知
-                $result['msg'] = $this->sendMsg(array($merchant->sn, $customer->sn), "您好,编号 ".$orderObj->sn." 的订单已被取消.");
+                $extras = array("order_id"=>$orderObj->id);
+                $extras['type'] = "CANCEL_ORDER";
+                $result['msg'] = sendMsg(array($merchant->sn, $customer->sn), "您好,编号 ".$orderObj->sn." 的订单已被取消.", $extras);
 
             }
 
@@ -312,16 +270,62 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->status = 4;
+			$orderObj->status = 3;
 			$orderObj->save();
 
 			$merchant = User::model()->findByPk($orderObj->merchant_id);
 			if($merchant != null)
 			{
 				//发送推送通知 给商家
-				$result['msg'] = $this->sendMsg(array($merchant->sn), "您好,编号 ".$orderObj->sn." 的订单已确认收货.");
+                $extras = array("order_id"=>$orderObj->id);
+                $extras['type'] = "DELIVERED_ORDER";
+				$result['msg'] = sendMsg(array($merchant->sn), "您好,编号 ".$orderObj->sn." 的订单已确认收货.", $extras);
 
 			}
+
+            //收藏购买的店铺
+            $storeCollectObj = StoreCollect::model()->find('user_id=:user_id and store_id=:store_id',
+                array(':user_id'=>$orderObj->customer_id, ':store_id'=>$orderObj->store_id));
+            if($storeCollectObj == null)
+            {
+                $storeCollectObj = new StoreCollect();
+                $storeCollectObj->user_id = $orderObj->customer_id;
+                $storeCollectObj->store_id = $orderObj->store_id;
+
+                $storeCollectObj->save();
+            }
+
+            //遍历收藏购买订单的商品
+            $orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderId));
+            foreach ($orderDetailObjs as $orderDetailObj)
+            {
+                $productCollect = ProductCollect::model()->find('product_id=:product_id and user_id=:user_id and store_collect_id=:store_collect_id',
+                    array(':product_id'=>$orderDetailObj->product_id, ':user_id'=>$orderObj->customer_id, ':store_collect_id'=>$storeCollectObj->id));
+                if($productCollect == null)
+                {
+                    $productCollect = new ProductCollect();
+
+                    $productCollect->product_id = $orderDetailObj->product_id;
+                    $productCollect->store_collect_id = $storeCollectObj->id;
+                    $productCollect->user_id = $orderObj->customer_id;
+
+                    $productCollect->save();
+                }
+            }
+
+            //用户添加到店铺的follower列表
+            $followerObj = Follower::model()->find('customer_id=:customer_id and store_id=:store_id',
+                array(':customer_id'=>$orderObj->customer_id, ':store_id'=>$orderObj->store_id));
+            if($followerObj == null)
+            {
+                $followerObj = new Follower();
+
+                $followerObj->customer_id = $orderObj->customer_id;
+                $followerObj->store_id = $orderObj->store_id;
+                $followerObj->follow_time = time();
+                $followerObj->status = 1;
+                $followerObj->save();
+            }
 
 			$result['success'] = true;
 		}
@@ -348,14 +352,15 @@ class OrderController extends Controller
 			if($customer != null)
 			{
 				//发送推送通知 给客户
-				$result['msg'] = $this->sendMsg(array($customer->sn), "您好,编号 ".$orderObj->sn." 的订单已发货.");
+                $extras = array("order_id"=>$orderObj->id);
+                $extras['type'] = "CONFIRMED_ORDER";
+
+				$result['msg'] = sendMsg(array($customer->sn), "您好,编号 ".$orderObj->sn." 的订单已发货.", $extras);
 
 			}
 
 			$result['success'] = true;
 		}
-
-		//发送推送通知
 		
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
@@ -400,34 +405,50 @@ class OrderController extends Controller
 
 	}
 
-	public function sendMsg($userSnArray, $msg)
-	{
-		$app_key = "d18febadd32dd84b1c3be46a";
-		$master_secret = "2cb6d42d425adff51ff31b5a";
+    //获取订单信息
+    private function getOrderInfo($orderObj)
+    {
+        $order = array();
 
-		$data = array();
+        $customer = User::model()->findByPk($orderObj->customer_id);
+        $merchant = User::model()->findByPk($orderObj->merchant_id);
+        $store = Store::model()->findByPk($orderObj->store_id);
+        if($customer != null && $merchant != null && $store != null)
+        {
+            //订单信息
+            $order['id'] = $orderObj->id;
+            $order['sn'] = $orderObj->sn;
+            $order['merchantId'] = $orderObj->merchant_id;
+            $order['customerId'] = $orderObj->customer_id;
+            $order['createTime'] = $orderObj->create_time;
+            $order['summary'] = $orderObj->summary;
+            $order['status'] = $orderObj->status;
+            $order['additional'] = $orderObj->additional;
+            $order['readed'] = $orderObj->readed;
+            //商店信息
+            $order['storeId'] = $orderObj->store_id;
+            $order['storeName'] = $store->name;
+            $order['storeAddress'] = $orderObj->address;
+            //用户信息
+            $order['customerName'] = $customer->name;
+            $order['merchantName'] = $merchant->name;
+            $order['customerTel'] = $customer->tel;
+            $order['merchantTel'] = $merchant->tel;
+            $order['customerAddress'] = $customer->address;
+            $order['merchantAddress'] = $merchant->address;
+            $order['customerLongitude'] = $customer->longitude;
+            $order['customerLatitude'] = $customer->latitude;
+            $order['merchantLongitude'] = $merchant->longitude;
+            $order['merchantLatitude'] = $merchant->latitude;
 
-		$data["platform"] = array("android");
-		$data["audience"] = array("alias"=>$userSnArray);
-		$data["notification"] = array("alert"=>$msg);
+            return $order;
+        }
+        else
+        {
+            return null;
+        }
 
-		$json_string = CJSON::encode($data);
-		$auth_info = base64_encode($app_key.':'.$master_secret);
-
-		$ch=curl_init();
-		curl_setopt($ch, CURLOPT_URL, "https://api.jpush.cn/v3/push");
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //不验证证书下同
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json; charset=utf-8',
-                'Authorization: Basic '.$auth_info
-            )
-        );
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_string);
-
-        return  curl_exec($ch);
-	}
+    }
 
 	// Uncomment the following methods and override them if needed
 	/*

@@ -64,7 +64,7 @@ class GoodsController extends Controller
 			{
 				if($imageObj != null)
 				{
-					$images[] = 'http://'.$_SERVER['SERVER_NAME'].$imageObj->url;
+					$images[] = $imageObj->url;
 				}
 
 			}
