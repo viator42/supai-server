@@ -236,7 +236,7 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->status = 5;
+			$orderObj->status = 4;
 			$orderObj->save();
 
             $merchant = User::model()->findByPk($orderObj->merchant_id);
@@ -270,7 +270,7 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->status = 4;
+			$orderObj->status = 3;
 			$orderObj->save();
 
 			$merchant = User::model()->findByPk($orderObj->merchant_id);
@@ -279,11 +279,11 @@ class OrderController extends Controller
 				//发送推送通知 给商家
                 $extras = array("order_id"=>$orderObj->id);
                 $extras['type'] = "DELIVERED_ORDER";
-				$result['msg'] = $this->sendMsg(array($merchant->sn), "您好,编号 ".$orderObj->sn." 的订单已确认收货.", $extras);
+				$result['msg'] = sendMsg(array($merchant->sn), "您好,编号 ".$orderObj->sn." 的订单已确认收货.", $extras);
 
 			}
 
-            //收藏购买的店铺和订单的商品.
+            //收藏购买的店铺
             $storeCollectObj = StoreCollect::model()->find('user_id=:user_id and store_id=:store_id',
                 array(':user_id'=>$orderObj->customer_id, ':store_id'=>$orderObj->store_id));
             if($storeCollectObj == null)
@@ -299,17 +299,22 @@ class OrderController extends Controller
             $orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderId));
             foreach ($orderDetailObjs as $orderDetailObj)
             {
-                $productCollect = new ProductCollect();
+                $productCollect = ProductCollect::model()->find('product_id=:product_id and user_id=:user_id and store_collect_id=:store_collect_id',
+                    array(':product_id'=>$orderDetailObj->product_id, ':user_id'=>$orderObj->customer_id, ':store_collect_id'=>$storeCollectObj->id));
+                if($productCollect == null)
+                {
+                    $productCollect = new ProductCollect();
 
-                $productCollect->product_id = $orderDetailObj->product_id;
-                $productCollect->store_collect_id = $storeCollectObj->id;
-                $productCollect->user_id = $orderObj->customer_id;
+                    $productCollect->product_id = $orderDetailObj->product_id;
+                    $productCollect->store_collect_id = $storeCollectObj->id;
+                    $productCollect->user_id = $orderObj->customer_id;
 
-                $productCollect->save();
+                    $productCollect->save();
+                }
             }
 
             //用户添加到店铺的follower列表
-            $followerObj = Follower::model()->find('customer_id=:customer_id, store_id=:store_id',
+            $followerObj = Follower::model()->find('customer_id=:customer_id and store_id=:store_id',
                 array(':customer_id'=>$orderObj->customer_id, ':store_id'=>$orderObj->store_id));
             if($followerObj == null)
             {
@@ -317,7 +322,8 @@ class OrderController extends Controller
 
                 $followerObj->customer_id = $orderObj->customer_id;
                 $followerObj->store_id = $orderObj->store_id;
-
+                $followerObj->follow_time = time();
+                $followerObj->status = 1;
                 $followerObj->save();
             }
 
