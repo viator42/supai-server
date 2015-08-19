@@ -1,30 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <title>速派网上超市</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <link rel="alternate icon" type="image/png" href="images/webpage/favicon.png">
-  <link rel="stylesheet" href="assets/amazeui/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="css/main.css"/>
-
-</head>
 <body>
-<header class="am-topbar am-topbar-fixed-top">
-  <div class="am-container">
-    <h1 class="am-topbar-brand">
-      <a href="#">速派网上超市</a>
-    </h1>
-    <div class="am-topbar-right">
-      <a href="http://forum.supai.in/" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">论坛</a>
-    </div>
-  </div>
-</header>
 
 <div class="jumbotron">
   <div class="am-g">
@@ -55,27 +31,56 @@
       <h2 class="detail-h2">应用特色</h2>
 
       <div class="am-g">
-        
+
           <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-          <a data-am-modal="{target: '#supai-ts-1'}">
-            <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-barcode.jpg" />
-          </a>
-          <p>条形码扫描,商品一键录入<p>
+              <a data-am-modal="{target: '#supai-ts-1'}">
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-barcode.jpg" />
+              </a>
+              <p>条形码扫描功能,无论是商品的录入还是搜索,只需对准条码一扫,充分发挥手机优势.<p>
           </div>
-        
+
          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-         <a data-am-modal="{target: '#supai-ts-2'}">
-        <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-map.jpg" />
-        </a>
-        <p>内置地图,方便顾客找到您的商铺<p>
+             <a data-am-modal="{target: '#supai-ts-2'}">
+            <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-map.jpg" />
+            </a>
+            <p>深度集成地图功能,基于地理位置的搜索,身边服务一目了然.<p>
         </div>
 
         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-        <a data-am-modal="{target: '#supai-ts-3'}">
-        <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-freewifi.jpg" />
-        </a>
-        <p>免费上网功能<p>
+            <a data-am-modal="{target: '#supai-ts-3'}">
+            <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-store.png" />
+            </a>
+            <p>一步开店, 无论您经营的是大超市还是小商铺, 加入速派平台只需一步,.享受便捷购物的同时也可以将自己的产品推销出去.<p>
         </div>
+
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+              <a data-am-modal="{target: '#supai-ts-3'}">
+                  <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-locate.png" />
+              </a>
+              <p>实时位置跟踪,下单后实时查看送货人员位置.购物更安心.<p>
+          </div>
+
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+              <a data-am-modal="{target: '#supai-ts-3'}">
+                  <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-receipt.png" />
+              </a>
+              <p>率先集成小票打印功能,订单自动打印.<p>
+          </div>
+
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+              <a data-am-modal="{target: '#supai-ts-3'}">
+                  <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-favourite.png" />
+              </a>
+              <p>商品收藏夹功能,方便您买了再买<p>
+          </div>
+
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
+              <a data-am-modal="{target: '#supai-ts-3'}">
+                  <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-favourite.png" />
+              </a>
+              <p>自带百万级别商品库信息,开店无需手工输入,更加方便<p>
+          </div>
+
 
       </div>
     </div>
@@ -87,22 +92,22 @@
   </div>
 
 <div class="am-g am-container">
-    <div class="am-u-lg-10">
-      <h2>应用预览</h2>
-      
-      <div class="am-slider am-slider-default">  
-            <ul class="am-slides">  
-                <li><img src="images/webpage/capture_main.jpg" /></li>
-                <li><img src="images/webpage/capture_add_product.jpg" /></li>
-                <li><img src="images/webpage/capture_cart.jpg" /></li>
-                <li><img src="images/webpage/capture_order_detail.jpg" /></li>
-                <li><img src="images/webpage/capture_orders.jpg" /></li>
-                <li><img src="images/webpage/capture_product_search.jpg" /></li>
-                <li><img src="images/webpage/capture_store.jpg" /></li>
-            </ul>  
-        </div>  
-
-    </div>
+<!--    <div class="am-u-lg-10">-->
+<!--      <h2>应用预览</h2>-->
+<!--      -->
+<!--      <div class="am-slider am-slider-default">  -->
+<!--            <ul class="am-slides">  -->
+<!--                <li><img src="images/webpage/capture_main.jpg" /></li>-->
+<!--                <li><img src="images/webpage/capture_add_product.jpg" /></li>-->
+<!--                <li><img src="images/webpage/capture_cart.jpg" /></li>-->
+<!--                <li><img src="images/webpage/capture_order_detail.jpg" /></li>-->
+<!--                <li><img src="images/webpage/capture_orders.jpg" /></li>-->
+<!--                <li><img src="images/webpage/capture_product_search.jpg" /></li>-->
+<!--                <li><img src="images/webpage/capture_store.jpg" /></li>-->
+<!--            </ul>  -->
+<!--        </div>  -->
+<!---->
+<!--    </div>-->
 
     <!-- <div class="am-u-lg-10">
       <h2>使用教程</h2>
@@ -119,7 +124,7 @@
 
     <div class="am-u-lg-12">
       <h2>关于我们</h2>
-      济南速派信息技术有限公司是一家专注于移动应用开发的IT公司.主要产品方向是为超市,个体经营业主提供零售解决方案.
+        速派信息技术有限公司是一家专注于移动应用研发的公司.我们坚信用户体验第一.不断在移动应用领域推出更好的产品.不求大而全,只求小而美.
     </div>
 
     <div class="am-u-lg-12">
@@ -134,11 +139,6 @@
 
 </div>
 
-<footer class="footer">
-  <p>© 2015 济南速派信息技术有限公司
-  <br>鲁ICP备15023468号<br>Power by Yii Framework <? echo Yii::getVersion();?></p>
-</footer>
-
 <!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
@@ -147,44 +147,44 @@
 <script src="assets/js/amazeui.legacy.js"></script>
 <![endif]-->
 
-<div class="am-popup" id="supai-ts-1">
-  <div class="am-popup-inner">
-    <div class="am-popup-hd">
-      <h4 class="am-popup-title">条形码扫描,商品一键录入</h4>
-      <span data-am-modal-close
-            class="am-close">&times;</span>
-    </div>
-    <div class="am-popup-bd">
-      无需填写复杂的表格,扫一下商品的条形码,剩下的我们帮您完成.
-    </div>
-  </div>
-</div>
-
-<div class="am-popup" id="supai-ts-2">
-  <div class="am-popup-inner">
-    <div class="am-popup-hd">
-      <h4 class="am-popup-title">内置地图,方便顾客找到您的商铺</h4>
-      <span data-am-modal-close
-            class="am-close">&times;</span>
-    </div>
-    <div class="am-popup-bd">
-      深度集成地图服务. 标注店铺位置.顾客就可以从地图上发现您的位置.
-      </div>
-  </div>
-</div>
-
-<div class="am-popup" id="supai-ts-3">
-  <div class="am-popup-inner">
-    <div class="am-popup-hd">
-      <h4 class="am-popup-title">免费上网功能</h4>
-      <span data-am-modal-close
-            class="am-close">&times;</span>
-    </div>
-    <div class="am-popup-bd">
-      店内添加免费上网服务,方便推广会员
-    </div>
-  </div>
-</div>
+<!--<div class="am-popup" id="supai-ts-1">-->
+<!--  <div class="am-popup-inner">-->
+<!--    <div class="am-popup-hd">-->
+<!--      <h4 class="am-popup-title">条形码扫描,商品一键录入</h4>-->
+<!--      <span data-am-modal-close-->
+<!--            class="am-close">&times;</span>-->
+<!--    </div>-->
+<!--    <div class="am-popup-bd">-->
+<!--      无需填写复杂的表格,扫一下商品的条形码,剩下的我们帮您完成.-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!---->
+<!--<div class="am-popup" id="supai-ts-2">-->
+<!--  <div class="am-popup-inner">-->
+<!--    <div class="am-popup-hd">-->
+<!--      <h4 class="am-popup-title">内置地图,方便顾客找到您的商铺</h4>-->
+<!--      <span data-am-modal-close-->
+<!--            class="am-close">&times;</span>-->
+<!--    </div>-->
+<!--    <div class="am-popup-bd">-->
+<!--      深度集成地图服务. 标注店铺位置.顾客就可以从地图上发现您的位置.-->
+<!--      </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!---->
+<!--<div class="am-popup" id="supai-ts-3">-->
+<!--  <div class="am-popup-inner">-->
+<!--    <div class="am-popup-hd">-->
+<!--      <h4 class="am-popup-title">免费上网功能</h4>-->
+<!--      <span data-am-modal-close-->
+<!--            class="am-close">&times;</span>-->
+<!--    </div>-->
+<!--    <div class="am-popup-bd">-->
+<!--      店内添加免费上网服务,方便推广会员-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 <div class="am-popup" id="supai-versions">
     <div class="am-popup-inner">
@@ -236,11 +236,5 @@
     </div>
 </div>
 
-<!--[if (gte IE 9)|!(IE)]><!-->
-<script src="assets/amazeui/js/jquery.min.js"></script>
-<script src="assets/amazeui/js/amazeui.min.js"></script>
-
-<script src="js/main.js"></script>
-<!--<![endif]-->
 </body>
 </html>

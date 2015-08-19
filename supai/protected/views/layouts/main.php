@@ -2,58 +2,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="language" content="en">
-
-	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print">
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection">
-	<![endif]-->
-
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">
-
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+    <meta charset="UTF-8">
+    <title>速派网上超市－国内领先的在线零售平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="images/webpage/favicon.png">
+    <link rel="stylesheet" href="assets/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
 </head>
 
 <body>
+    <header class="am-topbar am-topbar-fixed-top">
+        <div class="am-container">
+            <h1 class="am-topbar-brand">
+                <img src="images/webpage/logo.jpg">速派网上超市
+            </h1>
 
-<div class="container" id="page">
+            <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
+                    data-am-collapse="{target: '#collapse-head'}"><span class="am-sr-only">导航切换</span> <span
+                    class="am-icon-bars"></span></button>
 
-	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
+            <div class="am-collapse am-topbar-collapse" id="collapse-head">
+                <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right">
+                    <li><a href="#">如何使用</a></li>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">论坛</a></li>
 
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); ?>
-	</div><!-- mainmenu -->
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
+                </ul>
+
+            </div>
+        </div>
+    </header>
+
+<!--    <header class="am-topbar am-topbar-fixed-top">-->
+<!--        <div class="am-container">-->
+<!--            <h1 class="am-topbar-brand">-->
+<!--                <a href="#">速派网上超市</a>-->
+<!--            </h1>-->
+<!--            <div class="am-topbar-right">-->
+<!--                <a href="http://forum.supai.in/" class="am-btn am-btn-primary am-topbar-btn am-btn-sm">论坛</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
 
 	<?php echo $content; ?>
 
-	<div class="clear"></div>
+    <footer class="footer">
+        <p>© 2015 济南速派信息技术有限公司
+            <br>鲁ICP备15023468号<br>Power by Yii Framework <? echo Yii::getVersion();?></p>
+    </footer>
 
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
-	</div><!-- footer -->
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="assets/amazeui/js/jquery.min.js"></script>
+    <script src="assets/amazeui/js/amazeui.min.js"></script>
 
-</div><!-- page -->
+    <script src="js/main.js"></script>
+    <!--<![endif]-->
 
 </body>
 </html>
