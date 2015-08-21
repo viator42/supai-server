@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<html>
-<body>
-
 <div class="jumbotron">
   <div class="am-g">
     <div class="am-u-lg-12">
@@ -30,57 +27,65 @@
     <div class="am-u-lg-12">
       <h2 class="detail-h2">应用特色</h2>
 
-      <div class="am-g">
-
-          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-              <a data-am-modal="{target: '#supai-ts-1'}">
+        <div class="am-g">
+            <div class="am-u-sm-4">
                 <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-barcode.jpg" />
-              </a>
-              <p>条形码扫描功能,无论是商品的录入还是搜索,只需对准条码一扫,充分发挥手机优势.<p>
-          </div>
-
-         <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-             <a data-am-modal="{target: '#supai-ts-2'}">
-            <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-map.jpg" />
-            </a>
-            <p>深度集成地图功能,基于地理位置的搜索,身边服务一目了然.<p>
+            </div>
+            <div class="am-u-sm-8">
+                <p>条形码扫描功能,无论是商品的录入还是搜索,只需对准条码一扫,充分发挥手机优势.<p>
+            </div>
         </div>
+        <hr>
 
-        <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-            <a data-am-modal="{target: '#supai-ts-3'}">
-            <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-store.png" />
-            </a>
-            <p>一步开店, 无论您经营的是大超市还是小商铺, 加入速派平台只需一步,.享受便捷购物的同时也可以将自己的产品推销出去.<p>
+        <div class="am-g">
+            <div class="am-u-sm-4">
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-map.jpg" />
+            </div>
+            <div class="am-u-sm-8">
+                <p>深度集成地图功能,基于地理位置的搜索,身边服务一目了然.<p>
+            </div>
         </div>
+        <hr>
 
-          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-              <a data-am-modal="{target: '#supai-ts-3'}">
-                  <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-locate.png" />
-              </a>
-              <p>实时位置跟踪,下单后实时查看送货人员位置.购物更安心.<p>
-          </div>
+        <div class="am-g">
+            <div class="am-u-sm-4">
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-store.png" />
+            </div>
+            <div class="am-u-sm-8">
+                <p>一步开店, 无论您经营的是大超市还是小商铺, 加入速派平台只需一步,.享受便捷购物的同时也可以将自己的产品推销出去.<p>
+            </div>
+        </div>
+        <hr>
 
-          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-              <a data-am-modal="{target: '#supai-ts-3'}">
-                  <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-receipt.png" />
-              </a>
-              <p>率先集成小票打印功能,订单自动打印.<p>
-          </div>
+        <div class="am-g">
+            <div class="am-u-sm-4">
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-locate.png" />
+            </div>
+            <div class="am-u-sm-8">
+                <p>实时位置跟踪,下单后实时查看送货人员位置.购物更安心.<p>
+            </div>
+        </div>
+        <hr>
 
-          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-              <a data-am-modal="{target: '#supai-ts-3'}">
-                  <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-favourite.png" />
-              </a>
-              <p>商品收藏夹功能,方便您买了再买<p>
-          </div>
+        <div class="am-g">
+            <div class="am-u-sm-4">
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-receipt.png" />
+            </div>
+            <div class="am-u-sm-8">
+                <p>率先集成小票打印功能,订单自动打印.<p>
+            </div>
+        </div>
+        <hr>
 
-          <div class="am-u-sm-6 am-u-md-4 am-u-lg-4">
-              <a data-am-modal="{target: '#supai-ts-3'}">
-                  <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-favourite.png" />
-              </a>
-              <p>自带百万级别商品库信息,开店无需手工输入,更加方便<p>
-          </div>
-
+        <div class="am-g">
+            <div class="am-u-sm-4">
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-favourite.png" />
+            </div>
+            <div class="am-u-sm-8">
+                <p>商品收藏夹功能,方便您买了再买<p>
+            </div>
+        </div>
+        <hr>
 
       </div>
     </div>
@@ -235,6 +240,3 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>

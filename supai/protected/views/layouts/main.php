@@ -28,9 +28,9 @@
 
             <div class="am-collapse am-topbar-collapse" id="collapse-head">
                 <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right">
-                    <li><a href="#">如何使用</a></li>
-                    <li><a href="#">关于我们</a></li>
-                    <li><a href="#">论坛</a></li>
+                    <li><a href="/site/tutorial">如何使用</a></li>
+                    <li><a href="">关于我们</a></li>
+                    <li><a href="http://forum.supai.in/">论坛</a></li>
 
                 </ul>
 
