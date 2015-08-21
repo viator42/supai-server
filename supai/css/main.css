@@ -6,7 +6,9 @@
 
     .am-topbar {
       background: #00979C;
-      color: #000000;
+      color: #FFFFFF;
+      opacity:0.8;
+        filter: alpha(opacity=80);
     }
 
     .am-topbar a {
@@ -46,8 +48,8 @@
     }
 
     .hope {
-      background: #0bb59b;
       padding: 50px 0;
+
     }
 
     .hope-img {
