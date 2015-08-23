@@ -12,8 +12,8 @@ class AppController extends Controller
     {
         $result = array();
 
-        $result['versionName'] = "2.0";
-        $result['versionCode'] = 7;
+        $result['versionName'] = "2.0.1";
+        $result['versionCode'] = 8;
 
         $json = CJSON::encode($result);
         echo $json;
