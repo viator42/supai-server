@@ -38,6 +38,11 @@ class SiteController extends Controller
         $this->render('tutorial');
     }
 
+    public function actionTutorialBare()
+    {
+        $this->renderPartial('tutorial');
+    }
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */
