@@ -56,25 +56,67 @@ class ModuleController extends Controller
             }
 
         }
-//        $orderObj = Order::model()->findByPk($orderId);
-//        if($orderObj != null)
-//        {
-//            $orderObj->status = 5;
-//            $orderObj->save();
-//
-//            $merchant = User::model()->findByPk($orderObj->merchant_id);
-//            $customer = User::model()->findByPk($orderObj->customer_id);
-//            if($merchant != null && $customer != null)
-//            {
-//                //发送推送通知
-//                $result['msg'] = $this->sendMsg(array($merchant->sn, $customer->sn), "您好,编号 ".$orderObj->sn." 的订单已被取消.");
-//
-//            }
-//
-//            $result['success'] = true;
-//
-//        }
 
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //返回模块详情
+    public function actionDetail()
+    {
+        $result = array();
+
+        $id = $_POST['id'];
+
+        $moduleCategory = ModuleCategory::model()->findByPk($id);
+        if($moduleCategory != null)
+        {
+            $result['id'] = $moduleCategory->id;
+            $result['name'] = $moduleCategory->name;
+            $result['description'] = $moduleCategory->description;
+            $result['price'] = $moduleCategory->price;
+            $result['code'] = $moduleCategory->code;
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //预定收费模块
+    public function actionApply()
+    {
+        $result = array('success'=>false);
+
+        $categoryId = $_POST['categoryId'];
+        $userid = $_POST['userid'];
+        $username = $_POST['username'];
+        $tel = $_POST['tel'];
+        $address = $_POST['address'];
+
+        $module = Module::model()->find('user_id=:user_id and category_id=:category_id',
+            array(':user_id'=>$userid, ':category_id'=>$categoryId));
+        if($module != null)
+        {
+            $result['success'] = false;
+            $result['msg'] = "您已提交申请,不能重复提交";
+
+        }
+        else
+        {
+            $module = new Module();
+
+            $module->user_id = $userid;
+            $module->category_id = $categoryId;
+            $module->username = $username;
+            $module->tel = $tel;
+            $module->address = $address;
+            $module->status = 3;
+
+            $module->save();
+
+            $result['success'] = true;
+        }
 
         $json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;

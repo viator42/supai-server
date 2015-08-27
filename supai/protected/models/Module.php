@@ -12,6 +12,9 @@
  * @property integer $order_time
  * @property string $price
  * @property integer $status
+ * @property string $username
+ * @property string $tel
+ * @property string $address
  */
 class Module extends CActiveRecord
 {
@@ -34,9 +37,12 @@ class Module extends CActiveRecord
 			array('start_time, finish_time, order_time', 'required'),
 			array('user_id, category_id, start_time, finish_time, order_time, status', 'numerical', 'integerOnly'=>true),
 			array('price', 'length', 'max'=>10),
+			array('username', 'length', 'max'=>45),
+			array('tel', 'length', 'max'=>20),
+			array('address', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, category_id, start_time, finish_time, order_time, price, status', 'safe', 'on'=>'search'),
+			array('id, user_id, category_id, start_time, finish_time, order_time, price, status, username, tel, address', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,6 +71,9 @@ class Module extends CActiveRecord
 			'order_time' => 'Order Time',
 			'price' => 'Price',
 			'status' => 'Status',
+			'username' => 'Username',
+			'tel' => 'Tel',
+			'address' => 'Address',
 		);
 	}
 
@@ -94,6 +103,9 @@ class Module extends CActiveRecord
 		$criteria->compare('order_time',$this->order_time);
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('username',$this->username,true);
+		$criteria->compare('tel',$this->tel,true);
+		$criteria->compare('address',$this->address,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
