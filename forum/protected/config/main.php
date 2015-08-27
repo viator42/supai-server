@@ -9,7 +9,7 @@ require $config;
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'name'=>'BIRDBBS',
-    'theme' => 'classic',
+    'theme' => 'mobile',
     'language' => 'zh_cn',
     'preload'=>array('log'),
     'defaultController' => 'home',
