@@ -227,6 +227,7 @@ class OrderController extends Controller
 	}
 
 	//取消订单
+    /*
 	public function actionCancel()
 	{
 		$result = array('success'=>false);
@@ -259,6 +260,7 @@ class OrderController extends Controller
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
+    */
 
 	//确认收货
 	public function actionDelivered()
@@ -366,10 +368,83 @@ class OrderController extends Controller
         echo $json;
 	}
 
-	//
+    // 申请退货
+    public function actionReturnApply()
+    {
+        $result = array('success'=>false);
 
-	//购物车生成订单
-	
+        $orderId = $_POST['orderId'];
+
+        $orderObj = Order::model()->findByPk($orderId);
+        if($orderObj != null)
+        {
+            $orderObj->status = 5;
+            $orderObj->readed = 1;
+            $orderObj->save();
+
+            $customer = User::model()->findByPk($orderObj->customer_id);
+
+            if($customer != null)
+            {
+                //发送推送通知 给商家
+                $extras = array("order_id"=>$orderObj->id);
+                $extras['type'] = "ORDER_RETURN_APPLY";
+                $result['msg'] = sendMsg(array($customer->sn), "您好,".$customer->name." 提交的订单申请退货.", $extras);
+
+            }
+
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+
+    }
+
+    // 退货处理
+    public function actionReturn()
+    {
+        $result = array('success'=>false);
+
+        $orderId = $_POST['orderId'];
+        $accept = $_POST['accept'];    //是否接受用户的退款请求   1 接受 2 拒绝
+
+        $orderObj = Order::model()->findByPk($orderId);
+        if($orderObj != null)
+        {
+            $customer = User::model()->findByPk($orderObj->customer_id);
+            $store = Store::model()->findByPk($orderObj->store_id);
+
+            if($customer != null && $store != null)
+            {
+                if($accept == 1)
+                {
+                    $orderObj->status = 4;
+                    $orderObj->save();
+
+                    //发送推送通知
+                    $extras = array("order_id"=>$orderObj->id);
+                    $extras['type'] = "RETURN_ORDER";
+                    $result['msg'] = sendMsg(array($customer->sn), "您好, ".$store->name."已将您的订单取消.", $extras);
+
+                }
+                elseif($accept == 2)
+                {
+                    //发送推送通知 给客户
+                    $extras = array("order_id"=>$orderObj->id);
+                    $extras['type'] = "RETURN_ORDER_REJECTED";
+
+                    $result['msg'] = sendMsg(array($customer->sn), "您好, ".$store->name."拒绝了您的订单取消申请,商品将照常发货.", $extras);
+
+                }
+            }
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+
+    }
 
 	//返回用户的历史订单
 	public function actionHistory()
