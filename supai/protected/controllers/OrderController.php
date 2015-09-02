@@ -227,7 +227,6 @@ class OrderController extends Controller
 	}
 
 	//取消订单
-    /*
 	public function actionCancel()
 	{
 		$result = array('success'=>false);
@@ -239,6 +238,9 @@ class OrderController extends Controller
 		{
 			$orderObj->status = 4;
 			$orderObj->save();
+
+            //商品库存数修改
+            $this->productCountReadd($orderObj);
 
             $merchant = User::model()->findByPk($orderObj->merchant_id);
             $customer = User::model()->findByPk($orderObj->customer_id);
@@ -260,7 +262,6 @@ class OrderController extends Controller
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
-    */
 
 	//确认收货
 	public function actionDelivered()
@@ -427,6 +428,9 @@ class OrderController extends Controller
                     $extras['type'] = "RETURN_ORDER";
                     $result['msg'] = sendMsg(array($customer->sn), "您好, ".$store->name."已将您的订单取消.", $extras);
 
+                    //商品库存数修改
+                    $this->productCountReadd($orderObj);
+
                 }
                 elseif($accept == 2)
                 {
@@ -523,6 +527,22 @@ class OrderController extends Controller
             return null;
         }
 
+    }
+
+    //订单商品重新添加到商品库存中
+    private function productCountReadd($orderObj)
+    {
+        $orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderObj->order_id));
+        foreach($orderDetailObjs as $orderDetailObj)
+        {
+            $product = Product::model()->findByPk($orderDetailObj->product_id);
+            if($product != null)
+            {
+                $product->count += $orderDetailObj->count;
+                $product->save();
+
+            }
+        }
     }
 
 	// Uncomment the following methods and override them if needed

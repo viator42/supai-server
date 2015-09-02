@@ -323,15 +323,23 @@ class CartController extends Controller
         //添加订单商品
         foreach ($cartDetails as $cartDetail)
         {
-            $orderDetail = new OrderDetail();
+            $product = Product::model()->findByPk($cartDetail->product_id);
+            if($product != null)
+            {
+                $orderDetail = new OrderDetail();
 
-            $orderDetail->order_id = $order->id;
-            $orderDetail->product_id = $cartDetail->product_id;
-            $orderDetail->count = $cartDetail->count;
-            $orderDetail->price = $cartDetail->price;
+                $orderDetail->order_id = $order->id;
+                $orderDetail->product_id = $cartDetail->product_id;
+                $orderDetail->count = $cartDetail->count;
+                $orderDetail->price = $cartDetail->price;
 
-            $orderDetail->save();
-            $summary += $cartDetail->price * $orderDetail->count;
+                $orderDetail->save();
+                $summary += $cartDetail->price * $orderDetail->count;
+
+                //商品库存数修改
+                $product->count -= $cartDetail->count;
+
+            }
 
             $cartDetail->delete();
         }
