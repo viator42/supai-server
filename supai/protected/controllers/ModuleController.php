@@ -24,36 +24,62 @@ class ModuleController extends Controller
     }
 
     //返回用户购买的模块
+    /**
+     *
+     */
     public function actionList()
     {
         $result = array();
-
+        $current_time = time();
         $userid = $_POST['userid'];
 
         $moduleObjs = Module::model()->findAll('user_id=:user_id and status = 1', array(':user_id'=>$userid));
         foreach ($moduleObjs as $moduleObj)
         {
-            $moduleCategoryObj = ModuleCategory::model()->findByPk($moduleObj->category_id);
-            if($moduleCategoryObj != null)
+            $moduleBundleObj = ModuleBundle::model()->findByPk($moduleObj->bundle_id);
+            if($moduleBundleObj != null)
             {
-                $module = array();
-
-                $module['id'] = $moduleObj->id;
-                $module['code'] = $moduleCategoryObj->code;
-                $module['name'] = $moduleCategoryObj->name;
-                $module['start_time'] = $moduleObj->start_time;
-                $module['finish_time'] = $moduleObj->finish_time;
-                $module['price'] = $moduleObj->price;
-                $module['status'] = $moduleObj->status;
-
-                $current_time = time();
-                if($current_time > $moduleObj->start_time && $current_time > $moduleObj->finish_time)
+                //查询bundle中的模块信息
+                $categories = array();
+                $moduleBundleCategoryObjs = ModuleBundleCategory::model()->findAll('bundle_id=:bundle_id',array(':bundle_id'=>$moduleBundleObj->id));
+                foreach($moduleBundleCategoryObjs as $moduleBundleCategoryObj)
                 {
-                    $result[] = $module;
+                    $moduleCategory = ModuleCategory::model()->findByPk($moduleBundleCategoryObj->category_id);
+                    if($moduleCategory != null)
+                    {
+                        if($current_time > $moduleObj->start_time && $current_time > $moduleObj->finish_time)
+                        {
+                            $result[] = $moduleCategory;
+
+                        }
+
+                    }
 
                 }
 
             }
+
+//            $moduleCategoryObj = ModuleCategory::model()->findByPk($moduleObj->category_id);
+//            if($moduleCategoryObj != null)
+//            {
+//                $module = array();
+//
+//                $module['id'] = $moduleObj->id;
+//                $module['code'] = $moduleCategoryObj->code;
+//                $module['name'] = $moduleCategoryObj->name;
+//                $module['start_time'] = $moduleObj->start_time;
+//                $module['finish_time'] = $moduleObj->finish_time;
+//                $module['price'] = $moduleObj->price;
+//                $module['status'] = $moduleObj->status;
+//
+//                $current_time = time();
+//                if($current_time > $moduleObj->start_time && $current_time > $moduleObj->finish_time)
+//                {
+//                    $result[] = $module;
+//
+//                }
+//
+//            }
 
         }
 
@@ -74,7 +100,6 @@ class ModuleController extends Controller
             $result['id'] = $moduleCategory->id;
             $result['name'] = $moduleCategory->name;
             $result['description'] = $moduleCategory->description;
-            $result['price'] = $moduleCategory->price;
             $result['code'] = $moduleCategory->code;
 
         }
