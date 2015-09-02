@@ -166,6 +166,7 @@ class ProductController extends Controller
 		$product->goods_id = $goods->id;
 		$product->price = $_POST['price'];
 		$product->store_id = $_POST['storeId'];
+        $product->count = $_POST['count'];
 
 		$product->save();
 
@@ -190,6 +191,7 @@ class ProductController extends Controller
 		$result['status'] = $product->status;
 		$result['additional'] = $product->description;
 		$result['img'] = $imgUrl;
+        $result['count'] = $product->count;
 
 		$result['success'] = true;
 		$json = str_replace("\\/", "/", CJSON::encode($result));
@@ -208,6 +210,7 @@ class ProductController extends Controller
 		$product->price = $_POST['price'];
 		$product->store_id = $_POST['storeId'];
 		$product->status = 1;
+        $product->count = $_POST['count'];
 
 		$product->save();
 
@@ -227,6 +230,7 @@ class ProductController extends Controller
 		$result['price'] = $product->price;
 		$result['status'] = $product->status;
 		$result['additional'] = $product->description;
+        $result['count'] = $product->count;
 		$result['img'] = $imgUrl;
 
 		$result['success'] = true;
