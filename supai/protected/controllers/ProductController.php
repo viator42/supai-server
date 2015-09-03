@@ -519,6 +519,29 @@ class ProductController extends Controller
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
+
+    //商品数量增加
+    public function actionCountIncrease()
+    {
+        $result = array('success'=>false);
+
+        $productId = $_POST['productId'];
+        $count = $_POST['count'];
+
+        $product = Product::model()->findByPk($productId);
+        if($product != null)
+        {
+            $product->count += $count;
+            $product->save();
+
+            $result['success'] = true;
+            $result['count'] = $product->count;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
     /*
 	//多商品添加
 	public function actionMultiAdd()

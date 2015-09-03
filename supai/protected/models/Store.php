@@ -15,6 +15,7 @@
  * @property string $address
  * @property integer $status
  * @property string $sn
+ * @property integer $storage_warning
  */
 class Store extends CActiveRecord
 {
@@ -35,7 +36,7 @@ class Store extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, user_id, sn', 'required'),
-			array('user_id, area_id, status', 'numerical', 'integerOnly'=>true),
+			array('user_id, area_id, status, storage_warning', 'numerical', 'integerOnly'=>true),
 			array('longitude, latitude', 'numerical'),
 			array('logo', 'length', 'max'=>128),
 			array('name', 'length', 'max'=>45),
@@ -43,7 +44,7 @@ class Store extends CActiveRecord
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, logo, name, user_id, area_id, longitude, latitude, description, address, status, sn', 'safe', 'on'=>'search'),
+			array('id, logo, name, user_id, area_id, longitude, latitude, description, address, status, sn, storage_warning', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,6 +76,7 @@ class Store extends CActiveRecord
 			'address' => 'Address',
 			'status' => 'Status',
 			'sn' => 'Sn',
+			'storage_warning' => 'Storage Warning',
 		);
 	}
 
@@ -107,6 +109,7 @@ class Store extends CActiveRecord
 		$criteria->compare('address',$this->address,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('sn',$this->sn,true);
+		$criteria->compare('storage_warning',$this->storage_warning);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
