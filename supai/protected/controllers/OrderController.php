@@ -516,7 +516,7 @@ class OrderController extends Controller
             $order['merchantName'] = $merchant->name;
             $order['customerTel'] = $customer->tel;
             $order['merchantTel'] = $merchant->tel;
-            $order['customerAddress'] = $customer->address;
+            $order['customerAddress'] = $orderObj->address;
             $order['merchantAddress'] = $merchant->address;
             $order['customerLongitude'] = $customer->longitude;
             $order['customerLatitude'] = $customer->latitude;
