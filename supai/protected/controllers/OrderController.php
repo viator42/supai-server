@@ -112,11 +112,11 @@ class OrderController extends Controller
 		//客户列表
 		switch ($type) {
 			case 1:
-				$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and customer_id=:customer_id limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($customerPage * $limit), ':limit'=>$limit));
+				$orderObjs = Order::model()->findAll('(status = 1 or status = 2 or status = 5) and customer_id=:customer_id order by create_time desc limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($customerPage * $limit), ':limit'=>$limit));
 				break;
 			
 			case 2:
-				$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and customer_id=:customer_id limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+				$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and customer_id=:customer_id order by create_time desc limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
 				break;
 		}
 		foreach ($orderObjs as $orderObj) 
@@ -132,11 +132,11 @@ class OrderController extends Controller
 		//商户列表
 		switch ($type) {
 			case 1:
-				$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and merchant_id=:merchant_id limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+				$orderObjs = Order::model()->findAll('(status = 1 or status = 2 or status = 5) and merchant_id=:merchant_id order by create_time desc limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
 				break;
 			
 			case 2:
-				$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and merchant_id=:merchant_id limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+				$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and merchant_id=:merchant_id order by create_time desc limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
 				break;
 		}
 
@@ -434,6 +434,9 @@ class OrderController extends Controller
                 }
                 elseif($accept == 2)
                 {
+                    $orderObj->status = 2;
+                    $orderObj->save();
+
                     //发送推送通知 给客户
                     $extras = array("order_id"=>$orderObj->id);
                     $extras['type'] = "RETURN_ORDER_REJECTED";
@@ -532,7 +535,7 @@ class OrderController extends Controller
     //订单商品重新添加到商品库存中
     private function productCountReadd($orderObj)
     {
-        $orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderObj->order_id));
+        $orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderObj->id));
         foreach($orderDetailObjs as $orderDetailObj)
         {
             $product = Product::model()->findByPk($orderDetailObj->product_id);
