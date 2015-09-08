@@ -59,28 +59,6 @@ class ModuleController extends Controller
 
             }
 
-//            $moduleCategoryObj = ModuleCategory::model()->findByPk($moduleObj->category_id);
-//            if($moduleCategoryObj != null)
-//            {
-//                $module = array();
-//
-//                $module['id'] = $moduleObj->id;
-//                $module['code'] = $moduleCategoryObj->code;
-//                $module['name'] = $moduleCategoryObj->name;
-//                $module['start_time'] = $moduleObj->start_time;
-//                $module['finish_time'] = $moduleObj->finish_time;
-//                $module['price'] = $moduleObj->price;
-//                $module['status'] = $moduleObj->status;
-//
-//                $current_time = time();
-//                if($current_time > $moduleObj->start_time && $current_time > $moduleObj->finish_time)
-//                {
-//                    $result[] = $module;
-//
-//                }
-//
-//            }
-
         }
 
         $json = str_replace("\\/", "/", CJSON::encode($result));
@@ -113,14 +91,14 @@ class ModuleController extends Controller
     {
         $result = array('success'=>false);
 
-        $categoryId = $_POST['categoryId'];
         $userid = $_POST['userid'];
         $username = $_POST['username'];
         $tel = $_POST['tel'];
         $address = $_POST['address'];
+        $buldleId = $_POST['bundle'];
 
-        $module = Module::model()->find('user_id=:user_id and category_id=:category_id',
-            array(':user_id'=>$userid, ':category_id'=>$categoryId));
+        $module = Module::model()->find('user_id=:user_id and bundle_id=:bundle_id',
+            array(':user_id'=>$userid, ':bundle_id'=>$buldleId));
         if($module != null)
         {
             $result['success'] = false;
@@ -130,13 +108,38 @@ class ModuleController extends Controller
         else
         {
             $module = new Module();
-
+//
             $module->user_id = $userid;
-            $module->category_id = $categoryId;
+            $module->bundle_id = $buldleId;
             $module->username = $username;
             $module->tel = $tel;
             $module->address = $address;
             $module->status = 3;
+
+            //如果有cdkey直接开通
+            if(isset($_POST['license']))
+            {
+                $key = $_POST['license'];
+
+                $license = License::model()->find('key=:key', array(':key'=>$key));
+                if($license != null)
+                {
+                    if($license->status == 2 && $license->userid == 0)
+                    {
+                        $license->userid = $userid;
+                        $license->active_time = time();
+
+                        //直接开通
+                        $moduleBundle = ModuleBundle::model()->findByPk($module->bundle_id);
+                        $module->status = 1;
+                        $module->start_time = time();
+                        $module->finish_time = $module->start_time + $moduleBundle->time_range;
+
+                    }
+
+                }
+
+            }
 
             $module->save();
 
