@@ -17,7 +17,7 @@
 <body>
 <div class="am-g am-container">
     感谢您使用速派网上超市,我们在保持了易于使用的基础上添加了更为强大的支持功能.
-    
+
     <table class="am-table am-table-bordered am-table-radius am-text-center">
         <thead>
         <tr>
