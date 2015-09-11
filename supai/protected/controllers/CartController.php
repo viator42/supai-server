@@ -251,6 +251,9 @@ class CartController extends Controller
         $id = $_POST['id'];
         $address = $_POST['address'];
         $additional = $_POST['additional'];
+        $payMethod = $_POST['payMethod'];
+        $paid = $_POST['paid'];
+        $payAfter = $_POST['payAfter'];
 
         $cart = Cart::model()->findByPk($id);
         if($cart == null)
@@ -308,12 +311,37 @@ class CartController extends Controller
         $order->customer_id = $cart->user_id;
         $order->merchant_id = $store->user_id;
         $order->store_id = $cart->store_id;
-        $order->status = 1;
         $order->sn = date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
         $order->address = $address;
         if($additional != null)
         {
             $order->additional = $additional;
+        }
+
+        $order->pay_method = $payMethod;
+        $order->paid = $paid;
+        $order->pay_after = $payAfter;
+
+        if($payAfter == 2)
+        {
+            //后付款跳过支付流程
+            $order->status = 2;
+
+        }
+        else
+        {
+            if($payMethod != 1)
+            {
+                //网上支付
+                $order->status = 1;
+
+            }
+            else
+            {
+                //货到付款
+                $order->status = 2;
+
+            }
         }
 
         $order->save();
