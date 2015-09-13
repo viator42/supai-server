@@ -200,43 +200,6 @@ class StoreController extends Controller
         echo $json;
 	}
 
-    //返回库存量少的商品列表
-    public function actionProductLowInStore()
-    {
-        $result = array();
-
-        $storeId = $_POST['storeId'];
-        $store = Store::model()->findByPk($storeId);
-
-        $productObjs = Product::model()->findAll('store_id=:store_id and status != 0 and count <= :count order by count desc',
-            array(':store_id'=>$storeId, ':count'=>$store->storage_warning));
-        foreach ($productObjs as $productObj)
-        {
-            $product = array();
-
-            $product['id'] = $productObj->id;
-            $product['alias'] = $productObj->alias;
-            $product['price'] = $productObj->price;
-            $product['count'] = $productObj->count;
-            $product['status'] = $productObj->status;
-
-            $img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
-            if($img != null)
-            {
-                $product['img'] = $img->url;
-            }
-            else
-            {
-                $product['img'] = "/images/product_default.jpg";
-            }
-
-            $result[] = $product;
-        }
-
-        $json = str_replace("\\/", "/", CJSON::encode($result));
-        echo $json;
-    }
-
 	// 返回一个地区内所有的店铺
 	public function actionAround()
 	{
