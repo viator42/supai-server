@@ -24,37 +24,52 @@ class UserIdentity extends CUserIdentity
 
 		if($user)
 		{
-			if($user->password == null || $user->password =='')
-			{
-				//密码为空则更新密码.
-				if($user->imie = $this->password)
-				{
-					$user->password = md5($this->password);
-					$user->lastlogin_time = time();
-					$user->save();
-				}
-				else
-				{
-					$this->errorCode=self::ERROR_PASSWORD_INVALID;
-
-				}
-				
-			}
-            elseif($user->password === md5($this->password))
+            if($user->passtype == 1)
             {
-            	$user->lastlogin_time = time();
-				$user->save();
+                //imie密码登陆
+                if($user->password == null || $user->password =='')
+                {
+                    //密码为空则更新密码.
+                    if($user->imie = $this->password)
+                    {
+                        $user->password = md5($this->password);
+                        $user->lastlogin_time = time();
+                        $user->save();
+                    }
+                    else
+                    {
+                        $this->errorCode=self::ERROR_PASSWORD_INVALID;
 
-                $this->user = $user;
+                    }
+
+                }
+                elseif($user->password === md5($this->password))
+                {
+                    $user->lastlogin_time = time();
+                    $user->save();
+
+                    $this->user = $user;
+                }
+                else
+                {
+                    $this->errorCode=self::ERROR_PASSWORD_INVALID;
+                }
+
+            }
+            elseif($user->passtype == 2)
+            {
+                //独立密码登陆
+                $this->errorCode=self::PASSWORD_NEEDED;
+
             }
             else
             {
-                $this->errorCode=self::ERROR_PASSWORD_INVALID;
+                $this->errorCode=self::ERROR_NONE;
             }
         }
         else
         {
-            $this->errorCode=self::ERROR_USERNAME_INVALID;
+            $this->errorCode=self::ERROR_NONE;
         }
 
         return $this->errorCode;

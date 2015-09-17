@@ -69,7 +69,171 @@ class StatisticsController extends Controller
         echo $json;
     }
 
+    //统计信息
+    public function actionInfo()
+    {
+        $result = array();
 
+        $storeId = $_POST['storeId'];
+
+        //商品总数 价格
+        $productCount = 0;
+        $productValueSum = 0;
+
+        $productObjs = Product::model()->findAll('store_id=:store_id and status != 0',
+            array(':store_id'=>$storeId));
+        foreach ($productObjs as $productObj)
+        {
+            $productCount += 1;
+            $value = $productObj->price * $productObj->count;
+            $productValueSum += $value;
+        }
+
+        $result['productCount'] = $productCount;
+        $result['productValueSum'] = $productValueSum;
+
+        //营业额
+        $turnoverToday = 0;
+        $turnoverMonth = 0;
+        $turnoverYear = 0;
+        $unpaidSum = 0;
+
+        $orderObjs = Order::model()->findAll('store_id=:store_id and status = 3', array(':store_id'=>$storeId));
+        foreach($orderObjs as $orderObj)
+        {
+            $createTime = $orderObj->create_time;
+
+            if($this->ifInToday($createTime))
+            {
+                $turnoverToday += $orderObj->summary;
+            }
+
+            if($this->ifInThisMonth($createTime))
+            {
+                $turnoverMonth += $orderObj->summary;
+            }
+
+            if($this->ifInThisYear($createTime))
+            {
+                $turnoverYear += $orderObj->summary;
+            }
+
+            if($orderObj->pay_after = 1 and $orderObj->paid = 1)
+            {
+                $unpaidSum += $orderObj->summary;
+            }
+
+        }
+
+        $result['turnoverToday'] = $turnoverToday;
+        $result['turnoverMonth'] = $turnoverMonth;
+        $result['turnoverYear'] = $turnoverYear;
+        $result['unpaidSum'] = $unpaidSum;
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //商品明细列表
+    public function actionParticulars()
+    {
+        $result = array();
+
+        $storeId = $_POST['storeId'];
+
+        $productObjs = Product::model()->findAll('store_id=:store_id and status != 0',
+            array(':store_id'=>$storeId));
+        foreach ($productObjs as $productObj)
+        {
+            $product = array();
+
+            $product['id'] = $productObj->id;
+            $product['alias'] = $productObj->alias;
+            //商品图片
+            $image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
+            if($image != null)
+            {
+                $product['img'] = $image->url;
+            }
+            else
+            {
+                //加载默认图片
+                $product['img'] = "/images/product_default.jpg";
+            }
+            $product['price'] = $productObj->price;
+            $product['count'] = $productObj->count;
+
+            $result[] = $product;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+    //是否在当天之内
+    public function ifInToday($time)
+    {
+        $now = time();
+        $y = date('Y', $now);
+        $m = date('m', $now);
+        $d = date('t', $now);
+
+        $firsttime = mktime(0,0,0,$m,$d,$y);
+        $lasttime = mktime(23,59,59,$m,$d,$y);
+
+        if($time > $firsttime && $time < $lasttime)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    //是否在本月之内
+    public function ifInThisMonth($time)
+    {
+        $now = time();
+        $y = date('Y', $now);
+        $m = date('m', $now);
+        $d = date('t', $now);
+
+        $firsttime = mktime(0,0,0,$m,1,$y);
+        $lasttime = mktime(23,59,59,$m,30,$y);
+
+        if($time > $firsttime && $time < $lasttime)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //是否当年之内
+    public function ifInThisYear($time)
+    {
+        $now = time();
+        $y = date('Y', $now);
+        $m = date('m', $now);
+        $d = date('t', $now);
+
+        $firsttime = mktime(0,0,0,1,1,$y);
+        $lasttime = mktime(23,59,59,12,31,$y);
+
+        if($time > $firsttime && $time < $lasttime)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+
+    }
 
 	// Uncomment the following methods and override them if needed
 	/*

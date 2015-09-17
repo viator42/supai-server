@@ -51,6 +51,7 @@ class UserController extends Controller
             $result['icon'] = $user->icon;
             $result['address'] = $user->address;
             $result['sn'] = $user->sn;
+            $result['passtype'] = $user->passtype;
 
             $result['success'] = true;
 
@@ -60,13 +61,58 @@ class UserController extends Controller
             $result['success'] = false;
             $result['errorCode'] = $_identity->errorCode;
 
-
         }
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 
 	}
+
+    //验证密码
+    public function actionValidatePassword()
+    {
+        $result = array('success'=>false, 'errorCode'=>0);
+
+        $userid = $_POST['userid'];
+        $password = $_POST['password'];
+
+        $user = User::model()->findByPk($userid);
+        if($user != null)
+        {
+            if($user->password == md5($password))
+            {
+                //登录成功
+
+            }
+
+        }
+
+        if($_identity->errorCode===UserIdentity::ERROR_NONE)
+        {
+            $user = $_identity->getUser();
+            $result['id'] = $user->id;
+            $result['name'] = $user->name;
+            $result['username'] = $user->username;
+            $result['tel'] = $user->tel;
+            $result['area'] = $user->area_id;
+            $result['icon'] = $user->icon;
+            $result['address'] = $user->address;
+            $result['sn'] = $user->sn;
+            $result['passtype'] = $user->passtype;
+
+            $result['success'] = true;
+
+        }
+        else
+        {
+            $result['success'] = false;
+            $result['errorCode'] = $_identity->errorCode;
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
 
 	//注册
 	public function actionRegister()
@@ -126,6 +172,7 @@ class UserController extends Controller
 		    $result['icon'] = $user->icon;
 		    $result['address'] = $user->address;
 		    $result['sn'] = $user->sn;
+            $result['passtype'] = $user->passtype;
 
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
@@ -153,6 +200,14 @@ class UserController extends Controller
 
             }
 			$user->area_id = $_POST['area'];
+
+            $passtype = $_POST['passtype'];
+            if($passtype == 2)
+            {
+                $user->passtype = $passtype;
+                $user->password = $_POST['password'];
+            }
+
 			$user->save();
 
 			$result['success'] = true;
@@ -182,6 +237,8 @@ class UserController extends Controller
 			$result['latitude'] = $user->latitude;
 			$result['area'] = $user->area_id;
 			$result['sn'] = $user->sn;
+            $result['passtype'] = $user->passtype;
+            $result['password'] = $user->password;
 
 			$result['success'] = true;
 
