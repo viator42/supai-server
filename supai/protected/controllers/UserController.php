@@ -342,6 +342,34 @@ class UserController extends Controller
 		$json = CJSON::encode($result);
         echo $json;
 	}
+
+    //查找用户信息根据tel
+    public function actionFindByTel()
+    {
+        $result = array('success'=>false);
+
+        $tel = $_POST['tel'];
+        $user = User::model()->find('tel=:tel', array(':tel'=>$tel));
+
+        if($user != null)
+        {
+            $result['id'] = $user->id;
+            $result['name'] = $user->name;
+            $result['username'] = $user->username;
+            $result['tel'] = $user->tel;
+            $result['icon'] = $user->icon;
+            $result['sn'] = $user->sn;
+            $result['passtype'] = $user->passtype;
+            $result['clerk_of'] = $user->clerk_of;
+            $result['status'] = $user->status;
+
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
 	/*
 	public function actionDestroy()
 	{

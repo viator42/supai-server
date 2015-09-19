@@ -415,6 +415,73 @@ class StoreController extends Controller
         $json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
     }
+
+    //员工添加
+    public function actionClerkRegister()
+    {
+        $result = array('success'=>false);
+
+        $userid = $_POST['userid'];
+        $storeId = $_POST['storeId'];
+
+        $user = User::model()->findByPk($userid);
+        if($user != null)
+        {
+
+            $user->clerk_of = $storeId;
+            $user->save();
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //店铺员工列表
+    public function actionClerks()
+    {
+        $result = array();
+
+        $storeId = $_POST['storeId'];
+
+        $userObjs = User::model()->findAll('clerk_of = :clerk_of', array(':clerk_of'=>$storeId));
+        foreach($userObjs as $userObj)
+        {
+            $user = array();
+            $user['id'] = $user->id;
+            $user['sn'] = $user->sn;
+            $user['name'] = $user->name;
+            $user['username'] = $user->username;
+            $user['icon'] = $user->icon;
+            $user['tel'] = $user->tel;
+
+            $result[] = $user;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //解雇员工
+    public function actionClerkRemove()
+    {
+        $result = array('success'=>false);
+
+        $userid = $_POST['userid'];
+
+        $user = User::model()->findByPk($userid);
+        if($user != null)
+        {
+
+            $user->clerk_of = 0;
+            $user->save();
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
 	/*
 	public function actionStoreProducts()
 	{
