@@ -52,6 +52,8 @@ class UserController extends Controller
             $result['address'] = $user->address;
             $result['sn'] = $user->sn;
             $result['passtype'] = $user->passtype;
+            $result['clerk_of'] = $user->clerk_of;
+            $result['status'] = $user->status;
 
             $result['success'] = true;
 
@@ -71,7 +73,7 @@ class UserController extends Controller
     //验证密码
     public function actionValidatePassword()
     {
-        $result = array('success'=>false, 'errorCode'=>0);
+        $result = array('success'=>false, 'errorCode'=>UserIdentity::ERROR_PASSWORD_INVALID);
 
         $userid = $_POST['userid'];
         $password = $_POST['password'];
@@ -82,31 +84,20 @@ class UserController extends Controller
             if($user->password == md5($password))
             {
                 //登录成功
+                $result['id'] = $user->id;
+                $result['name'] = $user->name;
+                $result['username'] = $user->username;
+                $result['tel'] = $user->tel;
+                $result['area'] = $user->area_id;
+                $result['icon'] = $user->icon;
+                $result['address'] = $user->address;
+                $result['sn'] = $user->sn;
+                $result['passtype'] = $user->passtype;
+                $result['clerk_of'] = $user->clerk_of;
+                $result['status'] = $user->status;
 
+                $result['success'] = true;
             }
-
-        }
-
-        if($_identity->errorCode===UserIdentity::ERROR_NONE)
-        {
-            $user = $_identity->getUser();
-            $result['id'] = $user->id;
-            $result['name'] = $user->name;
-            $result['username'] = $user->username;
-            $result['tel'] = $user->tel;
-            $result['area'] = $user->area_id;
-            $result['icon'] = $user->icon;
-            $result['address'] = $user->address;
-            $result['sn'] = $user->sn;
-            $result['passtype'] = $user->passtype;
-
-            $result['success'] = true;
-
-        }
-        else
-        {
-            $result['success'] = false;
-            $result['errorCode'] = $_identity->errorCode;
 
         }
 
@@ -173,6 +164,8 @@ class UserController extends Controller
 		    $result['address'] = $user->address;
 		    $result['sn'] = $user->sn;
             $result['passtype'] = $user->passtype;
+            $result['clerk_of'] = $user->clerk_of;
+            $result['status'] = $user->status;
 
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
@@ -239,6 +232,8 @@ class UserController extends Controller
 			$result['sn'] = $user->sn;
             $result['passtype'] = $user->passtype;
             $result['password'] = $user->password;
+            $result['clerk_of'] = $user->clerk_of;
+            $result['status'] = $user->status;
 
 			$result['success'] = true;
 
