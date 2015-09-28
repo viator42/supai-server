@@ -542,6 +542,20 @@ class ProductController extends Controller
         echo $json;
     }
 
+    //查询条码商品是否存在
+    public function actionBarcodeExist()
+    {
+        $result = array('success'=>false);
+
+        $barcode = $_POST['barcode'];
+        $storeId = $_POST['storeId'];
+
+        $product = Product::model()->find('store_id=:store_id and ');
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
     /*
 	//多商品添加
 	public function actionMultiAdd()

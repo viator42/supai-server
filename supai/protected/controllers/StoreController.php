@@ -114,23 +114,35 @@ class StoreController extends Controller
 	}
 
 	//查询用户的店铺信息
-	public function actionDetail()
-	{
-		$result = array('success'=>false);
-
-		$id = $_POST['id'];
-
-		$storeObj = Store::model()->findByPk($id);
-		if($storeObj != null)
-		{
-			$result['data'] = $storeObj;
-			$result['success'] = true;
-
-		}
-
-		$json = str_replace("\\/", "/", CJSON::encode($result));
-        echo $json;
-	}
+//	public function actionDetail()
+//	{
+//		$result = array('success'=>false);
+//
+//		$id = $_POST['id'];
+//
+//		$storeObj = Store::model()->findByPk($id);
+//		if($storeObj != null)
+//		{
+//            $store = array();
+//            $store['id'] = $storeObj->id;
+//            $store['logo'] = $storeObj->logo;
+//            $store['name'] = $storeObj->name;
+//            $store['userId'] = $storeObj->user_id;
+//            $store['address'] = $storeObj->address;
+//            $store['description'] = $storeObj->description;
+//            $store['longitude'] = $storeObj->longitude;
+//            $store['latitude'] = $storeObj->latitude;
+//            $store['favourite'] = 1;
+//            $store['status'] = $storeObj->status;
+//
+//			$result['data'] = $store;
+//			$result['success'] = true;
+//
+//		}
+//
+//		$json = str_replace("\\/", "/", CJSON::encode($result));
+//        echo $json;
+//	}
 
 
 	//返回商店的所有商品列表
@@ -476,6 +488,54 @@ class StoreController extends Controller
             $user->clerk_of = 0;
             $user->save();
             $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //店铺销售
+    public function actionSale()
+    {
+        $result = array('success'=>false);
+
+        $userid = $_POST['userid'];
+        $products = json_decode($_POST['userid']);
+
+
+
+//        $user = User::model()->findByPk($userid);
+//        if($user != null)
+//        {
+//
+//            $user->clerk_of = 0;
+//            $user->save();
+//            $result['success'] = true;
+//        }
+//
+//        $json = str_replace("\\/", "/", CJSON::encode($result));
+//        echo $json;
+
+        echo $products;
+
+    }
+
+    //查询员工是否有效
+    public function actionClerkAvaliable()
+    {
+        $result = array('success'=>false);
+
+        $userid = $_POST['userid'];
+
+        $user = User::model()->findByPk($userid);
+        if($user != null)
+        {
+            if($user->clerk_of != 0)
+            {
+                $result['success'] = true;
+
+            }
+
         }
 
         $json = str_replace("\\/", "/", CJSON::encode($result));
