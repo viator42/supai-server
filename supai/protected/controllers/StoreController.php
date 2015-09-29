@@ -371,8 +371,11 @@ class StoreController extends Controller
         $result = array();
 
         $storeId = $_POST['storeid'];
+        $page = $_POST['page'];
+        $limit = (int)$_POST['limit'];	//每页的个数
 
-        $followerObjs = Follower::model()->findAll('store_id=:store_id', array(':store_id'=>$storeId));
+        $followerObjs = Follower::model()->findAll('store_id=:store_id limit :offset, :limit',
+            array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
         foreach($followerObjs as $followerObj)
         {
             $follower = array();
