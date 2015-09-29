@@ -400,6 +400,63 @@ class StoreController extends Controller
         echo $json;
     }
 
+    //查找关注者
+    public function actionSearchFollower()
+    {
+        $result = array();
+
+        $storeId = $_POST['storeid'];
+        $keyword = $_POST['keyword'];
+        $type = $_POST['type'];     //查找类型 1:name   2:tel
+
+        $userObjs = null;
+        switch($type)
+        {
+            case 1:
+                $userObjs = User::model()->findAll('`name` like :name',
+                    array(':name'=>$keyword));
+
+                break;
+
+            case 2:
+                $userObjs = User::model()->findAll('tel = :tel',
+                    array(':tel'=>$keyword));
+
+                break;
+
+        }
+
+        if($userObjs != null)
+        {
+            foreach($userObjs as $userObj)
+            {
+                $followerObj = Follower::model()->find('customer_id=:customer_id and store_id=:store_id', array(':customer_id'=>$userObj->id, ':store_id'=>$storeId));
+
+                if($followerObj != null)
+                {
+                    $follower = array();
+
+                    $follower['id'] = $followerObj->id;
+                    $follower['name'] = $userObj->name;
+                    $follower['tel'] = $userObj->tel;
+                    $follower['address'] = $userObj->address;
+                    $follower['icon'] = $userObj->icon;
+                    $follower['sn'] = $userObj->sn;
+
+                    $follower['followTime'] = $followerObj->follow_time;
+                    $follower['status'] = $followerObj->status;
+
+                    $result[] = $follower;
+                }
+
+            }
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
     //屏蔽用户
     public function actionBlockCustomer()
     {
