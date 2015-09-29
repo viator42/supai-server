@@ -157,7 +157,8 @@ class StoreController extends Controller
 		$page = $_POST['page'];
 		$limit = (int)$_POST['limit'];	//每页的个数
 
-		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0 order by id desc limit :offset, :limit', array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0 order by id desc limit :offset, :limit',
+            array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
 		foreach ($productObjs as $productObj) 
 		{
 			$product = array();
