@@ -365,6 +365,15 @@ class UserController extends Controller
         echo $json;
     }
 
+    /**
+     * 生成token
+     */
+    private function tokenGen()
+    {
+        return uniqid();
+
+    }
+
 	/*
 	public function actionDestroy()
 	{
