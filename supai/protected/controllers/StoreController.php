@@ -290,6 +290,7 @@ class StoreController extends Controller
 		$status = $_POST['status'];
 		$longitude = $_POST['longitude'];
 		$latitude = $_POST['latitude'];
+        $storageWarning = $_POST['storage_warning'];
 		
 		$store = Store::model()->findByPk($id);
 		if($store != null)
@@ -300,6 +301,7 @@ class StoreController extends Controller
 			$store->status = $status;
 			$store->longitude = $longitude;
 			$store->latitude = $latitude;
+            $store->storage_warning = $storageWarning;
 
 			if(isset($_POST['logo']))
 			{
