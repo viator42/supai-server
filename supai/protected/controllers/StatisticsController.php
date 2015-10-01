@@ -140,9 +140,11 @@ class StatisticsController extends Controller
         $result = array();
 
         $storeId = $_POST['storeId'];
+        $page = $_POST['page'];
+        $limit = (int)$_POST['limit'];	//每页的个数
 
-        $productObjs = Product::model()->findAll('store_id=:store_id and status != 0',
-            array(':store_id'=>$storeId));
+        $productObjs = Product::model()->findAll('store_id=:store_id and status != 0 limit :offset, :limit',
+            array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
         foreach ($productObjs as $productObj)
         {
             $product = array();
