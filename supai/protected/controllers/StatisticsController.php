@@ -29,10 +29,13 @@ class StatisticsController extends Controller
         $result = array();
 
         $storeId = $_POST['storeId'];
+        $page = $_POST['page'];
+        $limit = (int)$_POST['limit'];	//每页的个数
+
         $store = Store::model()->findByPk($storeId);
 
-        $productObjs = Product::model()->findAll('store_id=:store_id and status != 0 and count <= :count order by count desc',
-            array(':store_id'=>$storeId, ':count'=>$store->storage_warning));
+        $productObjs = Product::model()->findAll('store_id=:store_id and status != 0 and count <= :count order by count desc limit :offset, :limit',
+            array(':store_id'=>$storeId, ':count'=>$store->storage_warning, ':offset'=>($page * $limit), ':limit'=>$limit));
         foreach ($productObjs as $productObj)
         {
             $product = array();
