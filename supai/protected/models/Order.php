@@ -18,6 +18,7 @@
  * @property integer $pay_method
  * @property integer $paid
  * @property integer $pay_after
+ * @property integer $type
  */
 class Order extends CActiveRecord
 {
@@ -38,14 +39,14 @@ class Order extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('create_time, customer_id, merchant_id, store_id, sn', 'required'),
-			array('create_time, customer_id, merchant_id, store_id, status, readed, pay_method, paid, pay_after', 'numerical', 'integerOnly'=>true),
+			array('create_time, customer_id, merchant_id, store_id, status, readed, pay_method, paid, pay_after, type', 'numerical', 'integerOnly'=>true),
 			array('summary', 'length', 'max'=>10),
 			array('sn', 'length', 'max'=>64),
 			array('address', 'length', 'max'=>128),
 			array('additional', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, create_time, customer_id, merchant_id, store_id, status, summary, additional, readed, sn, address, pay_method, paid, pay_after', 'safe', 'on'=>'search'),
+			array('id, create_time, customer_id, merchant_id, store_id, status, summary, additional, readed, sn, address, pay_method, paid, pay_after, type', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -80,6 +81,7 @@ class Order extends CActiveRecord
 			'pay_method' => 'Pay Method',
 			'paid' => 'Paid',
 			'pay_after' => 'Pay After',
+			'type' => 'Type',
 		);
 	}
 
@@ -115,6 +117,7 @@ class Order extends CActiveRecord
 		$criteria->compare('pay_method',$this->pay_method);
 		$criteria->compare('paid',$this->paid);
 		$criteria->compare('pay_after',$this->pay_after);
+		$criteria->compare('type',$this->type);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
