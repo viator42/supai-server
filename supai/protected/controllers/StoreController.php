@@ -280,6 +280,47 @@ class StoreController extends Controller
         echo $json;
 	}
 
+    // 根据名称查询返回一个地区内所有的店铺
+    public function actionSearchByName()
+    {
+        $result = array();
+
+        $name = $_POST['name'];
+        $userid = $_POST['userid'];
+
+        $storeObjs = Store::model()->findAll('`name` like :name and status=1', array(':name'=>'%'.$name.'%'));
+        foreach ($storeObjs as $storeObj)
+        {
+            $store = array();
+
+            $store['id'] = $storeObj->id;
+            $store['logo'] = $storeObj->logo;
+            $store['name'] = $storeObj->name;
+            $store['user_id'] = $storeObj->user_id;
+            $store['area_id'] = $storeObj->area_id;
+            $store['longitude'] = $storeObj->longitude;
+            $store['latitude'] = $storeObj->latitude;
+            $store['description'] = $storeObj->description;
+            $store['address'] = $storeObj->address;
+            $store['status'] = $storeObj->status;
+            $store['storage_warning'] = $storeObj->storage_warning;
+
+            //收藏状态
+            $store['favourite'] = 0;
+            $storeCollectObj = StoreCollect::model()->find('store_id=:store_id and user_id=:user_id', array(':store_id'=>$storeObj->id, ':user_id'=>$userid));
+            if($storeCollectObj != null)
+            {
+                $store['favourite'] = 1;
+            }
+
+            $result[] = $store;
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
 	// 修改店铺信息
 	public function actionUpdate()
 	{
