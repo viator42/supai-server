@@ -229,42 +229,50 @@ class SalesController extends Controller
     {
         $result = array();
 
+        $type = $_POST['type'];
         $clerkId = $_POST['clerkId'];
         $storeId = $_POST['storeId'];
         $page = $_POST['page'];
         $limit = (int)$_POST['limit'];	//每页的个数
 
-        if($storeId != 0)
+        $orderObjs = null;
+
+        if($type == 1)
         {
+            //收货员查看自己的
+            $orderObjs = Order::model()->findAll('merchant_id=:merchant_id and store_id = :store_id and type = 2 order by create_time desc limit :offset, :limit',
+                array(':merchant_id'=>$clerkId, ':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+            
+        }
+        elseif($type == 2)
+        {
+            //商家查看所有售货员的
             $orderObjs = Order::model()->findAll('store_id = :store_id and type = 2 order by create_time desc limit :offset, :limit',
                 array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
 
         }
-        else
+
+        if($orderObjs != null)
         {
-            $orderObjs = Order::model()->findAll('merchant_id=:merchant_id and store_id = :store_id and type = 2 order by create_time desc limit :offset, :limit',
-                array(':merchant_id'=>$clerkId, ':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
-
-        }
-
-        foreach($orderObjs as $orderObj)
-        {
-            $clerkObj = User::model()->findByPk($orderObj->merchant_id);
-
-            if($clerkObj != null)
+            foreach($orderObjs as $orderObj)
             {
-                $order = array();
+                $clerkObj = User::model()->findByPk($orderObj->merchant_id);
 
-                $order['id'] = $orderObj->id;
-                $order['create_time'] = $orderObj->create_time;
-                $order['merchant_id'] = $orderObj->merchant_id;
-                $order['merchant_name'] = $clerkObj->name;
-                $order['count'] = $orderObj->count;
-                $order['summary'] = $orderObj->summary;
+                if($clerkObj != null)
+                {
+                    $order = array();
 
-                $result[] = $order;
+                    $order['id'] = $orderObj->id;
+                    $order['create_time'] = $orderObj->create_time;
+                    $order['merchant_id'] = $orderObj->merchant_id;
+                    $order['merchant_name'] = $clerkObj->name;
+                    $order['count'] = $orderObj->count;
+                    $order['summary'] = $orderObj->summary;
+
+                    $result[] = $order;
+                }
+
             }
-
         }
 
         $json = str_replace("\\/", "/", CJSON::encode($result));
