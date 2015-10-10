@@ -242,7 +242,7 @@ class SalesController extends Controller
             //收货员查看自己的
             $orderObjs = Order::model()->findAll('merchant_id=:merchant_id and store_id = :store_id and type = 2 order by create_time desc limit :offset, :limit',
                 array(':merchant_id'=>$clerkId, ':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
-            
+
         }
         elseif($type == 2)
         {

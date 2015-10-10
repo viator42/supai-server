@@ -232,11 +232,13 @@ class StoreController extends Controller
 			$store['logo'] = $storeObj->logo;
 			$store['name'] = $storeObj->name;
 			$store['user_id'] = $storeObj->user_id;
-			$store['area'] = $storeObj->area_id;
+			$store['area_id'] = $storeObj->area_id;
 			$store['longitude'] = $storeObj->longitude;
 			$store['latitude'] = $storeObj->latitude;
 			$store['description'] = $storeObj->description;
 			$store['address'] = $storeObj->address;
+            $store['status'] = $storeObj->status;
+            $store['storage_warning'] = $storeObj->storage_warning;
 
 			//收藏状态
 			$store['favourite'] = 0;
