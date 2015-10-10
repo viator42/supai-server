@@ -565,6 +565,7 @@ class OrderController extends Controller
             $order['merchantId'] = $orderObj->merchant_id;
             $order['customerId'] = $orderObj->customer_id;
             $order['createTime'] = $orderObj->create_time;
+            $order['count'] = $orderObj->count;
             $order['summary'] = $orderObj->summary;
             $order['status'] = $orderObj->status;
             $order['additional'] = $orderObj->additional;

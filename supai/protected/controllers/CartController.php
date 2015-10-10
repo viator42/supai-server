@@ -347,6 +347,7 @@ class CartController extends Controller
         $order->save();
         
         $summary = 0;//总价
+        $count = 0; //数量
 
         //添加订单商品
         foreach ($cartDetails as $cartDetail)
@@ -363,6 +364,7 @@ class CartController extends Controller
 
                 $orderDetail->save();
                 $summary += $cartDetail->price * $orderDetail->count;
+                $count += $orderDetail->count;
 
                 //商品库存数修改
                 $product->count -= $cartDetail->count;
@@ -374,6 +376,7 @@ class CartController extends Controller
 
         $cart->delete();
 
+        $order->count = $count;
         $order->summary = $summary;
         $order->save();
 

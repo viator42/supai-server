@@ -192,6 +192,7 @@ class SalesController extends Controller
             $order->save();
 
             $summary = 0;//总价
+            $count = 0; //数量
 
             //遍历添加商品
             foreach($saleObjs as $saleObj)
@@ -206,10 +207,12 @@ class SalesController extends Controller
                 $orderDetail->save();
 
                 $summary += $orderDetail->price * $orderDetail->count;
+                $count += $saleObj->count;
 
                 $saleObj->delete();
             }
 
+            $order->count = $count;
             $order->summary = $summary;
             $order->save();
 
@@ -220,12 +223,54 @@ class SalesController extends Controller
         echo $json;
     }
 
-    //查询销售历史
-//    public function actionCreateOrder()
-//    {
-//
-//    }
+    //店铺销售订单
+    //clerkId 对应 merchantId
+    public function actionOrders()
+    {
+        $result = array();
 
+        $clerkId = $_POST['clerkId'];
+        $storeId = $_POST['storeId'];
+        $page = $_POST['page'];
+        $limit = (int)$_POST['limit'];	//每页的个数
+
+        if($storeId != 0)
+        {
+            $orderObjs = Order::model()->findAll('store_id = :store_id and type = 2 order by create_time desc limit :offset, :limit',
+                array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+
+        }
+        else
+        {
+            $orderObjs = Order::model()->findAll('merchant_id=:merchant_id and store_id = :store_id and type = 2 order by create_time desc limit :offset, :limit',
+                array(':merchant_id'=>$clerkId, ':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+
+        }
+
+        foreach($orderObjs as $orderObj)
+        {
+            $clerkObj = User::model()->findByPk($orderObj->merchant_id);
+
+            if($clerkObj != null)
+            {
+                $order = array();
+
+                $order['id'] = $orderObj->id;
+                $order['create_time'] = $orderObj->create_time;
+                $order['merchant_id'] = $orderObj->merchant_id;
+                $order['merchant_name'] = $clerkObj->name;
+                $order['count'] = $orderObj->count;
+                $order['summary'] = $orderObj->summary;
+
+                $result[] = $order;
+            }
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+
+    }
 
 	// Uncomment the following methods and override them if needed
 	/*
