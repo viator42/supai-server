@@ -243,6 +243,35 @@ class CartController extends Controller
         echo $json;
     }
 
+    //支持的支付方式检查
+    public function actionGetPayOptions()
+    {
+        $result = array();
+
+        $cartId = $_POST['cartId'];
+
+        //支付方式
+        $result['pay_method'] = array(1);
+        //支持未付款
+        $result['pay_after'] = false;
+
+        $cartObj = Cart::model()->findByPk($cartId);
+        if($cartObj != null)
+        {
+            $store = Store::model()->findByPk($cartObj->store_id);
+            $user = User::model()->findByPk($cartObj->user_id);
+            if($store != null && $user != null)
+            {
+
+                $result['pay_after'] = false;
+            }
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
     //生成订单并删除购物车及其所属商品
     public function actionCreateOrder()
     {
