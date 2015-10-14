@@ -460,7 +460,7 @@ class StoreController extends Controller
         {
             case 1:
                 $userObjs = User::model()->findAll('`name` like :name',
-                    array(':name'=>$keyword));
+                    array(':name'=>'%'.$keyword.'%'));
 
                 break;
 
