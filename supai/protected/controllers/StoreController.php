@@ -69,8 +69,9 @@ class StoreController extends Controller
 			$result['status'] = $store->status;
 			$result['area_id'] = $store->area_id;
 			$result['sn'] = $store->sn;
-
 			$result['logo'] = $store->logo;
+            $result['favourite'] = 0;
+            $result['storage_warning'] = $store->storage_warning;
 
 			$result['success'] = true;
 		}
