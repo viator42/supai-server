@@ -31,7 +31,7 @@ class UserController extends Controller
 	// ERROR_UNKNOWN_IDENTITY = 100;       // the default
 	public function actionLogin()
 	{
-		$result = array('success'=>false, 'errorCode'=>0);
+		$result = array('success'=>false, 'errorCode'=>UserIdentity::LOGIN_ERROR);
 
 		$username = $_POST['tel'];
 		$password = $_POST['password'];
@@ -40,22 +40,26 @@ class UserController extends Controller
 
         $_identity->authenticate();
 
-        if($_identity->errorCode===UserIdentity::ERROR_NONE)
+        if($_identity->errorCode === UserIdentity::AUTO_PASSWORD_PASSED)
         {
         	$user = $_identity->getUser();
-            $result['id'] = $user->id;
-            $result['name'] = $user->name;
-            $result['username'] = $user->username;
-            $result['tel'] = $user->tel;
-            $result['area'] = $user->area_id;
-            $result['icon'] = $user->icon;
-            $result['address'] = $user->address;
-            $result['sn'] = $user->sn;
-            $result['passtype'] = $user->passtype;
-            $result['clerk_of'] = $user->clerk_of;
-            $result['status'] = $user->status;
+            if($user != null)
+            {
+                $result['id'] = $user->id;
+                $result['name'] = $user->name;
+                $result['username'] = $user->username;
+                $result['tel'] = $user->tel;
+                $result['area'] = $user->area_id;
+                $result['icon'] = $user->icon;
+                $result['address'] = $user->address;
+                $result['sn'] = $user->sn;
+                $result['passtype'] = $user->passtype;
+                $result['clerk_of'] = $user->clerk_of;
+                $result['status'] = $user->status;
 
-            $result['success'] = true;
+                $result['success'] = true;
+
+            }
 
         }
         else

@@ -102,7 +102,7 @@ class StoreController extends Controller
 			$data['longitude'] = $storeObj->longitude;
 			$data['latitude'] = $storeObj->latitude;
 			$data['status'] = $storeObj->status;
-            $data['storageWarning'] = $storeObj->storage_warning;
+            $data['storage_warning'] = $storeObj->storage_warning;
 
 			$result['data'] = $data;
 			$result['success'] = true;
@@ -566,12 +566,12 @@ class StoreController extends Controller
         foreach($userObjs as $userObj)
         {
             $user = array();
-            $user['id'] = $user->id;
-            $user['sn'] = $user->sn;
-            $user['name'] = $user->name;
-            $user['username'] = $user->username;
-            $user['icon'] = $user->icon;
-            $user['tel'] = $user->tel;
+            $user['id'] = $userObj->id;
+            $user['sn'] = $userObj->sn;
+            $user['name'] = $userObj->name;
+            $user['username'] = $userObj->username;
+            $user['icon'] = $userObj->icon;
+            $user['tel'] = $userObj->tel;
 
             $result[] = $user;
         }
@@ -638,7 +638,19 @@ class StoreController extends Controller
         {
             if($user->clerk_of != 0)
             {
-                $result['success'] = true;
+                $storeId = $user->clerk_of;
+                $storeObj = Store::model()->findByPk($storeId);
+                {
+                    if($storeObj != null)
+                    {
+                        $result['storeId'] = $storeObj->id;
+                        $result['storeName'] = $storeObj->name;
+                        $result['storeAddress'] = $storeObj->address;
+                        $result['storeLogo'] = $storeObj->logo;
+
+                        $result['success'] = true;
+                    }
+                }
 
             }
 

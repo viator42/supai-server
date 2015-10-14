@@ -32,11 +32,28 @@
  */
 abstract class CBaseUserIdentity extends CComponent implements IUserIdentity
 {
-	const ERROR_NONE=0;
-	const ERROR_USERNAME_INVALID=1;
-	const ERROR_PASSWORD_INVALID=2;
-    const PASSWORD_NEEDED=3;
-	const ERROR_UNKNOWN_IDENTITY=100;
+    //--------------------登录状态--------------------
+    const USER_NOTFOUND = 1001; //用户不存在
+    const AUTO_PASSWORD_PASSED = 1002; //自动密码验证通过
+    const AUTO_PASSWORD_FAILED = 1003; //自动密码验证失败
+    const PASSWORD_NEEDED = 1004; //需要手动输入密码验证
+    const LOGIN_ERROR = 0; //未知错误
+
+    const PASSWORD_PASSED = 1005; //手动密码验证成功
+    const PASSWORD_FAILED = 1006; //手动密码验证失败
+
+    //--------------------常量--------------------
+    const USER_PASSTYPE_AUTO = 1;
+    const USER_PASSTYPE_INDEPENDENT = 2;
+
+
+
+
+//	const ERROR_NONE=0;
+//	const ERROR_USERNAME_INVALID=1;
+//	const ERROR_PASSWORD_INVALID=2;
+//    const PASSWORD_NEEDED=3;
+//	const ERROR_UNKNOWN_IDENTITY=100;
 
 	/**
 	 * @var integer the authentication error code. If there is an error, the error code will be non-zero.
