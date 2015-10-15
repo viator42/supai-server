@@ -74,13 +74,13 @@ class CollectController extends Controller
 
 						//共用属性
 						$product['id'] = $productObj->id;
-						$product['goodsId'] = $productObj->goods_id;
+						$product['goods_id'] = $productObj->goods_id;
 						$product['alias'] = $productObj->alias;
 						$product['additional'] = $productObj->description;
 						$product['price'] = $productObj->price;
 						$product['count'] = $productObj->count;
 						$product['status'] = $productObj->status;
-						$product['storeId'] = $productObj->store_id;
+						$product['store_id'] = $productObj->store_id;
 
 						if($productObj->goods_id != 0)
 						{
@@ -140,21 +140,21 @@ class CollectController extends Controller
 					$product['img'] = "/images/product_default.jpg";
 				}
 
-				$product['goodsId'] = $productObj->goods_id;
+				$product['goods_id'] = $productObj->goods_id;
 				$product['id'] = $productObj->id;
 				$product['alias'] = $productObj->alias;
 				$product['additional'] = $productObj->description;
 				$product['price'] = $productObj->price;
 				$product['count'] = $productObj->count;
 				$product['status'] = $productObj->status;
-				$product['storeId'] = $productObj->store_id;
+				$product['store_id'] = $productObj->store_id;
 
 				if($productObj->goods_id != 0)
 				{
 					$goodsObj = Goods::model()->findByPk($productObj->goods_id);
 					if($goodsObj != null)
 					{
-						$product['goodsId'] = $productObj->goods_id;
+						$product['goods_id'] = $productObj->goods_id;
 						$product['name'] = $goodsObj->name;
 						$product['rccode'] = $goodsObj->barcode;
 						$product['description'] = $goodsObj->description;
