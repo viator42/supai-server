@@ -19,6 +19,12 @@ class AppController extends Controller
         echo $json;
     }
 
+    public function actionEnvinfo()
+    {
+        phpinfo();
+
+    }
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
