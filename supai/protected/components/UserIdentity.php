@@ -8,7 +8,17 @@
 class UserIdentity extends CUserIdentity
 {
 	public $user;
-	public $errcode;
+	public $errorCode;
+    public $username;
+    public $password;
+
+    public function UserIdentity($username, $password)
+    {
+        $this->username = $username;
+        $this->password = $password;
+
+    }
+
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -20,41 +30,57 @@ class UserIdentity extends CUserIdentity
 	public function authenticate()
 	{
 		$user = User::model()->findByAttributes(array('tel'=>$this->username));
-		$this->errorCode=self::ERROR_NONE;
+		$this->errorCode=self::LOGIN_ERROR;
 
-		if($user)
+		if($user != null)
 		{
-			if($user->password == null || $user->password =='')
-			{
-				//密码为空则更新密码.
-				if($user->imie = $this->password)
-				{
-					$user->password = md5($this->password);
-					$user->lastlogin_time = time();
-					$user->save();
-				}
-				else
-				{
-					$this->errorCode=self::ERROR_PASSWORD_INVALID;
-
-				}
-				
-			}
-            elseif($user->password === md5($this->password))
+            if($user->passtype == self::USER_PASSTYPE_AUTO)
             {
-            	$user->lastlogin_time = time();
-				$user->save();
+                //imie密码登陆
+                if($user->password == null || $user->password =='')
+                {
+                    //密码为空则更新密码.
+                    if($user->imie = $this->password)
+                    {
+                        $user->password = md5($this->password);
+                        $user->lastlogin_time = time();
+                        $user->save();
 
-                $this->user = $user;
+                        $this->errorCode=self::AUTO_PASSWORD_PASSED;
+                    }
+
+                }
+                elseif($user->password === md5($this->password))
+                {
+                    //登录成功
+                    $user->lastlogin_time = time();
+                    $user->save();
+
+                    $this->user = $user;
+
+                    $this->errorCode=self::AUTO_PASSWORD_PASSED;
+                }
+                else
+                {
+                    $this->errorCode=self::AUTO_PASSWORD_FAILED;
+                }
+
+            }
+            elseif($user->passtype == 2)
+            {
+                //独立密码登陆
+                $this->errorCode=self::PASSWORD_NEEDED;
+
             }
             else
             {
-                $this->errorCode=self::ERROR_PASSWORD_INVALID;
+                $this->errorCode=self::LOGIN_ERROR;
             }
         }
         else
         {
-            $this->errorCode=self::ERROR_USERNAME_INVALID;
+            $this->errorCode=self::USER_NOTFOUND;
+
         }
 
         return $this->errorCode;

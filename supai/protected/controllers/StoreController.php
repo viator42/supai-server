@@ -54,6 +54,8 @@ class StoreController extends Controller
 			$store->status = 1;
 			$store->area_id = $area;
 			$store->sn = uniqid();
+
+            $store->storage_warning = 10;
 			
 			$store->save();
 
@@ -67,8 +69,9 @@ class StoreController extends Controller
 			$result['status'] = $store->status;
 			$result['area_id'] = $store->area_id;
 			$result['sn'] = $store->sn;
-
 			$result['logo'] = $store->logo;
+            $result['favourite'] = 0;
+            $result['storage_warning'] = $store->storage_warning;
 
 			$result['success'] = true;
 		}
@@ -100,6 +103,7 @@ class StoreController extends Controller
 			$data['longitude'] = $storeObj->longitude;
 			$data['latitude'] = $storeObj->latitude;
 			$data['status'] = $storeObj->status;
+            $data['storage_warning'] = $storeObj->storage_warning;
 
 			$result['data'] = $data;
 			$result['success'] = true;
@@ -111,23 +115,35 @@ class StoreController extends Controller
 	}
 
 	//查询用户的店铺信息
-	public function actionDetail()
-	{
-		$result = array('success'=>false);
-
-		$id = $_POST['id'];
-
-		$storeObj = Store::model()->findByPk($id);
-		if($storeObj != null)
-		{
-			$result['data'] = $storeObj;
-			$result['success'] = true;
-
-		}
-
-		$json = str_replace("\\/", "/", CJSON::encode($result));
-        echo $json;
-	}
+//	public function actionDetail()
+//	{
+//		$result = array('success'=>false);
+//
+//		$id = $_POST['id'];
+//
+//		$storeObj = Store::model()->findByPk($id);
+//		if($storeObj != null)
+//		{
+//            $store = array();
+//            $store['id'] = $storeObj->id;
+//            $store['logo'] = $storeObj->logo;
+//            $store['name'] = $storeObj->name;
+//            $store['userId'] = $storeObj->user_id;
+//            $store['address'] = $storeObj->address;
+//            $store['description'] = $storeObj->description;
+//            $store['longitude'] = $storeObj->longitude;
+//            $store['latitude'] = $storeObj->latitude;
+//            $store['favourite'] = 1;
+//            $store['status'] = $storeObj->status;
+//
+//			$result['data'] = $store;
+//			$result['success'] = true;
+//
+//		}
+//
+//		$json = str_replace("\\/", "/", CJSON::encode($result));
+//        echo $json;
+//	}
 
 
 	//返回商店的所有商品列表
@@ -142,7 +158,8 @@ class StoreController extends Controller
 		$page = $_POST['page'];
 		$limit = (int)$_POST['limit'];	//每页的个数
 
-		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0 order by id desc limit :offset, :limit', array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0 order by id desc limit :offset, :limit',
+            array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
 		foreach ($productObjs as $productObj) 
 		{
 			$product = array();
@@ -216,11 +233,13 @@ class StoreController extends Controller
 			$store['logo'] = $storeObj->logo;
 			$store['name'] = $storeObj->name;
 			$store['user_id'] = $storeObj->user_id;
-			$store['area'] = $storeObj->area_id;
+			$store['area_id'] = $storeObj->area_id;
 			$store['longitude'] = $storeObj->longitude;
 			$store['latitude'] = $storeObj->latitude;
 			$store['description'] = $storeObj->description;
 			$store['address'] = $storeObj->address;
+            $store['status'] = $storeObj->status;
+            $store['storage_warning'] = $storeObj->storage_warning;
 
 			//收藏状态
 			$store['favourite'] = 0;
@@ -262,6 +281,47 @@ class StoreController extends Controller
         echo $json;
 	}
 
+    // 根据名称查询返回一个地区内所有的店铺
+    public function actionSearchByName()
+    {
+        $result = array();
+
+        $name = $_POST['name'];
+        $userid = $_POST['userid'];
+
+        $storeObjs = Store::model()->findAll('`name` like :name and status=1', array(':name'=>'%'.$name.'%'));
+        foreach ($storeObjs as $storeObj)
+        {
+            $store = array();
+
+            $store['id'] = $storeObj->id;
+            $store['logo'] = $storeObj->logo;
+            $store['name'] = $storeObj->name;
+            $store['user_id'] = $storeObj->user_id;
+            $store['area_id'] = $storeObj->area_id;
+            $store['longitude'] = $storeObj->longitude;
+            $store['latitude'] = $storeObj->latitude;
+            $store['description'] = $storeObj->description;
+            $store['address'] = $storeObj->address;
+            $store['status'] = $storeObj->status;
+            $store['storage_warning'] = $storeObj->storage_warning;
+
+            //收藏状态
+            $store['favourite'] = 0;
+            $storeCollectObj = StoreCollect::model()->find('store_id=:store_id and user_id=:user_id', array(':store_id'=>$storeObj->id, ':user_id'=>$userid));
+            if($storeCollectObj != null)
+            {
+                $store['favourite'] = 1;
+            }
+
+            $result[] = $store;
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
 	// 修改店铺信息
 	public function actionUpdate()
 	{
@@ -274,6 +334,7 @@ class StoreController extends Controller
 		$status = $_POST['status'];
 		$longitude = $_POST['longitude'];
 		$latitude = $_POST['latitude'];
+        $storageWarning = $_POST['storage_warning'];
 		
 		$store = Store::model()->findByPk($id);
 		if($store != null)
@@ -284,6 +345,7 @@ class StoreController extends Controller
 			$store->status = $status;
 			$store->longitude = $longitude;
 			$store->latitude = $latitude;
+            $store->storage_warning = $storageWarning;
 
 			if(isset($_POST['logo']))
 			{
@@ -355,8 +417,11 @@ class StoreController extends Controller
         $result = array();
 
         $storeId = $_POST['storeid'];
+        $page = $_POST['page'];
+        $limit = (int)$_POST['limit'];	//每页的个数
 
-        $followerObjs = Follower::model()->findAll('store_id=:store_id', array(':store_id'=>$storeId));
+        $followerObjs = Follower::model()->findAll('store_id=:store_id limit :offset, :limit',
+            array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
         foreach($followerObjs as $followerObj)
         {
             $follower = array();
@@ -375,6 +440,63 @@ class StoreController extends Controller
 
                 $result[] = $follower;
             }
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //查找关注者
+    public function actionSearchFollower()
+    {
+        $result = array();
+
+        $storeId = $_POST['storeid'];
+        $keyword = $_POST['keyword'];
+        $type = $_POST['type'];     //查找类型 1:name   2:tel
+
+        $userObjs = null;
+        switch($type)
+        {
+            case 1:
+                $userObjs = User::model()->findAll('`name` like :name',
+                    array(':name'=>'%'.$keyword.'%'));
+
+                break;
+
+            case 2:
+                $userObjs = User::model()->findAll('tel = :tel',
+                    array(':tel'=>$keyword));
+
+                break;
+
+        }
+
+        if($userObjs != null)
+        {
+            foreach($userObjs as $userObj)
+            {
+                $followerObj = Follower::model()->find('customer_id=:customer_id and store_id=:store_id', array(':customer_id'=>$userObj->id, ':store_id'=>$storeId));
+
+                if($followerObj != null)
+                {
+                    $follower = array();
+
+                    $follower['id'] = $followerObj->id;
+                    $follower['name'] = $userObj->name;
+                    $follower['tel'] = $userObj->tel;
+                    $follower['address'] = $userObj->address;
+                    $follower['icon'] = $userObj->icon;
+                    $follower['sn'] = $userObj->sn;
+
+                    $follower['followTime'] = $followerObj->follow_time;
+                    $follower['status'] = $followerObj->status;
+
+                    $result[] = $follower;
+                }
+
+            }
+
         }
 
         $json = str_replace("\\/", "/", CJSON::encode($result));
@@ -412,6 +534,133 @@ class StoreController extends Controller
         $json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
     }
+
+    //员工添加
+    public function actionClerkRegister()
+    {
+        $result = array('success'=>false);
+
+        $userid = $_POST['userid'];
+        $storeId = $_POST['storeId'];
+
+        $user = User::model()->findByPk($userid);
+        if($user != null)
+        {
+
+            $user->clerk_of = $storeId;
+            $user->save();
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //店铺员工列表
+    public function actionClerks()
+    {
+        $result = array();
+
+        $storeId = $_POST['storeId'];
+
+        $userObjs = User::model()->findAll('clerk_of = :clerk_of', array(':clerk_of'=>$storeId));
+        foreach($userObjs as $userObj)
+        {
+            $user = array();
+            $user['id'] = $userObj->id;
+            $user['sn'] = $userObj->sn;
+            $user['name'] = $userObj->name;
+            $user['username'] = $userObj->username;
+            $user['icon'] = $userObj->icon;
+            $user['tel'] = $userObj->tel;
+
+            $result[] = $user;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //解雇员工
+    public function actionClerkRemove()
+    {
+        $result = array('success'=>false);
+
+        $userid = $_POST['userid'];
+
+        $user = User::model()->findByPk($userid);
+        if($user != null)
+        {
+
+            $user->clerk_of = 0;
+            $user->save();
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //店铺销售
+    public function actionSale()
+    {
+        $result = array('success'=>false);
+
+        $userid = $_POST['userid'];
+        $products = json_decode($_POST['userid']);
+
+
+
+//        $user = User::model()->findByPk($userid);
+//        if($user != null)
+//        {
+//
+//            $user->clerk_of = 0;
+//            $user->save();
+//            $result['success'] = true;
+//        }
+//
+//        $json = str_replace("\\/", "/", CJSON::encode($result));
+//        echo $json;
+
+        echo $products;
+
+    }
+
+    //查询员工是否有效
+    public function actionClerkAvaliable()
+    {
+        $result = array('success'=>false);
+
+        $userid = $_POST['userid'];
+
+        $user = User::model()->findByPk($userid);
+        if($user != null)
+        {
+            if($user->clerk_of != 0)
+            {
+                $storeId = $user->clerk_of;
+                $storeObj = Store::model()->findByPk($storeId);
+                {
+                    if($storeObj != null)
+                    {
+                        $result['storeId'] = $storeObj->id;
+                        $result['storeName'] = $storeObj->name;
+                        $result['storeAddress'] = $storeObj->address;
+                        $result['storeLogo'] = $storeObj->logo;
+
+                        $result['success'] = true;
+                    }
+                }
+
+            }
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
 	/*
 	public function actionStoreProducts()
 	{

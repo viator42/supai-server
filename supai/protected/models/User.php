@@ -20,6 +20,9 @@
  * @property integer $status
  * @property string $sn
  * @property string $passtype
+ * @property integer $clerk_of
+ * @property string $token
+ * @property integer $expire_time
  */
 class User extends CActiveRecord
 {
@@ -40,15 +43,16 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('imie, username, password, tel, sn', 'required'),
-			array('register_time, lastlogin_time, area_id, status', 'numerical', 'integerOnly'=>true),
+			array('register_time, lastlogin_time, area_id, status, clerk_of, expire_time', 'numerical', 'integerOnly'=>true),
 			array('longitude, latitude', 'numerical'),
 			array('imie, password, icon, address', 'length', 'max'=>128),
 			array('username, name, passtype', 'length', 'max'=>45),
 			array('tel', 'length', 'max'=>20),
 			array('sn', 'length', 'max'=>64),
+			array('token', 'length', 'max'=>256),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, imie, username, password, tel, icon, register_time, lastlogin_time, name, area_id, address, longitude, latitude, status, sn, passtype', 'safe', 'on'=>'search'),
+			array('id, imie, username, password, tel, icon, register_time, lastlogin_time, name, area_id, address, longitude, latitude, status, sn, passtype, clerk_of, token, expire_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -85,6 +89,9 @@ class User extends CActiveRecord
 			'status' => 'Status',
 			'sn' => 'Sn',
 			'passtype' => 'Passtype',
+			'clerk_of' => 'Clerk Of',
+			'token' => 'Token',
+			'expire_time' => 'Expire Time',
 		);
 	}
 
@@ -122,6 +129,9 @@ class User extends CActiveRecord
 		$criteria->compare('status',$this->status);
 		$criteria->compare('sn',$this->sn,true);
 		$criteria->compare('passtype',$this->passtype,true);
+		$criteria->compare('clerk_of',$this->clerk_of);
+		$criteria->compare('token',$this->token,true);
+		$criteria->compare('expire_time',$this->expire_time);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -33,6 +33,22 @@ class SiteController extends Controller
         $this->render('index');
 	}
 
+    public function actionTutorial()
+    {
+        $this->render('tutorial');
+    }
+
+    public function actionTutorialBare()
+    {
+        $this->renderPartial('tutorial');
+    }
+
+    //高级功能介绍页面
+    public function actionPro()
+    {
+        $this->renderPartial('pro');
+    }
+
 	/**
 	 * This is the action to handle external exceptions.
 	 */

@@ -243,6 +243,35 @@ class CartController extends Controller
         echo $json;
     }
 
+    //支持的支付方式检查
+    public function actionGetPayOptions()
+    {
+        $result = array();
+
+        $cartId = $_POST['cartId'];
+
+        //支付方式
+        $result['pay_method'] = array(1);
+        //支持未付款
+        $result['pay_after'] = false;
+
+        $cartObj = Cart::model()->findByPk($cartId);
+        if($cartObj != null)
+        {
+            $store = Store::model()->findByPk($cartObj->store_id);
+            $user = User::model()->findByPk($cartObj->user_id);
+            if($store != null && $user != null)
+            {
+
+                $result['pay_after'] = false;
+            }
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
     //生成订单并删除购物车及其所属商品
     public function actionCreateOrder()
     {
@@ -251,6 +280,9 @@ class CartController extends Controller
         $id = $_POST['id'];
         $address = $_POST['address'];
         $additional = $_POST['additional'];
+        $payMethod = $_POST['payMethod'];
+        $paid = $_POST['paid'];
+        $payAfter = $_POST['payAfter'];
 
         $cart = Cart::model()->findByPk($id);
         if($cart == null)
@@ -308,7 +340,6 @@ class CartController extends Controller
         $order->customer_id = $cart->user_id;
         $order->merchant_id = $store->user_id;
         $order->store_id = $cart->store_id;
-        $order->status = 1;
         $order->sn = date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
         $order->address = $address;
         if($additional != null)
@@ -316,28 +347,65 @@ class CartController extends Controller
             $order->additional = $additional;
         }
 
+        $order->pay_method = $payMethod;
+        $order->paid = $paid;
+        $order->pay_after = $payAfter;
+
+        if($payAfter == 2)
+        {
+            //后付款跳过支付流程
+            $order->status = 2;
+
+        }
+        else
+        {
+            if($payMethod != 1)
+            {
+                //网上支付
+                $order->status = 1;
+
+            }
+            else
+            {
+                //货到付款
+                $order->status = 2;
+
+            }
+        }
+
         $order->save();
         
         $summary = 0;//总价
+        $count = 0; //数量
 
         //添加订单商品
         foreach ($cartDetails as $cartDetail)
         {
-            $orderDetail = new OrderDetail();
+            $product = Product::model()->findByPk($cartDetail->product_id);
+            if($product != null)
+            {
+                $orderDetail = new OrderDetail();
 
-            $orderDetail->order_id = $order->id;
-            $orderDetail->product_id = $cartDetail->product_id;
-            $orderDetail->count = $cartDetail->count;
-            $orderDetail->price = $cartDetail->price;
+                $orderDetail->order_id = $order->id;
+                $orderDetail->product_id = $cartDetail->product_id;
+                $orderDetail->count = $cartDetail->count;
+                $orderDetail->price = $cartDetail->price;
 
-            $orderDetail->save();
-            $summary += $cartDetail->price * $orderDetail->count;
+                $orderDetail->save();
+                $summary += $cartDetail->price * $orderDetail->count;
+                $count += $orderDetail->count;
+
+                //商品库存数修改
+                $product->count -= $cartDetail->count;
+
+            }
 
             $cartDetail->delete();
         }
 
         $cart->delete();
 
+        $order->count = $count;
         $order->summary = $summary;
         $order->save();
 
