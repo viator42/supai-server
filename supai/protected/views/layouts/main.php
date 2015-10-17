@@ -10,16 +10,16 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="alternate icon" type="image/png" href="<? echo Yii::app()->request->baseUrl; ?>/images/webpage/favicon.png">
-    <link rel="stylesheet" href="<? echo Yii::app()->request->baseUrl; ?>/assets/amazeui/css/amazeui.min.css"/>
-    <link rel="stylesheet" href="<? echo Yii::app()->request->baseUrl; ?>/css/main.css"/>
+    <link rel="alternate icon" type="image/png" href="/images/webpage/favicon.png">
+    <link rel="stylesheet" href="/assets/amazeui/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
 </head>
 
 <body>
     <header class="am-topbar am-topbar-fixed-top">
         <div class="am-container">
             <h1 class="am-topbar-brand">
-                <img src="<? echo Yii::app()->request->baseUrl; ?>/images/webpage/logo.jpg">速派网上超市
+                <img src="/images/webpage/logo.jpg">速派网上超市
             </h1>
 
             <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
@@ -57,8 +57,8 @@
     </footer>
 
     <!--[if (gte IE 9)|!(IE)]><!-->
-    <script src="<? echo Yii::app()->request->baseUrl; ?>/assets/amazeui/js/jquery.min.js"></script>
-    <script src="<? echo Yii::app()->request->baseUrl; ?>/assets/amazeui/js/amazeui.min.js"></script>
+    <script src="/assets/amazeui/js/jquery.min.js"></script>
+    <script src="/assets/amazeui/js/amazeui.min.js"></script>
 
     <script src="js/main.js"></script>
     <!--<![endif]-->
