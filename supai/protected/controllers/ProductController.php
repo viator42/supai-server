@@ -166,6 +166,7 @@ class ProductController extends Controller
 		$product->goods_id = $goods->id;
 		$product->price = $_POST['price'];
 		$product->store_id = $_POST['storeId'];
+        $product->count = $_POST['count'];
 
 		$product->save();
 
@@ -190,6 +191,7 @@ class ProductController extends Controller
 		$result['status'] = $product->status;
 		$result['additional'] = $product->description;
 		$result['img'] = $imgUrl;
+        $result['count'] = $product->count;
 
 		$result['success'] = true;
 		$json = str_replace("\\/", "/", CJSON::encode($result));
@@ -208,6 +210,7 @@ class ProductController extends Controller
 		$product->price = $_POST['price'];
 		$product->store_id = $_POST['storeId'];
 		$product->status = 1;
+        $product->count = $_POST['count'];
 
 		$product->save();
 
@@ -227,6 +230,7 @@ class ProductController extends Controller
 		$result['price'] = $product->price;
 		$result['status'] = $product->status;
 		$result['additional'] = $product->description;
+        $result['count'] = $product->count;
 		$result['img'] = $imgUrl;
 
 		$result['success'] = true;
@@ -240,7 +244,9 @@ class ProductController extends Controller
 		$result = array();
 
 		$barcode = $_POST['barcode'];
-
+        $page = $_POST['page'];
+        $limit = (int)$_POST['limit'];	//每页的个数
+        
 		$storeId = 0;
 		if(isset($_POST['storeId']))
 		{
@@ -252,12 +258,14 @@ class ProductController extends Controller
 		{
 			if($storeId != 0)
 			{
-				$productObjs = Product::model()->findAll('goods_id=:goods_id and store_id=:store_id and status != 0', array(':goods_id'=>$goods->id, ':store_id'=>$storeId));
+				$productObjs = Product::model()->findAll('goods_id=:goods_id and store_id=:store_id and status != 0 limit :offset, :limit',
+                    array(':goods_id'=>$goods->id, ':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
 
 			}
 			else
 			{
-				$productObjs = Product::model()->findAll('goods_id=:goods_id and status != 0', array(':goods_id'=>$goods->id));
+				$productObjs = Product::model()->findAll('goods_id=:goods_id and status != 0 limit :offset, :limit',
+                    array(':goods_id'=>$goods->id, ':offset'=>($page * $limit), ':limit'=>$limit));
 
 			}
 			
@@ -443,14 +451,19 @@ class ProductController extends Controller
 			$storeId = $_POST['storeId'];
 		}
 
+        $page = $_POST['page'];
+        $limit = (int)$_POST['limit'];	//每页的个数
+
 		if($storeId == 0)
 		{
-			$productObjs = Product::model()->findAll("`alias` like :alias", array(":alias"=>"%".$alias."%"));
+			$productObjs = Product::model()->findAll("`alias` like :alias limit :offset, :limit",
+                array(":alias"=>"%".$alias."%", ':offset'=>($page * $limit), ':limit'=>$limit));
 
 		}
 		else
 		{
-			$productObjs = Product::model()->findAll("`alias` like :alias and store_id=:store_id", array(":alias"=>"%".$alias."%", ":store_id"=>$storeId));
+			$productObjs = Product::model()->findAll("`alias` like :alias and store_id=:store_id limit :offset, :limit",
+                array(":alias"=>"%".$alias."%", ":store_id"=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
 
 		}
 
@@ -515,6 +528,43 @@ class ProductController extends Controller
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
+
+    //商品数量增加
+    public function actionCountIncrease()
+    {
+        $result = array('success'=>false);
+
+        $productId = $_POST['productId'];
+        $count = $_POST['count'];
+
+        $product = Product::model()->findByPk($productId);
+        if($product != null)
+        {
+            $product->count += $count;
+            $product->save();
+
+            $result['success'] = true;
+            $result['count'] = $product->count;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //查询条码商品是否存在
+    public function actionBarcodeExist()
+    {
+        $result = array('success'=>false);
+
+        $barcode = $_POST['barcode'];
+        $storeId = $_POST['storeId'];
+
+        $product = Product::model()->find('store_id=:store_id and ');
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
     /*
 	//多商品添加
 	public function actionMultiAdd()

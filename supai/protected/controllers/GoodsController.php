@@ -44,9 +44,11 @@ class GoodsController extends Controller
 	//根据条形码查询商品信息
 	public function actionSearch()
 	{
-		$result = array('success'=>false);
+		$result = array('success'=>false, 'exist'=>false);
 
 		$barcode = $_POST['barcode'];
+        $storeId = $_POST['storeId'];
+
 		$goods = Goods::model()->find('barcode=:barcode', array(':barcode'=>$barcode));
 		if($goods != null)
 		{
@@ -69,6 +71,50 @@ class GoodsController extends Controller
 
 			}
 			$result['images'] = $images;
+
+            $productObj = Product::model()->find('goods_id=:goods_id and store_id=:store_id', array(':goods_id'=>$goods->id, ':store_id'=>$storeId));
+            $store = Store::model()->findByPk($productObj->store_id);
+            if($productObj != null && $store != null)
+            {
+                $result['exist'] = true;
+
+                $product = array();
+
+                $product['id'] = $productObj->id;
+                $product['name'] = $goods->name;
+                $product['alias'] = $productObj->alias;
+                $product['origin'] = $goods->origin;
+                $product['merchant_code'] = $goods->merchant_code;
+                $product['merchant'] = $goods->merchant;
+                $product['price'] = $productObj->price;
+                $product['count'] = $productObj->count;
+                $product['store_id'] = $productObj->store_id;
+                $product['additional'] = $productObj->description;
+
+                $product['store_name'] = $store->name;
+                $product['address'] = $store->address;
+                $product['status'] = $productObj->status;
+
+                //商品图片
+                $image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
+                if($image != null)
+                {
+                    $product['img'] = $image->url;
+                }
+                else
+                {
+                    //加载默认图片
+                    $product['img'] = "/images/product_default.jpg";
+                }
+                $product['favourite'] = 0;
+                $productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
+                if($productCollectObj != null)
+                {
+                    $product['favourite'] = 1;
+                }
+
+                $result['product'] = $product;
+            }
 
 			$result['success'] = true;
 		}

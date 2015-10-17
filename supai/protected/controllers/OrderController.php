@@ -24,6 +24,13 @@ class OrderController extends Controller
         );
     }
 
+    private $ORDER_STATUS_UNPAID = 1;         //未支付
+    private $ORDER_STATUS_READY = 2;          //待发货
+    private $ORDER_STATUS_DELIVERING = 3;    //已发货(发送通知)
+    private $ORDER_STATUS_SUCCEED = 4;       //交易成功
+    private $ORDER_STATUS_CANCEL = 5;        //交易关闭
+    private $ORDER_STATUS_RETURN_APPLY = 6;  //申请退货
+
 	//商户查看已提交的订单
 	public function actionActiveOrdersForMerchant()
 	{
@@ -112,11 +119,11 @@ class OrderController extends Controller
 		//客户列表
 		switch ($type) {
 			case 1:
-				$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and customer_id=:customer_id limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($customerPage * $limit), ':limit'=>$limit));
+				$orderObjs = Order::model()->findAll('(status = 1 or status = 2 or status = 3 or status = 6) and customer_id=:customer_id order by create_time desc limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($customerPage * $limit), ':limit'=>$limit));
 				break;
 			
 			case 2:
-				$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and customer_id=:customer_id limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+				$orderObjs = Order::model()->findAll('(status = 4 or status = 5) and customer_id=:customer_id order by create_time desc limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
 				break;
 		}
 		foreach ($orderObjs as $orderObj) 
@@ -132,11 +139,11 @@ class OrderController extends Controller
 		//商户列表
 		switch ($type) {
 			case 1:
-				$orderObjs = Order::model()->findAll('(status = 1 or status = 2) and merchant_id=:merchant_id limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+				$orderObjs = Order::model()->findAll('(status = 2 or status = 3 or status = 6) and merchant_id=:merchant_id order by create_time desc limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
 				break;
 			
 			case 2:
-				$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and merchant_id=:merchant_id limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+				$orderObjs = Order::model()->findAll('(status = 4 or status = 5) and merchant_id=:merchant_id order by create_time desc limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
 				break;
 		}
 
@@ -236,8 +243,11 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->status = 4;
+			$orderObj->status = $this->ORDER_STATUS_CANCEL;
 			$orderObj->save();
+
+            //商品库存数修改
+            $this->productCountReadd($orderObj);
 
             $merchant = User::model()->findByPk($orderObj->merchant_id);
             $customer = User::model()->findByPk($orderObj->customer_id);
@@ -270,7 +280,7 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->status = 3;
+			$orderObj->status = $this->ORDER_STATUS_SUCCEED;
 			$orderObj->save();
 
 			$merchant = User::model()->findByPk($orderObj->merchant_id);
@@ -344,7 +354,7 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->status = 2;
+			$orderObj->status = $this->ORDER_STATUS_DELIVERING;
 			$orderObj->readed = 1;
 			$orderObj->save();
 
@@ -366,10 +376,144 @@ class OrderController extends Controller
         echo $json;
 	}
 
-	//
+    // 申请退货
+    public function actionReturnApply()
+    {
+        $result = array('success'=>false);
 
-	//购物车生成订单
-	
+        $orderId = $_POST['orderId'];
+
+        $orderObj = Order::model()->findByPk($orderId);
+        if($orderObj != null)
+        {
+            $orderObj->status = $this->ORDER_STATUS_RETURN_APPLY;
+            $orderObj->readed = 1;
+            $orderObj->save();
+
+            $customer = User::model()->findByPk($orderObj->customer_id);
+
+            if($customer != null)
+            {
+                //发送推送通知 给商家
+                $extras = array("order_id"=>$orderObj->id);
+                $extras['type'] = "ORDER_RETURN_APPLY";
+                $result['msg'] = sendMsg(array($customer->sn), "您好,".$customer->name." 提交的订单申请退货.", $extras);
+
+            }
+
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+
+    }
+
+    // 退货处理
+    public function actionReturn()
+    {
+        $result = array('success'=>false);
+
+        $orderId = $_POST['orderId'];
+        $accept = $_POST['accept'];    //是否接受用户的退款请求   1 接受 2 拒绝
+
+        $orderObj = Order::model()->findByPk($orderId);
+        if($orderObj != null)
+        {
+            $customer = User::model()->findByPk($orderObj->customer_id);
+            $store = Store::model()->findByPk($orderObj->store_id);
+
+            if($customer != null && $store != null)
+            {
+                if($accept == 1)
+                {
+                    $orderObj->status = $this->ORDER_STATUS_CANCEL;
+                    $orderObj->save();
+
+                    //发送推送通知
+                    $extras = array("order_id"=>$orderObj->id);
+                    $extras['type'] = "RETURN_ORDER";
+                    $result['msg'] = sendMsg(array($customer->sn), "您好, ".$store->name."已将您的订单取消.", $extras);
+
+                    //商品库存数修改
+                    $this->productCountReadd($orderObj);
+
+                }
+                elseif($accept == 2)
+                {
+                    $orderObj->status = $this->ORDER_STATUS_DELIVERING;
+                    $orderObj->save();
+
+                    //发送推送通知 给客户
+                    $extras = array("order_id"=>$orderObj->id);
+                    $extras['type'] = "RETURN_ORDER_REJECTED";
+
+                    $result['msg'] = sendMsg(array($customer->sn), "您好, ".$store->name."拒绝了您的订单取消申请,商品将照常发货.", $extras);
+
+                }
+            }
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+
+    }
+
+    //订单支付
+    public function actionPayOrder()
+    {
+        $result = array('success'=>false);
+        $orderId = $_POST['orderId'];
+
+        $orderObj = Order::model()->findByPk($orderId);
+        if($orderObj != null)
+        {
+            $merchant = User::model()->findByPk($orderObj->merchant_id);
+            $orderObj->paid = 2;
+
+            $orderObj->save();
+            $result['success'] = true;
+
+            //发送推送通知
+            $extras = array("order_id"=>$orderObj->id);
+            $extras['type'] = "RETURN_ORDER";
+            $result['msg'] = sendMsg(array($merchant->sn), "您好,编号 ".$orderObj->sn." 的订单已付款.", $extras);
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //收款后将订单设置为已支付
+    public function actionSetPaid()
+    {
+        $result = array('success'=>false);
+        $orderId = $_POST['orderId'];
+
+        $orderObj = Order::model()->findByPk($orderId);
+        if($orderObj != null)
+        {
+            $orderObj->paid = 2;
+
+            $orderObj->save();
+            $result['success'] = true;
+
+            $customer = User::model()->findByPk($orderObj->customer_id);
+            if($customer != null)
+            {
+                //发送推送通知
+                $extras = array("order_id"=>$orderObj->id);
+                $extras['type'] = "RETURN_ORDER";
+                $result['msg'] = sendMsg(array($customer->sn), "您好,编号 ".$orderObj->sn." 的订单已确认付款.", $extras);
+
+            }
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
 
 	//返回用户的历史订单
 	public function actionHistory()
@@ -377,7 +521,7 @@ class OrderController extends Controller
 		$result = array();
 		$userid = $_POST['userid'];
 
-		$orderObjs = Order::model()->findAll('(status = 3 or status = 4) and customer_id=:customer_id', array(':customer_id'=>$userid));
+		$orderObjs = Order::model()->findAll('(status = 4 or status = 5) and customer_id=:customer_id', array(':customer_id'=>$userid));
 		
 		
 		$json = str_replace("\\/", "/", CJSON::encode($result));
@@ -421,11 +565,16 @@ class OrderController extends Controller
             $order['merchantId'] = $orderObj->merchant_id;
             $order['customerId'] = $orderObj->customer_id;
             $order['createTime'] = $orderObj->create_time;
+            $order['count'] = $orderObj->count;
             $order['summary'] = $orderObj->summary;
             $order['status'] = $orderObj->status;
             $order['additional'] = $orderObj->additional;
             $order['readed'] = $orderObj->readed;
-            //商店信息
+            //支付信息
+            $order['payMethod'] = $orderObj->pay_method;
+            $order['paid'] = $orderObj->paid;
+            $order['payAfter'] = $orderObj->pay_after;
+                //商店信息
             $order['storeId'] = $orderObj->store_id;
             $order['storeName'] = $store->name;
             $order['storeAddress'] = $orderObj->address;
@@ -434,7 +583,7 @@ class OrderController extends Controller
             $order['merchantName'] = $merchant->name;
             $order['customerTel'] = $customer->tel;
             $order['merchantTel'] = $merchant->tel;
-            $order['customerAddress'] = $customer->address;
+            $order['customerAddress'] = $orderObj->address;
             $order['merchantAddress'] = $merchant->address;
             $order['customerLongitude'] = $customer->longitude;
             $order['customerLatitude'] = $customer->latitude;
@@ -448,6 +597,22 @@ class OrderController extends Controller
             return null;
         }
 
+    }
+
+    //订单商品重新添加到商品库存中
+    private function productCountReadd($orderObj)
+    {
+        $orderDetailObjs = OrderDetail::model()->findAll('order_id=:order_id', array(':order_id'=>$orderObj->id));
+        foreach($orderDetailObjs as $orderDetailObj)
+        {
+            $product = Product::model()->findByPk($orderDetailObj->product_id);
+            if($product != null)
+            {
+                $product->count += $orderDetailObj->count;
+                $product->save();
+
+            }
+        }
     }
 
 	// Uncomment the following methods and override them if needed

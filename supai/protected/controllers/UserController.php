@@ -31,7 +31,7 @@ class UserController extends Controller
 	// ERROR_UNKNOWN_IDENTITY = 100;       // the default
 	public function actionLogin()
 	{
-		$result = array('success'=>false, 'errorCode'=>0);
+		$result = array('success'=>false, 'errorCode'=>UserIdentity::LOGIN_ERROR);
 
 		$username = $_POST['tel'];
 		$password = $_POST['password'];
@@ -40,19 +40,26 @@ class UserController extends Controller
 
         $_identity->authenticate();
 
-        if($_identity->errorCode===UserIdentity::ERROR_NONE)
+        if($_identity->errorCode === UserIdentity::AUTO_PASSWORD_PASSED)
         {
         	$user = $_identity->getUser();
-            $result['id'] = $user->id;
-            $result['name'] = $user->name;
-            $result['username'] = $user->username;
-            $result['tel'] = $user->tel;
-            $result['area'] = $user->area_id;
-            $result['icon'] = $user->icon;
-            $result['address'] = $user->address;
-            $result['sn'] = $user->sn;
+            if($user != null)
+            {
+                $result['id'] = $user->id;
+                $result['name'] = $user->name;
+                $result['username'] = $user->username;
+                $result['tel'] = $user->tel;
+                $result['area'] = $user->area_id;
+                $result['icon'] = $user->icon;
+                $result['address'] = $user->address;
+                $result['sn'] = $user->sn;
+                $result['passtype'] = $user->passtype;
+                $result['clerk_of'] = $user->clerk_of;
+                $result['status'] = $user->status;
 
-            $result['success'] = true;
+                $result['success'] = true;
+
+            }
 
         }
         else
@@ -60,13 +67,47 @@ class UserController extends Controller
             $result['success'] = false;
             $result['errorCode'] = $_identity->errorCode;
 
-
         }
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 
 	}
+
+    //验证密码
+    public function actionValidatePassword()
+    {
+        $result = array('success'=>false, 'errorCode'=>UserIdentity::ERROR_PASSWORD_INVALID);
+
+        $userid = $_POST['userid'];
+        $password = $_POST['password'];
+
+        $user = User::model()->findByPk($userid);
+        if($user != null)
+        {
+            if($user->password == md5($password))
+            {
+                //登录成功
+                $result['id'] = $user->id;
+                $result['name'] = $user->name;
+                $result['username'] = $user->username;
+                $result['tel'] = $user->tel;
+                $result['area'] = $user->area_id;
+                $result['icon'] = $user->icon;
+                $result['address'] = $user->address;
+                $result['sn'] = $user->sn;
+                $result['passtype'] = $user->passtype;
+                $result['clerk_of'] = $user->clerk_of;
+                $result['status'] = $user->status;
+
+                $result['success'] = true;
+            }
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
 
 	//注册
 	public function actionRegister()
@@ -126,6 +167,9 @@ class UserController extends Controller
 		    $result['icon'] = $user->icon;
 		    $result['address'] = $user->address;
 		    $result['sn'] = $user->sn;
+            $result['passtype'] = $user->passtype;
+            $result['clerk_of'] = $user->clerk_of;
+            $result['status'] = $user->status;
 
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
@@ -153,6 +197,14 @@ class UserController extends Controller
 
             }
 			$user->area_id = $_POST['area'];
+
+            $passtype = $_POST['passtype'];
+            if($passtype == 2)
+            {
+                $user->passtype = $passtype;
+                $user->password = $_POST['password'];
+            }
+
 			$user->save();
 
 			$result['success'] = true;
@@ -182,6 +234,10 @@ class UserController extends Controller
 			$result['latitude'] = $user->latitude;
 			$result['area'] = $user->area_id;
 			$result['sn'] = $user->sn;
+            $result['passtype'] = $user->passtype;
+            $result['password'] = $user->password;
+            $result['clerk_of'] = $user->clerk_of;
+            $result['status'] = $user->status;
 
 			$result['success'] = true;
 
@@ -285,6 +341,43 @@ class UserController extends Controller
 		$json = CJSON::encode($result);
         echo $json;
 	}
+
+    //查找用户信息根据tel
+    public function actionFindByTel()
+    {
+        $result = array('success'=>false);
+
+        $tel = $_POST['tel'];
+        $user = User::model()->find('tel=:tel', array(':tel'=>$tel));
+
+        if($user != null)
+        {
+            $result['id'] = $user->id;
+            $result['name'] = $user->name;
+            $result['username'] = $user->username;
+            $result['tel'] = $user->tel;
+            $result['icon'] = $user->icon;
+            $result['sn'] = $user->sn;
+            $result['passtype'] = $user->passtype;
+            $result['clerk_of'] = $user->clerk_of;
+            $result['status'] = $user->status;
+
+            $result['success'] = true;
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    /**
+     * 生成token
+     */
+    private function tokenGen()
+    {
+        return uniqid();
+
+    }
+
 	/*
 	public function actionDestroy()
 	{

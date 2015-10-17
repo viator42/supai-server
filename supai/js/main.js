@@ -1,3 +1,3 @@
 $(function(){  
     $('.am-slider').flexslider();  
-});   
+});

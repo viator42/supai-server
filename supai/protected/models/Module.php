@@ -6,12 +6,15 @@
  * The followings are the available columns in table 'module':
  * @property integer $id
  * @property integer $user_id
- * @property integer $category_id
+ * @property integer $bundle_id
  * @property integer $start_time
  * @property integer $finish_time
  * @property integer $order_time
  * @property string $price
  * @property integer $status
+ * @property string $username
+ * @property string $tel
+ * @property string $address
  */
 class Module extends CActiveRecord
 {
@@ -32,11 +35,14 @@ class Module extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('start_time, finish_time, order_time', 'required'),
-			array('user_id, category_id, start_time, finish_time, order_time, status', 'numerical', 'integerOnly'=>true),
+			array('user_id, bundle_id, start_time, finish_time, order_time, status', 'numerical', 'integerOnly'=>true),
 			array('price', 'length', 'max'=>10),
+			array('username', 'length', 'max'=>45),
+			array('tel', 'length', 'max'=>20),
+			array('address', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, category_id, start_time, finish_time, order_time, price, status', 'safe', 'on'=>'search'),
+			array('id, user_id, bundle_id, start_time, finish_time, order_time, price, status, username, tel, address', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,12 +65,15 @@ class Module extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'user_id' => 'User',
-			'category_id' => 'Category',
+			'bundle_id' => 'Bundle',
 			'start_time' => 'Start Time',
 			'finish_time' => 'Finish Time',
 			'order_time' => 'Order Time',
 			'price' => 'Price',
 			'status' => 'Status',
+			'username' => 'Username',
+			'tel' => 'Tel',
+			'address' => 'Address',
 		);
 	}
 
@@ -88,12 +97,15 @@ class Module extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('category_id',$this->category_id);
+		$criteria->compare('bundle_id',$this->bundle_id);
 		$criteria->compare('start_time',$this->start_time);
 		$criteria->compare('finish_time',$this->finish_time);
 		$criteria->compare('order_time',$this->order_time);
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('username',$this->username,true);
+		$criteria->compare('tel',$this->tel,true);
+		$criteria->compare('address',$this->address,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
