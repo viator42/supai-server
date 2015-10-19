@@ -378,6 +378,101 @@ class UserController extends Controller
 
     }
 
+    /*-----------------------------------后台管理功能---------------------------------------
+
+    /**
+     * 管理功能认证
+     */
+    public function actionAuth()
+    {
+        $result = array('success'=>false, 'msg'=>'failed');
+
+        $imie = $_POST['imie'];
+        if($imie == '868291026540977')
+        {
+            $result['success'] = true;
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    /**
+     * 手动 给用户添加高级功能
+     *
+     */
+    public function actionAddProManually()
+    {
+        $result = array('success'=>false, 'msg'=>'failed');
+
+        $imie = $_POST['imie'];
+        $tel = $_POST['tel'];
+        $bundleId = $_POST['bundleId'];
+
+        if($imie == '868291026540977')
+        {
+            $guestObj = User::model()->find('tel = :tel', array(':tel'=>$tel));
+            if($guestObj != null)
+            {
+                $bundleOBj = ModuleBundle::model()->findByPk($bundleId);
+                if($bundleOBj != null)
+                {
+                    $moduleObj = Module::model()->find('user_id = :user_id and bundle_id = :bundle_id', array(':user_id'=>$guestObj->id, ':bundle_id'=>$bundleId));
+                    if($moduleObj != null)
+                    {
+                        $moduleObj->status = 1;
+                        $moduleObj->start_time = time();
+                        $moduleObj->finish_time = $moduleObj->start_time + $bundleOBj->time_range;
+
+                        $moduleObj->save();
+                        $result['success'] = true;
+                        $result['msg'] = 'active successful';
+                    }
+                    else
+                    {
+                        $moduleObj = new Module();
+
+                        $moduleObj->user_id = $guestObj->id;
+                        $moduleObj->bundle_id = $bundleOBj->id;
+                        $moduleObj->start_time = time();
+                        $moduleObj->finish_time = $moduleObj->start_time + $bundleOBj->time_range;;
+                        $moduleObj->order_time = time();
+
+                        $moduleObj->price = $bundleOBj->price;
+                        $moduleObj->status = 1;
+                        $moduleObj->username = $guestObj->name;
+                        $moduleObj->tel = $guestObj->tel;
+                        $moduleObj->address = $guestObj->address;
+
+                        $moduleObj->save();
+                        $result['success'] = true;
+                        $result['msg'] = 'active successful';
+
+                    }
+
+                }
+                else
+                {
+                    $result['msg'] = 'bundle not found';
+                }
+            }
+            else
+            {
+                $result['msg'] = 'guest not found';
+            }
+
+        }
+        else
+        {
+            $result['msg'] = 'auth failed';
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
 	/*
 	public function actionDestroy()
 	{

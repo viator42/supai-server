@@ -47,7 +47,7 @@ class ModuleController extends Controller
                     $moduleCategory = ModuleCategory::model()->findByPk($moduleBundleCategoryObj->category_id);
                     if($moduleCategory != null)
                     {
-                        if($current_time > $moduleObj->start_time && $current_time > $moduleObj->finish_time)
+                        if($current_time >= $moduleObj->start_time && $current_time <= $moduleObj->finish_time)
                         {
                             $result[] = $moduleCategory;
 
