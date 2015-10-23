@@ -12,8 +12,8 @@ class AppController extends Controller
     {
         $result = array();
 
-        $result['versionName'] = "v4.0";
-        $result['versionCode'] = 10;
+        $result['versionName'] = StaiticValues::$versionName;
+        $result['versionCode'] = StaiticValues::$versionCode;
 
         $json = CJSON::encode($result);
         echo $json;

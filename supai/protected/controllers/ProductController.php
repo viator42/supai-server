@@ -101,15 +101,15 @@ class ProductController extends Controller
 
 			}
 
-			$product['favourite'] = 0;
+			$product['favourite'] = StaiticValues::$UNFAVOURITE;
 			$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
 			if($productCollectObj != null)
 			{
-				$product['favourite'] = 1;
+				$product['favourite'] = StaiticValues::$FAVOURITE;
 			}
 
 			//商品图片
-			$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$id));
+			$image = Image::model()->find('type=:IMAGE_TYPE_PRODUCT and type_id=:type_id', array(':$IMAGE_TYPE_PRODUCT'=>StaiticValues::$IMAGE_TYPE_PRODUCT, ':type_id'=>$id));
 			if($image != null)
 			{
 				$product['img'] = $image->url;
@@ -154,7 +154,7 @@ class ProductController extends Controller
 
 			$goodsImg = new Image();
 			$goodsImg->url = $imgUrl;
-			$goodsImg->type = 2;
+			$goodsImg->type = StaiticValues::$IMAGE_TYPE_GOODS;
 			$goodsImg->type_id = $goods->id;
 			$goodsImg->save();
 
@@ -172,7 +172,7 @@ class ProductController extends Controller
 
 		$productImg = new Image();
 		$productImg->url = $imgUrl;
-		$productImg->type = 1;
+		$productImg->type = StaiticValues::$IMAGE_TYPE_PRODUCT;
 		$productImg->type_id = $product->id;
 		$productImg->save();
 
@@ -209,7 +209,7 @@ class ProductController extends Controller
 		$product->description = $_POST['description'];
 		$product->price = $_POST['price'];
 		$product->store_id = $_POST['storeId'];
-		$product->status = 1;
+		$product->status = StaiticValues::$PRODUCT_STATUS_ENABLE;
         $product->count = $_POST['count'];
 
 		$product->save();
@@ -218,7 +218,7 @@ class ProductController extends Controller
 
 		$productImg = new Image();
 		$productImg->url = $imgUrl;
-		$productImg->type = 1;
+		$productImg->type = StaiticValues::$IMAGE_TYPE_PRODUCT;
 		$productImg->type_id = $product->id;
 		$productImg->save();
 
@@ -258,14 +258,14 @@ class ProductController extends Controller
 		{
 			if($storeId != 0)
 			{
-				$productObjs = Product::model()->findAll('goods_id=:goods_id and store_id=:store_id and status != 0 limit :offset, :limit',
-                    array(':goods_id'=>$goods->id, ':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+				$productObjs = Product::model()->findAll('goods_id=:goods_id and store_id=:store_id and status != :PRODUCT_STATUS_REMOVED limit :offset, :limit',
+                    array(':goods_id'=>$goods->id, ':store_id'=>$storeId, ':PRODUCT_STATUS_REMOVED'=>StaiticValues::$PRODUCT_STATUS_REMOVED, ':offset'=>($page * $limit), ':limit'=>$limit));
 
 			}
 			else
 			{
-				$productObjs = Product::model()->findAll('goods_id=:goods_id and status != 0 limit :offset, :limit',
-                    array(':goods_id'=>$goods->id, ':offset'=>($page * $limit), ':limit'=>$limit));
+				$productObjs = Product::model()->findAll('goods_id=:goods_id and status != :PRODUCT_STATUS_REMOVED limit :offset, :limit',
+                    array(':goods_id'=>$goods->id, ':PRODUCT_STATUS_REMOVED'=>StaiticValues::$PRODUCT_STATUS_REMOVED, ':offset'=>($page * $limit), ':limit'=>$limit));
 
 			}
 			
@@ -291,7 +291,8 @@ class ProductController extends Controller
 					$product['address'] = $store->address;
 
 					//商品图片
-					$image = Image::model()->find('type=1 and type_id=:type_id', array(':type_id'=>$productObj->id));
+					$image = Image::model()->find('type=:IMAGE_TYPE_PRODUCT and type_id=:type_id',
+                        array(':IMAGE_TYPE_PRODUCT'=>StaiticValues::$IMAGE_TYPE_PRODUCT, ':type_id'=>$productObj->id));
 					if($image != null)
 					{
 						$product['img'] = $image->url;
@@ -301,11 +302,11 @@ class ProductController extends Controller
 						//加载默认图片
 						$product['img'] = "/images/product_default.jpg";
 					}
-					$product['favourite'] = 0;
+					$product['favourite'] = StaiticValues::$UNFAVOURITE;
 					$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
 					if($productCollectObj != null)
 					{
-						$product['favourite'] = 1;
+						$product['favourite'] = StaiticValues::$FAVOURITE;
 					}
 
 					$result[] = $product;
@@ -430,7 +431,7 @@ class ProductController extends Controller
 		$product = Product::model()->findByPk($id);
 		if($product != null)
 		{
-			$product->status = 0;
+			$product->status = StaiticValues::$PRODUCT_STATUS_REMOVED;
 			$product->save();
 			$result['success'] = true;
 		}
@@ -515,10 +516,10 @@ class ProductController extends Controller
 				$product['img'] = "/images/product_default.jpg";
 			}
 			$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
-			$product['favourite'] = 0;
+			$product['favourite'] = StaiticValues::$UNFAVOURITE;
 			if($productCollectObj != null)
 			{
-				$product['favourite'] = 1;
+				$product['favourite'] = StaiticValues::$FAVOURITE;
 			}
 
 			$result[] = $product;

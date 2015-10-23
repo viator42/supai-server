@@ -158,8 +158,8 @@ class StoreController extends Controller
 		$page = $_POST['page'];
 		$limit = (int)$_POST['limit'];	//每页的个数
 
-		$productObjs = Product::model()->findAll('store_id=:store_id and status != 0 order by id desc limit :offset, :limit',
-            array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+		$productObjs = Product::model()->findAll('store_id=:store_id and status != :PRODUCT_STATUS_REMOVED order by id desc limit :offset, :limit',
+            array(':store_id'=>$storeId, ':PRODUCT_STATUS_REMOVED'=>StaiticValues::$PRODUCT_STATUS_REMOVED, ':offset'=>($page * $limit), ':limit'=>$limit));
 		foreach ($productObjs as $productObj) 
 		{
 			$product = array();
@@ -189,14 +189,15 @@ class StoreController extends Controller
 				}
 
 			}
-			$product['favourite'] = 0;
+			$product['favourite'] = StaiticValues::$UNFAVOURITE;
 			$productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
 			if($productCollectObj != null)
 			{
-				$product['favourite'] = 1;
+				$product['favourite'] = StaiticValues::$FAVOURITE;
 			}
 
-			$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
+			$img = Image::model()->find('type = :IMAGE_TYPE_PRODUCT and type_id = :type_id',
+                array(':IMAGE_TYPE_PRODUCT'=>StaiticValues::$IMAGE_TYPE_PRODUCT, ':type_id'=>$productObj->id));
 			if($img != null)
 			{
 				$product['img'] = $img->url;
@@ -224,7 +225,8 @@ class StoreController extends Controller
 		$userid = $_POST['userid'];
 
 		$user = User::model()->findByPk($userid);
-		$storeObjs = Store::model()->findAll('area_id=:area_id and status=1', array(':area_id'=>$user->area_id));
+		$storeObjs = Store::model()->findAll('area_id=:area_id and status=:STORE_STATUS_OPEN',
+            array(':STORE_STATUS_OPEN'=>StaiticValues::$STORE_STATUS_OPEN, ':area_id'=>$user->area_id));
 		foreach ($storeObjs as $storeObj) 
 		{
 			$store = array();
@@ -242,15 +244,15 @@ class StoreController extends Controller
             $store['storage_warning'] = $storeObj->storage_warning;
 
 			//收藏状态
-			$store['favourite'] = 0;
+			$store['favourite'] = StaiticValues::$UNFAVOURITE;
 			$storeCollectObj = StoreCollect::model()->find('store_id=:store_id and user_id=:user_id', array(':store_id'=>$storeObj->id, ':user_id'=>$userid));
 			if($storeCollectObj != null)
 			{
-				$store['favourite'] = 1;
+				$store['favourite'] = StaiticValues::$FAVOURITE;
 			}
 
 			//查询同一area内的所有店铺并忽略自己的店铺
-			if($storeObj->status == 1 && $userid != $storeObj->user_id && $storeObj->area_id == $user->area_id)
+			if($storeObj->status == StaiticValues::$STORE_STATUS_OPEN && $userid != $storeObj->user_id && $storeObj->area_id == $user->area_id)
 			{
 				$result[] = $store;
 			}
@@ -289,7 +291,8 @@ class StoreController extends Controller
         $name = $_POST['name'];
         $userid = $_POST['userid'];
 
-        $storeObjs = Store::model()->findAll('`name` like :name and status=1', array(':name'=>'%'.$name.'%'));
+        $storeObjs = Store::model()->findAll('`name` like :name and status=:STORE_STATUS_OPEN',
+            array(':STORE_STATUS_OPEN'=>StaiticValues::$STORE_STATUS_OPEN, ':name'=>'%'.$name.'%'));
         foreach ($storeObjs as $storeObj)
         {
             $store = array();
@@ -307,11 +310,11 @@ class StoreController extends Controller
             $store['storage_warning'] = $storeObj->storage_warning;
 
             //收藏状态
-            $store['favourite'] = 0;
+            $store['favourite'] = StaiticValues::$UNFAVOURITE;
             $storeCollectObj = StoreCollect::model()->find('store_id=:store_id and user_id=:user_id', array(':store_id'=>$storeObj->id, ':user_id'=>$userid));
             if($storeCollectObj != null)
             {
-                $store['favourite'] = 1;
+                $store['favourite'] = StaiticValues::$FAVOURITE;
             }
 
             $result[] = $store;
@@ -458,13 +461,13 @@ class StoreController extends Controller
         $userObjs = null;
         switch($type)
         {
-            case 1:
+            case StaiticValues::$FOLLOWER_SEARCH_TYPE_NAME:
                 $userObjs = User::model()->findAll('`name` like :name',
                     array(':name'=>'%'.$keyword.'%'));
 
                 break;
 
-            case 2:
+            case StaiticValues::$FOLLOWER_SEARCH_TYPE_TEL:
                 $userObjs = User::model()->findAll('tel = :tel',
                     array(':tel'=>$keyword));
 
@@ -517,11 +520,11 @@ class StoreController extends Controller
         {
             switch($status)
             {
-                case 1:
-                    $status = 2;
+                case StaiticValues::$FOLLOWER_STATUS_FOLLOWED:
+                    $status = StaiticValues::$FOLLOWER_STATUS_BLOCKED;
                     break;
-                case 2:
-                    $status = 1;
+                case StaiticValues::$FOLLOWER_STATUS_BLOCKED:
+                    $status = StaiticValues::$FOLLOWER_STATUS_FOLLOWED;
                     break;
             }
 

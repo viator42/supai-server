@@ -33,7 +33,7 @@ class ModuleController extends Controller
         $current_time = time();
         $userid = $_POST['userid'];
 
-        $moduleObjs = Module::model()->findAll('user_id=:user_id and status = 1', array(':user_id'=>$userid));
+        $moduleObjs = Module::model()->findAll('user_id=:user_id and status = :status', array(':user_id'=>$userid, ':status'=>StaiticValues::$MODULE_STATUS_APPLY));
         foreach ($moduleObjs as $moduleObj)
         {
             $moduleBundleObj = ModuleBundle::model()->findByPk($moduleObj->bundle_id);
@@ -114,7 +114,7 @@ class ModuleController extends Controller
             $module->username = $username;
             $module->tel = $tel;
             $module->address = $address;
-            $module->status = 3;
+            $module->status = StaiticValues::$MODULE_STATUS_APPLY;
 
             //如果有cdkey直接开通
             if(isset($_POST['license']))
@@ -124,14 +124,14 @@ class ModuleController extends Controller
                 $license = License::model()->find('key=:key', array(':key'=>$key));
                 if($license != null)
                 {
-                    if($license->status == 2 && $license->userid == 0)
+                    if($license->status == StaiticValues::$LICENSE_NEW && $license->userid == 0)
                     {
                         $license->userid = $userid;
                         $license->active_time = time();
 
                         //直接开通
                         $moduleBundle = ModuleBundle::model()->findByPk($module->bundle_id);
-                        $module->status = 1;
+                        $module->status = StaiticValues::$LICENSE_ENABLE;
                         $module->start_time = time();
                         $module->finish_time = $module->start_time + $moduleBundle->time_range;
 

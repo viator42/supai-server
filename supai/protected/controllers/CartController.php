@@ -187,7 +187,7 @@ class CartController extends Controller
 
                 $cart->user_id = $userid;
                 $cart->store_id = $storeId;
-                $cart->status = 1;
+                $cart->status = StaiticValues::$CART_STATUS_NORMAL;
                 $cart->create_time = time();
 
                 $cart->save();
@@ -251,7 +251,7 @@ class CartController extends Controller
         $cartId = $_POST['cartId'];
 
         //支付方式
-        $result['pay_method'] = array(1);
+        $result['pay_method'] = array(StaiticValues::$STORE_PAY_METHOD_CASH);
         //支持未付款
         $result['pay_after'] = false;
 
@@ -300,7 +300,7 @@ class CartController extends Controller
             echo CJSON::encode($result);
             return;
         }
-        if($store->status != 1)
+        if($store->status != StaiticValues::$STORE_STATUS_OPEN)
         {
             $result['msg'] = "店铺已关闭,生成订单失败.";
             echo CJSON::encode($result);
@@ -312,7 +312,7 @@ class CartController extends Controller
             array(':customer_id'=>$cart->user_id, ':store_id'=>$cart->store_id));
         if($follower != null)
         {
-            if($follower->status == 2)
+            if($follower->status == StaiticValues::$FOLLOWER_STATUS_BLOCKED)
             {
                 $result['msg'] = "您已被该店铺屏蔽,生成订单失败.";
                 echo CJSON::encode($result);
@@ -351,24 +351,24 @@ class CartController extends Controller
         $order->paid = $paid;
         $order->pay_after = $payAfter;
 
-        if($payAfter == 2)
+        if($payAfter == StaiticValues::$STORE_PAY_AFTER_ENABLE)
         {
             //后付款跳过支付流程
-            $order->status = 2;
+            $order->status = StaiticValues::$ORDER_STATUS_READY;
 
         }
         else
         {
-            if($payMethod != 1)
+            if($payMethod != StaiticValues::$STORE_PAY_METHOD_CASH)
             {
                 //网上支付
-                $order->status = 1;
+                $order->status = StaiticValues::$ORDER_STATUS_UNPAID;
 
             }
             else
             {
                 //货到付款
-                $order->status = 2;
+                $order->status = StaiticValues::$ORDER_STATUS_READY;
 
             }
         }

@@ -154,7 +154,7 @@ class UserController extends Controller
 			$user->icon = "/images/ic_user.png";
 
 			$user->sn = uniqid();
-			$user->passtype = 1;
+			$user->passtype = StaiticValues::$USER_PASSTYPE_AUTO;
 
 			$user->save();
 
@@ -199,7 +199,7 @@ class UserController extends Controller
 			$user->area_id = $_POST['area'];
 
             $passtype = $_POST['passtype'];
-            if($passtype == 2)
+            if($passtype == StaiticValues::$USER_PASSTYPE_INDEPENDENT)
             {
                 $user->passtype = $passtype;
                 $user->password = $_POST['password'];
@@ -307,7 +307,7 @@ class UserController extends Controller
 
 			$ref->user_id = $userid;
 			$ref->content = $_POST['content'];
-			$ref->type = 1;
+			$ref->type = StaiticValues::$REF_TYPE_SUGGESTION;
 			$ref->create_time = time();
 			$ref->parent_id = 0;
 
@@ -319,7 +319,7 @@ class UserController extends Controller
         echo $json;
 	}
 
-	//用户反馈
+	//账户找回申请
 	public function actionAppeal()
 	{
 		$result = array('success'=>false);
@@ -332,7 +332,7 @@ class UserController extends Controller
 		$appeal->address = $_POST['address'];
 		$appeal->imie = $_POST['imie'];
 		$appeal->area_id = 0;
-		$appeal->type = 1;
+		$appeal->type = StaiticValues::$APPEAL_TYPE_ACCOUNT;
 		$appeal->create_time = time();
 
 		$appeal->save();
@@ -388,7 +388,7 @@ class UserController extends Controller
         $result = array('success'=>false, 'msg'=>'failed');
 
         $imie = $_POST['imie'];
-        if($imie == '868291026540977')
+        if($imie == StaiticValues::$MASTER_IMIE)
         {
             $result['success'] = true;
 
@@ -421,7 +421,7 @@ class UserController extends Controller
                     $moduleObj = Module::model()->find('user_id = :user_id and bundle_id = :bundle_id', array(':user_id'=>$guestObj->id, ':bundle_id'=>$bundleId));
                     if($moduleObj != null)
                     {
-                        $moduleObj->status = 1;
+                        $moduleObj->status = StaiticValues::$MODULE_STATUS_ENABLE;
                         $moduleObj->start_time = time();
                         $moduleObj->finish_time = $moduleObj->start_time + $bundleOBj->time_range;
 
@@ -440,7 +440,7 @@ class UserController extends Controller
                         $moduleObj->order_time = time();
 
                         $moduleObj->price = $bundleOBj->price;
-                        $moduleObj->status = 1;
+                        $moduleObj->status = StaiticValues::$MODULE_STATUS_ENABLE;
                         $moduleObj->username = $guestObj->name;
                         $moduleObj->tel = $guestObj->tel;
                         $moduleObj->address = $guestObj->address;
