@@ -9,6 +9,15 @@
  */
 class StaiticValues
 {
+    static $app_name = "速派网销平台";
+    static $company_name = "济南速派信息技术有限公司";
+    static $copyright = "© 2015 济南速派信息技术有限公司";
+    static $tel = "13869173840";
+    static $qq = "2724166624";
+    static $address = "山东省桥区济安街9号楼2单元301";
+    static $mail = "supai.jn@qq.com";
+
+
     static $versionName = "v4.0";
     static $versionCode = 10;
 
