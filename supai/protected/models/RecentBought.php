@@ -8,6 +8,7 @@
  * @property integer $product_id
  * @property integer $user_id
  * @property integer $lastbought_time
+ * @property integer $status
  */
 class RecentBought extends CActiveRecord
 {
@@ -28,10 +29,10 @@ class RecentBought extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('product_id, user_id, lastbought_time', 'required'),
-			array('product_id, user_id, lastbought_time', 'numerical', 'integerOnly'=>true),
+			array('product_id, user_id, lastbought_time, status', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, product_id, user_id, lastbought_time', 'safe', 'on'=>'search'),
+			array('id, product_id, user_id, lastbought_time, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,6 +57,7 @@ class RecentBought extends CActiveRecord
 			'product_id' => 'Product',
 			'user_id' => 'User',
 			'lastbought_time' => 'Lastbought Time',
+			'status' => 'Status',
 		);
 	}
 
@@ -81,6 +83,7 @@ class RecentBought extends CActiveRecord
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('lastbought_time',$this->lastbought_time);
+		$criteria->compare('status',$this->status);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

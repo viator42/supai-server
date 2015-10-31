@@ -32,39 +32,55 @@ class ProductController extends Controller
 		$id = $_POST['userid'];
 		$recentBoughtObjs = RecentBought::model()->findAll('user_id = :userid and status != 0', array(':userid'=>$id));
 
-		foreach($recentBoughtObjs as $recentBoughtObj) 
-		{
-			$recentBought = array();
+		foreach($recentBoughtObjs as $recentBoughtObj) {
+            $product = array();
 
-			$product = Product::model()->findByPk($recentBoughtObj->product_id);
-			if($product != null)
-			{
-				$goods = Goods::model()->findByPk($product->id);
-				$recentBought['id'] = $product->id;
-				$recentBought['name'] = $goods->name;
-				$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$product->id));
-				$recentBought['img'] = $img->url;
-			}
+            $productObj = Product::model()->findByPk($recentBoughtObj->product_id);
+            if ($productObj != null) {
+                $img = Image::model()->find('type = :IMAGE_TYPE_PRODUCT and type_id = :type_id',
+                    array(':IMAGE_TYPE_PRODUCT' => StaiticValues::$IMAGE_TYPE_PRODUCT, ':type_id' => $productObj->id));
+                if ($img != null) {
+                    $product['img'] = $img->url;
+                } else {
+                    //使用默认商品图片
+                    $product['img'] = "/images/product_default.jpg";
+                }
 
+                $product['goods_id'] = $productObj->goods_id;
+                $product['id'] = $productObj->id;
+                $product['alias'] = $productObj->alias;
+                $product['additional'] = $productObj->description;
+                $product['price'] = $productObj->price;
+                $product['count'] = $productObj->count;
+                $product['status'] = $productObj->status;
+                $product['store_id'] = $productObj->store_id;
 
+                if ($productObj->goods_id != 0) {
+                    $goodsObj = Goods::model()->findByPk($productObj->goods_id);
+                    if ($goodsObj != null) {
+                        $product['goods_id'] = $productObj->goods_id;
+                        $product['name'] = $goodsObj->name;
+                        $product['rccode'] = $goodsObj->barcode;
+                        $product['description'] = $goodsObj->description;
+                        $product['origin'] = $goodsObj->origin;
+                        $product['merchant'] = $goodsObj->merchant;
+                        $product['merchant_code'] = $goodsObj->merchant_code;
+                    }
+                }
 
-		// 	$lastBoughtProduct = array();
+                $product['favourite'] = StaiticValues::$FAVOURITE;
 
-		// 	$product = SaleProduct::model()->findByPk($recentBought->product_id);
+                if ($productObj->status != StaiticValues::$PRODUCT_STATUS_REMOVED) {
+                    $result[] = $product;
+                }
 
-		// 	$lastBoughtProduct['id'] = $recentBought->product_id;
-		// 	$lastBoughtProduct['name'] = $product->name;
-
-		// 	$result[] = $lastBoughtProduct;
-
-			$result[] = $recentBought;
-		}
+            }
+        }
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
-	
-	
+
 	//查询商品详情
 	public function actionDetail()
 	{
