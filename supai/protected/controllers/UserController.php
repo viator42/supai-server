@@ -56,6 +56,7 @@ class UserController extends Controller
                 $result['passtype'] = $user->passtype;
                 $result['clerk_of'] = $user->clerk_of;
                 $result['status'] = $user->status;
+                $result['print_copy'] = $user->print_copy;
 
                 $result['success'] = true;
 
@@ -99,6 +100,7 @@ class UserController extends Controller
                 $result['passtype'] = $user->passtype;
                 $result['clerk_of'] = $user->clerk_of;
                 $result['status'] = $user->status;
+                $result['print_copy'] = $user->print_copy;
 
                 $result['success'] = true;
             }
@@ -170,6 +172,7 @@ class UserController extends Controller
             $result['passtype'] = $user->passtype;
             $result['clerk_of'] = $user->clerk_of;
             $result['status'] = $user->status;
+            $result['print_copy'] = StaiticValues::$PRINT_COPY;
 
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
@@ -205,6 +208,8 @@ class UserController extends Controller
                 $user->password = $_POST['password'];
             }
 
+            $user->print_copy = $_POST['print_copy'];
+
 			$user->save();
 
 			$result['success'] = true;
@@ -238,6 +243,7 @@ class UserController extends Controller
             $result['password'] = $user->password;
             $result['clerk_of'] = $user->clerk_of;
             $result['status'] = $user->status;
+            $result['print_copy'] = $user->print_copy;
 
 			$result['success'] = true;
 

@@ -115,4 +115,7 @@ class StaiticValues
     //管理员imie
     static $MASTER_IMIE = '868291026540977';
 
+    //默认打印数量
+    static $PRINT_COPY = 1;
+
 }

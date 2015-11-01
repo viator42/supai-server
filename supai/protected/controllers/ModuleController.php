@@ -33,7 +33,7 @@ class ModuleController extends Controller
         $current_time = time();
         $userid = $_POST['userid'];
 
-        $moduleObjs = Module::model()->findAll('user_id=:user_id and status = :status', array(':user_id'=>$userid, ':status'=>StaiticValues::$MODULE_STATUS_APPLY));
+        $moduleObjs = Module::model()->findAll('user_id=:user_id and status = :status', array(':user_id'=>$userid, ':status'=>StaiticValues::$MODULE_STATUS_ENABLE));
         foreach ($moduleObjs as $moduleObj)
         {
             $moduleBundleObj = ModuleBundle::model()->findByPk($moduleObj->bundle_id);
@@ -47,7 +47,7 @@ class ModuleController extends Controller
                     $moduleCategory = ModuleCategory::model()->findByPk($moduleBundleCategoryObj->category_id);
                     if($moduleCategory != null)
                     {
-                        if($current_time >= $moduleObj->start_time && $current_time <= $moduleObj->finish_time)
+                        if($current_time > $moduleObj->start_time && $current_time < $moduleObj->finish_time)
                         {
                             $result[] = $moduleCategory;
 
