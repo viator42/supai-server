@@ -90,7 +90,7 @@ class SalesController extends Controller
         $saleItem->price = $price;
         $saleItem->count = $count;
         $saleItem->add_time = time();
-        $saleItem->status = 1;
+        $saleItem->status = StaiticValues::$SALES_STATUS_ADDED;
 
         $saleItem->save();
 
@@ -184,10 +184,10 @@ class SalesController extends Controller
             $order->sn = date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
             $order->address = '';
 
-            $order->paid = 1;
-            $order->pay_method = 3;
-            $order->pay_after = 1;
-            $order->type = 2;
+            $order->paid = StaiticValues::$ORDER_PAID_N;
+            $order->pay_method = StaiticValues::$STORE_PAY_METHOD_DIRECT;
+            $order->pay_after = StaiticValues::$ORDER_PAY_AFTER_DISABLE;
+            $order->type = StaiticValues::$ORDER_TYPE_ARCHIVE;
 
             $order->save();
 
@@ -237,18 +237,18 @@ class SalesController extends Controller
 
         $orderObjs = null;
 
-        if($type == 1)
+        if($type == StaiticValues::$SALES_ORDER_SEARCH_CLERK)
         {
             //收货员查看自己的
-            $orderObjs = Order::model()->findAll('merchant_id=:merchant_id and store_id = :store_id and type = 2 order by create_time desc limit :offset, :limit',
-                array(':merchant_id'=>$clerkId, ':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+            $orderObjs = Order::model()->findAll('merchant_id=:merchant_id and store_id = :store_id and type = :ORDER_TYPE_OFFLINE order by create_time desc limit :offset, :limit',
+                array(':merchant_id'=>$clerkId, ':store_id'=>$storeId, ':ORDER_TYPE_OFFLINE'=>StaiticValues::$ORDER_TYPE_OFFLINE, ':offset'=>($page * $limit), ':limit'=>$limit));
 
         }
-        elseif($type == 2)
+        elseif($type == StaiticValues::$SALES_ORDER_SEARCH_STORE)
         {
             //商家查看所有售货员的
-            $orderObjs = Order::model()->findAll('store_id = :store_id and type = 2 order by create_time desc limit :offset, :limit',
-                array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+            $orderObjs = Order::model()->findAll('store_id = :store_id and type = :ORDER_TYPE_OFFLINE order by create_time desc limit :offset, :limit',
+                array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':ORDER_TYPE_OFFLINE'=>StaiticValues::$ORDER_TYPE_OFFLINE, ':limit'=>$limit));
 
         }
 

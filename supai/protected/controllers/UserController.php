@@ -56,6 +56,7 @@ class UserController extends Controller
                 $result['passtype'] = $user->passtype;
                 $result['clerk_of'] = $user->clerk_of;
                 $result['status'] = $user->status;
+                $result['print_copy'] = $user->print_copy;
 
                 $result['success'] = true;
 
@@ -99,6 +100,7 @@ class UserController extends Controller
                 $result['passtype'] = $user->passtype;
                 $result['clerk_of'] = $user->clerk_of;
                 $result['status'] = $user->status;
+                $result['print_copy'] = $user->print_copy;
 
                 $result['success'] = true;
             }
@@ -154,7 +156,7 @@ class UserController extends Controller
 			$user->icon = "/images/ic_user.png";
 
 			$user->sn = uniqid();
-			$user->passtype = 1;
+			$user->passtype = StaiticValues::$USER_PASSTYPE_AUTO;
 
 			$user->save();
 
@@ -170,6 +172,7 @@ class UserController extends Controller
             $result['passtype'] = $user->passtype;
             $result['clerk_of'] = $user->clerk_of;
             $result['status'] = $user->status;
+            $result['print_copy'] = StaiticValues::$PRINT_COPY;
 
 			$result['success'] = true;
 			$result['msg'] = "注册成功";
@@ -199,11 +202,13 @@ class UserController extends Controller
 			$user->area_id = $_POST['area'];
 
             $passtype = $_POST['passtype'];
-            if($passtype == 2)
+            if($passtype == StaiticValues::$USER_PASSTYPE_INDEPENDENT)
             {
                 $user->passtype = $passtype;
                 $user->password = $_POST['password'];
             }
+
+            $user->print_copy = $_POST['print_copy'];
 
 			$user->save();
 
@@ -238,6 +243,7 @@ class UserController extends Controller
             $result['password'] = $user->password;
             $result['clerk_of'] = $user->clerk_of;
             $result['status'] = $user->status;
+            $result['print_copy'] = $user->print_copy;
 
 			$result['success'] = true;
 
@@ -307,7 +313,7 @@ class UserController extends Controller
 
 			$ref->user_id = $userid;
 			$ref->content = $_POST['content'];
-			$ref->type = 1;
+			$ref->type = StaiticValues::$REF_TYPE_SUGGESTION;
 			$ref->create_time = time();
 			$ref->parent_id = 0;
 
@@ -319,7 +325,7 @@ class UserController extends Controller
         echo $json;
 	}
 
-	//用户反馈
+	//账户找回申请
 	public function actionAppeal()
 	{
 		$result = array('success'=>false);
@@ -332,7 +338,7 @@ class UserController extends Controller
 		$appeal->address = $_POST['address'];
 		$appeal->imie = $_POST['imie'];
 		$appeal->area_id = 0;
-		$appeal->type = 1;
+		$appeal->type = StaiticValues::$APPEAL_TYPE_ACCOUNT;
 		$appeal->create_time = time();
 
 		$appeal->save();
@@ -376,6 +382,101 @@ class UserController extends Controller
     {
         return uniqid();
 
+    }
+
+    /*-----------------------------------后台管理功能---------------------------------------
+
+    /**
+     * 管理功能认证
+     */
+    public function actionAuth()
+    {
+        $result = array('success'=>false, 'msg'=>'failed');
+
+        $imie = $_POST['imie'];
+        if($imie == StaiticValues::$MASTER_IMIE)
+        {
+            $result['success'] = true;
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    /**
+     * 手动 给用户添加高级功能
+     *
+     */
+    public function actionAddProManually()
+    {
+        $result = array('success'=>false, 'msg'=>'failed');
+
+        $imie = $_POST['imie'];
+        $tel = $_POST['tel'];
+        $bundleId = $_POST['bundleId'];
+
+        if($imie == '868291026540977')
+        {
+            $guestObj = User::model()->find('tel = :tel', array(':tel'=>$tel));
+            if($guestObj != null)
+            {
+                $bundleOBj = ModuleBundle::model()->findByPk($bundleId);
+                if($bundleOBj != null)
+                {
+                    $moduleObj = Module::model()->find('user_id = :user_id and bundle_id = :bundle_id', array(':user_id'=>$guestObj->id, ':bundle_id'=>$bundleId));
+                    if($moduleObj != null)
+                    {
+                        $moduleObj->status = StaiticValues::$MODULE_STATUS_ENABLE;
+                        $moduleObj->start_time = time();
+                        $moduleObj->finish_time = $moduleObj->start_time + $bundleOBj->time_range;
+
+                        $moduleObj->save();
+                        $result['success'] = true;
+                        $result['msg'] = 'active successful';
+                    }
+                    else
+                    {
+                        $moduleObj = new Module();
+
+                        $moduleObj->user_id = $guestObj->id;
+                        $moduleObj->bundle_id = $bundleOBj->id;
+                        $moduleObj->start_time = time();
+                        $moduleObj->finish_time = $moduleObj->start_time + $bundleOBj->time_range;;
+                        $moduleObj->order_time = time();
+
+                        $moduleObj->price = $bundleOBj->price;
+                        $moduleObj->status = StaiticValues::$MODULE_STATUS_ENABLE;
+                        $moduleObj->username = $guestObj->name;
+                        $moduleObj->tel = $guestObj->tel;
+                        $moduleObj->address = $guestObj->address;
+
+                        $moduleObj->save();
+                        $result['success'] = true;
+                        $result['msg'] = 'active successful';
+
+                    }
+
+                }
+                else
+                {
+                    $result['msg'] = 'bundle not found';
+                }
+            }
+            else
+            {
+                $result['msg'] = 'guest not found';
+            }
+
+        }
+        else
+        {
+            $result['msg'] = 'auth failed';
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
     }
 
 	/*

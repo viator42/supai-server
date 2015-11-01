@@ -61,7 +61,8 @@ class GoodsController extends Controller
 
 			//查询商品图片
 			$images = array();
-			$imageObjs = Image::model()->findAll('type=2 and type_id=:type_id', array(':type_id'=>$goods->id));
+			$imageObjs = Image::model()->findAll('type=:IMAGE_TYPE_GOODS and type_id=:type_id',
+                array(':IMAGE_TYPE_GOODS'=>StaiticValues::$IMAGE_TYPE_GOODS, ':type_id'=>$goods->id));
 			foreach ($imageObjs as $imageObj) 
 			{
 				if($imageObj != null)
@@ -106,11 +107,11 @@ class GoodsController extends Controller
                     //加载默认图片
                     $product['img'] = "/images/product_default.jpg";
                 }
-                $product['favourite'] = 0;
+                $product['favourite'] = StaiticValues::$UNFAVOURITE;
                 $productCollectObj = ProductCollect::model()->find('product_id=:product_id', array(':product_id'=>$productObj->id));
                 if($productCollectObj != null)
                 {
-                    $product['favourite'] = 1;
+                    $product['favourite'] = StaiticValues::$FAVOURITE;
                 }
 
                 $result['product'] = $product;
