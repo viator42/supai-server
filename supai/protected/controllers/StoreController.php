@@ -644,20 +644,16 @@ class StoreController extends Controller
             {
                 $storeId = $user->clerk_of;
                 $storeObj = Store::model()->findByPk($storeId);
+                if($storeObj != null)
                 {
-                    if($storeObj != null)
-                    {
-                        $result['storeId'] = $storeObj->id;
-                        $result['storeName'] = $storeObj->name;
-                        $result['storeAddress'] = $storeObj->address;
-                        $result['storeLogo'] = $storeObj->logo;
+                    $result['storeId'] = $storeObj->id;
+                    $result['storeName'] = $storeObj->name;
+                    $result['storeAddress'] = $storeObj->address;
+                    $result['storeLogo'] = $storeObj->logo;
 
-                        $result['success'] = true;
-                    }
+                    $result['success'] = true;
                 }
-
             }
-
         }
 
         $json = str_replace("\\/", "/", CJSON::encode($result));
