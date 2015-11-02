@@ -18,8 +18,8 @@ class StaiticValues
     static $mail = "supai.jn@qq.com";
 
 
-    static $versionName = "v4.0";
-    static $versionCode = 10;
+    static $versionName = "v4.1";
+    static $versionCode = 11;
 
     //购物车
     static $CART_STATUS_NORMAL = 1;

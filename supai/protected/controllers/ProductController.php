@@ -125,7 +125,7 @@ class ProductController extends Controller
 			}
 
 			//商品图片
-			$image = Image::model()->find('type=:IMAGE_TYPE_PRODUCT and type_id=:type_id', array(':$IMAGE_TYPE_PRODUCT'=>StaiticValues::$IMAGE_TYPE_PRODUCT, ':type_id'=>$id));
+			$image = Image::model()->find('type=:IMAGE_TYPE_PRODUCT and type_id=:type_id', array(':IMAGE_TYPE_PRODUCT'=>StaiticValues::$IMAGE_TYPE_PRODUCT, ':type_id'=>$id));
 			if($image != null)
 			{
 				$product['img'] = $image->url;
