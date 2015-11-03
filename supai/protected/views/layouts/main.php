@@ -19,7 +19,7 @@
     <header class="am-topbar am-topbar-fixed-top">
         <div class="am-container">
             <h1 class="am-topbar-brand">
-                <img src="/images/webpage/logo.jpg">速派网上超市
+                <img src="/images/webpage/logo.jpg"><? echo StaiticValues::$app_name; ?>
             </h1>
 
             <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
@@ -29,7 +29,6 @@
             <div class="am-collapse am-topbar-collapse" id="collapse-head">
                 <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right">
                     <li><a href="/site/tutorial">如何使用</a></li>
-                    <li><a href="">关于我们</a></li>
                     <li><a href="http://forum.supai.in/">论坛</a></li>
 
                 </ul>
@@ -52,7 +51,7 @@
 	<?php echo $content; ?>
 
     <footer class="footer">
-        <p>© 2015 济南速派信息技术有限公司
+        <p><? echo StaiticValues::$copyright; ?>
             <br>鲁ICP备15023468号<br>Power by Yii Framework <? echo Yii::getVersion();?></p>
     </footer>
 

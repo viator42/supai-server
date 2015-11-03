@@ -24,13 +24,6 @@ class OrderController extends Controller
         );
     }
 
-    private $ORDER_STATUS_UNPAID = 1;         //未支付
-    private $ORDER_STATUS_READY = 2;          //待发货
-    private $ORDER_STATUS_DELIVERING = 3;    //已发货(发送通知)
-    private $ORDER_STATUS_SUCCEED = 4;       //交易成功
-    private $ORDER_STATUS_CANCEL = 5;        //交易关闭
-    private $ORDER_STATUS_RETURN_APPLY = 6;  //申请退货
-
 	//商户查看已提交的订单
 	public function actionActiveOrdersForMerchant()
 	{
@@ -38,7 +31,8 @@ class OrderController extends Controller
 
 		$merchantId = $_POST['id'];
 		// 1 已提交 		2 已发货
-		$orders = Order::model()->find('merchant_id = :merchantId and (status = 1 or status = 2)', array(':merchantId'=>$merchantId));
+		$orders = Order::model()->find('merchant_id = :merchantId and (status = :ORDER_STATUS_UNPAID or status = :ORDER_STATUS_READY)',
+            array(':merchantId'=>$merchantId, ':ORDER_STATUS_UNPAID'=>StaiticValues::$ORDER_STATUS_UNPAID, ':ORDER_STATUS_READY'=>StaiticValues::$ORDER_STATUS_READY));
 		foreach ($orders as $order) 
 		{
 			$result[] = $order;
@@ -58,7 +52,8 @@ class OrderController extends Controller
 		$customerId = $_POST['id'];
 		//$orderObjs = Order::model()->findAll('customer_id = :customerId and (status = 1 or status = 2)', array(':customerId'=>$customerId));
 		
-		$orderObjs = Order::model()->findAll('status = 1 or status = 2');
+		$orderObjs = Order::model()->findAll('status = :ORDER_STATUS_UNPAID or status = :ORDER_STATUS_READY',
+            array(':ORDER_STATUS_UNPAID'=>StaiticValues::$ORDER_STATUS_UNPAID, ':ORDER_STATUS_READY'=>StaiticValues::$ORDER_STATUS_READY));
 		foreach ($orderObjs as $orderObj) 
 		{
 			$order = array();
@@ -118,12 +113,14 @@ class OrderController extends Controller
 
 		//客户列表
 		switch ($type) {
-			case 1:
-				$orderObjs = Order::model()->findAll('(status = 1 or status = 2 or status = 3 or status = 6) and customer_id=:customer_id order by create_time desc limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($customerPage * $limit), ':limit'=>$limit));
+			case StaiticValues::$ORDER_TYPE_ACTIVE:
+				$orderObjs = Order::model()->findAll('(status = :ORDER_STATUS_UNPAID or status = :ORDER_STATUS_READY or status = :ORDER_STATUS_DELIVERING or status = :ORDER_STATUS_RETURN_APPLY) and customer_id=:customer_id order by create_time desc limit :offset, :limit',
+                    array(':ORDER_STATUS_UNPAID'=>StaiticValues::$ORDER_STATUS_UNPAID, ':ORDER_STATUS_READY'=>StaiticValues::$ORDER_STATUS_READY, ':ORDER_STATUS_DELIVERING'=>StaiticValues::$ORDER_STATUS_DELIVERING, ':ORDER_STATUS_RETURN_APPLY'=>StaiticValues::$ORDER_STATUS_RETURN_APPLY, ':customer_id'=>$userid, ':offset'=>($customerPage * $limit), ':limit'=>$limit));
 				break;
 			
-			case 2:
-				$orderObjs = Order::model()->findAll('(status = 4 or status = 5) and customer_id=:customer_id order by create_time desc limit :offset, :limit', array(':customer_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+			case StaiticValues::$ORDER_TYPE_ARCHIVE:
+				$orderObjs = Order::model()->findAll('(status = :ORDER_STATUS_SUCCEED or status = :ORDER_STATUS_CLOSED) and customer_id=:customer_id order by create_time desc limit :offset, :limit',
+                    array(':ORDER_STATUS_SUCCEED'=>StaiticValues::$ORDER_STATUS_SUCCEED, ':ORDER_STATUS_CLOSED'=>StaiticValues::$ORDER_STATUS_CLOSED, ':customer_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
 				break;
 		}
 		foreach ($orderObjs as $orderObj) 
@@ -138,12 +135,14 @@ class OrderController extends Controller
 
 		//商户列表
 		switch ($type) {
-			case 1:
-				$orderObjs = Order::model()->findAll('(status = 2 or status = 3 or status = 6) and merchant_id=:merchant_id order by create_time desc limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+			case StaiticValues::$ORDER_TYPE_ACTIVE:
+				$orderObjs = Order::model()->findAll('(status = :ORDER_STATUS_READY or status = :ORDER_STATUS_DELIVERING or status = :ORDER_STATUS_RETURN_APPLY) and merchant_id=:merchant_id order by create_time desc limit :offset, :limit',
+                    array(':ORDER_STATUS_READY'=>StaiticValues::$ORDER_STATUS_READY, ':ORDER_STATUS_DELIVERING'=>StaiticValues::$ORDER_STATUS_DELIVERING, ':ORDER_STATUS_RETURN_APPLY'=>StaiticValues::$ORDER_STATUS_RETURN_APPLY, ':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
 				break;
 			
-			case 2:
-				$orderObjs = Order::model()->findAll('(status = 4 or status = 5) and merchant_id=:merchant_id order by create_time desc limit :offset, :limit', array(':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
+			case StaiticValues::$ORDER_TYPE_ARCHIVE:
+				$orderObjs = Order::model()->findAll('(status = :ORDER_STATUS_SUCCEED or status = :ORDER_STATUS_CLOSED) and merchant_id=:merchant_id order by create_time desc limit :offset, :limit',
+                    array(':ORDER_STATUS_SUCCEED'=>StaiticValues::$ORDER_STATUS_SUCCEED, ':ORDER_STATUS_CLOSED'=>StaiticValues::$ORDER_STATUS_CLOSED, ':merchant_id'=>$userid, ':offset'=>($merchantPage * $limit), ':limit'=>$limit));
 				break;
 		}
 
@@ -243,7 +242,7 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->status = $this->ORDER_STATUS_CANCEL;
+			$orderObj->status = StaiticValues::$ORDER_STATUS_CLOSED;
 			$orderObj->save();
 
             //商品库存数修改
@@ -280,7 +279,7 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->status = $this->ORDER_STATUS_SUCCEED;
+			$orderObj->status = StaiticValues::$ORDER_STATUS_SUCCEED;
 			$orderObj->save();
 
 			$merchant = User::model()->findByPk($orderObj->merchant_id);
@@ -333,7 +332,7 @@ class OrderController extends Controller
                 $followerObj->customer_id = $orderObj->customer_id;
                 $followerObj->store_id = $orderObj->store_id;
                 $followerObj->follow_time = time();
-                $followerObj->status = 1;
+                $followerObj->status = StaiticValues::$FOLLOWER_STATUS_FOLLOWED;
                 $followerObj->save();
             }
 
@@ -354,8 +353,8 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->status = $this->ORDER_STATUS_DELIVERING;
-			$orderObj->readed = 1;
+			$orderObj->status = StaiticValues::$ORDER_STATUS_DELIVERING;
+			$orderObj->readed = StaiticValues::$ORDER_UNREAD;
 			$orderObj->save();
 
 			$customer = User::model()->findByPk($orderObj->customer_id);
@@ -386,8 +385,8 @@ class OrderController extends Controller
         $orderObj = Order::model()->findByPk($orderId);
         if($orderObj != null)
         {
-            $orderObj->status = $this->ORDER_STATUS_RETURN_APPLY;
-            $orderObj->readed = 1;
+            $orderObj->status = StaiticValues::$ORDER_STATUS_RETURN_APPLY;
+            $orderObj->readed = StaiticValues::$ORDER_UNREAD;
             $orderObj->save();
 
             $customer = User::model()->findByPk($orderObj->customer_id);
@@ -425,9 +424,9 @@ class OrderController extends Controller
 
             if($customer != null && $store != null)
             {
-                if($accept == 1)
+                if($accept == StaiticValues::$ORDER_RETURN_ACCEPT)
                 {
-                    $orderObj->status = $this->ORDER_STATUS_CANCEL;
+                    $orderObj->status = StaiticValues::$ORDER_STATUS_CLOSED;
                     $orderObj->save();
 
                     //发送推送通知
@@ -439,9 +438,9 @@ class OrderController extends Controller
                     $this->productCountReadd($orderObj);
 
                 }
-                elseif($accept == 2)
+                elseif($accept == StaiticValues::$ORDER_RETURN_REJECT)
                 {
-                    $orderObj->status = $this->ORDER_STATUS_DELIVERING;
+                    $orderObj->status = StaiticValues::$ORDER_STATUS_DELIVERING;
                     $orderObj->save();
 
                     //发送推送通知 给客户
@@ -470,7 +469,7 @@ class OrderController extends Controller
         if($orderObj != null)
         {
             $merchant = User::model()->findByPk($orderObj->merchant_id);
-            $orderObj->paid = 2;
+            $orderObj->paid = StaiticValues::$ORDER_PAID_Y;
 
             $orderObj->save();
             $result['success'] = true;
@@ -495,7 +494,7 @@ class OrderController extends Controller
         $orderObj = Order::model()->findByPk($orderId);
         if($orderObj != null)
         {
-            $orderObj->paid = 2;
+            $orderObj->paid = StaiticValues::$ORDER_PAID_Y;
 
             $orderObj->save();
             $result['success'] = true;
@@ -538,7 +537,7 @@ class OrderController extends Controller
 		$orderObj = Order::model()->findByPk($orderId);
 		if($orderObj != null)
 		{
-			$orderObj->readed = 2;
+			$orderObj->readed = StaiticValues::$ORDER_READED;
 			$orderObj->save();
 			$result['success'] = true;
 

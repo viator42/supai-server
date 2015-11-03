@@ -34,8 +34,8 @@ class StatisticsController extends Controller
 
         $store = Store::model()->findByPk($storeId);
 
-        $productObjs = Product::model()->findAll('store_id=:store_id and status != 0 and count <= :count order by count desc limit :offset, :limit',
-            array(':store_id'=>$storeId, ':count'=>$store->storage_warning, ':offset'=>($page * $limit), ':limit'=>$limit));
+        $productObjs = Product::model()->findAll('store_id=:store_id and status != :PRODUCT_STATUS_REMOVED and count <= :count order by count desc limit :offset, :limit',
+            array(':store_id'=>$storeId, ':PRODUCT_STATUS_REMOVED'=>StaiticValues::$PRODUCT_STATUS_REMOVED, ':count'=>$store->storage_warning, ':offset'=>($page * $limit), ':limit'=>$limit));
         foreach ($productObjs as $productObj)
         {
             $product = array();
@@ -83,8 +83,8 @@ class StatisticsController extends Controller
         $productCount = 0;
         $productValueSum = 0;
 
-        $productObjs = Product::model()->findAll('store_id=:store_id and status != 0',
-            array(':store_id'=>$storeId));
+        $productObjs = Product::model()->findAll('store_id=:store_id and status != :PRODUCT_STATUS_REMOVED',
+            array(':store_id'=>$storeId, ':PRODUCT_STATUS_REMOVED'=>StaiticValues::$PRODUCT_STATUS_REMOVED));
         foreach ($productObjs as $productObj)
         {
             $productCount += 1;
@@ -101,7 +101,8 @@ class StatisticsController extends Controller
         $turnoverYear = 0;
         $unpaidSum = 0;
 
-        $orderObjs = Order::model()->findAll('store_id=:store_id and status = 3', array(':store_id'=>$storeId));
+        $orderObjs = Order::model()->findAll('store_id=:store_id and status = :ORDER_STATUS_DELIVERING',
+            array(':ORDER_STATUS_DELIVERING'=>StaiticValues::$ORDER_STATUS_DELIVERING, ':store_id'=>$storeId));
         foreach($orderObjs as $orderObj)
         {
             $createTime = $orderObj->create_time;
@@ -121,7 +122,7 @@ class StatisticsController extends Controller
                 $turnoverYear += $orderObj->summary;
             }
 
-            if($orderObj->pay_after = 1 and $orderObj->paid = 1)
+            if($orderObj->pay_after = StaiticValues::$ORDER_PAY_AFTER_DISABLE and $orderObj->paid = StaiticValues::$ORDER_PAID_N)
             {
                 $unpaidSum += $orderObj->summary;
             }
@@ -146,8 +147,8 @@ class StatisticsController extends Controller
         $page = $_POST['page'];
         $limit = (int)$_POST['limit'];	//每页的个数
 
-        $productObjs = Product::model()->findAll('store_id=:store_id and status != 0 limit :offset, :limit',
-            array(':store_id'=>$storeId, ':offset'=>($page * $limit), ':limit'=>$limit));
+        $productObjs = Product::model()->findAll('store_id=:store_id and status != :PRODUCT_STATUS_REMOVED limit :offset, :limit',
+            array(':store_id'=>$storeId, ':PRODUCT_STATUS_REMOVED'=>StaiticValues::$PRODUCT_STATUS_REMOVED, ':offset'=>($page * $limit), ':limit'=>$limit));
         foreach ($productObjs as $productObj)
         {
             $product = array();
@@ -236,7 +237,6 @@ class StatisticsController extends Controller
         {
             return false;
         }
-
 
     }
 

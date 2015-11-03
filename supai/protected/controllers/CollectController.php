@@ -129,7 +129,8 @@ class CollectController extends Controller
 			$productObj = Product::model()->findByPk($productCollectObj->product_id);
 			if($productObj != null)
 			{
-				$img = Image::model()->find('type = 1 and type_id = :type_id', array(':type_id'=>$productObj->id));
+				$img = Image::model()->find('type = :IMAGE_TYPE_PRODUCT and type_id = :type_id',
+                    array(':IMAGE_TYPE_PRODUCT'=>StaiticValues::$IMAGE_TYPE_PRODUCT, ':type_id'=>$productObj->id));
 				if($img != null)
 				{
 					$product['img'] = $img->url;
@@ -164,9 +165,9 @@ class CollectController extends Controller
 					}
 				}
 
-				$product['favourite'] = 1;
+				$product['favourite'] = StaiticValues::$FAVOURITE;
 
-				if($productObj->status != 0)
+				if($productObj->status != StaiticValues::$PRODUCT_STATUS_REMOVED)
 				{
 					$defaults[] = $product;
 				}

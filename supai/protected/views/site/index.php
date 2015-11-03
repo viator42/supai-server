@@ -2,7 +2,7 @@
 <div class="jumbotron">
   <div class="am-g">
     <div class="am-u-lg-12">
-      <h1 class="get-title">速派超市购物软件</h1>
+      <h1 class="get-title"><? echo StaiticValues::$app_name; ?></h1>
 
       <p>
         最好用的网上超市
@@ -15,10 +15,33 @@
   </div>
 </div>
 
+
 <div class="hope">
+    <div class="am-g am-container">
+        <h2>速派是什么?</h2>
+        <p>速派网销平台是一款专为中小型超市批发部量身打造的应用.集店铺商品管理,库存管理统计,在线销售于一体的销售平台.
+            可以一步将您的生意带到云端.
+
+        </p>
+
+    </div>
+
+    <div class="am-g am-container">
+        <h2>我们有哪些不同?</h2>
+        <p>
+            也许你已经使用了一款XX进销存软件,但只能自己用自己看,自己用.每次出货都需要手动填写输入,麻烦又费时.
+            想开网店,还需要把商品重新录入一遍,费时又费力,修改商品价格时每个都需要单独改,往往顾此失彼,造成混乱.<br>
+            使用速派一个平台即可完成进销存,在线推广销售,门店销售的多重功能.
+
+        </p>
+
+    </div>
+
   <div class="am-g am-container">
-    <h2>速派是什么</h2>
-    <p>是为目前正在受网购打压的，实体超市专业打造的最干净.最实用.最先进的手机App销售平台。他不同与任何一种网店，从平台架构设计理念等根本上颠覆目前无法推广的手机App销售平台。</p>
+    <h2>速派能为你做什么?</h2>
+    <p>让你不做原始人,告别传统的填单模式,让你的生意更轻松!
+      支持自营品牌的信息录入即维护,扫码即自动生成销售订单,历史订单即时查询.
+    </p>
   </div>
 </div>
 
@@ -26,13 +49,24 @@
   <div class="am-g am-container">
     <div class="am-u-lg-12">
       <h2 class="detail-h2">应用特色</h2>
+        <div class="am-g">
+            <div class="am-u-sm-4">
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-store.png" />
+            </div>
+            <div class="am-u-sm-8">
+                <p><h4>一步开店</h4><br>
+                无需签约无需分成.无论您经营的是大超市还是小商铺, 加入速派平台只需一步<p>
+            </div>
+        </div>
+        <hr>
 
         <div class="am-g">
             <div class="am-u-sm-4">
                 <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-barcode.jpg" />
             </div>
             <div class="am-u-sm-8">
-                <p>条形码扫描功能,无论是商品的录入还是搜索,只需对准条码一扫,充分发挥手机优势.<p>
+                <p><h4>条形码扫描功能</h4><br>
+                    商品录入搜索无需输入文字,对准条码一扫立即完成<p>
             </div>
         </div>
         <hr>
@@ -42,27 +76,8 @@
                 <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-map.jpg" />
             </div>
             <div class="am-u-sm-8">
-                <p>深度集成地图功能,基于地理位置的搜索,身边服务一目了然.<p>
-            </div>
-        </div>
-        <hr>
-
-        <div class="am-g">
-            <div class="am-u-sm-4">
-                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-store.png" />
-            </div>
-            <div class="am-u-sm-8">
-                <p>一步开店, 无论您经营的是大超市还是小商铺, 加入速派平台只需一步,.享受便捷购物的同时也可以将自己的产品推销出去.<p>
-            </div>
-        </div>
-        <hr>
-
-        <div class="am-g">
-            <div class="am-u-sm-4">
-                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-locate.png" />
-            </div>
-            <div class="am-u-sm-8">
-                <p>实时位置跟踪,下单后实时查看送货人员位置.购物更安心.<p>
+                <p><h4>LBS地图功能</h4><br>
+                    店铺推广中使用地图功能,可以让顾客更方便的找到您<p>
             </div>
         </div>
         <hr>
@@ -72,17 +87,61 @@
                 <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-receipt.png" />
             </div>
             <div class="am-u-sm-8">
-                <p>率先集成小票打印功能,订单自动打印.<p>
+                <p><h4>周边搜索</h4><br>
+                率先集成小票打印功能,订单自动打印.
+                <p>
             </div>
         </div>
         <hr>
 
         <div class="am-g">
             <div class="am-u-sm-4">
-                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-favourite.png" />
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-locate.png" />
             </div>
             <div class="am-u-sm-8">
-                <p>商品收藏夹功能,方便您买了再买<p>
+                <p><h4>周边搜索</h4><br>
+                    随时查找周边的生活服务<p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-4">
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-sales.jpg" />
+            </div>
+            <div class="am-u-sm-8">
+                <p><h4>店铺销售系统</h4><br>
+                    员工的手机添加为营业员,直接手机扫码销售,.
+                <p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-4">
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-statistics.jpg" />
+            </div>
+            <div class="am-u-sm-8">
+                <p>
+                    <h4>即时库存管理/销量统计</h4><br>
+                    相当于瞬间拥有一个手机版进销存系统,无论线上线下订单即时纳入销售统计,无需重复输入.
+
+                <p>
+            </div>
+        </div>
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-4">
+                <img class="am-circle am-img-thumbnail " src="/images/webpage/feather-msg.jpg" />
+            </div>
+            <div class="am-u-sm-8">
+                <p>
+                <h4>即时推送功能</h4><br>
+                    <br>
+                    新货上架,优惠信息可以直接推送给会员.
+
+                <p>
             </div>
         </div>
         <hr>
@@ -91,10 +150,10 @@
     </div>
   </div>
 </div>
-<div class="am-u-lg-12">
-      <h2>我们的理念</h2>
-      <p>人是各种不同的，需求也是各种不同的，超市就是你一个，但是你如果用了速派手机超市，那你的超市就会在各种不同人的手机中形成各种不同的适合自己的超市，你的超市就是最伟大的变形金刚，你的超市要变形吗?请下载速派手机超市吧!</p>
-  </div>
+<!--<div class="am-u-lg-12">-->
+<!--      <h2>我们的理念</h2>-->
+<!--      <p>人是各种不同的，需求也是各种不同的，超市就是你一个，但是你如果用了速派手机超市，那你的超市就会在各种不同人的手机中形成各种不同的适合自己的超市，你的超市就是最伟大的变形金刚，你的超市要变形吗?请下载速派手机超市吧!</p>-->
+<!--  </div>-->
 
 <div class="am-g am-container">
 <!--    <div class="am-u-lg-10">-->
@@ -129,7 +188,7 @@
 
     <div class="am-u-lg-12">
       <h2>关于我们</h2>
-        速派信息技术有限公司是一家专注于移动应用研发的公司.我们坚信用户体验第一.不断在移动应用领域推出更好的产品.不求大而全,只求小而美.
+        速派信息技术有限公司是一家专注于移动应用研发的IT企业.以用户体验为中心不断改进.不断在移动应用领域推出更好的产品.不求大而全,只求小而美.
     </div>
 
     <div class="am-u-lg-12">
@@ -137,8 +196,8 @@
       <ul class="am-list am-list-static am-list-border am-list-striped">
         <li>微信搜索 jnsupai 或扫描下方的二维码<br><img src="images/webpage/qrcode.jpg" />
         </li>
-        <li>运营QQ 2724166624 </li>
-        <li>邮箱 supai.jn@qq.com</li>
+        <li>运营QQ  <? echo StaiticValues::$qq; ?></li>
+        <li>邮箱 <? echo StaiticValues::$mail; ?></li>
       </ul>
     </div>
 
@@ -201,31 +260,24 @@
         <div class="am-popup-bd">
             <ul class="am-list">
                 <li>
-                    V1.0<br>
+                    V4.1<br>
                     <ul>
-                        <li>速派网上超市上线运行</li>
-                    </ul>
+                        <li>商品属性添加及搜索功能</li>
+                        <li>客户端消息推送功能</li>
 
+                    </ul>
                 </li>
+
                 <li>
-                    V1.1<br>
+                    V4.0<br>
                     <ul>
-                        <li>提升了应用的加载速度和稳定性</li>
-                        <li>修复了在部分设备上的崩溃问题</li>
-                        <li>UI兼容性调整,适应国内的主流手机系统</li>
-
+                        <li>应用UI大幅度重新设计,更加美观易用</li>
+                        <li>店铺销售(售货员)模块上线,可以将员工手机注册成售货员</li>
+                        <li>商品盘点功能,即时查询商品的存货情况,缺货商品自动报警提醒进货</li>
+                        <li>销量统计功能,提供按当天,本月,年度统计.按员工单独统计</li>
                     </ul>
-
                 </li>
-                <li>
-                    V1.2<br>
-                    <ul>
-                        <li>账号申诉功能上线,手机更换或丢失可以立即更换绑定</li>
-                        <li>添加订单通知功能</li>
 
-                    </ul>
-
-                </li>
                 <li>
                     V2.0<br>
                     <ul>
@@ -236,6 +288,36 @@
                     </ul>
 
                 </li>
+
+                <li>
+                    V1.2<br>
+                    <ul>
+                        <li>账号申诉功能上线,手机更换或丢失可以立即更换绑定</li>
+                        <li>添加订单通知功能</li>
+
+                    </ul>
+
+                </li>
+
+                <li>
+                    V1.1<br>
+                    <ul>
+                        <li>提升了应用的加载速度和稳定性</li>
+                        <li>修复了在部分设备上的崩溃问题</li>
+                        <li>UI兼容性调整,适应国内的主流手机系统</li>
+
+                    </ul>
+
+                </li>
+
+                <li>
+                    V1.0<br>
+                    <ul>
+                        <li>速派网上超市上线运行</li>
+                    </ul>
+
+                </li>
+
             </ul>
         </div>
     </div>
