@@ -2,7 +2,7 @@
 <div class="jumbotron">
   <div class="am-g">
     <div class="am-u-lg-12">
-      <h1 class="get-title"><? echo StaiticValues::$app_name; ?></h1>
+      <h1 class="get-title">速派网销平台</h1>
 
       <p>
         最好用的网上超市
@@ -196,8 +196,8 @@
       <ul class="am-list am-list-static am-list-border am-list-striped">
         <li>微信搜索 jnsupai 或扫描下方的二维码<br><img src="images/webpage/qrcode.jpg" />
         </li>
-        <li>运营QQ  <? echo StaiticValues::$qq; ?></li>
-        <li>邮箱 <? echo StaiticValues::$mail; ?></li>
+        <li>运营QQ  2724166624</li>
+        <li>邮箱 supai.jn@qq.com</li>
       </ul>
     </div>
 
