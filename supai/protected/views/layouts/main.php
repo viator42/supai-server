@@ -19,7 +19,7 @@
     <header class="am-topbar am-topbar-fixed-top">
         <div class="am-container">
             <h1 class="am-topbar-brand">
-                <img src="/images/webpage/logo.jpg"><? echo StaiticValues::$app_name; ?>
+                <img src="/images/webpage/logo.jpg">速派网销平台
             </h1>
 
             <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
