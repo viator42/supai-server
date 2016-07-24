@@ -66,7 +66,7 @@ class UserController extends Controller
         else
         {
             $result['success'] = false;
-            $result['errorCode'] = $_identity->errorCode;
+//            $result['errorCode'] = $_identity->errorCode;
 
         }
 
@@ -75,6 +75,78 @@ class UserController extends Controller
 
 	}
 
+    //注册
+    public function actionRegister()
+    {
+        $result = array('success'=>false, 'msg'=>"注册失败");
+
+        $tel = trim($_POST['tel']);
+        $name = trim($_POST['name']);
+        $imie = $_POST['imie'];
+        $password = md5($_POST['password']);
+        $address = trim($_POST['address']);
+        $area = $_POST['area'];
+
+        //手机号码格式正则查询
+        if(!preg_match("/^1[35789]{1}[0-9]{9}$/",$tel))
+        {
+            $result['msg'] = "请输入正确的手机号";
+        }
+        //查询手机号是否已经注册
+        elseif(User::model()->exists('tel=:tel', array(':tel'=>$tel)))
+        {
+            $result['msg'] = "此号码已经注册,请直接登录";
+        }
+//        elseif(User::model()->exists('imie=:imie', array(':imie'=>$imie)))
+//        {
+//            $result['msg'] = "不允许一台手机注册多个账户";
+//        }不允许一台手机注册多个账户
+        else
+        {
+            //注册
+            $user = new User();
+
+            $user->imie = $imie;
+            $user->name = $name;
+            $user->username = $name;
+            $user->tel = $tel;
+            $user->password = $password;
+            $user->register_time = time();
+            $user->lastlogin_time = time();
+            $user->address = $address;
+            $user->area_id = $area;
+
+            //默认头像
+            $user->icon = "/images/ic_user.png";
+
+            $user->sn = uniqid();
+            $user->passtype = StaiticValues::$USER_PASSTYPE_AUTO;
+
+            $user->save();
+
+            //注册后回传值
+            $result['id'] = $user->id;
+            $result['name'] = $user->name;
+            $result['username'] = $user->username;
+            $result['tel'] = $user->tel;
+            $result['area'] = $user->area_id;
+            $result['icon'] = $user->icon;
+            $result['address'] = $user->address;
+            $result['sn'] = $user->sn;
+            $result['passtype'] = $user->passtype;
+            $result['clerk_of'] = $user->clerk_of;
+            $result['status'] = $user->status;
+            $result['print_copy'] = StaiticValues::$PRINT_COPY;
+
+            $result['success'] = true;
+            $result['msg'] = "注册成功";
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    /*
     //验证密码
     public function actionValidatePassword()
     {
@@ -110,77 +182,9 @@ class UserController extends Controller
         $json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
     }
+    */
 
-	//注册
-	public function actionRegister()
-	{
-		$result = array('success'=>false, 'msg'=>"注册失败");
 
-		$tel = trim($_POST['tel']);
-		$name = trim($_POST['name']);
-		$imie = $_POST['password'];
-		$password = md5($_POST['password']);
-		$address = trim($_POST['address']);
-		$area = $_POST['area'];
-
-		//手机号码格式正则查询
-		if(!preg_match("/^1[35789]{1}[0-9]{9}$/",$tel))
-		{
-			$result['msg'] = "请输入正确的手机号";
-		}
-		//查询手机号是否已经注册
-		elseif(User::model()->exists('tel=:tel', array(':tel'=>$tel)))
-		{
-			$result['msg'] = "此号码已经注册,请直接登录";
-		}
-		elseif(User::model()->exists('imie=:imie', array(':imie'=>$imie)))
-		{
-			$result['msg'] = "不允许一台手机注册多个账户";
-		}
-		else
-		{
-			//注册
-			$user = new User();
-
-			$user->imie = $imie;
-			$user->username = $tel;
-			$user->tel = $tel;
-			$user->password = $password;
-			$user->register_time = time();
-			$user->lastlogin_time = time();
-			$user->name = $name;
-			$user->address = $address;
-			$user->area_id = $area;
-
-			//默认头像
-			$user->icon = "/images/ic_user.png";
-
-			$user->sn = uniqid();
-			$user->passtype = StaiticValues::$USER_PASSTYPE_AUTO;
-
-			$user->save();
-
-			//注册后回传值
-			$result['id'] = $user->id;
-		    $result['name'] = $user->name;
-		    $result['username'] = $user->username;
-		    $result['tel'] = $user->tel;
-		    $result['area'] = $user->area_id;
-		    $result['icon'] = $user->icon;
-		    $result['address'] = $user->address;
-		    $result['sn'] = $user->sn;
-            $result['passtype'] = $user->passtype;
-            $result['clerk_of'] = $user->clerk_of;
-            $result['status'] = $user->status;
-            $result['print_copy'] = StaiticValues::$PRINT_COPY;
-
-			$result['success'] = true;
-			$result['msg'] = "注册成功";
-		}
-
-		$json = str_replace("\\/", "/", CJSON::encode($result));
-    	echo $json;
-	}
 
 	// 修改用户信息
 	public function actionUpdate()

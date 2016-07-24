@@ -16,6 +16,7 @@ class UserIdentity extends CUserIdentity
     /**
      * [authenticate description]
      * @return [type] [description]
+     * 用户登录验证
      */
     public function authenticate()
     {
