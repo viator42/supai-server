@@ -58,20 +58,7 @@ class StoreController extends Controller
             $store->storage_warning = 10;
 			
 			$store->save();
-
-			$result['id'] = $store->id;
-			$result['user_id'] = $store->user_id;
-			$result['name'] = $store->name;
-			$result['address'] = $store->address;
-			$result['description'] = $store->description;
-			$result['longitude'] = $store->longitude;
-			$result['latitude'] = $store->latitude;
-			$result['status'] = $store->status;
-			$result['area_id'] = $store->area_id;
-			$result['sn'] = $store->sn;
-			$result['logo'] = $store->logo;
-            $result['favourite'] = 0;
-            $result['storage_warning'] = $store->storage_warning;
+            $result = $this->returnStore($store);
 
 			$result['success'] = true;
 		}
@@ -85,34 +72,38 @@ class StoreController extends Controller
 	public function actionInfo()
 	{
 		$result = array('success'=>false);
-
 		$userid = $_POST['userid'];
 
-		$storeObj = Store::model()->find('user_id=:user_id', array(':user_id'=>$userid));
-		if($storeObj != null)
+		$store = Store::model()->find('user_id=:user_id', array(':user_id'=>$userid));
+		if($store != null)
 		{
-			$data = array();
-			$data['id'] = $storeObj->id;
-			$data['name'] = $storeObj->name;
-			$data['description'] = $storeObj->description;
-			$data['address'] = $storeObj->address;
-			$data['area_id'] = $storeObj->area_id;
-			$data['logo'] = $storeObj->logo;
-			$data['user_id'] = $storeObj->user_id;
-			$data['favourite'] = 2;
-			$data['longitude'] = $storeObj->longitude;
-			$data['latitude'] = $storeObj->latitude;
-			$data['status'] = $storeObj->status;
-            $data['storage_warning'] = $storeObj->storage_warning;
-
-			$result['data'] = $data;
+            $result = $this->returnStore($store);
 			$result['success'] = true;
-
 		}
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
         echo $json;
 	}
+
+    private function returnStore($store)
+    {
+        $result['id'] = $store->id;
+        $result['user_id'] = $store->user_id;
+        $result['name'] = $store->name;
+        $result['address'] = $store->address;
+        $result['description'] = $store->description;
+        $result['longitude'] = $store->longitude;
+        $result['latitude'] = $store->latitude;
+        $result['status'] = $store->status;
+        $result['area_id'] = $store->area_id;
+        $result['sn'] = $store->sn;
+        $result['logo'] = $store->logo;
+        $result['favourite'] = 0;
+        $result['storage_warning'] = $store->storage_warning;
+
+        return $result;
+    }
+
 
 	//查询用户的店铺信息
 //	public function actionDetail()
@@ -231,17 +222,18 @@ class StoreController extends Controller
 		{
 			$store = array();
 
-			$store['id'] = $storeObj->id;
-			$store['logo'] = $storeObj->logo;
-			$store['name'] = $storeObj->name;
-			$store['user_id'] = $storeObj->user_id;
-			$store['area_id'] = $storeObj->area_id;
-			$store['longitude'] = $storeObj->longitude;
-			$store['latitude'] = $storeObj->latitude;
-			$store['description'] = $storeObj->description;
-			$store['address'] = $storeObj->address;
-            $store['status'] = $storeObj->status;
-            $store['storage_warning'] = $storeObj->storage_warning;
+            $store = $this->returnStore($storeObj);
+//			$store['id'] = $storeObj->id;
+//			$store['logo'] = $storeObj->logo;
+//			$store['name'] = $storeObj->name;
+//			$store['user_id'] = $storeObj->user_id;
+//			$store['area_id'] = $storeObj->area_id;
+//			$store['longitude'] = $storeObj->longitude;
+//			$store['latitude'] = $storeObj->latitude;
+//			$store['description'] = $storeObj->description;
+//			$store['address'] = $storeObj->address;
+//            $store['status'] = $storeObj->status;
+//            $store['storage_warning'] = $storeObj->storage_warning;
 
 			//收藏状态
 			$store['favourite'] = StaiticValues::$UNFAVOURITE;
@@ -295,19 +287,19 @@ class StoreController extends Controller
             array(':STORE_STATUS_OPEN'=>StaiticValues::$STORE_STATUS_OPEN, ':name'=>'%'.$name.'%'));
         foreach ($storeObjs as $storeObj)
         {
-            $store = array();
-
-            $store['id'] = $storeObj->id;
-            $store['logo'] = $storeObj->logo;
-            $store['name'] = $storeObj->name;
-            $store['user_id'] = $storeObj->user_id;
-            $store['area_id'] = $storeObj->area_id;
-            $store['longitude'] = $storeObj->longitude;
-            $store['latitude'] = $storeObj->latitude;
-            $store['description'] = $storeObj->description;
-            $store['address'] = $storeObj->address;
-            $store['status'] = $storeObj->status;
-            $store['storage_warning'] = $storeObj->storage_warning;
+            $store = $this->returnStore($storeObj);
+//            $store = array();
+//            $store['id'] = $storeObj->id;
+//            $store['logo'] = $storeObj->logo;
+//            $store['name'] = $storeObj->name;
+//            $store['user_id'] = $storeObj->user_id;
+//            $store['area_id'] = $storeObj->area_id;
+//            $store['longitude'] = $storeObj->longitude;
+//            $store['latitude'] = $storeObj->latitude;
+//            $store['description'] = $storeObj->description;
+//            $store['address'] = $storeObj->address;
+//            $store['status'] = $storeObj->status;
+//            $store['storage_warning'] = $storeObj->storage_warning;
 
             //收藏状态
             $store['favourite'] = StaiticValues::$UNFAVOURITE;
@@ -357,6 +349,7 @@ class StoreController extends Controller
 			}
 			
 			$store->save();
+            $result = $this->returnStore($store);
 			$result['success'] = true;
 		}
 

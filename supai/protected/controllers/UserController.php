@@ -45,29 +45,19 @@ class UserController extends Controller
         	$user = $_identity->getUser();
             if($user != null)
             {
-                $result['id'] = $user->id;
-                $result['name'] = $user->name;
-                $result['username'] = $user->username;
-                $result['tel'] = $user->tel;
-                $result['area'] = $user->area_id;
-                $result['icon'] = $user->icon;
-                $result['address'] = $user->address;
-                $result['sn'] = $user->sn;
-                $result['passtype'] = $user->passtype;
-                $result['clerk_of'] = $user->clerk_of;
-                $result['status'] = $user->status;
-                $result['print_copy'] = $user->print_copy;
-
+                $result = $this->returnUser($user);
                 $result['success'] = true;
-
             }
-
+            else
+            {
+                $result['success'] = true;
+                $result['msg'] = "登录失败";
+            }
         }
         else
         {
             $result['success'] = false;
-//            $result['errorCode'] = $_identity->errorCode;
-
+            $result['msg'] = $_identity->errorCode;
         }
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
@@ -125,18 +115,7 @@ class UserController extends Controller
             $user->save();
 
             //注册后回传值
-            $result['id'] = $user->id;
-            $result['name'] = $user->name;
-            $result['username'] = $user->username;
-            $result['tel'] = $user->tel;
-            $result['area'] = $user->area_id;
-            $result['icon'] = $user->icon;
-            $result['address'] = $user->address;
-            $result['sn'] = $user->sn;
-            $result['passtype'] = $user->passtype;
-            $result['clerk_of'] = $user->clerk_of;
-            $result['status'] = $user->status;
-            $result['print_copy'] = StaiticValues::$PRINT_COPY;
+            $result = $this->returnUser($user);
 
             $result['success'] = true;
             $result['msg'] = "注册成功";
@@ -146,8 +125,28 @@ class UserController extends Controller
         echo $json;
     }
 
+    private function returnUser($user)
+    {
+        $result = array();
+
+        $result['id'] = $user->id;
+        $result['name'] = $user->name;
+        $result['username'] = $user->username;
+        $result['tel'] = $user->tel;
+        $result['area'] = $user->area_id;
+        $result['icon'] = $user->icon;
+        $result['address'] = $user->address;
+        $result['sn'] = $user->sn;
+        $result['passtype'] = $user->passtype;
+        $result['clerk_of'] = $user->clerk_of;
+        $result['status'] = $user->status;
+        $result['print_copy'] = $user->print_copy;
+
+        return $result;
+    }
+
     /*
-    //验证密码
+    //验证密码 废弃
     public function actionValidatePassword()
     {
         $result = array('success'=>false, 'errorCode'=>UserIdentity::ERROR_PASSWORD_INVALID);
@@ -184,9 +183,9 @@ class UserController extends Controller
     }
     */
 
-
-
-	// 修改用户信息
+	/*
+	 * 修改用户信息
+	 */
 	public function actionUpdate()
 	{
 		$result = array('success'=>false);
@@ -216,18 +215,99 @@ class UserController extends Controller
 
 			$user->save();
 
+            $result = $this->returnUser($user);
 			$result['success'] = true;
 		}
+        else
+        {
+            $result['success'] = false;
+            $result['msg'] = "修改失败";
+        }
+
 
 		$json = str_replace("\\/", "/", CJSON::encode($result));
     	echo $json;
 	}
 
-	//读取设置信息
+    //上传用户位置
+    public function actionUploadLocation()
+    {
+        $result = array('success'=>false);
+
+        $id = $_POST['userid'];
+        $longitude = $_POST['longitude'];
+        $latitude = $_POST['latitude'];
+
+        $user = User::model()->findByPk($id);
+        if($user != null)
+        {
+            $user->longitude = $longitude;
+            $user->latitude = $latitude;
+            $user->save();
+
+            $result['success'] = true;
+
+        }
+
+        $json = str_replace("\\/", "/", CJSON::encode($result));
+        echo $json;
+    }
+
+    //根据code获取省市信息
+    public function actionAddress()
+    {
+        $result = array();
+        $code = $_POST['code'];
+        $data = "";
+
+        $area = Area::model()->find('code=:code', array(':code' => $code));
+        if($area != null)
+        {
+            if($area->p_code != 0)
+            {
+                $parea = Area::model()->find('code=:code', array(':code' => $area->p_code));
+                $data = $data.$parea->name;
+            }
+            $data = $data.$area->name;
+        }
+        $result['data'] = $data;
+
+        $json = CJSON::encode($result);
+        echo $json;
+    }
+
+    //用户反馈
+    public function actionRef()
+    {
+        $result = array('success'=>false);
+
+        if (isset($_POST['userid']))
+        {
+            $userid = $_POST['userid'];
+
+            $ref = new Ref();
+
+            $ref->user_id = $userid;
+            $ref->content = $_POST['content'];
+            $ref->type = StaiticValues::$REF_TYPE_SUGGESTION;
+            $ref->create_time = time();
+            $ref->parent_id = 0;
+
+            $ref->save();
+            $result['success'] = true;
+        }
+
+        $json = CJSON::encode($result);
+        echo $json;
+    }
+
+    /**
+     * 废弃
+     * 读取设置信息
+     */
 	public function actionLoadSettings()
 	{
 		$result = array('success'=>false);
-
 		$id = $_POST['userid'];
 
 		$user = User::model()->findByPk($id);
@@ -248,7 +328,6 @@ class UserController extends Controller
             $result['clerk_of'] = $user->clerk_of;
             $result['status'] = $user->status;
             $result['print_copy'] = $user->print_copy;
-
 			$result['success'] = true;
 
 		}
@@ -257,79 +336,7 @@ class UserController extends Controller
         echo $json;
 	}
 
-	//上传用户位置
-	public function actionUploadLocation()
-	{
-		$result = array('success'=>false);
-
-		$id = $_POST['userid'];
-		$longitude = $_POST['longitude'];
-		$latitude = $_POST['latitude'];
-
-		$user = User::model()->findByPk($id);
-		if($user != null)
-		{
-			$user->longitude = $longitude;
-			$user->latitude = $latitude;
-			$user->save();
-
-			$result['success'] = true;
-
-		}
-
-		$json = str_replace("\\/", "/", CJSON::encode($result));
-        echo $json;
-	}
-
-	//根据code获取省市信息
-	public function actionAddress()
-	{
-		$result = array();
-		$code = $_POST['code'];
-		$data = "";
-
-		$area = Area::model()->find('code=:code', array(':code' => $code));
-		if($area != null)
-		{
-			if($area->p_code != 0)
-			{
-				$parea = Area::model()->find('code=:code', array(':code' => $area->p_code));
-				$data = $data.$parea->name;
-			}
-			$data = $data.$area->name;
-		}
-		$result['data'] = $data;
-
-		$json = CJSON::encode($result);
-        echo $json;
-	}
-
-	//用户反馈
-	public function actionRef()
-	{
-		$result = array('success'=>false);
-
-		if (isset($_POST['userid']))
-		{
-			$userid = $_POST['userid'];
-
-			$ref = new Ref();
-
-			$ref->user_id = $userid;
-			$ref->content = $_POST['content'];
-			$ref->type = StaiticValues::$REF_TYPE_SUGGESTION;
-			$ref->create_time = time();
-			$ref->parent_id = 0;
-
-			$ref->save();
-			$result['success'] = true;
-		}
-
-		$json = CJSON::encode($result);
-        echo $json;
-	}
-
-	//账户找回申请
+	//账户找回申请    废弃
 	public function actionAppeal()
 	{
 		$result = array('success'=>false);
@@ -352,7 +359,7 @@ class UserController extends Controller
         echo $json;
 	}
 
-    //查找用户信息根据tel
+    //查找用户信息根据tel   废弃
     public function actionFindByTel()
     {
         $result = array('success'=>false);
@@ -362,6 +369,7 @@ class UserController extends Controller
 
         if($user != null)
         {
+
             $result['id'] = $user->id;
             $result['name'] = $user->name;
             $result['username'] = $user->username;
